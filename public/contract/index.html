@@ -101,16 +101,21 @@
         .product-highlight h3{font-size:18px;font-weight:700;margin-bottom:6px}
         .product-highlight .price{font-size:28px;font-weight:800;color:var(--accent);margin-bottom:4px}
         .product-highlight .price-detail{font-size:14px;color:var(--text-muted)}
-        .btn-checkout{display:inline-flex;align-items:center;gap:10px;font-size:16px;font-weight:700;font-family:inherit;color:#fff;background:var(--accent);padding:18px 48px;border-radius:14px;border:none;cursor:pointer;transition:all .2s;box-shadow:0 4px 20px rgba(8,82,255,.2);text-decoration:none;margin-top:8px}
-        .btn-checkout:hover{background:#063FCC;transform:translateY(-2px);box-shadow:0 8px 28px rgba(8,82,255,.3)}
-        .btn-checkout svg{width:18px;height:18px}
+        .stripe-card{background:linear-gradient(135deg,#f7f7ff 0%,#fafafa 100%);border:1px solid #e0deff;border-radius:14px;padding:28px;text-align:center;margin-top:24px}
+        .stripe-card .secure-badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:#635BFF;background:rgba(99,91,255,.06);padding:6px 16px;border-radius:100px;margin-bottom:20px}
+        .stripe-card .secure-badge svg{width:14px;height:14px;fill:currentColor}
+        .btn-stripe{display:inline-flex;align-items:center;gap:10px;font-size:16px;font-weight:700;font-family:inherit;color:#fff;background:#635BFF;padding:18px 40px;border-radius:14px;border:none;cursor:pointer;transition:all .2s;box-shadow:0 4px 20px rgba(99,91,255,.25);text-decoration:none}
+        .btn-stripe:hover{background:#4b44d4;transform:translateY(-2px);box-shadow:0 8px 28px rgba(99,91,255,.35)}
+        .btn-stripe svg{width:18px;height:18px}
+        .stripe-note{font-size:14px;color:var(--text-muted);line-height:1.8;margin-top:20px;text-align:left}
+        .stripe-note p{margin-bottom:8px}
         .thanks-note{font-size:14px;color:var(--text-muted);line-height:1.8;margin-top:16px}
         .thanks-closing{text-align:center;padding:40px 0 0;border-top:1px solid var(--border);margin-top:40px}
         .thanks-closing p{font-size:16px;color:var(--text-secondary);line-height:2;margin-bottom:8px}
         .thanks-closing .sign{font-size:13px;font-weight:600;color:var(--text-primary);margin-top:20px}
         .site-footer{text-align:center;padding:32px 24px;border-top:1px solid var(--border)}
         .site-footer p{font-size:12px;color:var(--text-muted)}
-        @media(max-width:640px){.main{padding:32px 16px 80px}.form-section{padding:24px 20px}.thanks-card{padding:28px 20px}.terms-scroll{padding:20px 16px}.btn-submit,.btn-checkout{padding:16px 32px;font-size:15px}}
+        @media(max-width:640px){.main{padding:32px 16px 80px}.form-section{padding:24px 20px}.thanks-card{padding:28px 20px}.terms-scroll{padding:20px 16px}.btn-submit,.btn-stripe{padding:16px 32px;font-size:15px}}
     </style>
 </head>
 <body>
@@ -227,15 +232,20 @@
                 <h1>契約フォームの送信を<br>承りました。</h1>
             </div>
             <div class="thanks-card">
-                <h2><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>今後の流れ</h2>
-                <p>「決済フォーム」より、クレジットカードでお支払いいただきます。</p>
+                <h2><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="var(--accent)" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>お支払い</h2>
+                <p>下記ボタンより、クレジットカードでお支払いください。</p>
                 <div class="product-highlight" id="thanksProduct"></div>
-                <div style="text-align:center;margin-top:24px">
-                    <a href="/checkout/" class="btn-checkout" id="toCheckoutBtn"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M8 5v14l11-7z"/></svg>決済へすすむ</a>
-                </div>
-                <div class="thanks-note">
-                    <p>お支払い完了後すぐに、テンプレートのご利用を開始できます。</p>
-                    <p>（ご契約時ご入力いただいたメールアドレス宛に、ダウンロードリンクとご利用ガイド等をご送付いたします。）</p>
+                <div class="stripe-card">
+                    <div class="secure-badge"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/></svg>セキュアな決済</div>
+                    <a href="#" class="btn-stripe" id="stripePayBtn" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                        <span id="stripeBtnLabel">クレジットカードで支払う</span>
+                    </a>
+                    <div class="stripe-note">
+                        <p>※ Stripeの決済ページに遷移いたします。</p>
+                        <p>決済後、ご入力いただいたメールアドレス宛にテンプレートのダウンロードリンクをお送りいたします。</p>
+                        <p>まれに迷惑メールに入ってしまう場合がございます。決済後1時間経過しても届かない場合は、<a href="mailto:info@chainsoda.world" style="color:var(--accent);font-weight:600">info@chainsoda.world</a> までお問い合わせください。</p>
+                    </div>
                 </div>
             </div>
             <div class="thanks-closing">
@@ -249,8 +259,8 @@
     <script>
     const CONTRACT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbytx8t0xnHSbNjqKskRUAmgetjhyZErreBa3HKNt_PO4K4ao7iuTLgm8GdThaVHYJ264Q/exec';
     const PLANS = {
-        starter: { name: 'A - LP｜スタータープラン', price: 55000, label: '¥55,000（税込）' },
-        boost:   { name: 'B - LP＋バナー｜集客強化プラン', price: 110000, label: '¥110,000（税込）' }
+        starter: { name: 'A - LP｜スタータープラン', price: 55000, label: '¥55,000（税込）', stripeUrl: 'https://buy.stripe.com/fZudR24qF5lfbku7235os0h' },
+        boost:   { name: 'B - LP＋バナー｜集客強化プラン', price: 110000, label: '¥110,000（税込）', stripeUrl: 'https://buy.stripe.com/fZu9AM4qFbJD1JU3PR5os0i' }
     };
     const $ = id => document.getElementById(id);
     const fullName=$('fullName'),email=$('email'),agreeCheck=$('agreeCheck'),submitBtn=$('submitBtn'),termsScroll=$('termsScroll'),scrollHint=$('scrollHint');
@@ -281,6 +291,8 @@
         if(CONTRACT_ENDPOINT){try{await fetch(CONTRACT_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),mode:'no-cors'});}catch(err){console.error('Submit error:',err);}}
         localStorage.setItem('contractName',fullName.value.trim());localStorage.setItem('contractEmail',email.value.trim());localStorage.setItem('contractPlan',planKey);
         const ph=$('thanksProduct');ph.innerHTML='<h3>'+plan.name+'</h3><div class="price">'+plan.label+'</div><p class="price-detail">買い切り ／ クレジットカード決済</p>';
+        $('stripePayBtn').href=plan.stripeUrl;
+        $('stripeBtnLabel').textContent='クレジットカードで支払う（'+plan.label+'）';
         setTimeout(()=>{$('loadingOverlay').classList.remove('visible');$('formView').style.display='none';$('thanksView').classList.add('visible');window.scrollTo({top:0,behavior:'smooth'});},800);
     });
     updateState();

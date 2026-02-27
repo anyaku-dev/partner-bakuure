@@ -3,1048 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>動画カリキュラム｜パートナー様向けマニュアル｜営業革命｜BakuApo</title>
-    <meta name="description" content="パートナー（正規代理店）様向けの動画カリキュラムです。営業ノウハウや製品知識を動画で学べます。">
+    <title>パートナーマニュアル 動画 — バク売れLPテンプレ</title>
+    <meta name="description" content="バク売れLPテンプレのパートナー向け動画マニュアルです。販売フローや提案方法を動画で解説しています。">
     <meta name="robots" content="noindex, nofollow">
-    <meta property="og:title" content="動画カリキュラム｜パートナー様向けマニュアル｜営業革命｜BakuApo">
-    <meta property="og:description" content="パートナー（正規代理店）様向けの動画カリキュラムです。営業ノウハウや製品知識を動画で学べます。">
+    <meta property="og:title" content="パートナーマニュアル 動画 — バク売れLPテンプレ">
+    <meta property="og:description" content="パートナー向け動画マニュアル。販売フローや提案方法を解説。">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="/ogp-manual.png">
-    <meta property="og:site_name" content="営業革命｜BakuApo">
-    <link rel="icon" href="/bakuapo-logo.svg" type="image/svg+xml">
+    <meta property="og:site_name" content="バク売れLPテンプレ">
+    <meta property="og:image" content="/bakuure-ogp.png">
+    <link rel="icon" href="/bakuure-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-color: #F7F7F5; --card-bg: #FFFFFF; --text-main: #1A1A1A; --text-sub: #787774;
-            --border-color: #E9E9E7; --border-subtle: #F3F4F6; --accent-color: #2383E2;
-            --star-color-on: #F2C94C; --check-color-on: #27AE60; --link-color: #2563EB;
-            --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px;
-            --sidebar-width: 220px; --max-width: 1200px;
-            --chat-primary: #2383E2; --chat-bg: #fff; --chat-bubble-bot: #F7F7F5;
-            --chat-bubble-user: #2383E2; --chat-text-bot: #1A1A1A; --chat-text-user: #FFFFFF;
-        }
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Noto Sans JP', 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; -webkit-font-smoothing: antialiased; }
-        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
-
-        header {
-            position: sticky; top: 0; z-index: 100; padding: 16px 0 12px;
-            background: rgba(250, 250, 250, 0.88); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border-color);
-        }
-        .header-top { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-        .logo-group { display: flex; align-items: center; gap: 10px; }
-        .logo-group img { height: 26px; }
-        .logo-divider { width: 1px; height: 20px; background-color: var(--border-color); }
-        .header-title { font-size: 12px; font-weight: 600; color: var(--text-sub); letter-spacing: 0.02em; }
-
-        .tabs { display: flex; border-bottom: 1px solid var(--border-color); margin-bottom: 16px; overflow-x: auto; }
-        .tabs::-webkit-scrollbar { display: none; }
-        .tab-btn {
-            flex: 1; padding: 12px; cursor: pointer;
-            font-size: 14px; font-weight: 600; color: var(--text-sub);
-            border-bottom: 3px solid transparent; transition: all 0.2s;
-            font-family: inherit; background: none;
-            border-top: none; border-left: none; border-right: none;
-            text-decoration: none; display: inline-block; text-align: center;
-            white-space: nowrap;
-        }
-        .tab-btn:hover { background-color: rgba(0,0,0,0.03); color: var(--text-main); }
-        .tab-btn.active { color: var(--text-main); border-bottom-color: var(--text-main); }
-
-        .controls-wrapper { display: flex; flex-direction: column; gap: 8px; }
-        .search-container { position: relative; }
-        .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; fill: var(--text-sub); pointer-events: none; }
-        .search-input {
-            width: 100%; padding: 10px 14px 10px 38px; border: 1px solid var(--border-color);
-            border-radius: var(--radius-md); font-size: 14px; outline: none;
-            transition: all 0.2s; font-family: inherit; background-color: var(--card-bg);
-        }
-        .search-input:focus { border-color: var(--accent-color); box-shadow: 0 0 0 3px rgba(0,0,0,0.04); }
-        .status-bar { display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--text-sub); padding-left: 2px; }
-        .loading-indicator { display: none; align-items: center; gap: 6px; font-size: 12px; color: var(--text-sub); }
-        .loading-indicator.active { display: inline-flex; }
-        .spinner { width: 14px; height: 14px; border: 2px solid var(--border-color); border-top-color: var(--accent-color); border-radius: 50%; animation: spin 0.6s linear infinite; }
-        @keyframes spin { to { transform: rotate(360deg); } }
-
-        /* --- Chatbot Reference Links --- */
-        .chat-ref-links { display: flex; flex-direction: column; gap: 6px; margin-top: 10px; }
-        .chat-ref-btn {
-            display: flex; align-items: center; gap: 6px; padding: 6px 10px;
-            background: var(--border-subtle); border-radius: var(--radius-sm); text-decoration: none; color: var(--text-main);
-            font-size: 12px; cursor: pointer; transition: background 0.15s; border: 1px solid var(--border-color);
-        }
-        .chat-ref-btn:hover { background: #E5E7EB; }
-        .ref-icon { width: 14px; height: 14px; flex-shrink: 0; }
-        .ref-badge { font-size: 10px; padding: 1px 6px; border-radius: 4px; font-weight: 600; flex-shrink: 0; }
-        .badge-video { background: #DBEAFE; color: #1D4ED8; }
-        .badge-drive { background: #D1FAE5; color: #065F46; }
-        .badge-qa { background: #FEF3C7; color: #92400E; }
-        .badge-rebuttal { background: #FCE7F3; color: #9D174D; }
-        .badge-site { background: #E0E7FF; color: #3730A3; }
-
-        /* --- Loading Overlay & Skeleton --- */
-        .initial-loading { display: flex; flex-direction: column; align-items: center; padding: 48px 0; gap: 16px; }
-        .loading-spinner { width: 32px; height: 32px; border: 3px solid var(--border-color); border-top-color: var(--accent-color); border-radius: 50%; animation: spin 0.7s linear infinite; }
-        .loading-text { font-size: 13px; color: var(--text-sub); }
-        .skeleton-list { width: 100%; max-width: 600px; display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
-        .skeleton-card { background: var(--card-bg); border-radius: var(--radius-md); padding: 20px; border: 1px solid var(--border-color); }
-        .skeleton-line { height: 12px; border-radius: 6px; background: linear-gradient(90deg, var(--border-subtle) 25%, #e5e7eb 50%, var(--border-subtle) 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
-        .skeleton-line.title { width: 40%; height: 14px; margin-bottom: 12px; }
-        .skeleton-line.long { width: 90%; margin-bottom: 8px; }
-        .skeleton-line.medium { width: 70%; margin-bottom: 8px; }
-        .skeleton-line.short { width: 50%; }
-        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-
-        /* --- Main Layout --- */
-        .main-layout { display: flex; gap: 24px; padding-top: 20px; padding-bottom: 80px; }
-        .sidebar {
-            position: sticky; width: var(--sidebar-width); flex-shrink: 0;
-            max-height: calc(100vh - 200px); overflow-y: auto;
-            display: flex; flex-direction: column; gap: 4px;
-        }
-        .sidebar::-webkit-scrollbar { width: 4px; }
-        .sidebar::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
-
-        .filter-section {
-            display: flex; flex-direction: column; gap: 4px;
-            margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--border-color);
-        }
-        .filter-btn {
-            display: flex; align-items: center; gap: 8px; padding: 8px 12px;
-            background: var(--card-bg); border: 1px solid var(--border-color);
-            border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600;
-            color: var(--text-main); transition: all 0.2s; user-select: none; width: 100%;
-        }
-        .filter-btn:hover { background: #F0F0EF; }
-        .filter-icon { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
-        i.filter-icon { width: auto; height: auto; font-size: 14px; color: currentColor; fill: none; }
-        .filter-btn.active-star { background: #FFF9E6; border-color: var(--star-color-on); color: #946F00; }
-        .filter-btn.active-star .filter-icon { fill: var(--star-color-on); }
-        .filter-btn.active-unwatched { background: #E8F5E9; border-color: var(--check-color-on); color: #1E8449; }
-
-        .sidebar-title { font-size: 11px; font-weight: 600; color: var(--text-sub); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; padding-left: 4px; }
-        .category-nav-list { list-style: none; display: flex; flex-direction: column; gap: 1px; }
-        .category-nav-item {
-            font-size: 13px; padding: 7px 10px; border-radius: var(--radius-sm);
-            cursor: pointer; color: var(--text-sub); transition: all 0.15s; font-weight: 500;
-        }
-        .category-nav-item:hover { background-color: var(--border-subtle); color: var(--text-main); }
-
-        .content-area { flex: 1; min-width: 0; }
-        .list-section { display: none; }
-        .list-section.active { display: block; }
-
-        /* --- Video Card Design --- */
-        .card {
-            background-color: var(--card-bg); border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg); padding: 24px; margin-bottom: 16px;
-            position: relative; transition: box-shadow 0.2s;
-        }
-        .card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
-        .category-badge {
-            display: inline-block; font-size: 11px; font-weight: 600; color: var(--text-sub);
-            background-color: var(--border-subtle); padding: 3px 10px; border-radius: 20px;
-            margin-bottom: 10px; letter-spacing: 0.02em;
-        }
-        .video-title { font-size: 17px; font-weight: 700; line-height: 1.5; margin-bottom: 14px; padding-right: 70px; }
-        .video-embed-container {
-            position: relative; width: 100%; padding-bottom: 56.25%;
-            border-radius: var(--radius-md); overflow: hidden; margin-bottom: 14px;
-            background-color: #000;
-        }
-        .video-embed-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-
-        /* --- Drive File List --- */
-        .drive-category-group { margin-bottom: 24px; }
-        .drive-category-title {
-            font-size: 22px; font-weight: 700; margin-bottom: 24px; padding-bottom: 8px;
-            border-bottom: 2px solid var(--border-color); color: var(--text-main);
-        }
-        .drive-medium-block { margin-left: 8px; margin-bottom: 24px; padding-left: 20px; border-left: 3px solid var(--border-color); }
-        .drive-medium-header { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--text-main); margin-bottom: 8px; padding: 4px 0; }
-        .folder-icon { width: 18px; height: 18px; fill: none; stroke: var(--text-sub); stroke-width: 1.5; }
-        .drive-small-group { margin-left: 8px; margin-bottom: 12px; }
-        .drive-small-header { font-size: 13px; font-weight: 600; color: var(--text-sub); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
-        .small-icon { width: 10px; height: 10px; }
-        .drive-file-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
-        .drive-file-item {
-            display: flex; align-items: center; gap: 12px; padding: 10px 14px;
-            border-radius: var(--radius-sm); text-decoration: none; color: var(--text-main);
-            transition: background-color 0.15s; border: 1px solid transparent;
-        }
-        .drive-file-item:hover { background-color: var(--border-subtle); border-color: var(--border-color); }
-        .file-content-wrapper { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
-        .file-thumbnail {
-            width: 44px; height: 44px; border-radius: var(--radius-sm); overflow: hidden;
-            background-color: var(--border-subtle); flex-shrink: 0;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .file-thumbnail img { width: 100%; height: 100%; object-fit: cover; }
-        .icon-svg { width: 24px; height: 24px; }
-        .icon-svg.type-sheet { stroke: #0F9D58; }
-        .icon-svg.type-doc { stroke: #4285F4; }
-        .icon-svg.type-slide { stroke: #F4B400; }
-        .icon-svg.type-pdf { stroke: #DB4437; }
-        .icon-svg.type-web { stroke: var(--text-sub); }
-        .file-info { flex: 1; min-width: 0; }
-        .file-name { font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .file-desc { font-size: 12px; color: var(--text-sub); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-        /* --- Action Buttons --- */
-        .action-buttons { display: flex; gap: 4px; flex-shrink: 0; }
-        .icon-btn {
-            width: 32px; height: 32px; border-radius: 8px; border: none;
-            background: none; cursor: pointer; display: flex; align-items: center;
-            justify-content: center; transition: all 0.15s; color: var(--text-sub);
-        }
-        .icon-btn:hover { background-color: var(--border-subtle); }
-        .icon-btn svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; }
-        .star-btn.active { color: var(--star-color-on); }
-        .star-btn.active svg { fill: var(--star-color-on); stroke: var(--star-color-on); }
-        .check-btn.active { color: var(--check-color-on); }
-        .check-btn.active svg { fill: var(--check-color-on); stroke: var(--check-color-on); }
-
-        .video-duration-chip {
-            display: none; position: absolute; top: 20px; right: 80px;
-            background-color: var(--border-subtle); color: var(--text-sub);
-            font-size: 11px; font-weight: 600;
-            padding: 3px 10px; border-radius: 20px;
-            margin-left: 6px; vertical-align: middle;
-            font-variant-numeric: tabular-nums;
-            letter-spacing: 0.01em;
-        }
-        .description { font-size: 14px; white-space: pre-wrap; margin-bottom: 14px; word-wrap: break-word; color: var(--text-sub); line-height: 1.7; }
-        .material-btn {
-            display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-sub);
-            background-color: var(--border-subtle); padding: 7px 12px; border-radius: var(--radius-sm); text-decoration: none;
-            font-weight: 500; transition: all 0.15s; border: 1px solid var(--border-color);
-        }
-        .material-btn:hover { background-color: #E5E7EB; color: var(--text-main); }
-
-        /* --- Q&A Card Design --- */
-        .qa-card {
-            background-color: var(--card-bg); border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg); padding: 0; margin-bottom: 12px;
-            overflow: hidden; transition: box-shadow 0.2s;
-        }
-        .qa-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
-        .qa-question {
-            display: flex; align-items: flex-start; gap: 12px; padding: 18px 20px;
-            font-weight: 600; font-size: 14px; line-height: 1.6;
-            background-color: var(--border-subtle); border-bottom: 1px solid var(--border-color);
-            position: relative;
-        }
-        .qa-question .action-buttons { position: absolute; top: 14px; right: 14px; }
-        .qa-answer {
-            display: flex; align-items: flex-start; gap: 12px; padding: 18px 20px;
-            font-size: 14px; line-height: 1.8; white-space: pre-wrap; color: var(--text-main);
-        }
-        .qa-badge {
-            flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center;
-            width: 28px; height: 28px; border-radius: 50%; font-size: 13px; font-weight: 700;
-            margin-top: 1px;
-        }
-        .qa-badge-q { background-color: var(--accent-color); color: #fff; }
-        .qa-badge-a { background-color: var(--check-color-on); color: #fff; }
-
-        /* --- Rebuttal Card Design --- */
-        .rebuttal-card { border-left: 3px solid #EF4444; }
-        .rebuttal-objection { background-color: #FEF2F2; }
-        .rebuttal-badge-obj { background-color: #EF4444; color: #fff; font-size: 10px; width: auto; padding: 3px 8px; border-radius: 6px; }
-        .rebuttal-badge-res { background-color: var(--accent-color); color: #fff; font-size: 10px; width: auto; padding: 3px 8px; border-radius: 6px; }
-
-        .message-state { text-align: center; padding: 48px; color: var(--text-sub); font-size: 14px; }
-        .error-container { display: none; flex-direction: column; gap: 8px; margin-bottom: 20px; }
-        .error-message { color: #DC2626; background: #FEF2F2; padding: 12px 16px; border-radius: var(--radius-md); font-size: 13px; border: 1px solid #FECACA; }
-
-        /* --- Chatbot Widget Styles --- */
-        .chat-widget {
-            position: fixed; bottom: 24px; right: 24px; z-index: 1000;
-            display: flex; flex-direction: column; align-items: flex-end;
-            font-family: inherit;
-        }
-        .chat-toggle-btn {
-            height: 56px; padding: 0 24px 0 20px; border-radius: 30px;
-            background-color: var(--chat-primary); color: white; border: none;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15); cursor: pointer;
-            display: flex; align-items: center; justify-content: center; gap: 12px;
-            transition: all 0.2s; font-weight: 700; font-size: 15px; font-family: inherit;
-        }
-        .chat-toggle-btn:hover { transform: scale(1.05); }
-        .chat-toggle-btn svg { width: 24px; height: 24px; fill: currentColor; }
-        .chat-btn-text { display: block; }
-
-        .chat-window {
-            position: absolute; bottom: 72px; right: 0; width: 350px; height: 500px;
-            background-color: var(--chat-bg); border-radius: 12px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-            display: none; flex-direction: column; overflow: hidden;
-            transform-origin: bottom right;
-        }
-        .chat-window.active { display: flex; }
-
-        .chat-header {
-            padding: 14px 16px;
-            background-color: var(--card-bg);
-            border-bottom: 1px solid var(--border-color);
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .chat-title { font-weight: 600; font-size: 14px; color: var(--text-main); }
-        .chat-close {
-            background: none; border: none; cursor: pointer; color: var(--text-sub);
-            width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center;
-            transition: background 0.15s; font-size: 16px;
-        }
-        .chat-close:hover { background: var(--border-subtle); }
-
-        .chat-messages {
-            flex: 1; padding: 16px; overflow-y: auto; background-color: var(--card-bg);
-            display: flex; flex-direction: column; gap: 10px;
-        }
-        .chat-msg {
-            max-width: 85%; padding: 10px 14px; border-radius: var(--radius-md); font-size: 13px; line-height: 1.6; word-wrap: break-word;
-        }
-        .chat-msg.bot { align-self: flex-start; background-color: var(--chat-bubble-bot); color: var(--chat-text-bot); border-bottom-left-radius: 2px; }
-        .chat-msg.user { align-self: flex-end; background-color: var(--chat-bubble-user); color: var(--chat-text-user); border-bottom-right-radius: 2px; }
-        .chat-msg.system { align-self: center; background-color: #FEF2F2; color: #DC2626; border: 1px solid #FECACA; font-size: 12px; text-align: left; max-width: 90%; }
-        .chat-msg b, .chat-msg strong { font-weight: 700; }
-        .chat-msg a { color: var(--link-color); text-decoration: underline; text-underline-offset: 2px; word-break: break-all; }
-        .chat-msg a:hover { text-decoration: none; }
-
-        .chat-input-area {
-            padding: 12px; border-top: 1px solid var(--border-color);
-            display: flex; gap: 8px; background-color: var(--card-bg);
-        }
-        .chat-input {
-            flex: 1; padding: 9px 14px; border: 1px solid var(--border-color); border-radius: 20px;
-            font-size: 13px; outline: none; transition: all 0.2s; font-family: inherit;
-        }
-        .chat-input:focus { border-color: var(--accent-color); box-shadow: 0 0 0 3px rgba(0,0,0,0.04); }
-        .chat-input:disabled { background-color: var(--border-subtle); cursor: not-allowed; }
-        .chat-send-btn { background: none; border: none; cursor: pointer; color: var(--accent-color); padding: 4px; }
-        .chat-send-btn:disabled { color: var(--text-sub); cursor: not-allowed; }
-
-        .typing-dots { display: flex; gap: 4px; padding: 4px 8px; }
-        .typing-dot { width: 5px; height: 5px; background-color: #9CA3AF; border-radius: 50%; animation: typing 1.4s infinite ease-in-out both; }
-        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
-        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
-        @keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
-
-        /* --- Responsive --- */
-        @media (max-width: 768px) {
-            .container { padding: 0 16px; }
-            header { padding: 12px 0; }
-            .header-top { margin-bottom: 12px; }
-            .logo-group img { height: 22px; }
-            .header-title { font-size: 11px; }
-            .tabs { margin-bottom: 12px; }
-            .tab-btn { font-size: 12px; padding: 10px 6px; }
-            .status-bar { display: none; }
-            .main-layout { flex-direction: column; gap: 12px; padding-top: 4px; }
-            .sidebar {
-                position: sticky; z-index: 90; width: calc(100% + 32px); margin-left: -16px;
-                padding: 8px 16px; border-bottom: 1px solid var(--border-color);
-                max-height: none; overflow-x: auto; display: flex; align-items: center; gap: 6px;
-                background: rgba(250, 250, 250, 0.9);
-                backdrop-filter: blur(10px);
-                -webkit-backdrop-filter: blur(10px);
-            }
-            .sidebar::-webkit-scrollbar { display: none; }
-            .filter-section {
-                flex-direction: row; margin: 0; padding: 0; border: none;
-                padding-right: 6px; margin-right: 4px; border-right: 1px solid var(--border-color);
-            }
-            .filter-btn { padding: 5px 8px; width: auto; font-size: 11px; white-space: nowrap; }
-            .sidebar-title { display: none; }
-            .category-nav-list { display: flex; gap: 6px; }
-            .category-nav-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; padding: 5px 12px; font-size: 11px; }
-            .card { scroll-margin-top: 240px; padding: 18px; }
-            .drive-category-group { scroll-margin-top: 240px; }
-            .drive-medium-block { margin-left: 0; padding-left: 12px; }
-            .drive-file-list { margin-left: 0; }
-            .file-thumbnail { width: 38px; height: 38px; }
-            .file-name { font-size: 13px; }
-            .icon-svg { width: 20px; height: 20px; }
-            .video-title { font-size: 15px; padding-right: 60px; }
-            .chat-toggle-btn { width: 56px; height: 56px; border-radius: 50%; padding: 0; }
-            .chat-btn-text { display: none; }
-            .chat-window { width: calc(100vw - 32px); right: -8px; bottom: 80px; height: 60vh; }
-        }
+        :root{--bg:#FAFAFA;--bg-card:#FFF;--border:#E5E7EB;--border-hover:#D1D5DB;--text-primary:#111827;--text-secondary:#6B7280;--text-muted:#7C8290;--accent:#0852FF;--accent-light:rgba(8,82,255,.08);--accent-subtle:rgba(8,82,255,.04);--success:#10B981;--radius-lg:20px}
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text-primary);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased;min-height:100vh}
+        .ambient-glow{position:fixed;top:-20%;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(ellipse,rgba(8,82,255,.04) 0%,transparent 70%);pointer-events:none;z-index:0}
+        .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--border)}
+        .header-inner{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+        .header-logo img{height:58px}
+        .header-label{font-size:13px;font-weight:500;color:var(--text-muted)}
+        .main-content{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 24px 100px}
+        .hero{padding:64px 0 48px;text-align:center}
+        .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-light);padding:6px 16px;border-radius:100px;margin-bottom:20px}
+        .hero h1{font-size:clamp(26px,5vw,38px);font-weight:800;letter-spacing:-.03em;line-height:1.2;margin-bottom:12px}
+        .hero-sub{font-size:15px;color:var(--text-secondary);max-width:520px;margin:0 auto}
+        .tab-nav{display:flex;gap:4px;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:4px;margin-bottom:40px;overflow-x:auto}
+        .tab-btn{flex:1;padding:12px 20px;border-radius:10px;font-size:14px;font-weight:600;text-align:center;text-decoration:none;color:var(--text-secondary);background:transparent;border:none;cursor:pointer;font-family:inherit;transition:all .2s;white-space:nowrap;min-width:fit-content}
+        .tab-btn.active{background:var(--accent);color:#fff;box-shadow:0 2px 8px rgba(8,82,255,.2)}
+        .tab-btn:not(.active):hover{background:var(--accent-subtle);color:var(--accent)}
+        .video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px}
+        .video-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:all .3s cubic-bezier(.4,0,.2,1);box-shadow:0 1px 3px rgba(0,0,0,.04)}
+        .video-card:hover{border-color:var(--accent);box-shadow:0 16px 40px rgba(8,82,255,.06),0 0 0 1px var(--accent)}
+        .video-thumb{position:relative;width:100%;padding-top:56.25%;background:#1E293B;overflow:hidden}
+        .video-thumb iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+        .video-placeholder{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;cursor:pointer;transition:background .3s}
+        .video-placeholder:hover{background:rgba(255,255,255,.05)}
+        .video-placeholder svg{width:56px;height:56px;fill:rgba(255,255,255,.85);filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));transition:transform .3s}
+        .video-placeholder:hover svg{transform:scale(1.1)}
+        .video-placeholder span{color:rgba(255,255,255,.5);font-size:12px;font-weight:500}
+        .video-info{padding:20px 24px}
+        .video-info h3{font-size:16px;font-weight:700;letter-spacing:-.01em;line-height:1.4;margin-bottom:8px}
+        .video-info p{font-size:13px;color:var(--text-secondary);line-height:1.6}
+        .video-meta{display:flex;align-items:center;gap:10px;margin-top:10px}
+        .video-meta span{font-size:12px;color:var(--text-muted);display:flex;align-items:center;gap:4px}
+        .video-meta svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+        .empty-state{text-align:center;padding:80px 24px}
+        .empty-state svg{width:64px;height:64px;stroke:var(--border);fill:none;stroke-width:1.5;margin-bottom:16px}
+        .empty-state h3{font-size:18px;font-weight:700;margin-bottom:8px}
+        .empty-state p{font-size:14px;color:var(--text-muted)}
+        .site-footer{text-align:center;padding:32px 24px;border-top:1px solid var(--border)}
+        .site-footer p{font-size:12px;color:var(--text-muted)}
+        .fade-up{opacity:0;transform:translateY(16px);animation:fadeUp .5s ease forwards}
+        @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+        @media(max-width:768px){.video-grid{grid-template-columns:1fr;gap:16px}.hero{padding:48px 0 36px}.main-content{padding:0 16px 60px}.header-inner{padding:14px 16px}.tab-nav{gap:2px;padding:3px}}
+        @media(max-width:480px){.header-logo img{height:40px}.tab-btn{padding:10px 14px;font-size:13px}}
     </style>
 </head>
 <body>
-
-<div class="container">
-    <header id="mainHeader">
-        <div class="header-top">
-            <div class="logo-group">
-                <img src="/eigyou-kakumei_logo.svg" alt="営業革命" onerror="this.style.display='none'">
-                <div class="logo-divider"></div>
-                <img src="/bakuapo-logo.svg" alt="BakuApo" onerror="this.style.display='none'">
-            </div>
-            <span class="header-title">パートナー様向けマニュアル</span>
-        </div>
-
-        <div class="tabs">
-            <a class="tab-btn active" href="/manual/videos/">動画カリキュラム</a>
-            <a class="tab-btn" href="/manual/resources/">資料ドライブ</a>
-            <a class="tab-btn" href="/manual/faq/">Q&A</a>
-        </div>
-
-        <div class="controls-wrapper">
-            <div class="search-container">
-                <svg class="search-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                <input type="text" id="searchInput" class="search-input" placeholder="検索...">
-            </div>
-            <div id="errorContainer" class="error-container"></div>
-            <div class="status-bar">
-                <span id="countDisplay">0件</span>
-                <div class="loading-indicator" id="loadingIndicator"><div class="spinner"></div><span>更新中...</span></div>
-            </div>
+    <div class="ambient-glow"></div>
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-logo"><a href="/manual/videos/" style="display:flex;align-items:center;text-decoration:none;"><img src="/bakuure-logo.svg" alt="バク売れLPテンプレ"></a></div>
+            <span class="header-label">パートナーマニュアル</span>
         </div>
     </header>
-
-    <div class="main-layout">
-        <aside class="sidebar" id="stickySidebar">
-            <div class="filter-section">
-                <div class="filter-btn" id="starFilterBtn" onclick="toggleStarFilter()">
-                    <svg class="filter-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <span>スター付きのみ</span>
+    <main class="main-content">
+        <section class="hero">
+            <p class="hero-eyebrow">Partner Manual</p>
+            <h1>パートナーマニュアル</h1>
+            <p class="hero-sub">バク売れLPテンプレの販売パートナー様向けのマニュアルです。<br>販売フロー・提案方法・活用事例を動画でわかりやすく解説しています。</p>
+        </section>
+        <nav class="tab-nav">
+            <a href="/manual/videos/" class="tab-btn active">動画マニュアル</a>
+            <a href="/manual/resources/" class="tab-btn">営業資料</a>
+            <a href="/manual/faq/" class="tab-btn">FAQ</a>
+        </nav>
+        <div class="video-grid" id="videoGrid">
+            <!-- Video 1 -->
+            <div class="video-card fade-up" style="animation-delay:.1s">
+                <div class="video-thumb">
+                    <div class="video-placeholder" onclick="this.innerHTML='準備中です'">
+                        <svg viewBox="0 0 24 24"><path d="M10 8.64L15.27 12 10 15.36V8.64M8 5v14l11-7L8 5z"/></svg>
+                        <span>クリックして再生</span>
+                    </div>
                 </div>
-                <div class="filter-btn" id="unwatchedFilterBtn" onclick="toggleUnwatchedFilter()">
-                    <i class="fa-regular fa-eye filter-icon"></i>
-                    <span>未視聴のみ表示</span>
-                </div>
-            </div>
-            <div class="sidebar-title">カテゴリー目次</div>
-            <ul class="category-nav-list" id="categoryNav"></ul>
-        </aside>
-
-        <main class="content-area" id="contentArea">
-            <div class="initial-loading"><div class="loading-spinner"></div><div class="loading-text">データを読み込んでいます...</div><div class="skeleton-list"><div class="skeleton-card"><div class="skeleton-line title"></div><div class="skeleton-line long"></div><div class="skeleton-line medium"></div></div><div class="skeleton-card"><div class="skeleton-line title"></div><div class="skeleton-line long"></div><div class="skeleton-line short"></div></div><div class="skeleton-card"><div class="skeleton-line title"></div><div class="skeleton-line medium"></div><div class="skeleton-line long"></div></div></div></div>
-        </main>
-    </div>
-
-    <div class="chat-widget">
-        <button class="chat-toggle-btn" onclick="toggleChat()" title="AIアシスタントに質問">
-            <svg viewBox="0 0 24 24"><path d="M20 9V7c0-1.1-.9-2-2-2h-3c0-1.66-1.34-3-3-3S9 3.34 9 5H6c-1.1 0-2 .9-2 2v2c-1.66 0-3 1.34-3 3s1.34 3 3 3v4c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-4c1.66 0 3-1.34 3-3s-1.34-3-3-3zm-2 10H6v-4h12v4zm0-6H6V7h12v6z"/><circle cx="8.5" cy="10.5" r="1.5"/><circle cx="15.5" cy="10.5" r="1.5"/></svg>
-            <span class="chat-btn-text">AIに質問する</span>
-        </button>
-
-        <div class="chat-window" id="chatWindow">
-            <div class="chat-header">
-                <span class="chat-title">AIパートナーアシスタント</span>
-                <button class="chat-close" onclick="toggleChat()">✕</button>
-            </div>
-            <div class="chat-messages" id="chatMessages">
-                <div class="chat-msg bot">
-                    こんにちは！<br>動画カリキュラム、資料、Q&A、切り返しトークについて、ご質問があればお答えします。
+                <div class="video-info">
+                    <h3>【入門】バク売れLPテンプレの商品概要</h3>
+                    <p>サービスの特徴・2つのプラン・ターゲット層について3分で理解できる概要動画です。</p>
+                    <div class="video-meta">
+                        <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>約3分</span>
+                        <span><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>入門編</span>
+                    </div>
                 </div>
             </div>
-            <div class="chat-input-area">
-                <input type="text" id="chatInput" class="chat-input" placeholder="質問を入力..." onkeypress="handleChatKey(event)">
-                <button class="chat-send-btn" onclick="sendChatMessage()" id="chatSendBtn">
-                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-                </button>
+            <!-- Video 2 -->
+            <div class="video-card fade-up" style="animation-delay:.15s">
+                <div class="video-thumb">
+                    <div class="video-placeholder" onclick="this.innerHTML='準備中です'">
+                        <svg viewBox="0 0 24 24"><path d="M10 8.64L15.27 12 10 15.36V8.64M8 5v14l11-7L8 5z"/></svg>
+                        <span>クリックして再生</span>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h3>【販売フロー】契約から納品までの流れ</h3>
+                    <p>リード獲得 → 契約ページ案内 → 決済 → テンプレート納品までのパートナー販売フローを解説。</p>
+                    <div class="video-meta">
+                        <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>約5分</span>
+                        <span><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>販売フロー</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Video 3 -->
+            <div class="video-card fade-up" style="animation-delay:.2s">
+                <div class="video-thumb">
+                    <div class="video-placeholder" onclick="this.innerHTML='準備中です'">
+                        <svg viewBox="0 0 24 24"><path d="M10 8.64L15.27 12 10 15.36V8.64M8 5v14l11-7L8 5z"/></svg>
+                        <span>クリックして再生</span>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h3>【提案トーク】顧客への提案テクニック</h3>
+                    <p>LP制作の外注コストとテンプレート活用のメリットを効果的に伝えるトークスクリプト例。</p>
+                    <div class="video-meta">
+                        <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>約7分</span>
+                        <span><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>提案テクニック</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Video 4 -->
+            <div class="video-card fade-up" style="animation-delay:.25s">
+                <div class="video-thumb">
+                    <div class="video-placeholder" onclick="this.innerHTML='準備中です'">
+                        <svg viewBox="0 0 24 24"><path d="M10 8.64L15.27 12 10 15.36V8.64M8 5v14l11-7L8 5z"/></svg>
+                        <span>クリックして再生</span>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h3>【活用事例】パートナー成功事例紹介</h3>
+                    <p>実際にテンプレートを活用して成果を上げたパートナー様の事例をご紹介します。</p>
+                    <div class="video-meta">
+                        <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>約6分</span>
+                        <span><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>事例紹介</span>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-
-<script>
-    const CURRENT_TAB = 'video';
-    const TAB_URLS = { video: '/manual/videos/', drive: '/manual/resources/', qa: '/manual/faq/' };
-
-    const CONFIG = {
-        geminiProxyUrl: "/api/gemini-proxy",
-        videoSheetUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQBVuXb-cTydLU-CMFwHyYnsJfg9e2AsTEa4TU1G9nYQlShkZHv3wGM2a1X5ww81o5v8HZNS9IXUI1b/pub?gid=396280088&single=true&output=csv",
-        driveSheetUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQBVuXb-cTydLU-CMFwHyYnsJfg9e2AsTEa4TU1G9nYQlShkZHv3wGM2a1X5ww81o5v8HZNS9IXUI1b/pub?gid=380310918&single=true&output=csv",
-        qaSheetUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQBVuXb-cTydLU-CMFwHyYnsJfg9e2AsTEa4TU1G9nYQlShkZHv3wGM2a1X5ww81o5v8HZNS9IXUI1b/pub?gid=1192474135&single=true&output=csv",
-        rebuttalSheetUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQBVuXb-cTydLU-CMFwHyYnsJfg9e2AsTEa4TU1G9nYQlShkZHv3wGM2a1X5ww81o5v8HZNS9IXUI1b/pub?gid=1328585848&single=true&output=csv",
-        refreshInterval: 60000,
-        sitePages: [
-            { url: '/', label: 'BakuApoトップページ', section: 'サービス紹介' },
-            { url: '/001/', label: 'キャンペーン記事（トーク力）', section: 'キャンペーン' },
-            { url: '/002/', label: 'キャンペーン記事（フォーム営業）', section: 'キャンペーン' },
-            { url: '/user-guide/', label: 'ユーザーガイド', section: 'ユーザーガイド' },
-            { url: '/user-guide/quick-start/', label: 'クイックスタートガイド', section: 'ユーザーガイド' },
-            { url: '/checkout/', label: 'BakuApo決済・料金情報', section: '料金・購入' },
-            { url: '/contract/', label: 'BakuApo利用契約書', section: '契約' },
-            { url: '/conversion-report/', label: '成果レポート', section: 'レポート' },
-            { url: '/links/', label: 'リンク集', section: 'リンク' },
-            { url: '/list-purchase/contract/', label: 'BakuApoリスト購入契約', section: '料金・購入' },
-            { url: '/list-purchase/checkout/', label: 'BakuApoリスト決済情報', section: '料金・購入' },
-            { url: '/feedback/', label: 'フィードバック', section: 'サポート' }
-        ]
-    };
-
-    const THRESHOLDS = { CONFIDENCE: 0.6, SUGGESTION: 0.25 };
-
-    const state = {
-        currentTab: CURRENT_TAB,
-        searchText: '',
-        showStarredOnly: false,
-        showUnwatchedOnly: false,
-        starredItems: new Set(),
-        watchedItems: new Set(),
-        data: { video: [], drive: [], qa: [], rebuttal: [] },
-        isLoaded: { video: false, drive: false, qa: false, rebuttal: false },
-        hasError: false,
-        chatHistory: [],
-        messageTimestamps: [],
-        lockedUntil: 0,
-        siteContent: []
-    };
-
-    const els = {
-        input: document.getElementById('searchInput'),
-        count: document.getElementById('countDisplay'),
-        loading: document.getElementById('loadingIndicator'),
-        errorContainer: document.getElementById('errorContainer'),
-        categoryNav: document.getElementById('categoryNav'),
-        header: document.getElementById('mainHeader'),
-        sidebar: document.getElementById('stickySidebar'),
-        starFilterBtn: document.getElementById('starFilterBtn'),
-        unwatchedFilterBtn: document.getElementById('unwatchedFilterBtn'),
-        contentArea: document.getElementById('contentArea'),
-        chatWindow: document.getElementById('chatWindow'),
-        chatMessages: document.getElementById('chatMessages'),
-        chatInput: document.getElementById('chatInput'),
-        chatSendBtn: document.getElementById('chatSendBtn')
-    };
-
-    function updateLayoutMetrics() {
-        const headerHeight = els.header.offsetHeight;
-        const isMobile = window.innerWidth <= 768;
-        const topOffset = isMobile ? headerHeight : headerHeight + 20;
-        els.sidebar.style.top = `${topOffset}px`;
-        const totalStickyHeight = isMobile ? topOffset + els.sidebar.offsetHeight + 20 : topOffset;
-        document.querySelectorAll('.card, .drive-category-group').forEach(el => {
-            el.style.scrollMarginTop = `${totalStickyHeight}px`;
-        });
-    }
-
-    function loadUserPreferences() {
-        try {
-            const stars = localStorage.getItem('partner_manual_stars_v2');
-            if (stars) state.starredItems = new Set(JSON.parse(stars));
-            const watched = localStorage.getItem('partner_manual_watched_v2');
-            if (watched) state.watchedItems = new Set(JSON.parse(watched));
-        } catch (e) {}
-    }
-
-    function saveUserPreferences() {
-        localStorage.setItem('partner_manual_stars_v2', JSON.stringify([...state.starredItems]));
-        localStorage.setItem('partner_manual_watched_v2', JSON.stringify([...state.watchedItems]));
-    }
-
-    function toggleStar(key) {
-        if (state.starredItems.has(key)) state.starredItems.delete(key);
-        else state.starredItems.add(key);
-        saveUserPreferences();
-        renderView();
-    }
-
-    function toggleWatched(key) {
-        if (state.watchedItems.has(key)) state.watchedItems.delete(key);
-        else state.watchedItems.add(key);
-        saveUserPreferences();
-        renderView();
-    }
-
-    function toggleStarFilter() {
-        state.showStarredOnly = !state.showStarredOnly;
-        els.starFilterBtn.classList.toggle('active-star', state.showStarredOnly);
-        renderView();
-    }
-
-    function toggleUnwatchedFilter() {
-        state.showUnwatchedOnly = !state.showUnwatchedOnly;
-        els.unwatchedFilterBtn.classList.toggle('active-unwatched', state.showUnwatchedOnly);
-        renderView();
-    }
-
-    function parseCSV(text) {
-        const arr = []; let quote = false; let row = []; let col = ''; let c = 0;
-        for (; c < text.length; c++) {
-            let cc = text[c], nc = text[c+1];
-            if (quote) {
-                if (cc === '"') { if (nc === '"') { col += '"'; c++; } else { quote = false; } } else { col += cc; }
-            } else {
-                if (cc === '"') { quote = true; }
-                else if (cc === ',') { row.push(col); col = ''; }
-                else if (cc === '\r' && nc === '\n') { row.push(col); col = ''; arr.push(row); row = []; c++; }
-                else if (cc === '\n' || cc === '\r') { row.push(col); col = ''; arr.push(row); row = []; }
-                else { col += cc; }
-            }
-        }
-        if (col.length > 0 || row.length > 0) { row.push(col); arr.push(row); }
-        return arr;
-    }
-
-    /* --- YouTube IFrame Player API --- */
-    let ytApiReady = false;
-    let ytApiCallbacks = [];
-    function loadYTApi() {
-        if (window.YT && window.YT.Player) { ytApiReady = true; return; }
-        if (document.getElementById('yt-iframe-api')) return;
-        const tag = document.createElement('script');
-        tag.id = 'yt-iframe-api';
-        tag.src = 'https://www.youtube.com/iframe_api';
-        document.head.appendChild(tag);
-    }
-    window.onYouTubeIframeAPIReady = function() {
-        ytApiReady = true;
-        ytApiCallbacks.forEach(fn => fn());
-        ytApiCallbacks = [];
-    };
-    function whenYTReady(fn) {
-        if (ytApiReady) fn(); else ytApiCallbacks.push(fn);
-    }
-    function formatDuration(seconds) {
-        const s = Math.round(seconds);
-        const m = Math.floor(s / 60);
-        const sec = s % 60;
-        if (m >= 60) {
-            const h = Math.floor(m / 60);
-            const rm = m % 60;
-            return `${h}:${String(rm).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
-        }
-        return `${m}:${String(sec).padStart(2,'0')}`;
-    }
-    function fetchVideoDurations() {
-        loadYTApi();
-        whenYTReady(function() {
-            document.querySelectorAll('.video-embed-container[data-vid]').forEach(container => {
-                const vidId = container.dataset.vid;
-                const chip = document.getElementById('dur-' + vidId);
-                if (!chip) return;
-                const iframe = container.querySelector('iframe');
-                if (!iframe) return;
-                try {
-                    const player = new YT.Player(iframe, {
-                        events: {
-                            onReady: function(e) {
-                                const dur = e.target.getDuration();
-                                if (dur > 0) {
-                                    chip.innerHTML = '<i class="fa-regular fa-clock" style="margin-right:4px;font-size:10px;opacity:.7"></i>' + formatDuration(dur);
-                                    chip.style.display = 'inline-block';
-                                } else {
-                                    chip.style.display = 'none';
-                                }
-                            }
-                        }
-                    });
-                } catch(ex) {
-                    chip.style.display = 'none';
-                }
-            });
-        });
-    }
-
-    function extractYoutubeId(url) {
-        if (!url) return null;
-        const match = url.match(/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/);
-        return (match && match[2].length === 11) ? match[2] : null;
-    }
-
-    function createActionButtons(id, tab) {
-        const div = document.createElement('div');
-        div.className = 'action-buttons';
-        const isStarred = state.starredItems.has(id);
-        const isWatched = state.watchedItems.has(id);
-        const starTitle = isStarred ? 'スター付きを外す' : 'スター付きにする';
-        const checkLabel = tab === 'video' ? '試聴済み' : '確認済み';
-        const checkTitle = isWatched ? `${checkLabel}を外す` : `${checkLabel}にする`;
-        div.innerHTML = `
-            <button class="icon-btn star-btn ${isStarred?'active':''}" onclick="toggleStar('${id}')" title="${starTitle}">
-                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            </button>
-            <button class="icon-btn check-btn ${isWatched?'active':''}" onclick="toggleWatched('${id}')" title="${checkTitle}">
-                <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            </button>
-        `;
-        return div;
-    }
-
-    function renderNav(categories, idMap) {
-        const frag = document.createDocumentFragment();
-        categories.forEach(cat => {
-            const li = document.createElement('li');
-            li.className = 'category-nav-item';
-            li.textContent = cat;
-            li.onclick = () => {
-                const el = document.getElementById(idMap[cat]);
-                if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
-            };
-            frag.appendChild(li);
-        });
-        els.categoryNav.appendChild(frag);
-    }
-
-    function renderVideoList(items, container) {
-        const categories = new Set();
-        const catMap = {};
-        items.forEach((item, idx) => {
-            const card = document.createElement('article');
-            card.className = 'card';
-            card.id = `video-${idx}`;
-            if (!categories.has(item.category)) {
-                categories.add(item.category);
-                catMap[item.category] = card.id;
-            }
-            card.innerHTML += `<div class="category-badge">${item.category}</div>`;
-            const vidId = extractYoutubeId(item.youtubeUrl);
-            if (vidId) {
-                card.innerHTML += `<span class="video-duration-chip" id="dur-${vidId}"></span>`;
-            }
-            const actions = createActionButtons(item.id, 'video');
-            card.appendChild(actions);
-            const h3 = document.createElement('h3');
-            h3.className = 'video-title';
-            h3.textContent = item.title;
-            card.appendChild(h3);
-            if (vidId) {
-                card.innerHTML += `<div class="video-embed-container" data-vid="${vidId}"><iframe src="https://www.youtube.com/embed/${vidId}?enablejsapi=1" loading="lazy" allowfullscreen></iframe></div>`;
-            }
-            if (item.desc) card.innerHTML += `<div class="description">${item.desc}</div>`;
-            if (item.materialUrl) {
-                card.innerHTML += `<a href="${item.materialUrl}" target="_blank" class="material-btn"><svg viewBox="0 0 24 24" class="filter-icon"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg><span>テキスト資料</span></a>`;
-            }
-            container.appendChild(card);
-        });
-        renderNav(categories, catMap);
-        fetchVideoDurations();
-    }
-
-    function renderView() {
-        const container = els.contentArea;
-        container.innerHTML = '';
-        els.categoryNav.innerHTML = '';
-        const sourceData = state.data[CURRENT_TAB];
-        const query = state.searchText.toLowerCase().trim();
-
-        if (!state.isLoaded[CURRENT_TAB]) {
-            container.innerHTML = `<div class="initial-loading"><div class="loading-spinner"></div><div class="loading-text">データを読み込んでいます...</div><div class="skeleton-list"><div class="skeleton-card"><div class="skeleton-line title"></div><div class="skeleton-line long"></div><div class="skeleton-line medium"></div></div><div class="skeleton-card"><div class="skeleton-line title"></div><div class="skeleton-line long"></div><div class="skeleton-line short"></div></div></div></div>`;
-            return;
-        }
-
-        const filtered = sourceData.filter(item => {
-            if (state.showStarredOnly && !state.starredItems.has(item.id)) return false;
-            if (state.showUnwatchedOnly && state.watchedItems.has(item.id)) return false;
-            if (!query) return true;
-            return JSON.stringify(item).toLowerCase().includes(query);
-        });
-
-        els.count.textContent = `${filtered.length}件`;
-
-        if (filtered.length === 0) {
-            container.innerHTML = `<div class="message-state">該当なし</div>`;
-            return;
-        }
-
-        renderVideoList(filtered, container);
-        requestAnimationFrame(updateLayoutMetrics);
-    }
-
-    function loadCachedData() {
-        try {
-            const cached = sessionStorage.getItem('manual_cache_v1');
-            if (cached) { const obj = JSON.parse(cached); state.data = obj.data; state.isLoaded = obj.isLoaded; renderView(); return true; }
-        } catch (e) {}
-        return false;
-    }
-    function saveCacheData() {
-        try { sessionStorage.setItem('manual_cache_v1', JSON.stringify({ data: state.data, isLoaded: state.isLoaded })); } catch (e) {}
-    }
-
-    async function fetchAllData() {
-        const isFirstLoad = !state.isLoaded[CURRENT_TAB];
-        if (isFirstLoad) { els.loading.classList.add('active'); }
-        els.errorContainer.style.display = 'none';
-        try {
-            const vRes = await fetch(`${CONFIG.videoSheetUrl}&t=${Date.now()}`);
-            if (vRes.ok) {
-                const vText = await vRes.text();
-                const vRows = parseCSV(vText).slice(1).filter(r => (r[0]||'').toUpperCase() === 'ON');
-                state.data.video = vRows.map(r => ({
-                    sourceType: 'manual', id: r[2] || r[3], category: r[1] || '未分類',
-                    youtubeUrl: r[2], title: r[3], desc: r[4], materialUrl: r[5]
-                }));
-                state.isLoaded.video = true;
-            }
-            const dRes = await fetch(`${CONFIG.driveSheetUrl}&t=${Date.now()}`);
-            if (dRes.ok) {
-                const dText = await dRes.text();
-                const dRows = parseCSV(dText).slice(1).filter(r => (r[0]||'').toUpperCase() === 'ON');
-                state.data.drive = dRows.map(r => ({
-                    sourceType: 'material', id: r[5] || '#',
-                    large: r[1] || 'その他', medium: r[2] || '', small: r[3] || '', detail: r[4] || '',
-                    url: r[5] || '#', desc: r[6] || ''
-                }));
-                state.isLoaded.drive = true;
-            }
-            const qRes = await fetch(`${CONFIG.qaSheetUrl}&t=${Date.now()}`);
-            if (qRes.ok) {
-                const qText = await qRes.text();
-                const qRows = parseCSV(qText).slice(1).filter(r => (r[0]||'').toUpperCase() === 'ON');
-                state.data.qa = qRows.map((r, i) => ({
-                    sourceType: 'qa', id: `qa-${r[2] || i}`,
-                    category: r[1] || '未分類', question: r[2] || '', answer: r[3] || ''
-                }));
-                state.isLoaded.qa = true;
-            }
-            const rRes = await fetch(`${CONFIG.rebuttalSheetUrl}&t=${Date.now()}`);
-            if (rRes.ok) {
-                const rText = await rRes.text();
-                const rRows = parseCSV(rText).slice(1).filter(r => (r[0]||'').toUpperCase() === 'ON');
-                state.data.rebuttal = rRows.map((r, i) => ({
-                    sourceType: 'qa', id: `rebuttal-${r[2] || i}`,
-                    category: r[1] || '未分類', question: r[2] || '', answer: r[3] || ''
-                }));
-                state.isLoaded.rebuttal = true;
-            }
-        } catch (e) {
-            console.error(e);
-            state.hasError = true;
-            els.errorContainer.style.display = 'flex';
-            els.errorContainer.innerHTML = `<div class="error-message">データの更新に失敗しました。</div>`;
-        }
-        saveCacheData();
-        renderView();
-        els.loading.classList.remove('active');
-    }
-
-    /* --- Chatbot Functions --- */
-    function toggleChat() {
-        els.chatWindow.classList.toggle('active');
-        if (els.chatWindow.classList.contains('active')) {
-            els.chatInput.focus();
-            scrollToBottom();
-        }
-    }
-    function handleChatKey(e) { if (e.key === 'Enter') sendChatMessage(); }
-    function scrollToBottom() { els.chatMessages.scrollTop = els.chatMessages.scrollHeight; }
-
-    function navigateToItem(tab, index) {
-        els.chatWindow.classList.remove('active');
-        if (tab === CURRENT_TAB) {
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    let targetEl = document.getElementById(`video-${index}`);
-                    if (targetEl) {
-                        targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        targetEl.style.transition = 'box-shadow 0.3s, outline 0.3s';
-                        targetEl.style.outline = '2px solid var(--accent-color)';
-                        targetEl.style.boxShadow = '0 0 0 4px rgba(35,131,226,0.15)';
-                        setTimeout(() => { targetEl.style.outline = 'none'; targetEl.style.boxShadow = ''; }, 2500);
-                    }
-                });
-            });
-        } else {
-            window.location.href = TAB_URLS[tab];
-        }
-    }
-
-    function formatChatMessage(text) {
-        if (!text) return "";
-        let formatted = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
-        formatted = formatted.replace(/\[([^\]]+)\]\((https?:\/\/[^\s\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
-        formatted = formatted.replace(/(?<!href="|">)(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer">リンク</a>');
-        formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<b class="font-bold">$1</b>');
-        formatted = formatted.replace(/\n/g, '<br>');
-        return formatted;
-    }
-
-    function addMessage(text, type, appendHtml = "") {
-        const div = document.createElement('div');
-        div.className = `chat-msg ${type}`;
-        div.innerHTML = formatChatMessage(text) + appendHtml;
-        els.chatMessages.appendChild(div);
-        scrollToBottom();
-    }
-
-    function addTypingIndicator() {
-        const div = document.createElement('div');
-        div.className = 'chat-msg bot typing-indicator';
-        div.innerHTML = `<div class="typing-dots"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>`;
-        els.chatMessages.appendChild(div);
-        scrollToBottom();
-        return div;
-    }
-
-    function setInputLock(locked) {
-        els.chatInput.disabled = locked;
-        els.chatSendBtn.disabled = locked;
-        els.chatInput.placeholder = locked ? "送信制限中です (3分間)" : "質問を入力...";
-    }
-
-    function calculateSimilarity(str1, str2) {
-        if (!str1 || !str2) return 0.0;
-        const s1 = str1.toLowerCase().replace(/\s+/g, "");
-        const s2 = str2.toLowerCase().replace(/\s+/g, "");
-        if (s1 === s2) return 1.0;
-        if (s1.length < 2 || s2.length < 2) return 0.0;
-        const getBigrams = (str) => { const bigrams = []; for (let i = 0; i < str.length - 1; i++) { bigrams.push(str.substring(i, i + 2)); } return bigrams; };
-        const bg1 = getBigrams(s1); const bg2 = getBigrams(s2);
-        let intersection = 0; const bg2Copy = [...bg2];
-        for (const pair of bg1) { const idx = bg2Copy.indexOf(pair); if (idx !== -1) { intersection++; bg2Copy.splice(idx, 1); } }
-        return (2.0 * intersection) / (bg1.length + bg2.length);
-    }
-
-    async function fetchSiteContent() {
-        const results = [];
-        const fetches = CONFIG.sitePages.map(async (page) => {
-            try {
-                const res = await fetch(page.url, { cache: 'force-cache' });
-                if (!res.ok) return;
-                const html = await res.text();
-                const doc = new DOMParser().parseFromString(html, 'text/html');
-                doc.querySelectorAll('script,style,noscript,nav,footer,header').forEach(el => el.remove());
-                let text = (doc.body?.innerText || doc.body?.textContent || '').replace(/\s+/g, ' ').trim();
-                if (text.length > 1500) text = text.substring(0, 1500);
-                if (text.length > 50) results.push({ label: page.label, section: page.section, url: page.url, text: text });
-            } catch(e) { /* skip */ }
-        });
-        await Promise.allSettled(fetches);
-        state.siteContent = results;
-        console.log(`[AI] サイトコンテンツ ${results.length}ページ取得完了`);
-    }
-
-    function findRelevantContents(query, maxResults = 5) {
-        const taggedItems = [
-            ...state.data.video.map((item, i) => ({ ...item, _tab: 'video', _index: i })),
-            ...state.data.drive.map((item, i) => ({ ...item, _tab: 'drive', _index: i })),
-            ...state.data.qa.map((item, i) => ({ ...item, _tab: 'qa', _index: i })),
-            ...state.data.rebuttal.map((item, i) => ({ ...item, _tab: 'rebuttal', _index: i })),
-            ...state.siteContent.map((item, i) => ({ ...item, sourceType: 'site', _tab: 'site', _index: i }))
-        ];
-        const scored = taggedItems.map(item => {
-            let targetText = '', displayText = '', refLabel = '';
-            if (item.sourceType === 'site') {
-                targetText = `${item.label} ${item.section} ${item.text}`;
-                displayText = `[サイト: ${item.label}] ${item.text.substring(0, 300)}`;
-                refLabel = item.label;
-            } else if (item.sourceType === 'manual') {
-                targetText = `${item.category} ${item.title} ${item.desc || ''}`;
-                displayText = `[動画: ${item.title}] 内容: ${item.desc}`;
-                refLabel = item.title;
-            } else if (item.sourceType === 'material') {
-                targetText = `${item.large} ${item.medium} ${item.small} ${item.detail} ${item.desc}`;
-                const name = item.detail || item.small || item.medium || item.large;
-                displayText = `[資料: ${name}] 内容: ${item.desc}`;
-                refLabel = name;
-            } else {
-                targetText = `${item.category} ${item.question} ${item.answer}`;
-                const tabLabel = item._tab === 'rebuttal' ? '切り返し' : 'Q&A';
-                displayText = `[${tabLabel}] Q: ${item.question}\nA: ${item.answer}`;
-                refLabel = item.question;
-            }
-            const queryWords = query.toLowerCase().replace(/[\s　]+/g, ' ').split(' ').filter(w => w.length > 1);
-            let keywordScore = 0;
-            queryWords.forEach(w => { if (targetText.toLowerCase().includes(w)) keywordScore += 0.15; });
-            const bigramScore = calculateSimilarity(query, targetText);
-            const score = Math.min(bigramScore + keywordScore, 1.0);
-            return { item, score, displayText, refLabel, tab: item._tab, index: item._index };
-        });
-        return scored.filter(s => s.score >= THRESHOLDS.SUGGESTION).sort((a, b) => b.score - a.score).slice(0, maxResults);
-    }
-
-    async function sendChatMessage() {
-        const now = Date.now();
-        if (state.lockedUntil > now) return;
-        const text = els.chatInput.value.trim();
-        if (!text) return;
-        const LIMIT_COUNT = 8;
-        const LIMIT_WINDOW = 3 * 60 * 1000;
-        state.messageTimestamps = state.messageTimestamps.filter(t => t > now - LIMIT_WINDOW);
-        if (state.messageTimestamps.length >= LIMIT_COUNT) {
-            state.lockedUntil = now + LIMIT_WINDOW;
-            addMessage('連続で質問をしすぎているようです。しばらく経ってから再度お試しください。<br>または、<a href="https://lin.ee/0rNANZ7" target="_blank" rel="noopener noreferrer">事務局へ連絡</a>', 'system');
-            els.chatInput.value = '';
-            setInputLock(true);
-            setTimeout(() => { if (Date.now() >= state.lockedUntil) { setInputLock(false); state.lockedUntil = 0; } }, LIMIT_WINDOW);
-            return;
-        }
-        state.messageTimestamps.push(now);
-        addMessage(text, 'user');
-        els.chatInput.value = '';
-        const loadingDiv = addTypingIndicator();
-        try {
-            const relevantResults = findRelevantContents(text, 5);
-            const topScore = relevantResults.length > 0 ? relevantResults[0].score : 0;
-            let prompt = '';
-            const commonInstruction = `\n[AIの振る舞い・回答ルール]\n1. 機能に関する質問: 「パートナーQA、商談切り返し、動画・資料マニュアル、およびBakuApoサイト全体の情報を参照して案内が可能です」と回答。\n2. 挨拶: 端的に返す。\n3. 不適切: 拒否する。\n4. フォーマット: **太字**使用。外部URLリンクは[こちら](URL)形式。\n5. 関連する参考情報がある場合は、回答内で「こちらの動画」「こちらのQ&A」「こちらの資料」「こちらの切り返し集」「こちらのページ」などの言葉で言及してください。具体的なリンクボタンは回答の後にシステムが自動で付与するため、回答文内にREF_LINKタグは書かないでください。\n6. サイトコンテンツの情報源がある場合は、該当ページの内容を活用して正確に回答してください。`;
-            const tabLabelMap = { video: '動画カリキュラム', drive: '資料ドライブ', qa: 'Q&A', rebuttal: '切り返し集', site: 'サイトページ' };
-            const contextText = relevantResults.map((r, i) => `${i+1}. [${tabLabelMap[r.tab]}] ${r.displayText}`).join('\n');
-            if (topScore >= THRESHOLDS.CONFIDENCE) {
-                prompt = `あなたは営業パートナー支援AIです。以下の[参考情報]を元に質問に回答してください。複数の参考情報がある場合は、関連するものすべてに言及してください。\n\n[参考情報]\n${contextText}\n\n[ユーザーの質問]\n${text}\n${commonInstruction}`;
-            } else if (topScore >= THRESHOLDS.SUGGESTION) {
-                prompt = `あなたは営業パートナー支援AIです。完全一致しませんでしたが、近い資料が見つかりました。「もしかしてこちらですか？」と提案してください。\n\n[近い資料]\n${contextText}\n\n[ユーザーの質問]\n${text}\n${commonInstruction}`;
-            } else {
-                prompt = `あなたは営業パートナー支援AIです。関連資料は見当たりませんでしたが、ルールに従って回答してください。業務的な質問で答えられない場合は謝罪してください。\n\n[ユーザーの質問]\n${text}\n${commonInstruction}`;
-            }
-            const response = await fetch(CONFIG.geminiProxyUrl, {
-                method: 'POST', headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
-            });
-            const data = await response.json();
-            loadingDiv.remove();
-            if (data.error) {
-                addMessage(`システムエラー: ${data.error.message}`, 'system');
-            } else {
-                let answer = data.candidates?.[0]?.content?.parts?.[0]?.text || 'すみません、回答を生成できませんでした。';
-                let refLinksHtml = '';
-                if (relevantResults.length > 0 && topScore >= THRESHOLDS.SUGGESTION) {
-                    const badgeClassMap = { video: 'badge-video', drive: 'badge-drive', qa: 'badge-qa', rebuttal: 'badge-rebuttal', site: 'badge-site' };
-                    const iconMap = {
-                        video: '<svg class="ref-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>',
-                        drive: '<svg class="ref-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>',
-                        qa: '<svg class="ref-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
-                        rebuttal: '<svg class="ref-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
-                        site: '<svg class="ref-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>'
-                    };
-                    refLinksHtml = '<div class="chat-ref-links">';
-                    relevantResults.forEach(r => {
-                        const label = r.refLabel.length > 30 ? r.refLabel.substring(0, 30) + '…' : r.refLabel;
-                        const badge = `<span class="ref-badge ${badgeClassMap[r.tab]}">${tabLabelMap[r.tab]}</span>`;
-                        const icon = iconMap[r.tab];
-                        if (r.tab === 'site') {
-                            refLinksHtml += `<a class="chat-ref-btn" href="${r.item.url}" target="_blank" rel="noopener noreferrer">${icon}${badge}<span>${label}</span></a>`;
-                        } else if (r.tab === 'drive' && r.item.url && r.item.url !== '#') {
-                            refLinksHtml += `<a class="chat-ref-btn" href="${r.item.url}" target="_blank" rel="noopener noreferrer">${icon}${badge}<span>${label}</span></a>`;
-                        } else {
-                            refLinksHtml += `<a class="chat-ref-btn" onclick="navigateToItem('${r.tab}', ${r.index})">${icon}${badge}<span>${label}</span></a>`;
-                        }
-                    });
-                    refLinksHtml += '</div>';
-                }
-                const disclaimer = '<div style="display:block; margin-top:10px; padding-top:8px; border-top:1px solid rgba(0,0,0,0.1); font-size:11px; color:#888; line-height:1.4;">※回答は必ずしも正しいとは限りません。重要な情報は事務局まで確認するようにしてください。</div>';
-                addMessage(answer, 'bot', refLinksHtml + disclaimer);
-            }
-        } catch (err) {
-            loadingDiv.remove();
-            console.error(err);
-            addMessage("通信エラーが発生しました。", 'system');
-        }
-    }
-
-    function init() {
-        loadUserPreferences();
-        els.input.addEventListener('input', (e) => { state.searchText = e.target.value; renderView(); });
-        window.addEventListener('resize', updateLayoutMetrics);
-        loadCachedData();
-        fetchAllData();
-        fetchSiteContent();
-        setInterval(fetchAllData, CONFIG.refreshInterval);
-    }
-
-    document.addEventListener('DOMContentLoaded', init);
-</script>
+    </main>
+    <footer class="site-footer"><p>&copy; 2026 バク売れLPテンプレ &amp; CHAINSODA Co., Ltd. — All rights reserved.</p></footer>
 </body>
 </html>

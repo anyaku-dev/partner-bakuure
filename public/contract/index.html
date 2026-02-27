@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>契約フォーム｜BakuApo</title>
+    <title>契約フォーム｜バク売れLPテンプレ</title>
     <meta name="robots" content="noindex, nofollow">
-    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" href="/bakuure-icon.png">
+    <meta property="og:image" content="/bakuure-ogp.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -18,19 +19,13 @@
         .header-logo img{height:58px}
         .header-label{font-size:13px;font-weight:600;color:var(--text-secondary)}
         .main{max-width:680px;margin:0 auto;padding:48px 24px 100px}
-
-        /* Page Title */
         .page-top{margin-bottom:40px}
         .page-top h1{font-size:32px;font-weight:800;letter-spacing:-.03em;margin-bottom:12px}
         .page-top p{font-size:16px;color:var(--text-secondary);line-height:1.8}
-
-        /* Form Section */
         .form-section{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:32px;margin-bottom:20px;transition:box-shadow .2s}
         .form-section:hover{box-shadow:0 2px 16px rgba(0,0,0,.03)}
         .form-section-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:var(--accent-light);display:inline-block;padding:4px 12px;border-radius:6px;margin-bottom:14px}
         .form-section h2{font-size:24px;font-weight:700;margin-bottom:20px;letter-spacing:-.01em}
-
-        /* Form Elements */
         .form-group{margin-bottom:24px}
         .form-group:last-child{margin-bottom:0}
         .form-label{display:block;font-size:16.5px;font-weight:600;margin-bottom:8px}
@@ -39,36 +34,42 @@
         .form-input{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:10px;font-size:16px;font-family:inherit;color:var(--text-primary);background:var(--bg-card);transition:border-color .2s,box-shadow .2s;-webkit-appearance:none}
         .form-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-light)}
         .form-hint{font-size:14px;color:var(--text-muted);margin-top:6px;line-height:1.6}
-
-        /* Terms Scroll */
+        .plan-group{display:flex;flex-direction:column;gap:12px}
+        .plan-card{display:flex;align-items:flex-start;gap:14px;cursor:pointer;padding:20px;border:2px solid var(--border);border-radius:14px;transition:all .15s;user-select:none;position:relative}
+        .plan-card:hover{border-color:var(--border-hover);background:var(--bg-alt)}
+        .plan-card.checked{border-color:var(--accent);background:var(--accent-subtle);box-shadow:0 0 0 3px var(--accent-light)}
+        .plan-card input[type="radio"]{appearance:none;-webkit-appearance:none;width:22px;height:22px;border:2px solid var(--border);border-radius:50%;flex-shrink:0;margin-top:2px;position:relative;cursor:pointer;transition:all .15s}
+        .plan-card input[type="radio"]:checked{background:var(--accent);border-color:var(--accent)}
+        .plan-card input[type="radio"]:checked::after{content:'';position:absolute;left:5px;top:5px;width:8px;height:8px;border-radius:50%;background:#fff}
+        .plan-info{flex:1}
+        .plan-info h3{font-size:17px;font-weight:700;margin-bottom:4px;line-height:1.4}
+        .plan-info p{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:6px}
+        .plan-price{font-size:22px;font-weight:800;color:var(--accent)}
+        .plan-price span{font-size:13px;font-weight:600;color:var(--text-secondary)}
+        .plan-badge{position:absolute;top:-10px;right:16px;font-size:11px;font-weight:700;color:#fff;background:var(--accent);padding:3px 12px;border-radius:100px}
         .terms-container{border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:24px}
         .terms-scroll{height:35vh;overflow-y:auto;padding:28px 24px 40px;background:var(--bg-card);font-size:14px;line-height:1.9;color:var(--text-primary)}
         .terms-scroll::-webkit-scrollbar{width:6px}
         .terms-scroll::-webkit-scrollbar-track{background:transparent}
         .terms-scroll::-webkit-scrollbar-thumb{background:var(--border-hover);border-radius:3px}
-        .terms-scroll::-webkit-scrollbar-thumb:hover{background:var(--text-muted)}
         .terms-title{font-size:22px;font-weight:800;color:var(--text-primary);text-align:center;margin-bottom:28px;letter-spacing:-.02em}
         .terms-parties{font-size:14px;margin-bottom:20px;line-height:1.8}
         .terms-preamble{font-size:14px;margin-bottom:28px;line-height:1.9}
         .terms-article{margin-bottom:24px}
-        .terms-article h3{font-size:16px;font-weight:700;color:var(--text-primary);margin-bottom:8px}
+        .terms-article h3{font-size:16px;font-weight:700;margin-bottom:8px}
         .terms-article p,.terms-article ol{font-size:14px;line-height:1.9;margin-bottom:8px}
         .terms-article ol{padding-left:20px}
         .terms-article ol li{margin-bottom:4px}
-        .terms-bank{background:var(--bg-alt);padding:14px 18px;border-radius:8px;margin:8px 0;font-size:14px;line-height:1.8}
-        .terms-date{font-size:14px;margin-top:32px;text-align:right;color:var(--text-primary);font-weight:600}
+        .terms-date{font-size:14px;margin-top:32px;text-align:right;font-weight:600}
         .scroll-hint{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:var(--text-muted);padding:8px;background:var(--bg-alt);border-top:1px solid var(--border)}
         .scroll-hint svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;animation:bounce 1.5s ease infinite}
         @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
-        /* Loading Overlay */
         .loading-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;z-index:9999;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
         .loading-overlay.visible{opacity:1;visibility:visible}
         .loading-box{background:#fff;border-radius:16px;padding:40px 48px;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,.15)}
         .loading-spinner{width:44px;height:44px;border:4px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 20px}
         @keyframes spin{to{transform:rotate(360deg)}}
-        .loading-box p{font-size:15px;font-weight:600;color:var(--text-primary);line-height:1.6}
-
-        /* Checkbox */
+        .loading-box p{font-size:15px;font-weight:600;line-height:1.6}
         .check-item{display:flex;align-items:flex-start;gap:12px;cursor:pointer;padding:14px 16px;border:1px solid var(--border);border-radius:10px;transition:all .15s;user-select:none}
         .check-item:hover{border-color:var(--border-hover);background:var(--bg-alt)}
         .check-item.checked{border-color:var(--accent);background:var(--accent-subtle)}
@@ -76,83 +77,81 @@
         .check-item input:checked{background:var(--accent);border-color:var(--accent)}
         .check-item input[type="checkbox"]:checked::after{content:'';position:absolute;left:5px;top:2px;width:6px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
         .check-item-text{font-size:16px;font-weight:500;line-height:1.6}
-
-        /* Notes */
-        .form-notes{font-size:14px;color:var(--text-primary);line-height:1.8;margin-top:16px}
+        .form-notes{font-size:14px;line-height:1.8;margin-top:16px}
         .form-notes p{margin-bottom:4px}
-
-        /* Submit */
         .submit-section{text-align:center;padding-top:8px}
         .btn-submit{display:inline-flex;align-items:center;gap:10px;font-size:16px;font-weight:700;font-family:inherit;color:#fff;background:var(--accent);padding:18px 48px;border-radius:14px;border:none;cursor:pointer;transition:all .2s;box-shadow:0 4px 20px rgba(8,82,255,.2);margin-top:20px}
         .btn-submit:hover{background:#063FCC;transform:translateY(-2px);box-shadow:0 8px 28px rgba(8,82,255,.3)}
         .btn-submit:disabled{background:var(--text-muted);cursor:not-allowed;transform:none;box-shadow:none}
         .btn-submit svg{width:18px;height:18px}
-
-        /* Error */
         .form-error{color:var(--danger);font-size:13px;margin-top:6px;display:none}
         .form-error.visible{display:block}
         .form-input.error{border-color:var(--danger)}
         .form-input.error:focus{box-shadow:0 0 0 3px rgba(239,68,68,.15)}
-
-        /* ===== Thanks View ===== */
-        .thanks-view{display:none}
-        .thanks-view.visible{display:block}
-        .thanks-hero{text-align:center;padding:64px 0 40px;position:relative}
+        .thanks-view{display:none}.thanks-view.visible{display:block}
+        .thanks-hero{text-align:center;padding:64px 0 40px}
         .thanks-icon{width:88px;height:88px;margin:0 auto 24px;background:rgba(16,185,129,.08);border-radius:50%;display:flex;align-items:center;justify-content:center}
         .thanks-icon svg{width:44px;height:44px;color:var(--success)}
         .thanks-hero h1{font-size:32px;font-weight:800;letter-spacing:-.03em;margin-bottom:8px}
-        .thanks-hero p{font-size:16px;color:var(--text-secondary)}
-
         .thanks-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:36px 32px;margin-bottom:24px}
         .thanks-card h2{font-size:24px;font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:10px}
         .thanks-card p{font-size:16px;color:var(--text-secondary);line-height:1.9;margin-bottom:12px}
         .thanks-card p:last-child{margin-bottom:0}
-
         .product-highlight{background:var(--bg-alt);border:1px solid var(--border);border-radius:12px;padding:24px;margin:20px 0;text-align:center}
         .product-highlight h3{font-size:18px;font-weight:700;margin-bottom:6px}
         .product-highlight .price{font-size:28px;font-weight:800;color:var(--accent);margin-bottom:4px}
         .product-highlight .price-detail{font-size:14px;color:var(--text-muted)}
-
         .btn-checkout{display:inline-flex;align-items:center;gap:10px;font-size:16px;font-weight:700;font-family:inherit;color:#fff;background:var(--accent);padding:18px 48px;border-radius:14px;border:none;cursor:pointer;transition:all .2s;box-shadow:0 4px 20px rgba(8,82,255,.2);text-decoration:none;margin-top:8px}
         .btn-checkout:hover{background:#063FCC;transform:translateY(-2px);box-shadow:0 8px 28px rgba(8,82,255,.3)}
         .btn-checkout svg{width:18px;height:18px}
-
         .thanks-note{font-size:14px;color:var(--text-muted);line-height:1.8;margin-top:16px}
-
         .thanks-closing{text-align:center;padding:40px 0 0;border-top:1px solid var(--border);margin-top:40px}
         .thanks-closing p{font-size:16px;color:var(--text-secondary);line-height:2;margin-bottom:8px}
         .thanks-closing .sign{font-size:13px;font-weight:600;color:var(--text-primary);margin-top:20px}
-
         .site-footer{text-align:center;padding:32px 24px;border-top:1px solid var(--border)}
         .site-footer p{font-size:12px;color:var(--text-muted)}
-
-        @media(max-width:640px){
-            .main{padding:32px 16px 80px}
-            .form-section{padding:24px 20px}
-            .thanks-card{padding:28px 20px}
-            .terms-scroll{padding:20px 16px}
-            .btn-submit,.btn-checkout{padding:16px 32px;font-size:15px}
-        }
+        @media(max-width:640px){.main{padding:32px 16px 80px}.form-section{padding:24px 20px}.thanks-card{padding:28px 20px}.terms-scroll{padding:20px 16px}.btn-submit,.btn-checkout{padding:16px 32px;font-size:15px}}
     </style>
 </head>
 <body>
     <header class="site-header">
         <div class="header-inner">
-            <div class="header-logo"><img src="/bakuapo-logo-useer.svg" alt="BakuApo"></div>
+            <div class="header-logo"><img src="/bakuure-logo.svg" alt="バク売れLPテンプレ"></div>
             <span class="header-label">契約フォーム</span>
         </div>
     </header>
-
     <main class="main">
-        <!-- ===== Form View ===== -->
         <div id="formView">
             <div class="page-top">
-                <h1>BakuApo（バクアポ）契約フォーム</h1>
-                <p>本フォームは、株式会社CHAINSODAが提供する自動問い合わせ送信ツール「BakuApo（バクアポ）」の契約フォームです。<br>本フォームの規約同意および送信をもって、利用契約成立とします。</p>
+                <h1>バク売れLPテンプレ 契約フォーム</h1>
+                <p>本フォームは、株式会社CHAINSODAが提供するLPデザインテンプレート配布サービス「バク売れLPテンプレ」の契約フォームです。<br>本フォームの規約同意および送信をもって、利用契約成立とします。</p>
             </div>
-
             <form id="contractForm" novalidate>
-                <!-- Section 1: ご購入者様情報 -->
+                <!-- プラン選択 -->
+                <div class="form-section">
+                    <span class="form-section-label">プラン選択</span>
+                    <h2>ご希望のプランを選択</h2>
+                    <div class="plan-group">
+                        <label class="plan-card checked" id="planAWrap">
+                            <input type="radio" name="plan" value="starter" id="planA" checked>
+                            <div class="plan-info">
+                                <h3>A - LP｜スタータープラン</h3>
+                                <p>売れる構造をもとに設計されたLPテンプレートを活用し、最短で販売ページを構築できる基本プランです。LP制作の時間短縮と品質向上を実現し、まずは「売れる型」を導入したい方に最適です。</p>
+                                <div class="plan-price">¥55,000<span>（税込）</span></div>
+                            </div>
+                        </label>
+                        <label class="plan-card" id="planBWrap">
+                            <input type="radio" name="plan" value="boost" id="planB">
+                            <div class="plan-info">
+                                <h3>B - LP＋バナー｜集客強化プラン</h3>
+                                <p>LPテンプレートに加え、広告・SNSなどで活用できるバナー素材をセットにした集客強化プランです。ページ制作から流入獲得までを一貫して整え、販売導線の立ち上げを加速します。</p>
+                                <div class="plan-price">¥110,000<span>（税込）</span></div>
+                            </div>
+                            <span class="plan-badge">おすすめ</span>
+                        </label>
+                    </div>
+                </div>
+                <!-- 購入者情報 -->
                 <div class="form-section">
                     <span class="form-section-label">ご購入者様情報</span>
                     <h2>お客様情報のご入力</h2>
@@ -176,125 +175,42 @@
                         <p class="form-hint">ご紹介者がいる場合はご紹介者のお名前をご記入ください。</p>
                     </div>
                 </div>
-
-                <!-- Section 2: 利用規約 -->
+                <!-- 利用規約 -->
                 <div class="form-section">
                     <span class="form-section-label">利用規約</span>
                     <h2>利用契約書</h2>
                     <p style="font-size:14px;color:var(--text-muted);margin-bottom:16px">下記の利用契約書の内容を最後までご確認ください。</p>
-
                     <div class="terms-container">
                         <div class="terms-scroll" id="termsScroll">
-                            <div class="terms-title">自動問い合わせ送信ツール「BakuApo」<br>利用契約書</div>
-
+                            <div class="terms-title">LPデザインテンプレート配布サービス<br>「バク売れLPテンプレ」利用契約書</div>
                             <div class="terms-parties">
                                 <p>（甲）株式会社CHAINSODA（以下「甲」という。）</p>
                                 <p>（乙）本フォーム回答兼利用料支払者（以下「乙」という。）</p>
                             </div>
-
-                            <p class="terms-preamble">乙は、自社の商材・サービスに関する営業活動を支援する目的で、甲が提供するフォーム営業支援ツール「BakuApo」（以下「本ツール」という。）を利用し、見込み顧客へのアプローチおよび商談機会の創出を行うことを目的として、以下のとおり契約（以下「本契約」という。）を締結する。</p>
-
-                            <div class="terms-article">
-                                <h3>第1条（目的）</h3>
-                                <p>本契約は、甲が運営する本ツールの利用に関する権利義務を定めることを目的とする。</p>
-                            </div>
-
-                            <div class="terms-article">
-                                <h3>第2条（提供サービス内容）</h3>
-                                <p>甲は乙に対し、以下のサービスを提供する。</p>
-                                <ol>
-                                    <li>本ツールの利用権限。特にフォーム送信の自動化サービス</li>
-                                    <li>本ツール利用におけるカスタマーサポート各種</li>
-                                </ol>
-                            </div>
-
-                            <div class="terms-article">
-                                <h3>第3条（契約期間）</h3>
-                                <p>本契約の有効期間は、本契約締結日より1年間とする。ただし、期間満了日の1か月前までに、甲乙いずれからも書面または電磁的方法による解約の意思表示がない場合には、本契約は同一条件にてさらに1年間自動的に更新されるものとする。</p>
-                            </div>
-
-                            <div class="terms-article">
-                                <h3>第4条（報酬および支払条件）</h3>
-                                <ol>
-                                    <li>乙は、本契約に基づき、甲に対し以下の対価を支払う。<br>ツール利用料：35万円（税別・30%OFFキャンペーン価格）</li>
-                                    <li>乙は、前項に定めるツール利用料を、契約締結日から7日以内に、甲指定の銀行口座への振込、または甲が指定するオンライン決済サービス（クレジットカード決済を含む）を利用して支払うものとする。この場合、決済にかかる手数料は乙の負担とする。</li>
-                                </ol>
-                                <div class="terms-bank">
-                                    【振込先】<br>
-                                    GMOあおぞらネット銀行 法人第二営業部<br>
-                                    普通 1389280<br>
-                                    カ）チェインソーダ
-                                </div>
-                                <ol start="3">
-                                    <li>着手金の入金確認が完了するまで、甲は初期業務に着手しない。</li>
-                                </ol>
-                            </div>
-
-                            <div class="terms-article">
-                                <h3>第5条（遅延・未払いリスク対応）</h3>
-                                <p>30日以上の遅延が生じた場合、甲は催告なく本契約を解除できるものとする。</p>
-                            </div>
-
-                            <div class="terms-article">
-                                <h3>第6条（秘密保持）</h3>
-                                <p>甲乙は、本契約に関連して知り得た相手方の秘密情報を第三者へ開示してはならない。本条の義務は、本契約終了後3年間存続する。</p>
-                            </div>
-
-                            <div class="terms-article">
-                                <h3>第7条（反社会的勢力の排除）</h3>
-                                <p>甲乙は、自己および関係者が反社会的勢力に属さず、また将来にわたり関与しないことを保証する。反社会的勢力との関係が判明した場合、相手方は催告なく本契約を即時解除できる。</p>
-                            </div>
-
-                            <div class="terms-article">
-                                <h3>第8条（免責事項）</h3>
-                                <ol>
-                                    <li>甲は、乙の運用状況・商談対応能力・営業体制に依存する成約数その他の成果を一切保証しない。</li>
-                                    <li>甲は、いかなる理由においても、成果が得られないことに対する責任を負わない。</li>
-                                </ol>
-                            </div>
-
-                            <div class="terms-article">
-                                <h3>第9条（準拠法および合意管轄）</h3>
-                                <p>本契約は日本法に準拠する。本契約に起因または関連する一切の紛争については、東京地方裁判所を専属的合意管轄裁判所とする。</p>
-                            </div>
-
-                            <div class="terms-article">
-                                <h3>第10条（営業活動および責任範囲）</h3>
-                                <ol>
-                                    <li>甲は乙に対し、本ツールおよびこれに付随する機能を提供するものとし、乙による営業活動の実施、運用、成果について一切関与しないものとする。</li>
-                                    <li>乙は、本ツールを利用して行う営業先の選定、営業文面の作成、送信内容、送信頻度、法令遵守の確認、ならびに営業活動の結果について、すべて自己の責任と判断において行うものとする。</li>
-                                    <li>本ツールの利用により、乙と第三者（営業先、取引先、顧客候補その他の関係者を含む）との間で、契約締結、交渉、問い合わせ、苦情、クレーム、紛争、損害、法的請求その他一切の問題が発生した場合であっても、甲は一切の責任を負わないものとする。</li>
-                                    <li>甲は、本ツールの利用により、特定の商談成立、契約締結、成果、売上、反響、成約率その他の結果を保証するものではない。</li>
-                                    <li>乙は、本ツールの利用にあたり、特定電子メール法、個人情報保護法、景品表示法、その他関連法令および業界ガイドラインを遵守する責任を負うものとする。</li>
-                                    <li>本条に定める免責は、甲の故意または重過失による場合を除き、契約期間終了後も有効に存続するものとする。</li>
-                                </ol>
-                            </div>
-
-                            <div class="terms-date">
-                                【制定日】2026年2月1日<br>
-                                株式会社CHAINSODA
-                            </div>
+                            <p class="terms-preamble">乙は、自社の商材・サービスに関する販売促進を目的として、甲が提供するLPデザインテンプレート配布サービス「バク売れLPテンプレ」（以下「本サービス」という。）を利用し、ランディングページの制作および集客導線の構築を行うことを目的として、以下のとおり契約（以下「本契約」という。）を締結する。</p>
+                            <div class="terms-article"><h3>第1条（目的）</h3><p>本契約は、甲が運営する本サービスの利用に関する権利義務を定めることを目的とする。</p></div>
+                            <div class="terms-article"><h3>第2条（提供サービス内容）</h3><p>甲は乙に対し、以下のサービスを提供する。</p><ol><li>売れる構造に基づいたLPデザインテンプレートの提供</li><li>プランに応じたバナー素材の提供</li><li>本サービス利用におけるカスタマーサポート各種</li></ol></div>
+                            <div class="terms-article"><h3>第3条（利用ライセンス）</h3><p>乙は、本サービスより提供されたテンプレートおよび素材を、自社のLP制作・集客活動に限り利用できるものとする。第三者への再配布・転売は禁止する。</p></div>
+                            <div class="terms-article"><h3>第4条（報酬および支払条件）</h3><ol><li>乙は、本契約に基づき、甲に対し選択したプランに応じた対価を支払う。<br>A - LP｜スタータープラン：55,000円（税込）<br>B - LP＋バナー｜集客強化プラン：110,000円（税込）</li><li>乙は、前項に定める利用料を、甲が指定するオンライン決済サービス（クレジットカード決済）を利用して支払うものとする。</li></ol></div>
+                            <div class="terms-article"><h3>第5条（遅延・未払いリスク対応）</h3><p>決済が完了していない場合、甲は本サービスの提供を行わないものとする。</p></div>
+                            <div class="terms-article"><h3>第6条（秘密保持）</h3><p>甲乙は、本契約に関連して知り得た相手方の秘密情報を第三者へ開示してはならない。本条の義務は、本契約終了後3年間存続する。</p></div>
+                            <div class="terms-article"><h3>第7条（反社会的勢力の排除）</h3><p>甲乙は、自己および関係者が反社会的勢力に属さず、また将来にわたり関与しないことを保証する。</p></div>
+                            <div class="terms-article"><h3>第8条（免責事項）</h3><ol><li>甲は、乙の運用状況・商材の品質・マーケティング施策に依存する成果を一切保証しない。</li><li>甲は、テンプレートを利用して乙が制作したLPの内容に関する責任を負わない。</li></ol></div>
+                            <div class="terms-article"><h3>第9条（準拠法および合意管轄）</h3><p>本契約は日本法に準拠する。本契約に起因する紛争については、東京地方裁判所を専属的合意管轄裁判所とする。</p></div>
+                            <div class="terms-date">【制定日】2026年2月27日<br>株式会社CHAINSODA</div>
                         </div>
-                        <div class="scroll-hint" id="scrollHint">
-                            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-                            スクロールして最後までお読みください
-                        </div>
+                        <div class="scroll-hint" id="scrollHint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>スクロールして最後までお読みください</div>
                     </div>
-
-                    <label class="check-item" id="agreeWrap">
-                        <input type="checkbox" id="agreeCheck">
-                        <span class="check-item-text">利用契約書の内容に同意します</span>
-                    </label>
+                    <label class="check-item" id="agreeWrap"><input type="checkbox" id="agreeCheck"><span class="check-item-text">利用契約書の内容に同意します</span></label>
                     <p class="form-error" id="agreeError">※ 利用規約への同意が必要です。</p>
                 </div>
-
-                <!-- Notes & Submit -->
+                <!-- Submit -->
                 <div class="form-section" style="border-color:var(--accent);border-width:2px">
                     <div class="form-notes">
                         <p>※ 原則としてお支払い後の返金はできません</p>
                         <p>※ 決済完了をもって契約成立となります</p>
+                        <p>※ お支払い方法はクレジットカードのみとなります</p>
                     </div>
-
                     <div class="submit-section">
                         <button type="submit" class="btn-submit" id="submitBtn" disabled>
                             <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M8 5v14l11-7z"/></svg>
@@ -304,203 +220,69 @@
                 </div>
             </form>
         </div>
-
-        <!-- ===== Thanks View ===== -->
+        <!-- Thanks View -->
         <div id="thanksView" class="thanks-view">
             <div class="thanks-hero">
-                <div class="thanks-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
-                        <polyline points="22 4 12 14.01 9 11.01"/>
-                    </svg>
-                </div>
+                <div class="thanks-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
                 <h1>契約フォームの送信を<br>承りました。</h1>
             </div>
-
             <div class="thanks-card">
-                <h2>
-                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-                    今後の流れ
-                </h2>
-                <p>「決済フォーム」より、BakuApo費用をお支払いいただきます。</p>
-
-                <div class="product-highlight">
-                    <h3>BakuApo（バクアポ）</h3>
-                    <div style="display:inline-block;background:#EF4444;color:#fff;font-size:12px;font-weight:800;padding:3px 12px;border-radius:16px;margin-bottom:6px">🎉 数量限定 30%OFF</div>
-                    <div class="price">¥385,000<span style="font-size:14px;font-weight:600;color:var(--text-secondary)">（税込）</span></div>
-                    <p style="font-size:13px;color:var(--text-muted);text-decoration:line-through;margin-bottom:2px">通常価格 ¥550,000（税込）</p>
-                    <p class="price-detail">買い切り</p>
-                    <p class="price-detail">お支払い方法：クレジットカード および 銀行振込</p>
-                    <p style="font-size:11px;color:var(--text-muted);margin-top:4px">※ キャンペーンは予告なく終了する場合があります</p>
-                </div>
-
+                <h2><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>今後の流れ</h2>
+                <p>「決済フォーム」より、クレジットカードでお支払いいただきます。</p>
+                <div class="product-highlight" id="thanksProduct"></div>
                 <div style="text-align:center;margin-top:24px">
-                    <a href="/checkout/" class="btn-checkout">
-                        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M8 5v14l11-7z"/></svg>
-                        決済へすすむ（支払方法の選択へ）
-                    </a>
+                    <a href="/checkout/" class="btn-checkout" id="toCheckoutBtn"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M8 5v14l11-7z"/></svg>決済へすすむ</a>
                 </div>
-
                 <div class="thanks-note">
-                    <p>お支払い完了後すぐに、BakuApoツールのご利用を開始できます。</p>
-                    <p>（ご契約時ご入力いただいたメールアドレス宛に、ダウンロードリンクとご利用マニュアル等をご送付いたします。）</p>
-                    <p>（銀行振込の場合は、事務局での確認に3営業日ほどお時間を頂戴いたします）</p>
+                    <p>お支払い完了後すぐに、テンプレートのご利用を開始できます。</p>
+                    <p>（ご契約時ご入力いただいたメールアドレス宛に、ダウンロードリンクとご利用ガイド等をご送付いたします。）</p>
                 </div>
             </div>
-
             <div class="thanks-closing">
-                <p>BakuApoを通して、貴社の営業活動に<br>貢献できることを楽しみにしております。</p>
-                <p>引き続きBakuApoをどうぞよろしくお願いいたします。</p>
-                <p class="sign">BakuApo運営事務局 ／ 株式会社CHAINSODA</p>
+                <p>バク売れLPテンプレを通して、貴社の<br>売上アップに貢献できることを楽しみにしております。</p>
+                <p class="sign">バク売れLPテンプレ運営事務局 ／ 株式会社CHAINSODA</p>
             </div>
         </div>
     </main>
-
-    <!-- Loading Overlay -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-box">
-            <div class="loading-spinner"></div>
-            <p>送信中です。<br>しばらくお待ちください...</p>
-        </div>
-    </div>
-
-    <footer class="site-footer">
-        <p>&copy; 2026 BakuApo &amp; CHAINSODA Co., Ltd. — All rights reserved.</p>
-    </footer>
-
+    <div class="loading-overlay" id="loadingOverlay"><div class="loading-box"><div class="loading-spinner"></div><p>送信中です。<br>しばらくお待ちください...</p></div></div>
+    <footer class="site-footer"><p>&copy; 2026 バク売れLPテンプレ &amp; CHAINSODA Co., Ltd. — All rights reserved.</p></footer>
     <script>
-    // Google Apps Script Web App URL（後で設定）
     const CONTRACT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwb3W-2pfK_Ar4fBjoFcMQG7AIjkFn44kCzL5h6xjuRespoZTc25war2TVnZZ7Cgepk/exec';
-
+    const PLANS = {
+        starter: { name: 'A - LP｜スタータープラン', price: 55000, label: '¥55,000（税込）' },
+        boost:   { name: 'B - LP＋バナー｜集客強化プラン', price: 110000, label: '¥110,000（税込）' }
+    };
     const $ = id => document.getElementById(id);
-    const fullName = $('fullName');
-    const email = $('email');
-    const agreeCheck = $('agreeCheck');
-    const submitBtn = $('submitBtn');
-    const termsScroll = $('termsScroll');
-    const scrollHint = $('scrollHint');
-
-    // ===== Terms Scroll Tracking =====
-    let termsRead = false;
-    termsScroll.addEventListener('scroll', () => {
-        const { scrollTop, scrollHeight, clientHeight } = termsScroll;
-        if (scrollTop + clientHeight >= scrollHeight - 10) {
-            termsRead = true;
-            scrollHint.style.display = 'none';
-        }
-    });
-
-    // ===== Checkbox UI =====
-    agreeCheck.addEventListener('change', () => {
-        $('agreeWrap').classList.toggle('checked', agreeCheck.checked);
-        updateState();
-    });
-
-    // ===== Validation =====
-    function isValidEmail(v) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-    }
-
-    function updateState() {
-        const nameOk = fullName.value.trim().length > 0;
-        const emailOk = isValidEmail(email.value.trim());
-        const agreed = agreeCheck.checked;
-
-        submitBtn.disabled = !(nameOk && emailOk && agreed);
-    }
-
-    // ===== Field-level validation helper =====
-    function validateField(input, errorId, testFn) {
-        const ok = testFn(input.value);
-        const err = $(errorId);
-        if (err) err.classList.toggle('visible', !ok);
-        input.classList.toggle('error', !ok);
-        return ok;
-    }
-
-    fullName.addEventListener('input', () => { updateState(); if(fullName.dataset.touched) validateField(fullName, 'nameError', v => v.trim().length > 0); });
-    email.addEventListener('input', () => { updateState(); if(email.dataset.touched) validateField(email, 'emailError', v => isValidEmail(v.trim())); });
-    fullName.addEventListener('blur', () => { fullName.dataset.touched = '1'; validateField(fullName, 'nameError', v => v.trim().length > 0); });
-    email.addEventListener('blur', () => { email.dataset.touched = '1'; validateField(email, 'emailError', v => isValidEmail(v.trim())); });
-    agreeCheck.addEventListener('change', () => {
-        if(agreeCheck.dataset.touched) {
-            const err = $('agreeError');
-            err.classList.toggle('visible', !agreeCheck.checked);
-        }
-    });
-
-    // ===== Submit =====
-    $('contractForm').addEventListener('submit', async e => {
-        e.preventDefault();
-        if (submitBtn.disabled) return;
-
-        // Validate
-        let hasError = false;
-        if (!fullName.value.trim()) {
-            $('nameError').classList.add('visible'); fullName.classList.add('error');
-            fullName.dataset.touched = '1'; hasError = true;
-        } else {
-            $('nameError').classList.remove('visible'); fullName.classList.remove('error');
-        }
-        if (!isValidEmail(email.value.trim())) {
-            $('emailError').classList.add('visible'); email.classList.add('error');
-            email.dataset.touched = '1'; hasError = true;
-        } else {
-            $('emailError').classList.remove('visible'); email.classList.remove('error');
-        }
-        if (!agreeCheck.checked) {
-            $('agreeError').classList.add('visible');
-            agreeCheck.dataset.touched = '1'; hasError = true;
-        } else {
-            $('agreeError').classList.remove('visible');
-        }
-        if (hasError) return;
-
-        const payload = {
-            action: 'registerContract',
-            product: 'BakuApo',
-            price: 385000,
-            submittedAt: new Date().toISOString(),
-            customerName: fullName.value.trim(),
-            companyName: $('companyName').value.trim() || '',
-            email: email.value.trim(),
-            referrer: $('referrer').value.trim() || '',
-            contractStatus: '契約済み',
-            paymentMethod: '',
-            paymentStatus: '未決済'
-        };
-
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> 送信中...';
+    const fullName=$('fullName'),email=$('email'),agreeCheck=$('agreeCheck'),submitBtn=$('submitBtn'),termsScroll=$('termsScroll'),scrollHint=$('scrollHint');
+    function getSelectedPlan(){return document.querySelector('input[name="plan"]:checked').value;}
+    document.querySelectorAll('input[name="plan"]').forEach(r=>{r.addEventListener('change',()=>{document.querySelectorAll('.plan-card').forEach(c=>c.classList.remove('checked'));r.closest('.plan-card').classList.add('checked');});});
+    let termsRead=false;
+    termsScroll.addEventListener('scroll',()=>{const{scrollTop,scrollHeight,clientHeight}=termsScroll;if(scrollTop+clientHeight>=scrollHeight-10){termsRead=true;scrollHint.style.display='none';}});
+    agreeCheck.addEventListener('change',()=>{$('agreeWrap').classList.toggle('checked',agreeCheck.checked);updateState();});
+    function isValidEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);}
+    function updateState(){submitBtn.disabled=!(fullName.value.trim().length>0&&isValidEmail(email.value.trim())&&agreeCheck.checked);}
+    function validateField(input,errorId,testFn){const ok=testFn(input.value);const err=$(errorId);if(err)err.classList.toggle('visible',!ok);input.classList.toggle('error',!ok);return ok;}
+    fullName.addEventListener('input',()=>{updateState();if(fullName.dataset.touched)validateField(fullName,'nameError',v=>v.trim().length>0);});
+    email.addEventListener('input',()=>{updateState();if(email.dataset.touched)validateField(email,'emailError',v=>isValidEmail(v.trim()));});
+    fullName.addEventListener('blur',()=>{fullName.dataset.touched='1';validateField(fullName,'nameError',v=>v.trim().length>0);});
+    email.addEventListener('blur',()=>{email.dataset.touched='1';validateField(email,'emailError',v=>isValidEmail(v.trim()));});
+    agreeCheck.addEventListener('change',()=>{if(agreeCheck.dataset.touched){$('agreeError').classList.toggle('visible',!agreeCheck.checked);}});
+    $('contractForm').addEventListener('submit',async e=>{
+        e.preventDefault();if(submitBtn.disabled)return;
+        let hasError=false;
+        if(!fullName.value.trim()){$('nameError').classList.add('visible');fullName.classList.add('error');fullName.dataset.touched='1';hasError=true;}else{$('nameError').classList.remove('visible');fullName.classList.remove('error');}
+        if(!isValidEmail(email.value.trim())){$('emailError').classList.add('visible');email.classList.add('error');email.dataset.touched='1';hasError=true;}else{$('emailError').classList.remove('visible');email.classList.remove('error');}
+        if(!agreeCheck.checked){$('agreeError').classList.add('visible');agreeCheck.dataset.touched='1';hasError=true;}else{$('agreeError').classList.remove('visible');}
+        if(hasError)return;
+        const planKey=getSelectedPlan();const plan=PLANS[planKey];
+        const payload={action:'registerContract',product:plan.name,price:plan.price,submittedAt:new Date().toISOString(),customerName:fullName.value.trim(),companyName:$('companyName').value.trim()||'',email:email.value.trim(),referrer:$('referrer').value.trim()||'',contractStatus:'契約済み',paymentMethod:'クレジットカード',paymentStatus:'未決済'};
+        submitBtn.disabled=true;submitBtn.innerHTML='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> 送信中...';
         $('loadingOverlay').classList.add('visible');
-
-        if (CONTRACT_ENDPOINT) {
-            try {
-                await fetch(CONTRACT_ENDPOINT, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload),
-                    mode: 'no-cors'
-                });
-            } catch (err) {
-                console.error('Submit error:', err);
-            }
-        }
-
-        // Save customer info for checkout page
-        localStorage.setItem('contractName', fullName.value.trim());
-        localStorage.setItem('contractEmail', email.value.trim());
-
-        // Show thanks view
-        setTimeout(() => {
-            $('loadingOverlay').classList.remove('visible');
-            $('formView').style.display = 'none';
-            $('thanksView').classList.add('visible');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }, 800);
+        if(CONTRACT_ENDPOINT){try{await fetch(CONTRACT_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),mode:'no-cors'});}catch(err){console.error('Submit error:',err);}}
+        localStorage.setItem('contractName',fullName.value.trim());localStorage.setItem('contractEmail',email.value.trim());localStorage.setItem('contractPlan',planKey);
+        const ph=$('thanksProduct');ph.innerHTML='<h3>'+plan.name+'</h3><div class="price">'+plan.label+'</div><p class="price-detail">買い切り ／ クレジットカード決済</p>';
+        setTimeout(()=>{$('loadingOverlay').classList.remove('visible');$('formView').style.display='none';$('thanksView').classList.add('visible');window.scrollTo({top:0,behavior:'smooth'});},800);
     });
-
-    // Init
     updateState();
     </script>
 </body>

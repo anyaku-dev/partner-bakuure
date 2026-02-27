@@ -3,503 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BakuApoツール Ver. 1.2.0 リリースのお知らせ — BakuApo</title>
-    <meta name="description" content="2026年2月24日、BakuApoツール Ver. 1.2.0 をリリースいたしました。最新版のダウンロード方法やアップデート時のご注意事項をご案内いたします。">
+    <title>バク売れLPテンプレ リリースのお知らせ — バク売れLPテンプレ</title>
+    <meta name="description" content="LPデザインテンプレート配布サービス「バク売れLPテンプレ」の提供を開始いたしました。">
     <meta name="robots" content="noindex, nofollow">
-    <meta property="og:title" content="BakuApoツール Ver. 1.2.0 リリースのお知らせ — BakuApo">
-    <meta property="og:description" content="BakuApoツール Ver. 1.2.0 をリリースいたしました。最新版のダウンロード方法をご案内いたします。">
+    <meta property="og:title" content="バク売れLPテンプレ リリースのお知らせ">
+    <meta property="og:description" content="売れる構造のLPテンプレートとバナー素材で、最短でLP構築。">
     <meta property="og:type" content="article">
-    <meta property="og:site_name" content="BakuApo">
-    <meta property="og:locale" content="ja_JP">
-    <link rel="icon" href="/favicon.ico">
+    <meta property="og:site_name" content="バク売れLPテンプレ">
+    <meta property="og:image" content="/bakuure-ogp.png">
+    <link rel="icon" href="/bakuure-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg: #FAFAFA;
-            --bg-card: #FFFFFF;
-            --bg-alt: #F3F4F6;
-            --border: #E5E7EB;
-            --border-hover: #D1D5DB;
-            --text-primary: #111827;
-            --text-secondary: #6B7280;
-            --text-muted: #7C8290;
-            --accent: #0852FF;
-            --accent-light: rgba(8,82,255,0.08);
-            --accent-subtle: rgba(8,82,255,0.04);
-            --success: #10B981;
-            --warning: #F59E0B;
-            --danger: #EF4444;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            font-family: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background-color: var(--bg);
-            color: var(--text-primary);
-            line-height: 1.8;
-            font-size: 15px;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            min-height: 100vh;
-        }
-
-        /* --- Header --- */
-        .site-header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(255,255,255,0.85);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 1px solid var(--border);
-        }
-        .header-inner {
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: 14px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .header-logo a { display: flex; align-items: center; text-decoration: none; }
-        .header-logo img { height: 58px; }
-        .header-label {
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-muted);
-        }
-
-        /* --- Breadcrumb --- */
-        .breadcrumb {
-            max-width: 780px;
-            margin: 0 auto;
-            padding: 20px 24px 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            color: var(--text-muted);
-            flex-wrap: wrap;
-        }
-        .breadcrumb a {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 500;
-        }
-        .breadcrumb a:hover { text-decoration: underline; }
-        .breadcrumb .sep {
-            color: var(--border);
-            user-select: none;
-        }
-
-        /* --- Article --- */
-        .article {
-            max-width: 780px;
-            margin: 0 auto;
-            padding: 32px 24px 100px;
-        }
-
-        /* --- Article Header --- */
-        .article-header {
-            margin-bottom: 40px;
-            padding-bottom: 32px;
-            border-bottom: 1px solid var(--border);
-        }
-        .article-meta {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-        .article-date {
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-muted);
-            font-family: 'Inter', monospace;
-        }
-        .article-tag {
-            display: inline-flex;
-            align-items: center;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.03em;
-            padding: 4px 12px;
-            border-radius: 100px;
-            white-space: nowrap;
-        }
-        .article-tag.bug {
-            background: rgba(239,68,68,0.08);
-            color: #EF4444;
-        }
-        .article-tag.update {
-            background: rgba(8,82,255,0.08);
-            color: #0852FF;
-        }
-        .article-tag.info {
-            background: rgba(16,185,129,0.08);
-            color: #10B981;
-        }
-        .article-tag.maintenance {
-            background: rgba(245,158,11,0.08);
-            color: #D97706;
-        }
-
-        .article-header h1 {
-            font-size: clamp(24px, 4vw, 32px);
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            line-height: 1.3;
-            color: var(--text-primary);
-        }
-
-        /* --- Article Body --- */
-        .article-body h2 {
-            font-size: 20px;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            line-height: 1.4;
-            color: var(--text-primary);
-            margin: 48px 0 16px;
-            padding-left: 16px;
-            border-left: 3px solid var(--accent);
-        }
-        .article-body h3 {
-            font-size: 17px;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin: 32px 0 12px;
-        }
-        .article-body p {
-            margin-bottom: 16px;
-            color: var(--text-primary);
-            line-height: 1.9;
-        }
-        .article-body ul, .article-body ol {
-            margin: 12px 0 20px 24px;
-            color: var(--text-primary);
-        }
-        .article-body li {
-            margin-bottom: 8px;
-            line-height: 1.8;
-        }
-        .article-body a {
-            color: var(--accent);
-            text-decoration: underline;
-            text-underline-offset: 3px;
-        }
-        .article-body a:hover {
-            text-decoration-thickness: 2px;
-        }
-
-        /* --- Callout --- */
-        .callout {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 24px 28px;
-            margin: 24px 0;
-        }
-        .callout.danger {
-            border-left: 4px solid var(--danger);
-            background: rgba(239,68,68,0.03);
-        }
-        .callout.warning {
-            border-left: 4px solid var(--warning);
-            background: rgba(245,158,11,0.03);
-        }
-        .callout.info {
-            border-left: 4px solid var(--accent);
-            background: rgba(8,82,255,0.03);
-        }
-        .callout.success {
-            border-left: 4px solid var(--success);
-            background: rgba(16,185,129,0.03);
-        }
-        .callout-title {
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .callout-title svg {
-            width: 18px;
-            height: 18px;
-            flex-shrink: 0;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            fill: none;
-        }
-        .callout p {
-            font-size: 14px;
-            margin-bottom: 0;
-            color: var(--text-secondary);
-        }
-        .callout p + p {
-            margin-top: 8px;
-        }
-
-        /* --- Download CTA --- */
-        .dl-cta {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin: 28px 0;
-            padding: 20px 24px;
-            background: var(--accent-light);
-            border: 1px solid rgba(8,82,255,0.15);
-            border-radius: 14px;
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-        .dl-cta:hover {
-            border-color: var(--accent);
-            box-shadow: 0 4px 16px rgba(8,82,255,0.12);
-            transform: translateY(-1px);
-        }
-        .dl-cta-icon {
-            width: 44px;
-            height: 44px;
-            background: var(--accent);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        .dl-cta-icon svg {
-            width: 22px;
-            height: 22px;
-            stroke: #fff;
-            fill: none;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-        .dl-cta-text {
-            flex: 1;
-        }
-        .dl-cta-title {
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--accent);
-            line-height: 1.4;
-        }
-        .dl-cta-sub {
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-top: 2px;
-        }
-        .dl-cta-arrow {
-            width: 20px;
-            height: 20px;
-            stroke: var(--accent);
-            fill: none;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            flex-shrink: 0;
-            transition: transform 0.2s ease;
-        }
-        .dl-cta:hover .dl-cta-arrow {
-            transform: translateX(3px);
-        }
-        .article-body .dl-cta {
-            text-decoration: none;
-        }
-        .article-body .dl-cta:hover {
-            text-decoration: none;
-        }
-
-        /* --- Divider --- */
-        .article-divider {
-            border: none;
-            border-top: 1px solid var(--border);
-            margin: 40px 0;
-        }
-
-        /* --- Back link --- */
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 48px;
-            padding: 12px 24px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            text-decoration: none;
-            color: var(--accent);
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-        }
-        .back-link:hover {
-            border-color: var(--accent);
-            box-shadow: 0 4px 12px rgba(8,82,255,0.08);
-            transform: translateY(-1px);
-        }
-        .back-link svg {
-            width: 16px;
-            height: 16px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            transition: transform 0.2s ease;
-        }
-        .back-link:hover svg {
-            transform: translateX(-3px);
-        }
-
-        /* --- Footer --- */
-        .site-footer {
-            text-align: center;
-            padding: 32px 24px;
-            border-top: 1px solid var(--border);
-        }
-        .site-footer p {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        /* --- Responsive --- */
-        @media (max-width: 768px) {
-            .article { padding: 24px 16px 60px; }
-            .breadcrumb { padding: 16px 16px 0; }
-            .header-inner { padding: 14px 16px; }
-            .callout { padding: 20px; }
-            .dl-cta { padding: 16px 18px; flex-wrap: wrap; }
-        }
-        @media (max-width: 480px) {
-            .header-logo img { height: 40px; }
-            .article-header h1 { font-size: 22px; }
-        }
+        :root{--bg:#FAFAFA;--bg-card:#FFF;--border:#E5E7EB;--text-primary:#111827;--text-secondary:#6B7280;--text-muted:#7C8290;--accent:#0852FF;--accent-light:rgba(8,82,255,.08);--accent-subtle:rgba(8,82,255,.04);--success:#10B981;--radius-lg:20px}
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text-primary);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+        .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--border)}
+        .header-inner{max-width:740px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+        .header-logo img{height:58px}
+        .header-nav a{font-size:13px;font-weight:500;color:var(--text-muted);text-decoration:none;display:flex;align-items:center;gap:4px;transition:color .2s}
+        .header-nav a:hover{color:var(--accent)}
+        .header-nav svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+        .article-container{max-width:740px;margin:0 auto;padding:0 24px 80px}
+        .article-header{padding:56px 0 40px;border-bottom:1px solid var(--border);margin-bottom:40px}
+        .article-meta{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+        .article-date{font-size:13px;font-weight:500;color:var(--text-muted);font-family:'Inter',monospace}
+        .article-tag{font-size:11px;font-weight:600;padding:4px 12px;border-radius:100px}
+        .article-tag.update{background:rgba(8,82,255,.08);color:#0852FF}
+        .article-header h1{font-size:clamp(24px,5vw,34px);font-weight:800;letter-spacing:-.03em;line-height:1.3}
+        .article-body{font-size:15px;line-height:1.9;color:var(--text-secondary)}
+        .article-body h2{font-size:20px;font-weight:700;color:var(--text-primary);margin:40px 0 16px;letter-spacing:-.01em}
+        .article-body h3{font-size:17px;font-weight:700;color:var(--text-primary);margin:32px 0 12px}
+        .article-body p{margin-bottom:16px}
+        .article-body ul,.article-body ol{padding-left:24px;margin-bottom:16px}
+        .article-body li{margin-bottom:8px;line-height:1.8}
+        .article-body li strong{color:var(--text-primary);font-weight:600}
+        .article-body a{color:var(--accent);font-weight:500;text-decoration:none}
+        .article-body a:hover{text-decoration:underline}
+        .highlight-box{background:var(--accent-subtle);border:1px solid rgba(8,82,255,.12);border-radius:14px;padding:24px 28px;margin:32px 0}
+        .highlight-box h3{font-size:16px;font-weight:700;color:var(--text-primary);margin:0 0 12px}
+        .highlight-box ul{padding-left:20px;margin:0}
+        .highlight-box li{font-size:14px;color:var(--text-secondary);line-height:1.8;margin-bottom:6px}
+        .highlight-box li strong{color:var(--text-primary)}
+        .plan-table{width:100%;border-collapse:collapse;margin:24px 0;border-radius:14px;overflow:hidden;border:1px solid var(--border)}
+        .plan-table th,.plan-table td{padding:14px 20px;text-align:left;font-size:14px;border-bottom:1px solid var(--border)}
+        .plan-table th{background:var(--accent-subtle);font-weight:700;color:var(--text-primary);font-size:13px}
+        .plan-table td{color:var(--text-secondary)}
+        .plan-table tr:last-child td{border-bottom:none}
+        .plan-table .plan-name{font-weight:700;color:var(--text-primary)}
+        .plan-table .plan-price{font-weight:700;color:var(--accent);font-size:16px}
+        .cta-box{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);text-align:center;padding:36px 28px;margin:40px 0;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+        .cta-box h3{font-size:18px;font-weight:700;margin-bottom:8px}
+        .cta-box p{font-size:14px;color:var(--text-secondary);margin-bottom:20px}
+        .cta-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:12px;font-size:14px;font-weight:600;text-decoration:none;transition:all .2s ease;background:var(--accent);color:#fff}
+        .cta-btn:hover{background:#063dd9;transform:translateY(-1px);box-shadow:0 4px 16px rgba(8,82,255,.25)}
+        .cta-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+        .article-footer{margin-top:56px;padding-top:32px;border-top:1px solid var(--border)}
+        .back-link{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--accent);text-decoration:none;transition:gap .2s}
+        .back-link:hover{gap:10px}
+        .back-link svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+        .site-footer{text-align:center;padding:32px 24px;border-top:1px solid var(--border)}
+        .site-footer p{font-size:12px;color:var(--text-muted)}
+        @media(max-width:768px){.article-header{padding:40px 0 32px}.article-container{padding:0 16px 60px}.header-inner{padding:14px 16px}.plan-table th,.plan-table td{padding:10px 14px;font-size:13px}}
+        @media(max-width:480px){.header-logo img{height:40px}}
     </style>
 </head>
 <body>
-
-    <!-- ======== Header ======== -->
     <header class="site-header">
         <div class="header-inner">
-            <div class="header-logo">
-                <a href="/user-guide/">
-                    <img src="/bakuapo-logo-useer.svg" alt="BakuApo">
-                </a>
-            </div>
-            <span class="header-label">ご利用ユーザー様専用ページ</span>
+            <div class="header-logo"><a href="/user-guide/" style="display:flex;align-items:center;text-decoration:none;"><img src="/bakuure-logo.svg" alt="バク売れLPテンプレ"></a></div>
+            <nav class="header-nav"><a href="/user-guide/"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>ユーザーガイドに戻る</a></nav>
         </div>
     </header>
-
-    <!-- ======== Breadcrumb ======== -->
-    <nav class="breadcrumb">
-        <a href="/user-guide/">ユーザーガイド</a>
-        <span class="sep">›</span>
-        <a href="/user-guide/">最新情報</a>
-        <span class="sep">›</span>
-        <span>BakuApoツール Ver. 1.2.0 リリースのお知らせ</span>
-    </nav>
-
-    <!-- ======== Article ======== -->
-    <article class="article">
-
-        <!-- Header -->
-        <header class="article-header">
+    <main class="article-container">
+        <div class="article-header">
             <div class="article-meta">
-                <span class="article-date">2026.02.24</span>
+                <span class="article-date">2026.02.27</span>
                 <span class="article-tag update">アップデート</span>
             </div>
-            <h1>BakuApoツール Ver. 1.2.0 リリースのお知らせ</h1>
-        </header>
-
-        <!-- Body -->
-        <div class="article-body">
-
-            <p>平素よりBakuApo（バクアポ）をご利用いただき、誠にありがとうございます。</p>
-
-            <p>2026年2月24日付で、BakuApoツールの最新バージョン <strong>Ver. 1.2.0</strong> をリリースいたしましたことをお知らせいたします。</p>
-
-            <hr class="article-divider">
-
-            <!-- ───── ダウンロード ───── -->
-            <h2>最新バージョンのダウンロード</h2>
-
-            <p>過去バージョンをご利用中のお客様は、下記のダウンロードページより最新版を取得のうえ、アップデートをお願いいたします。</p>
-
-            <a href="/user-guide/download/" class="dl-cta">
-                <div class="dl-cta-icon">
-                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                </div>
-                <div class="dl-cta-text">
-                    <div class="dl-cta-title">BakuApo Ver. 1.2.0 をダウンロード</div>
-                    <div class="dl-cta-sub">Windows（.exe）・macOS（.dmg）対応</div>
-                </div>
-                <svg class="dl-cta-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-            </a>
-
-            <hr class="article-divider">
-
-            <!-- ───── 注意事項 ───── -->
-            <h2>アップデート時のご注意（Windows版）</h2>
-
-            <div class="callout warning">
-                <div class="callout-title" style="color:#D97706;">
-                    <svg stroke="#D97706" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                    Windows版をご利用のお客様へ
-                </div>
-                <p>現在、Windows版の一部のバージョンにおいて、過去バージョンのアンインストール時に<strong>「NSIS Error」</strong>が発生し、最新版のインストールが正常に行えない事象を確認しております。</p>
-            </div>
-
-            <p>上記の症状が発生した場合は、以下の記事にてご案内しております手順に従い、旧バージョンをアンインストールしたうえで、最新版のインストールをお試しくださいますようお願いいたします。</p>
-
-            <a href="/user-guide/news/260223/" class="dl-cta" style="background:rgba(245,158,11,0.06);border-color:rgba(245,158,11,0.2);">
-                <div class="dl-cta-icon" style="background:#D97706;">
-                    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                </div>
-                <div class="dl-cta-text">
-                    <div class="dl-cta-title" style="color:#D97706;">Windows版アップデート時の不具合について</div>
-                    <div class="dl-cta-sub">アンインストールエラーの解消方法をご案内しています</div>
-                </div>
-                <svg class="dl-cta-arrow" style="stroke:#D97706;" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-            </a>
-
-            <hr class="article-divider">
-
-            <!-- ───── お問い合わせ ───── -->
-            <h2>お困りの場合</h2>
-
-            <p>アップデートに関してご不明な点やお困りのことがございましたら、お気軽にお問い合わせくださいませ。</p>
-
-            <div class="callout info">
-                <div class="callout-title" style="color:var(--accent);">
-                    <svg stroke="var(--accent)" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-                    サポート窓口
-                </div>
-                <p><a href="/user-guide/contact-chat/">AIチャットサポート</a>にて、24時間いつでもご相談いただけます。</p>
-            </div>
-
-            <p>今後とも、BakuApoをご愛顧くださいますようよろしくお願い申し上げます。</p>
-
-            <!-- Back link -->
-            <a href="/user-guide/" class="back-link">
-                <svg viewBox="0 0 24 24"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
-                ユーザーガイドに戻る
-            </a>
-
+            <h1>バク売れLPテンプレ リリースのお知らせ</h1>
         </div>
-    </article>
+        <div class="article-body">
+            <p>いつもご利用いただきありがとうございます。株式会社CHAINSODAより、新サービス「<strong>バク売れLPテンプレ</strong>」の提供を開始いたしましたのでお知らせいたします。</p>
 
-    <!-- ======== Footer ======== -->
-    <footer class="site-footer">
-        <p>&copy; 2026 BakuApo — All rights reserved.</p>
-    </footer>
+            <h2>バク売れLPテンプレとは</h2>
+            <p>バク売れLPテンプレは、<strong>売れる構造に基づいたLPデザインテンプレート</strong>を提供するサービスです。コピーライティングの型・ファーストビューの設計・CTA配置など、成約率を高める要素を組み込んだテンプレートをお届けします。</p>
+            <p>HTML / CSS / JavaScript ベースで、どのホスティングサービスでもすぐに公開可能。レスポンシブ対応済みで、テキストと画像を差し替えるだけでプロ品質のLPを構築いただけます。</p>
 
+            <div class="highlight-box">
+                <h3>主な特徴</h3>
+                <ul>
+                    <li><strong>売上最大化の構造設計：</strong>AIDMA / PASONAなどの型に基づく構造</li>
+                    <li><strong>レスポンシブ対応：</strong>PC・タブレット・スマートフォンに完全対応</li>
+                    <li><strong>軽量・高速：</strong>フレームワーク不使用で PageSpeed スコア 90+ を実現</li>
+                    <li><strong>カスタマイズ容易：</strong>CSS変数でカラー・フォントを一括変更可能</li>
+                    <li><strong>バナー素材付き（集客強化プラン）：</strong>広告運用に即使える PSD / Figma / PNG 素材</li>
+                </ul>
+            </div>
+
+            <h2>料金プラン</h2>
+            <p>2つのプランをご用意しております。</p>
+            <table class="plan-table">
+                <thead>
+                    <tr><th>プラン名</th><th>内容</th><th>料金（税込）</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="plan-name">LP｜スタータープラン</td>
+                        <td>LPテンプレート一式<br>（HTML / CSS / JS / 画像素材）</td>
+                        <td class="plan-price">¥55,000</td>
+                    </tr>
+                    <tr>
+                        <td class="plan-name">LP＋バナー｜集客強化プラン</td>
+                        <td>LPテンプレート一式 ＋<br>バナーデザインテンプレート素材</td>
+                        <td class="plan-price">¥110,000</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>ご利用の流れ</h2>
+            <ol>
+                <li><strong>ご契約：</strong><a href="/contract/">利用契約ページ</a>でプランを選択し、規約に同意のうえお申し込み。</li>
+                <li><strong>お支払い：</strong><a href="/checkout/">決済ページ</a>でクレジットカード決済（Stripe）。</li>
+                <li><strong>テンプレート受け取り：</strong>お支払い確認後、メールでダウンロードリンクをお届け。</li>
+                <li><strong>カスタマイズ＆公開：</strong>テキスト・画像を差し替え、お好みのサーバーで公開。</li>
+            </ol>
+
+            <div class="cta-box">
+                <h3>さっそく始めましょう</h3>
+                <p>クイックスタートガイドで、テンプレートの導入手順をステップバイステップでご確認いただけます。</p>
+                <a href="/user-guide/quick-start/" class="cta-btn"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>クイックスタートガイドを見る</a>
+            </div>
+
+            <h2>今後のアップデート予定</h2>
+            <p>今後も以下のようなアップデートを予定しております。</p>
+            <ul>
+                <li>テンプレートのバリエーション追加（業種別テンプレート等）</li>
+                <li>Figma / Canva 版テンプレートの提供</li>
+                <li>動画マニュアルの拡充</li>
+            </ul>
+            <p>アップデート情報はユーザーガイドの最新情報にて随時お知らせいたします。</p>
+
+            <h2>お問い合わせ</h2>
+            <p>ご不明点がございましたら、お気軽にご連絡ください。</p>
+            <ul>
+                <li><a href="/user-guide/contact-chat/">AIチャットサポート</a>（24時間対応）</li>
+                <li><a href="/user-guide/contact-form/">お問い合わせフォーム</a>（2営業日以内に返信）</li>
+                <li>メール：<a href="mailto:info@chainsoda.world">info@chainsoda.world</a></li>
+            </ul>
+        </div>
+        <div class="article-footer">
+            <a href="/user-guide/" class="back-link"><svg viewBox="0 0 24 24"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>ユーザーガイドに戻る</a>
+        </div>
+    </main>
+    <footer class="site-footer"><p>&copy; 2026 バク売れLPテンプレ — All rights reserved.</p></footer>
 </body>
 </html>

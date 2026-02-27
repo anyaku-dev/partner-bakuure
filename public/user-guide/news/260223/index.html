@@ -3,469 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Windows版アップデート時の不具合について — BakuApo</title>
-    <meta name="description" content="旧BakuApoがインストールされているWindows PCで最新版へアップグレードする際に発生する「NSIS Error」についての情報と解消方法をご案内します。">
+    <title>テンプレートの使い方・カスタマイズガイドについて — バク売れLPテンプレ</title>
+    <meta name="description" content="テンプレートの基本的な使い方やカスタマイズ方法について、ガイドページにてご案内しております。">
     <meta name="robots" content="noindex, nofollow">
-    <meta property="og:title" content="Windows版アップデート時の不具合について — BakuApo">
-    <meta property="og:description" content="旧BakuApoアップデート時に発生する「NSIS Error」の解消方法をご案内します。">
+    <meta property="og:title" content="テンプレートの使い方・カスタマイズガイドについて">
+    <meta property="og:description" content="テンプレートの基本的な使い方やカスタマイズ方法のご案内。">
     <meta property="og:type" content="article">
-    <meta property="og:site_name" content="BakuApo">
-    <meta property="og:locale" content="ja_JP">
-    <link rel="icon" href="/favicon.ico">
+    <meta property="og:site_name" content="バク売れLPテンプレ">
+    <meta property="og:image" content="/bakuure-ogp.png">
+    <link rel="icon" href="/bakuure-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg: #FAFAFA;
-            --bg-card: #FFFFFF;
-            --bg-alt: #F3F4F6;
-            --border: #E5E7EB;
-            --border-hover: #D1D5DB;
-            --text-primary: #111827;
-            --text-secondary: #6B7280;
-            --text-muted: #7C8290;
-            --accent: #0852FF;
-            --accent-light: rgba(8,82,255,0.08);
-            --accent-subtle: rgba(8,82,255,0.04);
-            --success: #10B981;
-            --warning: #F59E0B;
-            --danger: #EF4444;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            font-family: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background-color: var(--bg);
-            color: var(--text-primary);
-            line-height: 1.8;
-            font-size: 15px;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            min-height: 100vh;
-        }
-
-        /* --- Header --- */
-        .site-header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(255,255,255,0.85);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 1px solid var(--border);
-        }
-        .header-inner {
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: 14px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .header-logo a { display: flex; align-items: center; text-decoration: none; }
-        .header-logo img { height: 58px; }
-        .header-label {
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-muted);
-        }
-
-        /* --- Breadcrumb --- */
-        .breadcrumb {
-            max-width: 780px;
-            margin: 0 auto;
-            padding: 20px 24px 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            color: var(--text-muted);
-            flex-wrap: wrap;
-        }
-        .breadcrumb a {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 500;
-        }
-        .breadcrumb a:hover { text-decoration: underline; }
-        .breadcrumb .sep {
-            color: var(--border);
-            user-select: none;
-        }
-
-        /* --- Article --- */
-        .article {
-            max-width: 780px;
-            margin: 0 auto;
-            padding: 32px 24px 100px;
-        }
-
-        /* --- Article Header --- */
-        .article-header {
-            margin-bottom: 40px;
-            padding-bottom: 32px;
-            border-bottom: 1px solid var(--border);
-        }
-        .article-meta {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-        .article-date {
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-muted);
-            font-family: 'Inter', monospace;
-        }
-        .article-tag {
-            display: inline-flex;
-            align-items: center;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.03em;
-            padding: 4px 12px;
-            border-radius: 100px;
-            white-space: nowrap;
-        }
-        .article-tag.bug {
-            background: rgba(239,68,68,0.08);
-            color: #EF4444;
-        }
-        .article-tag.update {
-            background: rgba(8,82,255,0.08);
-            color: #0852FF;
-        }
-        .article-tag.info {
-            background: rgba(16,185,129,0.08);
-            color: #10B981;
-        }
-        .article-tag.maintenance {
-            background: rgba(245,158,11,0.08);
-            color: #D97706;
-        }
-
-        .article-header h1 {
-            font-size: clamp(24px, 4vw, 32px);
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            line-height: 1.3;
-            color: var(--text-primary);
-        }
-
-        /* --- Article Body --- */
-        .article-body h2 {
-            font-size: 20px;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            line-height: 1.4;
-            color: var(--text-primary);
-            margin: 48px 0 16px;
-            padding-left: 16px;
-            border-left: 3px solid var(--accent);
-        }
-        .article-body h3 {
-            font-size: 17px;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin: 32px 0 12px;
-        }
-        .article-body p {
-            margin-bottom: 16px;
-            color: var(--text-primary);
-            line-height: 1.9;
-        }
-        .article-body ul, .article-body ol {
-            margin: 12px 0 20px 24px;
-            color: var(--text-primary);
-        }
-        .article-body li {
-            margin-bottom: 8px;
-            line-height: 1.8;
-        }
-        .article-body a {
-            color: var(--accent);
-            text-decoration: underline;
-            text-underline-offset: 3px;
-        }
-        .article-body a:hover {
-            text-decoration-thickness: 2px;
-        }
-
-        /* --- Callout --- */
-        .callout {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 24px 28px;
-            margin: 24px 0;
-        }
-        .callout.danger {
-            border-left: 4px solid var(--danger);
-            background: rgba(239,68,68,0.03);
-        }
-        .callout.warning {
-            border-left: 4px solid var(--warning);
-            background: rgba(245,158,11,0.03);
-        }
-        .callout.info {
-            border-left: 4px solid var(--accent);
-            background: rgba(8,82,255,0.03);
-        }
-        .callout.success {
-            border-left: 4px solid var(--success);
-            background: rgba(16,185,129,0.03);
-        }
-        .callout-title {
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .callout-title svg {
-            width: 18px;
-            height: 18px;
-            flex-shrink: 0;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            fill: none;
-        }
-        .callout p {
-            font-size: 14px;
-            margin-bottom: 0;
-            color: var(--text-secondary);
-        }
-        .callout p + p {
-            margin-top: 8px;
-        }
-
-        /* --- Steps --- */
-        .article-body .steps {
-            margin: 20px 0 28px 0;
-            padding: 0;
-            list-style: none;
-            counter-reset: step-counter;
-        }
-        .steps li {
-            counter-increment: step-counter;
-            position: relative;
-            padding: 16px 20px 16px 56px;
-            margin-bottom: 12px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            font-size: 14px;
-            line-height: 1.7;
-            width: 100%;
-        }
-        .steps li::before {
-            content: counter(step-counter);
-            position: absolute;
-            left: 16px;
-            top: 16px;
-            width: 28px;
-            height: 28px;
-            background: var(--accent);
-            color: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 13px;
-            font-weight: 700;
-            font-family: 'Inter', sans-serif;
-        }
-
-        /* --- Divider --- */
-        .article-divider {
-            border: none;
-            border-top: 1px solid var(--border);
-            margin: 40px 0;
-        }
-
-        /* --- Back link --- */
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 48px;
-            padding: 12px 24px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            text-decoration: none;
-            color: var(--accent);
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-        }
-        .back-link:hover {
-            border-color: var(--accent);
-            box-shadow: 0 4px 12px rgba(8,82,255,0.08);
-            transform: translateY(-1px);
-        }
-        .back-link svg {
-            width: 16px;
-            height: 16px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            transition: transform 0.2s ease;
-        }
-        .back-link:hover svg {
-            transform: translateX(-3px);
-        }
-
-        /* --- Footer --- */
-        .site-footer {
-            text-align: center;
-            padding: 32px 24px;
-            border-top: 1px solid var(--border);
-        }
-        .site-footer p {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        /* --- Responsive --- */
-        @media (max-width: 768px) {
-            .article { padding: 24px 16px 60px; }
-            .breadcrumb { padding: 16px 16px 0; }
-            .header-inner { padding: 14px 16px; }
-            .callout { padding: 20px; }
-            .steps li { padding: 14px 16px 14px 50px; }
-            .steps li::before { left: 12px; top: 14px; }
-        }
-        @media (max-width: 480px) {
-            .header-logo img { height: 40px; }
-            .article-header h1 { font-size: 22px; }
-        }
+        :root{--bg:#FAFAFA;--bg-card:#FFF;--border:#E5E7EB;--text-primary:#111827;--text-secondary:#6B7280;--text-muted:#7C8290;--accent:#0852FF;--accent-light:rgba(8,82,255,.08);--accent-subtle:rgba(8,82,255,.04);--success:#10B981;--radius-lg:20px}
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text-primary);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+        .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--border)}
+        .header-inner{max-width:740px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+        .header-logo img{height:58px}
+        .header-nav a{font-size:13px;font-weight:500;color:var(--text-muted);text-decoration:none;display:flex;align-items:center;gap:4px;transition:color .2s}
+        .header-nav a:hover{color:var(--accent)}
+        .header-nav svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+        .article-container{max-width:740px;margin:0 auto;padding:0 24px 80px}
+        .article-header{padding:56px 0 40px;border-bottom:1px solid var(--border);margin-bottom:40px}
+        .article-meta{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+        .article-date{font-size:13px;font-weight:500;color:var(--text-muted);font-family:'Inter',monospace}
+        .article-tag{font-size:11px;font-weight:600;padding:4px 12px;border-radius:100px;background:rgba(16,185,129,.08);color:#10B981}
+        .article-header h1{font-size:clamp(24px,5vw,34px);font-weight:800;letter-spacing:-.03em;line-height:1.3}
+        .article-body{font-size:15px;line-height:1.9;color:var(--text-secondary)}
+        .article-body h2{font-size:20px;font-weight:700;color:var(--text-primary);margin:40px 0 16px;letter-spacing:-.01em}
+        .article-body h3{font-size:17px;font-weight:700;color:var(--text-primary);margin:32px 0 12px}
+        .article-body p{margin-bottom:16px}
+        .article-body ul,.article-body ol{padding-left:24px;margin-bottom:16px}
+        .article-body li{margin-bottom:8px;line-height:1.8}
+        .article-body li strong{color:var(--text-primary);font-weight:600}
+        .article-body a{color:var(--accent);font-weight:500;text-decoration:none}
+        .article-body a:hover{text-decoration:underline}
+        .info-box{display:flex;gap:14px;background:var(--accent-subtle);border:1px solid rgba(8,82,255,.12);border-radius:14px;padding:20px 24px;margin:24px 0}
+        .info-box svg{width:20px;height:20px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;margin-top:2px}
+        .info-box p{font-size:13px;color:var(--text-secondary);line-height:1.7}
+        .info-box strong{color:var(--text-primary);font-weight:600}
+        .article-footer{margin-top:56px;padding-top:32px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+        .back-link{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--accent);text-decoration:none;transition:gap .2s}
+        .back-link:hover{gap:10px}
+        .back-link svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+        .site-footer{text-align:center;padding:32px 24px;border-top:1px solid var(--border)}
+        .site-footer p{font-size:12px;color:var(--text-muted)}
+        @media(max-width:768px){.article-header{padding:40px 0 32px}.article-container{padding:0 16px 60px}.header-inner{padding:14px 16px}}
+        @media(max-width:480px){.header-logo img{height:40px}}
     </style>
 </head>
 <body>
-
-    <!-- ======== Header ======== -->
     <header class="site-header">
         <div class="header-inner">
-            <div class="header-logo">
-                <a href="/user-guide/">
-                    <img src="/bakuapo-logo-useer.svg" alt="BakuApo">
-                </a>
-            </div>
-            <span class="header-label">ご利用ユーザー様専用ページ</span>
+            <div class="header-logo"><a href="/user-guide/" style="display:flex;align-items:center;text-decoration:none;"><img src="/bakuure-logo.svg" alt="バク売れLPテンプレ"></a></div>
+            <nav class="header-nav"><a href="/user-guide/"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>ユーザーガイドに戻る</a></nav>
         </div>
     </header>
-
-    <!-- ======== Breadcrumb ======== -->
-    <nav class="breadcrumb">
-        <a href="/user-guide/">ユーザーガイド</a>
-        <span class="sep">›</span>
-        <a href="/user-guide/">最新情報</a>
-        <span class="sep">›</span>
-        <span>Windows版アップデート時の不具合について</span>
-    </nav>
-
-    <!-- ======== Article ======== -->
-    <article class="article">
-
-        <!-- Header -->
-        <header class="article-header">
+    <main class="article-container">
+        <div class="article-header">
             <div class="article-meta">
-                <span class="article-date">2026.02.23</span>
-                <span class="article-tag bug">不具合情報</span>
+                <span class="article-date">2026.02.27</span>
+                <span class="article-tag">お知らせ</span>
             </div>
-            <h1>Windows版アップデート時の不具合について</h1>
-        </header>
-
-        <!-- Body -->
+            <h1>テンプレートの使い方・カスタマイズガイドについて</h1>
+        </div>
         <div class="article-body">
+            <p>バク売れLPテンプレをご利用いただきありがとうございます。テンプレートの基本的な使い方やカスタマイズ方法について、各ガイドページにてご案内しておりますのでお知らせいたします。</p>
 
-            <p>旧BakuApoがインストールされているWindows PCで最新版へアップグレードしようとすると、</p>
+            <h2>ガイドページのご案内</h2>
+            <p>以下のページにて、テンプレートの導入から公開までのステップをわかりやすくまとめております。</p>
+            <ul>
+                <li><strong><a href="/user-guide/quick-start/">クイックスタートガイド</a>：</strong>テンプレートの受け取りから、テキスト・画像の差し替え、ローカルプレビュー、公開までの5ステップをご案内しています。</li>
+                <li><strong><a href="/user-guide/download/">ダウンロードページ</a>：</strong>ご購入プランに応じたテンプレートファイルやバナー素材のダウンロードはこちらから。</li>
+                <li><strong><a href="/user-guide/contact-chat/">AIチャットサポート</a>：</strong>テンプレートのカスタマイズ方法やHTML/CSSに関する技術的なご質問に、AIがリアルタイムでお答えします。</li>
+            </ul>
 
-            <div class="callout danger">
-                <div class="callout-title" style="color:var(--danger);">
-                    <svg stroke="var(--danger)" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                    発生する症状
-                </div>
-                <p>・旧版のアンインストール時に<strong>「NSIS Error」</strong>が発生</p>
-                <p>・その結果、新版のインストールも開始できない</p>
-            </div>
-
-            <p>というループが発生する場合があります。</p>
-
-            <hr class="article-divider">
-
-            <!-- ───── 解消方法 ───── -->
-            <h2>解消方法（暫定対応）</h2>
-
-            <p>Windowsの「設定」→「アプリ」からの通常アンインストールではエラーが出るため、<strong>IObit社の無料アンインストーラー</strong>などのツールを使用します。</p>
-
-            <div class="callout info">
-                <div class="callout-title" style="color:var(--accent);">
-                    <svg stroke="var(--accent)" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-                    使用ツール
-                </div>
-                <p><strong>IObit Uninstaller（無料版）</strong></p>
-                <img src="/IObit-Uninstaller.webp" alt="IObit Uninstaller" style="display:block;width:200px;margin:12px 0 16px;border-radius:12px;">
-                <p><a href="https://jp.iobit.com/pc-optimization-software/iobit-uninstaller-free.html" target="_blank" rel="noopener noreferrer">https://jp.iobit.com/pc-optimization-software/iobit-uninstaller-free.html</a></p>
-                <p style="margin-top:12px;"><a href="https://jp.iobit.com/pc-optimization-software/iobit-uninstaller-free.html" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;padding:8px 18px;background:var(--bg-alt);border:1px solid var(--border);border-radius:8px;font-size:13px;font-weight:600;color:var(--text-primary);text-decoration:none;transition:all .2s ease;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)';" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-primary)';">IObit Uninstaller（無料版）のダウンロードはこちら <svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M7 17L17 7'/><path d='M7 7h10v10'/></svg></a></p>
-            </div>
-
-            <h3>手順</h3>
-
-            <ol class="steps">
-                <li>上記サイトより<strong>「IObit Uninstaller（無料版）」</strong>をダウンロード</li>
-                <li><strong>IObit Uninstaller</strong>を起動</li>
-                <li>一覧より<strong>旧BakuApo</strong>を選択し、残存ファイル含むすべてをアンインストール
-                    <img src="/news_260223-1.png" alt="IObit Uninstallerで旧BakuApoをアンインストール" style="display:block;width:100%;margin-top:14px;border-radius:14px;">
-                </li>
-                <li>削除完了後、<strong>最新版BakuApo</strong>を起動</li>
+            <h2>カスタマイズの基本</h2>
+            <p>テンプレートは以下の3つのレベルでカスタマイズ可能です。</p>
+            <ol>
+                <li><strong>テキスト・画像の差し替え（初級）：</strong>HTMLファイル内のテキストとimagesフォルダの画像を差し替えるだけで、すぐにオリジナルのLPとしてご利用いただけます。</li>
+                <li><strong>カラー・フォントの変更（中級）：</strong>CSSファイル先頭のカスタムプロパティ（CSS変数）を変更するだけで、サイト全体のカラーやフォントを一括で変更できます。</li>
+                <li><strong>レイアウト・セクションの追加（上級）：</strong>HTMLの構造を追加・変更することで、自由にセクションを追加したりレイアウトを変更できます。レスポンシブ対応にご注意ください。</li>
             </ol>
 
-            <p>これにより、通常どおりインストールが開始されます。</p>
-
-            <hr class="article-divider">
-
-            <!-- ───── 原因 ───── -->
-            <h2>原因</h2>
-
-            <p>旧BakuApoのアンインストーラーが正常に動作せず、システム上に削除しきれていない情報が残ることで、新版のインストールがブロックされる状態です。</p>
-
-            <hr class="article-divider">
-
-            <!-- ───── 今後について ───── -->
-            <h2>今後について</h2>
-
-            <div class="callout success">
-                <div class="callout-title" style="color:var(--success);">
-                    <svg stroke="var(--success)" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                    対応予定
-                </div>
-                <p>現在、根本原因を調査中です。</p>
-                <p><strong>2026年2月23日以降にリリース予定の、BakuApo ver 2にて解消予定</strong>です。</p>
+            <div class="info-box">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                <p><strong>推奨エディタ：</strong>テンプレートの編集には <strong>Visual Studio Code（VS Code）</strong> の利用を推奨しています。拡張機能「Live Server」と合わせてご利用いただくと、リアルタイムプレビューが可能になり効率的です。</p>
             </div>
 
-            <!-- Back link -->
-            <a href="/user-guide/" class="back-link">
-                <svg viewBox="0 0 24 24"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
-                ユーザーガイドに戻る
-            </a>
+            <h2>パートナー向けマニュアル</h2>
+            <p>販売パートナーの方は、<a href="/manual/videos/">パートナーマニュアル</a>もあわせてご確認ください。販売フロー・活用事例・FAQ が掲載されています。</p>
 
+            <h2>お困りの際は</h2>
+            <p>テンプレートの使い方やカスタマイズでお困りの際は、以下の方法でサポートをご利用いただけます。</p>
+            <ul>
+                <li><strong><a href="/user-guide/contact-chat/">AIチャットサポート</a>：</strong>24時間いつでもご質問いただけます。</li>
+                <li><strong><a href="/user-guide/contact-form/">お問い合わせフォーム</a>：</strong>スタッフが2営業日以内にご返信いたします。</li>
+                <li><strong>メール：</strong><a href="mailto:info@chainsoda.world">info@chainsoda.world</a></li>
+            </ul>
         </div>
-    </article>
-
-    <!-- ======== Footer ======== -->
-    <footer class="site-footer">
-        <p>&copy; 2026 BakuApo — All rights reserved.</p>
-    </footer>
-
+        <div class="article-footer">
+            <a href="/user-guide/" class="back-link"><svg viewBox="0 0 24 24"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>ユーザーガイドに戻る</a>
+        </div>
+    </main>
+    <footer class="site-footer"><p>&copy; 2026 バク売れLPテンプレ — All rights reserved.</p></footer>
 </body>
 </html>

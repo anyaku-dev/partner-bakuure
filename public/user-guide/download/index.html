@@ -3,540 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BakuApo（バクアポ）ダウンロード</title>
-    <meta name="description" content="BakuApoご購入者様専用のダウンロードページです。Windows / Mac 対応のインストーラーをこちらからダウンロードいただけます。">
+    <title>ダウンロード — バク売れLPテンプレ</title>
+    <meta name="description" content="バク売れLPテンプレのテンプレート・素材データをダウンロードいただけます。">
     <meta name="robots" content="noindex, nofollow">
-    <meta property="og:title" content="BakuApo（バクアポ）ダウンロード">
-    <meta property="og:description" content="BakuApoご購入者様専用のダウンロードページです。Windows / Mac 対応のインストーラーをこちらからダウンロードいただけます。">
+    <meta property="og:title" content="ダウンロード — バク売れLPテンプレ">
+    <meta property="og:description" content="テンプレート・素材データのダウンロード。">
     <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <link rel="icon" href="/favicon.ico">
+    <meta property="og:site_name" content="バク売れLPテンプレ">
+    <meta property="og:image" content="/bakuure-ogp.png">
+    <link rel="icon" href="/bakuure-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
     <style>
-        :root {
-            --bg: #FAFAFA;
-            --bg-card: #FFFFFF;
-            --bg-alt: #F3F4F6;
-            --border: #E5E7EB;
-            --border-hover: #D1D5DB;
-            --text-primary: #111827;
-            --text-secondary: #6B7280;
-            --text-muted: #7C8290;
-            --accent: #0852FF;
-            --accent-light: rgba(8,82,255,0.08);
-            --accent-subtle: rgba(8,82,255,0.04);
-            --success: #10B981;
-            --warning: #F59E0B;
-            --danger: #EF4444;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            font-family: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background-color: var(--bg);
-            color: var(--text-primary);
-            line-height: 1.7;
-            font-size: 15px;
-            -webkit-font-smoothing: antialiased;
-            min-height: 100vh;
-        }
-
-        /* --- Header --- */
-        .site-header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(255,255,255,0.85);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 1px solid var(--border);
-        }
-        .header-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 14px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .header-logo img { height: 58px; }
-        .header-logo a { display: flex; align-items: center; text-decoration: none; }
-        .header-label {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            letter-spacing: -0.01em;
-        }
-
-        /* --- Breadcrumb --- */
-        .breadcrumb {
-            max-width: 780px;
-            margin: 0 auto;
-            padding: 16px 24px 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            color: var(--text-muted);
-            flex-wrap: wrap;
-        }
-        .breadcrumb a {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 500;
-        }
-        .breadcrumb a:hover { text-decoration: underline; }
-        .breadcrumb .sep {
-            color: var(--border);
-            user-select: none;
-        }
-
-        /* --- Main --- */
-        .main {
-            max-width: 780px;
-            margin: 0 auto;
-            padding: 0 24px 100px;
-        }
-
-        /* --- Hero --- */
-        .hero {
-            padding: 64px 0 48px;
-            text-align: center;
-        }
-        .hero-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--accent);
-            background: var(--accent-light);
-            padding: 6px 16px;
-            border-radius: 100px;
-            margin-bottom: 20px;
-        }
-        .hero h1 {
-            font-size: clamp(26px, 4.5vw, 38px);
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            line-height: 1.25;
-            margin-bottom: 16px;
-        }
-        .hero-sub {
-            font-size: 15px;
-            color: var(--text-secondary);
-            max-width: 520px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-
-        /* --- Download Card --- */
-        .dl-hero {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .dl-hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: var(--success);
-            background: rgba(16,185,129,0.08);
-            padding: 5px 14px;
-            border-radius: 100px;
-            margin-bottom: 20px;
-        }
-        .dl-hero-badge svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.5; }
-        .dl-hero h3 {
-            font-size: 20px;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            margin-bottom: 6px;
-        }
-        .dl-hero .dl-version {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-bottom: 28px;
-        }
-        .dl-options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .dl-option {
-            background: var(--bg);
-            border: 2px solid var(--border);
-            border-radius: 16px;
-            padding: 28px 24px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-            position: relative;
-            overflow: hidden;
-        }
-        .dl-option:hover {
-            border-color: var(--accent);
-            background: var(--accent-subtle);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(8,82,255,0.1);
-        }
-        .dl-option-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .dl-option-icon.windows { background: rgba(0,120,215,0.1); }
-        .dl-option-icon.mac { background: rgba(0,0,0,0.06); }
-        .dl-option-icon svg { width: 28px; height: 28px; }
-        .dl-option-title {
-            font-size: 16px;
-            font-weight: 700;
-            letter-spacing: -0.01em;
-        }
-        .dl-option-meta {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-        }
-        .dl-option-file {
-            font-size: 11px;
-            font-family: 'SF Mono', 'Fira Code', monospace;
-            color: var(--text-muted);
-            background: var(--bg-alt);
-            padding: 3px 10px;
-            border-radius: 6px;
-        }
-        .dl-option-size {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-        .dl-option-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            font-weight: 700;
-            color: #fff;
-            background: var(--accent);
-            padding: 10px 24px;
-            border-radius: 10px;
-            transition: background 0.2s;
-            width: 100%;
-            justify-content: center;
-        }
-        .dl-option:hover .dl-option-btn { background: #063FCC; }
-        .dl-option-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
-        .dl-trust {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 24px;
-            margin-top: 24px;
-            flex-wrap: wrap;
-        }
-        .dl-trust-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-        .dl-trust-item svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; flex-shrink: 0; }
-        .dl-auto-detect {
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-bottom: 4px;
-        }
-        .dl-auto-detect strong { color: var(--accent); font-weight: 600; }
-
-        /* --- Callout --- */
-        .callout {
-            display: flex;
-            gap: 14px;
-            padding: 20px 24px;
-            border-radius: 12px;
-            margin: 16px 0;
-            font-size: 14px;
-            line-height: 1.7;
-        }
-        .callout-icon {
-            flex-shrink: 0;
-            font-size: 20px;
-            width: 22px;
-            text-align: center;
-            margin-top: 2px;
-            line-height: 1;
-        }
-        .callout-info {
-            background: var(--accent-light);
-            border: 1px solid rgba(8,82,255,0.15);
-            color: var(--text-primary);
-        }
-        .callout-info .callout-icon { color: var(--accent); }
-        .callout-warning {
-            background: rgba(245,158,11,0.08);
-            border: 1px solid rgba(245,158,11,0.2);
-            color: var(--text-primary);
-        }
-        .callout-warning .callout-icon { color: var(--warning); }
-        .callout a {
-            color: var(--accent);
-            text-decoration: underline;
-            text-underline-offset: 3px;
-        }
-        .callout a:hover { text-decoration: none; }
-
-        /* --- Guide Link Card --- */
-        .guide-link-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 32px;
-            margin-top: 32px;
-            transition: box-shadow 0.2s;
-        }
-        .guide-link-card:hover {
-            box-shadow: 0 4px 24px rgba(0,0,0,0.04);
-        }
-        .guide-link-card h3 {
-            font-size: 18px;
-            font-weight: 800;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .guide-link-card h3 svg {
-            width: 22px;
-            height: 22px;
-            color: var(--accent);
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 2;
-            flex-shrink: 0;
-        }
-        .guide-link-card p {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-        .guide-link-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            font-weight: 700;
-            font-family: inherit;
-            color: #fff;
-            background: var(--accent);
-            padding: 12px 28px;
-            border-radius: 10px;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 16px rgba(8,82,255,0.2);
-        }
-        .guide-link-btn:hover {
-            background: #063FCC;
-            transform: translateY(-1px);
-            box-shadow: 0 8px 24px rgba(8,82,255,0.3);
-        }
-        .guide-link-btn svg {
-            width: 16px;
-            height: 16px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 2;
-        }
-
-        /* --- Footer --- */
-        .site-footer {
-            text-align: center;
-            padding: 32px 24px;
-            border-top: 1px solid var(--border);
-        }
-        .site-footer p {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        /* --- Responsive --- */
-        @media (max-width: 640px) {
-            .dl-options { grid-template-columns: 1fr; }
-            .dl-hero { padding: 28px 20px; }
-            .main { padding: 0 16px 80px; }
-            .guide-link-card { padding: 24px 20px; }
-        }
+        :root{--bg:#FAFAFA;--bg-card:#FFF;--border:#E5E7EB;--border-hover:#D1D5DB;--text-primary:#111827;--text-secondary:#6B7280;--text-muted:#7C8290;--accent:#0852FF;--accent-light:rgba(8,82,255,.08);--accent-subtle:rgba(8,82,255,.04);--success:#10B981;--warning:#F59E0B;--radius-lg:20px}
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text-primary);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased;min-height:100vh}
+        .ambient-glow{position:fixed;top:-20%;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(ellipse,rgba(8,82,255,.04) 0%,transparent 70%);pointer-events:none;z-index:0}
+        .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--border)}
+        .header-inner{max-width:960px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+        .header-logo img{height:58px}
+        .header-nav a{font-size:13px;font-weight:500;color:var(--text-muted);text-decoration:none;display:flex;align-items:center;gap:4px;transition:color .2s}
+        .header-nav a:hover{color:var(--accent)}
+        .header-nav svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+        .main-content{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:0 24px 100px}
+        .hero{padding:64px 0 48px;text-align:center}
+        .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-light);padding:6px 16px;border-radius:100px;margin-bottom:20px}
+        .hero h1{font-size:clamp(26px,5vw,38px);font-weight:800;letter-spacing:-.03em;line-height:1.2;margin-bottom:12px}
+        .hero-sub{font-size:15px;color:var(--text-secondary);max-width:520px;margin:0 auto}
+        .alert-card{display:flex;align-items:flex-start;gap:16px;background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.2);border-radius:14px;padding:20px 24px;margin-bottom:40px}
+        .alert-card svg{width:22px;height:22px;stroke:var(--warning);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;margin-top:2px}
+        .alert-card p{font-size:13px;color:var(--text-secondary);line-height:1.6}
+        .alert-card strong{color:var(--text-primary);font-weight:600}
+        .download-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px;margin-bottom:48px}
+        .dl-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:all .3s cubic-bezier(.4,0,.2,1);box-shadow:0 1px 3px rgba(0,0,0,.04)}
+        .dl-card:hover{border-color:var(--accent);box-shadow:0 16px 40px rgba(8,82,255,.06),0 0 0 1px var(--accent)}
+        .dl-card-header{display:flex;align-items:center;gap:14px;padding:24px 24px 0}
+        .dl-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .dl-icon svg{width:24px;height:24px;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+        .dl-icon.blue{background:rgba(8,82,255,.08)}.dl-icon.blue svg{stroke:#0852FF}
+        .dl-icon.green{background:rgba(16,185,129,.08)}.dl-icon.green svg{stroke:#10B981}
+        .dl-icon.purple{background:rgba(139,92,246,.08)}.dl-icon.purple svg{stroke:#8B5CF6}
+        .dl-card-header h3{font-size:17px;font-weight:700;letter-spacing:-.01em;line-height:1.35}
+        .dl-card-header .plan-badge{font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;white-space:nowrap}
+        .plan-badge.starter{background:rgba(8,82,255,.08);color:#0852FF}
+        .plan-badge.boost{background:rgba(139,92,246,.08);color:#8B5CF6}
+        .dl-card-body{padding:16px 24px 24px}
+        .dl-card-body p{font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:16px}
+        .dl-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;font-size:14px;font-weight:600;padding:12px 24px;border-radius:12px;text-decoration:none;border:none;cursor:pointer;transition:all .2s ease;font-family:inherit}
+        .dl-btn:hover{background:#063dd9;transform:translateY(-1px);box-shadow:0 4px 16px rgba(8,82,255,.25)}
+        .dl-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+        .dl-btn.secondary{background:var(--accent-light);color:var(--accent)}
+        .dl-btn.secondary:hover{background:rgba(8,82,255,.14);box-shadow:none}
+        .section-title{font-size:20px;font-weight:700;letter-spacing:-.02em;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+        .section-title svg{width:20px;height:20px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+        .info-list{list-style:none;padding:0}
+        .info-list li{position:relative;padding:12px 0 12px 28px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-secondary);line-height:1.6}
+        .info-list li::before{content:'';position:absolute;left:0;top:18px;width:8px;height:8px;border-radius:50%;background:var(--accent-light);border:2px solid var(--accent)}
+        .info-list li:last-child{border-bottom:none}
+        .info-list li strong{color:var(--text-primary);font-weight:600}
+        .site-footer{text-align:center;padding:32px 24px;border-top:1px solid var(--border)}
+        .site-footer p{font-size:12px;color:var(--text-muted)}
+        .fade-up{opacity:0;transform:translateY(16px);animation:fadeUp .5s ease forwards}
+        @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+        @media(max-width:768px){.download-grid{grid-template-columns:1fr}.hero{padding:48px 0 36px}.main-content{padding:0 16px 60px}.header-inner{padding:14px 16px}}
+        @media(max-width:480px){.header-logo img{height:40px}}
     </style>
 </head>
 <body>
+    <div class="ambient-glow"></div>
     <header class="site-header">
         <div class="header-inner">
-            <div class="header-logo">
-                <a href="/user-guide/">
-                    <img src="/bakuapo-logo-useer.svg" alt="BakuApo">
-                </a>
-            </div>
-            <span class="header-label">BakuApoご購入者様専用｜ダウンロード</span>
+            <div class="header-logo"><a href="/user-guide/" style="display:flex;align-items:center;text-decoration:none;"><img src="/bakuure-logo.svg" alt="バク売れLPテンプレ"></a></div>
+            <nav class="header-nav"><a href="/user-guide/"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>ユーザーガイドに戻る</a></nav>
         </div>
     </header>
-
-    <nav class="breadcrumb">
-        <a href="/user-guide/">ユーザーガイド</a>
-        <span class="sep">›</span>
-        <span>ダウンロード</span>
-    </nav>
-
-    <main class="main">
-        <!-- Hero -->
+    <main class="main-content">
         <section class="hero">
-            <span class="hero-eyebrow">Download</span>
-            <h1>BakuApo ダウンロード</h1>
-            <p class="hero-sub">
-                お使いのOS（Windows / Mac）に合わせて、<br>
-                以下よりインストーラーをダウンロードしてください。
-            </p>
+            <p class="hero-eyebrow">Download</p>
+            <h1>テンプレート・素材ダウンロード</h1>
+            <p class="hero-sub">ご購入プランに応じたテンプレートと素材データをこちらからダウンロードいただけます。</p>
         </section>
-
-        <!-- Download Card -->
-        <div class="dl-hero">
-            <span class="dl-hero-badge">
-                <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                最新バージョンをダウンロード
-            </span>
-            <h3>BakuApo（バクアポ）</h3>
-            <p class="dl-version">Version 1.2.0</p>
-            <p class="dl-auto-detect" id="osDetect"></p>
-
-            <div class="dl-options">
-                <!-- Windows -->
-                <a href="https://pub-f05486cd473b432092da184cec71eb70.r2.dev/bakuapo/app-download/BakuApo_1.2.0.exe" download class="dl-option" id="dlWindows">
-                    <div class="dl-option-icon windows">
-                        <svg viewBox="0 0 24 24" fill="#0078D7"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg>
-                    </div>
-                    <span class="dl-option-title">Windows</span>
-                    <div class="dl-option-meta">
-                        <span class="dl-option-file">.exe インストーラー</span>
-                        <span class="dl-option-size">290 MB</span>
-                    </div>
-                    <span class="dl-option-btn">
-                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                        ダウンロード
-                    </span>
-                </a>
-                <!-- Mac -->
-                <a href="https://pub-f05486cd473b432092da184cec71eb70.r2.dev/bakuapo/app-download/BakuApo_1.2.0.dmg" download class="dl-option" id="dlMac">
-                    <div class="dl-option-icon mac">
-                        <svg viewBox="0 0 24 24" fill="#000"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                    </div>
-                    <span class="dl-option-title">macOS</span>
-                    <div class="dl-option-meta">
-                        <span class="dl-option-file">.dmg ディスクイメージ</span>
-                        <span class="dl-option-size">199 MB（Apple Silicon）</span>
-                    </div>
-                    <span class="dl-option-btn">
-                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                        ダウンロード
-                    </span>
-                </a>
-            </div>
-
-            <div class="dl-trust">
-                <span class="dl-trust-item">
-                    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    安全なサーバーから配信
-                </span>
-                <span class="dl-trust-item">
-                    <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                    ウイルスチェック済み
-                </span>
-                <span class="dl-trust-item">
-                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    ワンクリックで即時ダウンロード
-                </span>
-            </div>
-            <p style="font-size: 11px; color: var(--text-muted); text-align: center; margin-top: 16px; line-height: 1.6; max-width: 480px; margin-left: auto; margin-right: auto;">
-                本ツールは Cloudflare のグローバルネットワーク上で<br>ホスティングされており、安全に配信されています。
-            </p>
+        <div class="alert-card fade-up" style="animation-delay:.1s">
+            <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <div><p><strong>共有・再配布は禁止されています。</strong><br>ダウンロードしたテンプレート・素材は、ご契約者様の案件でのみご利用いただけます。第三者への共有・再配布・転売は利用規約で禁止されています。</p></div>
         </div>
-
-        <!-- Callout -->
-        <div class="callout callout-warning">
-            <i class="fa-solid fa-triangle-exclamation callout-icon" style="color:var(--warning);"></i>
-            <div>
-                ダウンロード後のインストール時に、WindowsやmacOSのセキュリティ警告が表示される場合があります。<br>
-                詳しい対処方法は、下記の<strong>クイックスタートガイド</strong>をご参照ください。
+        <h2 class="section-title" style="margin-top:16px;"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>LPテンプレート</h2>
+        <div class="download-grid fade-up" style="animation-delay:.15s">
+            <div class="dl-card">
+                <div class="dl-card-header">
+                    <div class="dl-icon blue"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div>
+                    <div><h3>LP テンプレート一式</h3></div>
+                    <span class="plan-badge starter">スターター対応</span>
+                </div>
+                <div class="dl-card-body">
+                    <p>売上を最大化する構造のLPテンプレート一式（HTML/CSS/JS/画像）。レスポンシブ対応済み。</p>
+                    <a href="#" class="dl-btn" onclick="alert('テンプレートのダウンロードリンクは、ご契約後にメールでお知らせいたします。');return false;"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>ダウンロード</a>
+                </div>
+            </div>
+            <div class="dl-card">
+                <div class="dl-card-header">
+                    <div class="dl-icon purple"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+                    <div><h3>バナー素材セット</h3></div>
+                    <span class="plan-badge boost">集客強化のみ</span>
+                </div>
+                <div class="dl-card-body">
+                    <p>SNS広告・ディスプレイ広告用のバナーデザインテンプレート素材セット（PSD/Figma/PNG）。</p>
+                    <a href="#" class="dl-btn" onclick="alert('バナー素材のダウンロードリンクは、ご契約後にメールでお知らせいたします。');return false;"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>ダウンロード</a>
+                </div>
             </div>
         </div>
-
-        <div class="callout callout-info">
-            <i class="fa-solid fa-circle-info callout-icon" style="color:var(--accent);"></i>
-            <div>
-                <strong>お困りの場合</strong><br>
-                アップデートやインストールに関してご不明な点がございましたら、お気軽にお問い合わせくださいませ。<br>
-                <a href="/user-guide/contact-chat/">AIチャットサポート</a>にて、24時間いつでもご相談いただけます。
-            </div>
-        </div>
-
-        <!-- Guide Link Card -->
-        <div class="guide-link-card">
-            <h3>
-                <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-                詳細なインストール方法はこちら
-            </h3>
-            <p>
-                インストール手順・セキュリティ設定の解除方法・初回起動の手順など、<br>
-                画像付きでわかりやすく解説しています。
-            </p>
-            <a href="/user-guide/quick-start/" class="guide-link-btn">
-                <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-                クイックスタートガイドを見る
-            </a>
-        </div>
+        <h2 class="section-title"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>ダウンロードのご注意</h2>
+        <ul class="info-list fade-up" style="animation-delay:.2s">
+            <li><strong>ダウンロードリンクは個別にメールで送信されます。</strong>ご契約確認後、1営業日以内にメールにてお知らせいたします。</li>
+            <li>スタータープランの方は<strong>LPテンプレート一式</strong>をご利用いただけます。</li>
+            <li>集客強化プランの方は<strong>LPテンプレート一式＋バナー素材セット</strong>の両方をご利用いただけます。</li>
+            <li>ファイルが解凍できない場合は、最新のZip解凍ソフト（7-Zip、The Unarchiver等）をご利用ください。</li>
+            <li>ご不明点がございましたら<a href="/user-guide/contact-form/" style="color:var(--accent);font-weight:600;">お問い合わせフォーム</a>からご連絡ください。</li>
+        </ul>
     </main>
-
-    <footer class="site-footer">
-        <p>&copy; 2026 BakuApo &amp; CHAINSODA Co., Ltd. — All rights reserved.</p>
-    </footer>
-
-    <script>
-    (function(){
-        var ua = navigator.userAgent;
-        var el = document.getElementById('osDetect');
-        if (!el) return;
-        if (/Windows/i.test(ua)) {
-            el.innerHTML = 'お使いのOSは <strong>Windows</strong> です';
-            var w = document.getElementById('dlWindows');
-            if (w) w.style.borderColor = 'var(--accent)';
-        } else if (/Mac/i.test(ua)) {
-            el.innerHTML = 'お使いのOSは <strong>macOS</strong> です';
-            var m = document.getElementById('dlMac');
-            if (m) m.style.borderColor = 'var(--accent)';
-        }
-    })();
-    </script>
+    <footer class="site-footer"><p>&copy; 2026 バク売れLPテンプレ — All rights reserved.</p></footer>
 </body>
 </html>

@@ -3,743 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BakuApo ユーザーガイド</title>
-    <meta name="description" content="BakuApoご利用ユーザー様専用のユーザーガイドです。クイックスタート、ダウンロード、最新情報をご確認いただけます。">
+    <title>バク売れLPテンプレ ユーザーガイド</title>
+    <meta name="description" content="バク売れLPテンプレご利用ユーザー様専用のユーザーガイドです。クイックスタート、ダウンロード、最新情報をご確認いただけます。">
     <meta name="robots" content="noindex, nofollow">
-    <meta property="og:title" content="BakuApo ユーザーガイド">
-    <meta property="og:description" content="BakuApoご利用ユーザー様専用のユーザーガイドです。">
+    <meta property="og:title" content="バク売れLPテンプレ ユーザーガイド">
+    <meta property="og:description" content="バク売れLPテンプレご利用ユーザー様専用のユーザーガイドです。">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="BakuApo">
-    <meta property="og:locale" content="ja_JP">
-    <link rel="icon" href="/favicon.ico">
+    <meta property="og:site_name" content="バク売れLPテンプレ">
+    <meta property="og:image" content="/bakuure-ogp.png">
+    <link rel="icon" href="/bakuure-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg: #FAFAFA;
-            --bg-card: #FFFFFF;
-            --bg-card-hover: #F5F7FA;
-            --bg-alt: #F3F4F6;
-            --border: #E5E7EB;
-            --border-hover: #D1D5DB;
-            --text-primary: #111827;
-            --text-secondary: #6B7280;
-            --text-muted: #7C8290;
-            --accent: #0852FF;
-            --accent-light: rgba(8,82,255,0.08);
-            --accent-subtle: rgba(8,82,255,0.04);
-            --success: #10B981;
-            --warning: #F59E0B;
-            --danger: #EF4444;
-            --radius-sm: 8px;
-            --radius-md: 14px;
-            --radius-lg: 20px;
-            --radius-xl: 24px;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            font-family: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background-color: var(--bg);
-            color: var(--text-primary);
-            line-height: 1.7;
-            font-size: 15px;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            min-height: 100vh;
-        }
-
-        /* --- Ambient Background --- */
-        .ambient-glow {
-            position: fixed;
-            top: -20%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 900px;
-            height: 600px;
-            background: radial-gradient(ellipse, rgba(8,82,255,0.04) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* --- Header --- */
-        .site-header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(255,255,255,0.85);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 1px solid var(--border);
-        }
-        .header-inner {
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: 14px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .header-logo img { height: 58px; }
-        .header-label {
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-muted);
-        }
-
-        /* --- Main Content --- */
-        .main-content {
-            position: relative;
-            z-index: 1;
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: 0 24px 100px;
-        }
-
-        /* --- Hero --- */
-        .hero {
-            padding: 72px 0 56px;
-            text-align: center;
-        }
-        .hero-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--accent);
-            background: var(--accent-light);
-            padding: 6px 16px;
-            border-radius: 100px;
-            margin-bottom: 20px;
-        }
-        .hero h1 {
-            font-size: clamp(28px, 5vw, 42px);
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            line-height: 1.2;
-            color: var(--text-primary);
-            margin-bottom: 16px;
-        }
-        .hero-sub {
-            font-size: 15px;
-            color: var(--text-secondary);
-            max-width: 520px;
-            margin: 0 auto;
-        }
-        .hero-divider {
-            width: 48px;
-            height: 2px;
-            background: var(--accent);
-            margin: 40px auto 0;
-            border-radius: 1px;
-        }
-
-        /* ============================================================
-           Quick Links Section
-           ============================================================ */
-        .section-title {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 24px;
-        }
-        .section-title h2 {
-            font-size: 20px;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            color: var(--text-primary);
-        }
-        .section-title .section-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        .section-title .section-icon svg {
-            width: 18px;
-            height: 18px;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            fill: none;
-        }
-
-        .quick-links {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .quick-link-card {
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 28px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-            overflow: hidden;
-        }
-        .quick-link-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 16px 40px rgba(8,82,255,0.08), 0 0 0 1px var(--accent);
-        }
-        .quick-link-card:active {
-            transform: translateY(0);
-        }
-
-        .ql-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        .ql-icon svg {
-            width: 26px;
-            height: 26px;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            fill: none;
-        }
-        .ql-icon.blue { background: rgba(8,82,255,0.08); }
-        .ql-icon.blue svg { stroke: #0852FF; }
-        .ql-icon.green { background: rgba(16,185,129,0.08); }
-        .ql-icon.green svg { stroke: #10B981; }
-
-        .ql-text { flex: 1; min-width: 0; }
-        .ql-text h3 {
-            font-size: 17px;
-            font-weight: 700;
-            letter-spacing: -0.01em;
-            line-height: 1.3;
-            margin-bottom: 6px;
-            color: var(--text-primary);
-        }
-        .ql-text p {
-            font-size: 13px;
-            color: var(--text-secondary);
-            line-height: 1.55;
-        }
-        .ql-arrow {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: var(--accent-light);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            transition: all 0.3s ease;
-        }
-        .quick-link-card:hover .ql-arrow {
-            background: var(--accent);
-            border-color: var(--accent);
-        }
-        .ql-arrow svg {
-            width: 14px;
-            height: 14px;
-            stroke: var(--accent);
-            fill: none;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            transition: all 0.3s ease;
-        }
-        .quick-link-card:hover .ql-arrow svg {
-            stroke: #fff;
-            transform: translate(1px, -1px);
-        }
-
-        /* ============================================================
-           News / Articles Section
-           ============================================================ */
-        .news-section { margin-bottom: 48px; }
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .news-card {
-            display: flex;
-            flex-direction: column;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-        }
-        .news-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 16px 40px rgba(8,82,255,0.08), 0 0 0 1px var(--accent);
-        }
-        .news-card:active { transform: translateY(0); }
-
-        .news-card-body {
-            padding: 24px 24px 20px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .news-meta {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        .news-date {
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--text-muted);
-            font-family: 'Inter', monospace;
-        }
-        .news-tag {
-            display: inline-flex;
-            align-items: center;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.03em;
-            padding: 3px 10px;
-            border-radius: 100px;
-            white-space: nowrap;
-        }
-        .news-tag.update {
-            background: rgba(8,82,255,0.08);
-            color: #0852FF;
-        }
-        .news-tag.bug {
-            background: rgba(239,68,68,0.08);
-            color: #EF4444;
-        }
-        .news-tag.info {
-            background: rgba(16,185,129,0.08);
-            color: #10B981;
-        }
-        .news-tag.maintenance {
-            background: rgba(245,158,11,0.08);
-            color: #D97706;
-        }
-
-        .news-card-title {
-            font-size: 16px;
-            font-weight: 700;
-            letter-spacing: -0.01em;
-            line-height: 1.4;
-            color: var(--text-primary);
-        }
-        .news-card-excerpt {
-            font-size: 13px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .news-card-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 14px 24px;
-            border-top: 1px solid var(--border);
-            margin-top: auto;
-        }
-        .news-read-more {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--accent);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .news-read-more svg {
-            width: 14px;
-            height: 14px;
-            stroke: var(--accent);
-            fill: none;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            transition: transform 0.2s ease;
-        }
-        .news-card:hover .news-read-more svg {
-            transform: translateX(3px);
-        }
-
-        /* ============================================================
-           Pagination
-           ============================================================ */
-        .pagination {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 40px;
-        }
-        .pagination-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 40px;
-            height: 40px;
-            padding: 0 12px;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-            background: var(--bg-card);
-            color: var(--text-secondary);
-            font-size: 14px;
-            font-weight: 600;
-            font-family: inherit;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-decoration: none;
-        }
-        .pagination-btn:hover:not(.disabled):not(.active) {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: var(--accent-subtle);
-        }
-        .pagination-btn.active {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: #fff;
-            cursor: default;
-        }
-        .pagination-btn.disabled {
-            opacity: 0.35;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-        .pagination-btn svg {
-            width: 16px;
-            height: 16px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-        .pagination-info {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-left: 12px;
-        }
-
-        /* --- Empty State --- */
-        .news-empty {
-            text-align: center;
-            padding: 80px 24px;
-            color: var(--text-muted);
-        }
-        .news-empty svg {
-            width: 48px;
-            height: 48px;
-            stroke: var(--border);
-            fill: none;
-            stroke-width: 1.5;
-            margin-bottom: 16px;
-        }
-        .news-empty p { font-size: 14px; }
-
-        /* --- Footer --- */
-        .site-footer {
-            text-align: center;
-            padding: 32px 24px;
-            border-top: 1px solid var(--border);
-        }
-        .site-footer p {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        /* ============================================================
-           Responsive
-           ============================================================ */
-        @media (max-width: 768px) {
-            .quick-links {
-                grid-template-columns: 1fr;
-                gap: 14px;
-            }
-            .news-grid {
-                grid-template-columns: 1fr;
-                gap: 14px;
-            }
-            .hero { padding: 48px 0 40px; }
-            .hero h1 { font-size: 26px; }
-            .quick-link-card {
-                padding: 20px;
-                gap: 16px;
-            }
-            .ql-icon {
-                width: 48px;
-                height: 48px;
-                border-radius: 12px;
-            }
-            .ql-icon svg { width: 22px; height: 22px; }
-            .main-content { padding: 0 16px 60px; }
-            .header-inner { padding: 14px 16px; }
-        }
-
-        @media (max-width: 480px) {
-            .header-logo img { height: 40px; }
-            .news-card-body { padding: 18px 18px 16px; }
-            .news-card-footer { padding: 12px 18px; }
-            .ql-text h3 { font-size: 15px; }
-            .ql-text p { font-size: 12px; }
-        }
-
-        /* --- Fade-in animation --- */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(16px);
-            animation: fadeUp 0.5s ease forwards;
-        }
-        @keyframes fadeUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
+        :root{--bg:#FAFAFA;--bg-card:#FFF;--bg-card-hover:#F5F7FA;--bg-alt:#F3F4F6;--border:#E5E7EB;--border-hover:#D1D5DB;--text-primary:#111827;--text-secondary:#6B7280;--text-muted:#7C8290;--accent:#0852FF;--accent-light:rgba(8,82,255,.08);--accent-subtle:rgba(8,82,255,.04);--success:#10B981;--warning:#F59E0B;--danger:#EF4444;--radius-lg:20px}
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text-primary);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased;min-height:100vh}
+        .ambient-glow{position:fixed;top:-20%;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(ellipse,rgba(8,82,255,.04) 0%,transparent 70%);pointer-events:none;z-index:0}
+        .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--border)}
+        .header-inner{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+        .header-logo img{height:58px}
+        .header-label{font-size:13px;font-weight:500;color:var(--text-muted)}
+        .main-content{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 24px 100px}
+        .hero{padding:72px 0 56px;text-align:center}
+        .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-light);padding:6px 16px;border-radius:100px;margin-bottom:20px}
+        .hero h1{font-size:clamp(28px,5vw,42px);font-weight:800;letter-spacing:-.03em;line-height:1.2;margin-bottom:16px}
+        .hero-sub{font-size:15px;color:var(--text-secondary);max-width:520px;margin:0 auto}
+        .hero-divider{width:48px;height:2px;background:var(--accent);margin:40px auto 0;border-radius:1px}
+        .section-title{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+        .section-title h2{font-size:20px;font-weight:700;letter-spacing:-.02em}
+        .section-title .section-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .section-title .section-icon svg{width:18px;height:18px;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+        .quick-links{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+        .quick-link-card{position:relative;display:flex;align-items:center;gap:20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;text-decoration:none;color:inherit;transition:all .3s cubic-bezier(.4,0,.2,1);box-shadow:0 1px 3px rgba(0,0,0,.04);overflow:hidden}
+        .quick-link-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 16px 40px rgba(8,82,255,.08),0 0 0 1px var(--accent)}
+        .ql-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .ql-icon svg{width:26px;height:26px;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+        .ql-icon.blue{background:rgba(8,82,255,.08)}.ql-icon.blue svg{stroke:#0852FF}
+        .ql-icon.green{background:rgba(16,185,129,.08)}.ql-icon.green svg{stroke:#10B981}
+        .ql-text{flex:1;min-width:0}
+        .ql-text h3{font-size:17px;font-weight:700;letter-spacing:-.01em;line-height:1.3;margin-bottom:6px}
+        .ql-text p{font-size:13px;color:var(--text-secondary);line-height:1.55}
+        .ql-arrow{width:32px;height:32px;border-radius:50%;background:var(--accent-light);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .3s ease}
+        .quick-link-card:hover .ql-arrow{background:var(--accent);border-color:var(--accent)}
+        .ql-arrow svg{width:14px;height:14px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:all .3s ease}
+        .quick-link-card:hover .ql-arrow svg{stroke:#fff;transform:translate(1px,-1px)}
+        .news-section{margin-bottom:48px}
+        .news-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+        .news-card{display:flex;flex-direction:column;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;text-decoration:none;color:inherit;transition:all .3s cubic-bezier(.4,0,.2,1);box-shadow:0 1px 3px rgba(0,0,0,.04)}
+        .news-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 16px 40px rgba(8,82,255,.08),0 0 0 1px var(--accent)}
+        .news-card-body{padding:24px 24px 20px;flex:1;display:flex;flex-direction:column;gap:10px}
+        .news-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+        .news-date{font-size:12px;font-weight:500;color:var(--text-muted);font-family:'Inter',monospace}
+        .news-tag{display:inline-flex;align-items:center;font-size:11px;font-weight:600;letter-spacing:.03em;padding:3px 10px;border-radius:100px;white-space:nowrap}
+        .news-tag.update{background:rgba(8,82,255,.08);color:#0852FF}
+        .news-tag.info{background:rgba(16,185,129,.08);color:#10B981}
+        .news-card-title{font-size:16px;font-weight:700;letter-spacing:-.01em;line-height:1.4}
+        .news-card-excerpt{font-size:13px;color:var(--text-secondary);line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+        .news-card-footer{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;border-top:1px solid var(--border);margin-top:auto}
+        .news-read-more{font-size:13px;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:6px}
+        .news-read-more svg{width:14px;height:14px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s ease}
+        .news-card:hover .news-read-more svg{transform:translateX(3px)}
+        .pagination{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:40px}
+        .pagination-btn{display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:40px;padding:0 12px;border-radius:10px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-secondary);font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;transition:all .2s ease;text-decoration:none}
+        .pagination-btn:hover:not(.disabled):not(.active){border-color:var(--accent);color:var(--accent);background:var(--accent-subtle)}
+        .pagination-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;cursor:default}
+        .pagination-btn.disabled{opacity:.35;cursor:not-allowed;pointer-events:none}
+        .pagination-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+        .pagination-info{font-size:13px;color:var(--text-muted);margin-left:12px}
+        .news-empty{text-align:center;padding:80px 24px;color:var(--text-muted)}
+        .news-empty svg{width:48px;height:48px;stroke:var(--border);fill:none;stroke-width:1.5;margin-bottom:16px}
+        .news-empty p{font-size:14px}
+        .site-footer{text-align:center;padding:32px 24px;border-top:1px solid var(--border)}
+        .site-footer p{font-size:12px;color:var(--text-muted)}
+        .fade-up{opacity:0;transform:translateY(16px);animation:fadeUp .5s ease forwards}
+        @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+        @media(max-width:768px){.quick-links,.news-grid{grid-template-columns:1fr;gap:14px}.hero{padding:48px 0 40px}.hero h1{font-size:26px}.quick-link-card{padding:20px;gap:16px}.ql-icon{width:48px;height:48px;border-radius:12px}.ql-icon svg{width:22px;height:22px}.main-content{padding:0 16px 60px}.header-inner{padding:14px 16px}}
+        @media(max-width:480px){.header-logo img{height:40px}.news-card-body{padding:18px 18px 16px}.news-card-footer{padding:12px 18px}.ql-text h3{font-size:15px}.ql-text p{font-size:12px}}
     </style>
 </head>
 <body>
     <div class="ambient-glow"></div>
-
-    <!-- ======== Header ======== -->
     <header class="site-header">
         <div class="header-inner">
-            <div class="header-logo">
-                <a href="/user-guide/" style="display:flex;align-items:center;text-decoration:none;">
-                    <img src="/bakuapo-logo-useer.svg" alt="BakuApo">
-                </a>
-            </div>
+            <div class="header-logo"><a href="/user-guide/" style="display:flex;align-items:center;text-decoration:none;"><img src="/bakuure-logo.svg" alt="バク売れLPテンプレ"></a></div>
             <span class="header-label">ご利用ユーザー様専用ページ</span>
         </div>
     </header>
-
     <main class="main-content">
-
-        <!-- ======== Hero ======== -->
         <section class="hero">
             <p class="hero-eyebrow">User Guide</p>
-            <h1>BakuApo ユーザーガイド</h1>
+            <h1>バク売れLPテンプレ ユーザーガイド</h1>
             <p class="hero-sub">ご利用いただきありがとうございます。<br>こちらのページでは、各種ガイドや最新情報をお届けしています。</p>
             <div class="hero-divider"></div>
         </section>
-
-        <!-- ======== Quick Links ======== -->
         <section style="margin-bottom:64px;">
             <div class="section-title">
-                <div class="section-icon" style="background:var(--accent-light);">
-                    <svg stroke="#0852FF" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                </div>
+                <div class="section-icon" style="background:var(--accent-light);"><svg stroke="#0852FF" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
                 <h2>クイックアクセス</h2>
             </div>
             <div class="quick-links">
-                <!-- Quick Start Guide -->
                 <a href="/user-guide/quick-start/" class="quick-link-card fade-up" style="animation-delay:.1s">
-                    <div class="ql-icon blue">
-                        <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-                    </div>
-                    <div class="ql-text">
-                        <h3>クイックスタートガイド</h3>
-                        <p>BakuApoのインストールから初期設定まで、ステップバイステップでご案内いたします。</p>
-                    </div>
-                    <div class="ql-arrow">
-                        <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                    </div>
+                    <div class="ql-icon blue"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div>
+                    <div class="ql-text"><h3>クイックスタートガイド</h3><p>テンプレートの導入から初期カスタマイズまで、ステップバイステップでご案内いたします。</p></div>
+                    <div class="ql-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></div>
                 </a>
-                <!-- Download -->
                 <a href="/user-guide/download/" class="quick-link-card fade-up" style="animation-delay:.2s">
-                    <div class="ql-icon green">
-                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    </div>
-                    <div class="ql-text">
-                        <h3>ダウンロード</h3>
-                        <p>Windows / Mac 対応の最新版インストーラーをこちらからダウンロードいただけます。</p>
-                    </div>
-                    <div class="ql-arrow">
-                        <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                    </div>
+                    <div class="ql-icon green"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+                    <div class="ql-text"><h3>ダウンロード</h3><p>ご購入いただいたテンプレートやバナー素材のダウンロードはこちらから。</p></div>
+                    <div class="ql-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></div>
                 </a>
             </div>
         </section>
-
-        <!-- ======== News / Articles ======== -->
         <section class="news-section">
             <div class="section-title">
-                <div class="section-icon" style="background:rgba(245,158,11,0.08);">
-                    <svg stroke="#D97706" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                </div>
+                <div class="section-icon" style="background:rgba(245,158,11,.08);"><svg stroke="#D97706" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
                 <h2>最新情報</h2>
             </div>
-
             <div class="news-grid" id="newsGrid"></div>
-
             <div class="pagination" id="pagination" style="display:none;"></div>
         </section>
-
     </main>
-
-    <!-- ======== Footer ======== -->
-    <footer class="site-footer">
-        <p>&copy; 2026 BakuApo — All rights reserved.</p>
-    </footer>
-
+    <footer class="site-footer"><p>&copy; 2026 バク売れLPテンプレ — All rights reserved.</p></footer>
     <script>
-    /* =================================================================
-       NEWS_ARTICLES — 記事データ
-       =================================================================
-       tag の種類: "update" | "bug" | "info" | "maintenance"
-       新しい記事を配列の先頭に追加してください。
-    */
-    const NEWS_ARTICLES = [
-        {
-            date:     '2026.02.24',
-            tag:      'update',
-            tagLabel: 'アップデート',
-            title:    'BakuApoツール Ver. 1.2.0 リリースのお知らせ',
-            excerpt:  'BakuApoツール最新バージョン Ver. 1.2.0 をリリースいたしました。過去バージョンをご利用のお客様は、ダウンロードページより最新版へのアップデートをお願いいたします。',
-            url:      '/user-guide/news/260224/'
-        },
-        {
-            date:     '2026.02.23',
-            tag:      'bug',
-            tagLabel: '不具合情報',
-            title:    'Windows版アップデート時の不具合について',
-            excerpt:  '旧BakuApoがインストールされているWindows PCで最新版へアップグレードしようとすると、旧版のアンインストール時に「NSIS Error」が発生し、新版のインストールが開始できない場合があります。暫定的な解消方法をご案内しています。',
-            url:      '/user-guide/news/260223/'
-        }
-        // ── 記事を追加する場合はここに追加（新しい記事を上に） ──
-        // {
-        //     date:     '2026.XX.XX',
-        //     tag:      'update',        // update | bug | info | maintenance
-        //     tagLabel: 'アップデート',
-        //     title:    '記事タイトル',
-        //     excerpt:  '記事の概要テキスト...',
-        //     url:      '/user-guide/news/XXXXXX/'
-        // },
+    const NEWS_ARTICLES=[
+        {date:'2026.02.27',tag:'update',tagLabel:'アップデート',title:'バク売れLPテンプレ リリースのお知らせ',excerpt:'LPデザインテンプレート配布サービス「バク売れLPテンプレ」の提供を開始いたしました。売れる構造に基づいたLPテンプレートとバナー素材で、最短で販売ページを構築いただけます。',url:'/user-guide/news/260224/'},
+        {date:'2026.02.27',tag:'info',tagLabel:'お知らせ',title:'テンプレートの使い方・カスタマイズガイドについて',excerpt:'テンプレートの基本的な使い方やカスタマイズ方法について、クイックスタートガイドおよびマニュアルページにてご案内しております。',url:'/user-guide/news/260223/'}
     ];
-
-    /* =================================================================
-       Pagination & Rendering
-       ================================================================= */
-    const PER_PAGE = 6;
-    let currentPage = 1;
-
-    function getTotalPages() {
-        return Math.max(1, Math.ceil(NEWS_ARTICLES.length / PER_PAGE));
-    }
-    function getPageArticles(page) {
-        const start = (page - 1) * PER_PAGE;
-        return NEWS_ARTICLES.slice(start, start + PER_PAGE);
-    }
-
-    /* --- 記事カード描画 --- */
-    function renderNews(page) {
-        const grid = document.getElementById('newsGrid');
-        const articles = getPageArticles(page);
-        currentPage = page;
-
-        if (articles.length === 0) {
-            grid.innerHTML = '<div class="news-empty" style="grid-column:1/-1;">' +
-                '<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">' +
-                '<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>' +
-                '<polyline points="14 2 14 8 20 8"/></svg>' +
-                '<p>現在、記事はありません。</p></div>';
-            document.getElementById('pagination').style.display = 'none';
-            return;
-        }
-
-        grid.innerHTML = articles.map(function(a, i) {
-            return '<a href="' + a.url + '" class="news-card fade-up" style="animation-delay:' + (i * 0.06) + 's">' +
-                '<div class="news-card-body">' +
-                    '<div class="news-meta">' +
-                        '<span class="news-date">' + a.date + '</span>' +
-                        '<span class="news-tag ' + a.tag + '">' + a.tagLabel + '</span>' +
-                    '</div>' +
-                    '<h3 class="news-card-title">' + a.title + '</h3>' +
-                    '<p class="news-card-excerpt">' + a.excerpt + '</p>' +
-                '</div>' +
-                '<div class="news-card-footer">' +
-                    '<span class="news-read-more">' +
-                        '続きを読む' +
-                        '<svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>' +
-                    '</span>' +
-                '</div>' +
-            '</a>';
-        }).join('');
-
+    const PER_PAGE=6;let currentPage=1;
+    function getTotalPages(){return Math.max(1,Math.ceil(NEWS_ARTICLES.length/PER_PAGE));}
+    function getPageArticles(page){const start=(page-1)*PER_PAGE;return NEWS_ARTICLES.slice(start,start+PER_PAGE);}
+    function renderNews(page){
+        const grid=document.getElementById('newsGrid');const articles=getPageArticles(page);currentPage=page;
+        if(!articles.length){grid.innerHTML='<div class="news-empty" style="grid-column:1/-1;"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><p>現在、記事はありません。</p></div>';document.getElementById('pagination').style.display='none';return;}
+        grid.innerHTML=articles.map((a,i)=>'<a href="'+a.url+'" class="news-card fade-up" style="animation-delay:'+(i*.06)+'s"><div class="news-card-body"><div class="news-meta"><span class="news-date">'+a.date+'</span><span class="news-tag '+a.tag+'">'+a.tagLabel+'</span></div><h3 class="news-card-title">'+a.title+'</h3><p class="news-card-excerpt">'+a.excerpt+'</p></div><div class="news-card-footer"><span class="news-read-more">続きを読む<svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span></div></a>').join('');
         renderPagination();
     }
-
-    /* --- ページネーション描画 --- */
-    function renderPagination() {
-        var totalPages = getTotalPages();
-        var pag = document.getElementById('pagination');
-
-        if (totalPages <= 1) { pag.style.display = 'none'; return; }
-        pag.style.display = 'flex';
-
-        var html = '';
-        // Prev
-        html += '<button class="pagination-btn' + (currentPage <= 1 ? ' disabled' : '') + '" onclick="goPage(' + (currentPage - 1) + ')"' + (currentPage <= 1 ? ' disabled' : '') + '>' +
-            '<svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>';
-
-        // Page numbers
-        for (var p = 1; p <= totalPages; p++) {
-            if (totalPages > 7) {
-                if (p === 1 || p === totalPages || (p >= currentPage - 1 && p <= currentPage + 1)) {
-                    html += '<button class="pagination-btn' + (p === currentPage ? ' active' : '') + '" onclick="goPage(' + p + ')">' + p + '</button>';
-                } else if (p === currentPage - 2 || p === currentPage + 2) {
-                    html += '<span class="pagination-btn disabled" style="border:none;background:none;">…</span>';
-                }
-            } else {
-                html += '<button class="pagination-btn' + (p === currentPage ? ' active' : '') + '" onclick="goPage(' + p + ')">' + p + '</button>';
-            }
-        }
-
-        // Next
-        html += '<button class="pagination-btn' + (currentPage >= totalPages ? ' disabled' : '') + '" onclick="goPage(' + (currentPage + 1) + ')"' + (currentPage >= totalPages ? ' disabled' : '') + '>' +
-            '<svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>';
-
-        // Info
-        html += '<span class="pagination-info">' + currentPage + ' / ' + totalPages + ' ページ</span>';
-        pag.innerHTML = html;
-    }
-
-    function goPage(page) {
-        var totalPages = getTotalPages();
-        if (page < 1 || page > totalPages) return;
-        renderNews(page);
-        document.querySelector('.news-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
-    /* --- 起動 --- */
-    document.addEventListener('DOMContentLoaded', function() { renderNews(1); });
+    function renderPagination(){var t=getTotalPages();var p=document.getElementById('pagination');if(t<=1){p.style.display='none';return;}p.style.display='flex';var h='';h+='<button class="pagination-btn'+(currentPage<=1?' disabled':'')+'" onclick="goPage('+(currentPage-1)+')"'+(currentPage<=1?' disabled':'')+'><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>';for(var i=1;i<=t;i++){h+='<button class="pagination-btn'+(i===currentPage?' active':'')+'" onclick="goPage('+i+')">'+i+'</button>';}h+='<button class="pagination-btn'+(currentPage>=t?' disabled':'')+'" onclick="goPage('+(currentPage+1)+')"'+(currentPage>=t?' disabled':'')+'><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>';h+='<span class="pagination-info">'+currentPage+' / '+t+' ページ</span>';p.innerHTML=h;}
+    function goPage(page){var t=getTotalPages();if(page<1||page>t)return;renderNews(page);document.querySelector('.news-section').scrollIntoView({behavior:'smooth',block:'start'});}
+    document.addEventListener('DOMContentLoaded',function(){renderNews(1);});
     </script>
 </body>
 </html>

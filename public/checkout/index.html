@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>決済フォーム｜BakuApo</title>
+    <title>決済フォーム｜バク売れLPテンプレ</title>
     <meta name="robots" content="noindex, nofollow">
-    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" href="/bakuure-icon.png">
+    <meta property="og:image" content="/bakuure-ogp.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -19,69 +20,53 @@
         .header-label{font-size:13px;font-weight:600;color:var(--text-secondary);cursor:pointer;transition:color .15s;text-decoration:none}
         .header-label:hover{color:var(--accent)}
         .main{max-width:680px;margin:0 auto;padding:48px 24px 100px}
-
-        /* Reset Confirm Modal */
-        .reset-overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);justify-content:center;align-items:center;padding:24px}
+        .reset-overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);justify-content:center;align-items:center;padding:24px}
         .reset-overlay.open{display:flex}
         .reset-modal{background:var(--bg-card);border-radius:20px;width:100%;max-width:440px;padding:36px 32px;box-shadow:0 20px 60px rgba(0,0,0,.18);text-align:center}
         .reset-modal .reset-icon{width:56px;height:56px;margin:0 auto 20px;background:rgba(239,68,68,.08);border-radius:50%;display:flex;align-items:center;justify-content:center}
         .reset-modal .reset-icon svg{width:28px;height:28px;color:var(--danger)}
-        .reset-modal h3{font-size:18px;font-weight:700;margin-bottom:12px;letter-spacing:-.01em}
+        .reset-modal h3{font-size:18px;font-weight:700;margin-bottom:12px}
         .reset-modal p{font-size:14px;color:var(--text-secondary);line-height:1.8;margin-bottom:24px}
         .reset-modal .reset-actions{display:flex;gap:12px}
         .reset-modal .btn-reset-cancel{flex:1;padding:14px 20px;border-radius:12px;border:1px solid var(--border);background:var(--bg-card);font-size:15px;font-weight:600;font-family:inherit;color:var(--text-primary);cursor:pointer;transition:all .15s}
         .reset-modal .btn-reset-cancel:hover{background:var(--bg-alt)}
         .reset-modal .btn-reset-confirm{flex:1;padding:14px 20px;border-radius:12px;border:none;background:var(--danger);font-size:15px;font-weight:600;font-family:inherit;color:#fff;cursor:pointer;transition:all .15s}
         .reset-modal .btn-reset-confirm:hover{background:#DC2626}
-
-        /* Page Title */
         .page-top{margin-bottom:40px}
         .page-top h1{font-size:32px;font-weight:800;letter-spacing:-.03em;margin-bottom:12px}
         .page-top p{font-size:16px;color:var(--text-secondary);line-height:1.8}
-
-        /* Product Card */
-        .product-banner{background:linear-gradient(135deg,#f0f4ff 0%,#fafafa 100%);border:2px solid var(--accent);border-radius:16px;padding:28px;text-align:center;margin-bottom:32px}
-        .product-banner h2{font-size:24px;font-weight:700;margin-bottom:6px}
-        .product-banner .price{font-size:32px;font-weight:800;color:var(--accent);letter-spacing:-.02em}
-        .product-banner .price span{font-size:14px;font-weight:600;color:var(--text-secondary)}
-        .product-banner .price-sub{font-size:14px;color:var(--text-muted);margin-top:4px}
-
-        /* Form Section */
+        .plan-group{display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+        .plan-card{display:flex;align-items:flex-start;gap:14px;cursor:pointer;padding:20px;border:2px solid var(--border);border-radius:14px;transition:all .15s;user-select:none;position:relative}
+        .plan-card:hover{border-color:var(--border-hover);background:var(--bg-alt)}
+        .plan-card.checked{border-color:var(--accent);background:var(--accent-subtle);box-shadow:0 0 0 3px var(--accent-light)}
+        .plan-card input[type="radio"]{appearance:none;-webkit-appearance:none;width:22px;height:22px;border:2px solid var(--border);border-radius:50%;flex-shrink:0;margin-top:2px;position:relative;cursor:pointer;transition:all .15s}
+        .plan-card input[type="radio"]:checked{background:var(--accent);border-color:var(--accent)}
+        .plan-card input[type="radio"]:checked::after{content:'';position:absolute;left:5px;top:5px;width:8px;height:8px;border-radius:50%;background:#fff}
+        .plan-info{flex:1}
+        .plan-info h3{font-size:17px;font-weight:700;margin-bottom:4px;line-height:1.4}
+        .plan-info p{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:6px}
+        .plan-price{font-size:22px;font-weight:800;color:var(--accent)}
+        .plan-price span{font-size:13px;font-weight:600;color:var(--text-secondary)}
+        .plan-badge{position:absolute;top:-10px;right:16px;font-size:11px;font-weight:700;color:#fff;background:var(--accent);padding:3px 12px;border-radius:100px}
         .form-section{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:32px;margin-bottom:20px;transition:box-shadow .2s}
         .form-section:hover{box-shadow:0 2px 16px rgba(0,0,0,.03)}
         .form-section-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:var(--accent-light);display:inline-block;padding:4px 12px;border-radius:6px;margin-bottom:14px}
         .form-section h2{font-size:24px;font-weight:700;margin-bottom:20px;letter-spacing:-.01em}
-
-        /* Form Elements */
         .form-group{margin-bottom:24px}
         .form-group:last-child{margin-bottom:0}
         .form-label{display:block;font-size:16.5px;font-weight:600;margin-bottom:8px}
         .form-label .required{color:var(--danger);font-size:13px;margin-left:4px}
         .form-input{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:10px;font-size:16px;font-family:inherit;color:var(--text-primary);background:var(--bg-card);transition:border-color .2s,box-shadow .2s;-webkit-appearance:none}
         .form-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-light)}
-        .form-hint{font-size:14px;color:var(--text-muted);margin-top:6px;line-height:1.6}
-
-        /* Radio / Check */
-        .check-group{display:flex;flex-direction:column;gap:12px}
-        .check-item{display:flex;align-items:flex-start;gap:12px;cursor:pointer;padding:18px 20px;border:1px solid var(--border);border-radius:12px;transition:all .15s;user-select:none}
-        .check-item:hover{border-color:var(--border-hover);background:var(--bg-alt)}
-        .check-item.checked{border-color:var(--accent);background:var(--accent-subtle);box-shadow:0 0 0 2px var(--accent-light)}
-        .check-item input[type="radio"]{appearance:none;-webkit-appearance:none;width:20px;height:20px;border:2px solid var(--border);border-radius:50%;flex-shrink:0;margin-top:2px;position:relative;cursor:pointer;transition:all .15s}
-        .check-item input[type="radio"]:checked{background:var(--accent);border-color:var(--accent)}
-        .check-item input[type="radio"]:checked::after{content:'';position:absolute;left:4px;top:4px;width:8px;height:8px;border-radius:50%;background:#fff}
-        .check-item input[type="checkbox"]{appearance:none;-webkit-appearance:none;width:20px;height:20px;border:2px solid var(--border);border-radius:6px;flex-shrink:0;margin-top:1px;position:relative;cursor:pointer;transition:all .15s}
-        .check-item input[type="checkbox"]:checked{background:var(--accent);border-color:var(--accent)}
-        .check-item input[type="checkbox"]:checked::after{content:'';position:absolute;left:5px;top:2px;width:6px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
-        .check-item-text{font-size:16px;font-weight:500;line-height:1.6}
-        .check-item-text small{display:block;font-size:14px;color:var(--text-muted);font-weight:400;margin-top:2px}
-        .check-item-text .badge-instant{display:inline-block;font-size:11px;font-weight:700;color:var(--success);background:rgba(16,185,129,.08);padding:2px 8px;border-radius:4px;margin-left:6px}
-
-        /* Payment Method Panels */
-        .payment-panel{display:none;margin-top:24px}
-        .payment-panel.visible{display:block}
-
-        /* Stripe Panel */
-        .stripe-card{background:linear-gradient(135deg,#f7f7ff 0%,#fafafa 100%);border:1px solid #e0deff;border-radius:14px;padding:28px;text-align:center}
+        .form-error{color:var(--danger);font-size:13px;margin-top:6px;display:none}
+        .form-error.visible{display:block}
+        .form-input.error{border-color:var(--danger)}
+        .form-input.error:focus{box-shadow:0 0 0 3px rgba(239,68,68,.15)}
+        .btn-proceed{display:inline-flex;align-items:center;gap:10px;font-size:16px;font-weight:700;font-family:inherit;color:#fff;background:var(--accent);padding:18px 48px;border-radius:14px;border:none;cursor:pointer;transition:all .2s;box-shadow:0 4px 20px rgba(8,82,255,.2);margin-top:8px}
+        .btn-proceed:hover{background:#063FCC;transform:translateY(-2px);box-shadow:0 8px 28px rgba(8,82,255,.3)}
+        .btn-proceed:disabled{background:var(--text-muted);cursor:not-allowed;transform:none;box-shadow:none}
+        .btn-proceed svg{width:18px;height:18px}
+        .stripe-card{background:linear-gradient(135deg,#f7f7ff 0%,#fafafa 100%);border:1px solid #e0deff;border-radius:14px;padding:28px;text-align:center;margin-top:24px}
         .stripe-card .secure-badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--stripe);background:rgba(99,91,255,.06);padding:6px 16px;border-radius:100px;margin-bottom:20px}
         .stripe-card .secure-badge svg{width:14px;height:14px;fill:currentColor}
         .btn-stripe{display:inline-flex;align-items:center;gap:10px;font-size:16px;font-weight:700;font-family:inherit;color:#fff;background:var(--stripe);padding:18px 40px;border-radius:14px;border:none;cursor:pointer;transition:all .2s;box-shadow:0 4px 20px rgba(99,91,255,.25);text-decoration:none}
@@ -91,380 +76,94 @@
         .stripe-logo img{height:20px}
         .stripe-note{font-size:14px;color:var(--text-muted);line-height:1.8;margin-top:20px;text-align:left}
         .stripe-note p{margin-bottom:8px}
-
-        /* Proceed Button (credit step1) */
-        .btn-proceed{display:inline-flex;align-items:center;gap:10px;font-size:16px;font-weight:700;font-family:inherit;color:#fff;background:var(--accent);padding:18px 48px;border-radius:14px;border:none;cursor:pointer;transition:all .2s;box-shadow:0 4px 20px rgba(8,82,255,.2);margin-top:8px}
-        .btn-proceed:hover{background:#063FCC;transform:translateY(-2px);box-shadow:0 8px 28px rgba(8,82,255,.3)}
-        .btn-proceed:disabled{background:var(--text-muted);cursor:not-allowed;transform:none;box-shadow:none}
-        .btn-proceed svg{width:18px;height:18px}
-
-        /* Bank Transfer Panel */
-        .bank-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-
-        /* Autocomplete */
-        .autocomplete-wrap{position:relative}
-        .autocomplete-list{position:absolute;top:100%;left:0;right:0;z-index:50;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;margin-top:4px;max-height:200px;overflow-y:auto;display:none;box-shadow:0 8px 24px rgba(0,0,0,.08)}
-        .autocomplete-list.open{display:block}
-        .autocomplete-item{padding:10px 16px;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background .1s}
-        .autocomplete-item:hover,.autocomplete-item.highlighted{background:var(--accent-light);color:var(--accent)}
-        .autocomplete-item .ac-code{font-size:12px;color:var(--text-muted);font-family:'SF Mono','Fira Code',monospace}
-        .autocomplete-item:hover .ac-code{color:var(--accent)}
-
-        /* Save / Edit Buttons */
-        .btn-save{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;font-family:inherit;color:#fff;background:var(--accent);padding:10px 24px;border-radius:10px;border:none;cursor:pointer;transition:all .2s;margin-top:8px}
-        .btn-save:hover{background:#063FCC}
-
-        /* Confirmation Box */
-        .confirm-box{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:none}
-        .confirm-box.visible{display:block}
-        .confirm-box-header{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;background:var(--bg-alt);border-bottom:1px solid var(--border)}
-        .confirm-box-header h3{font-size:14px;font-weight:700;color:var(--text-secondary)}
-        .confirm-box-edit{font-size:12px;color:var(--accent);background:none;border:1px solid var(--accent);padding:4px 12px;border-radius:6px;cursor:pointer;font-family:inherit;font-weight:600;transition:all .15s}
-        .confirm-box-edit:hover{background:var(--accent);color:#fff}
-        .confirm-row{display:flex;justify-content:space-between;align-items:flex-start;padding:14px 20px;border-bottom:1px solid var(--border);font-size:15px}
-        .confirm-row:last-child{border-bottom:none}
-        .confirm-row dt{color:var(--text-secondary);font-weight:500;flex-shrink:0}
-        .confirm-row dd{font-weight:600;text-align:right}
-
-        .confirm-check{margin-top:20px}
-
-        .btn-submit-bank{display:inline-flex;align-items:center;gap:10px;font-size:16px;font-weight:700;font-family:inherit;color:#fff;background:var(--accent);padding:18px 48px;border-radius:14px;border:none;cursor:pointer;transition:all .2s;box-shadow:0 4px 20px rgba(8,82,255,.2);margin-top:20px}
-        .btn-submit-bank:hover{background:#063FCC;transform:translateY(-2px);box-shadow:0 8px 28px rgba(8,82,255,.3)}
-        .btn-submit-bank:disabled{background:var(--text-muted);cursor:not-allowed;transform:none;box-shadow:none}
-        .btn-submit-bank svg{width:18px;height:18px}
-
-        /* Bank Info View (after submit) */
-        .bank-info-view{display:none}
-        .bank-info-view.visible{display:block}
-        .bank-info-card{background:var(--bg-card);border:2px solid var(--accent);border-radius:16px;padding:36px 32px;text-align:center}
-        .bank-info-card h2{font-size:24px;font-weight:700;margin-bottom:8px}
-        .bank-info-card .memo-hint{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#555;background:rgba(0,0,0,.05);padding:6px 16px;border-radius:100px;margin-bottom:24px}
-        .bank-detail-box{background:var(--bg-alt);border:1px solid var(--border);border-radius:12px;padding:24px;text-align:left;margin:0 auto;max-width:400px}
-        .bank-detail-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:15px}
-        .bank-detail-row:last-child{border-bottom:none}
-        .bank-detail-row dt{color:var(--text-muted);font-weight:500}
-        .bank-detail-row dd{font-weight:700;color:var(--text-primary)}
-        .bank-detail-row dd.amount{color:var(--accent);font-size:18px;font-weight:800}
-        .bank-after-note{font-size:14px;color:var(--text-muted);line-height:1.9;margin-top:24px;text-align:left}
-        .bank-after-note p{margin-bottom:8px}
-
-        /* Switch to Credit */
-        .switch-credit-section{margin-top:32px;padding-top:28px;border-top:2px dashed var(--border);text-align:center}
-        .switch-credit-section .switch-lead{font-size:14px;color:var(--text-secondary);margin-bottom:12px}
-        .switch-credit-section .switch-lead strong{color:var(--success);font-weight:700}
-        .btn-switch-credit{display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:700;font-family:inherit;color:var(--stripe);background:rgba(99,91,255,.06);border:2px solid var(--stripe);padding:14px 32px;border-radius:12px;cursor:pointer;transition:all .2s;text-decoration:none}
-        .btn-switch-credit:hover{background:var(--stripe);color:#fff;transform:translateY(-1px);box-shadow:0 4px 16px rgba(99,91,255,.25)}
-        .btn-switch-credit svg{width:18px;height:18px}
-
-        /* Stripe Section after switch */
-        .stripe-after-switch{display:none;margin-top:24px}
-        .stripe-after-switch.visible{display:block}
-        #switchBackToBank:hover{text-decoration:underline;color:var(--text-secondary)}
-        #switchToBankFromCredit:hover{text-decoration:underline;color:var(--text-secondary)}
-
-        /* Error */
-        .form-error{color:var(--danger);font-size:13px;margin-top:6px;display:none}
-        .form-error.visible{display:block}
-        .form-input.error{border-color:var(--danger)}
-        .form-input.error:focus{box-shadow:0 0 0 3px rgba(239,68,68,.15)}
-
         .site-footer{text-align:center;padding:32px 24px;border-top:1px solid var(--border)}
         .site-footer p{font-size:12px;color:var(--text-muted)}
-
-        @media(max-width:640px){
-            .main{padding:32px 16px 80px}
-            .form-section{padding:24px 20px}
-            .bank-row{grid-template-columns:1fr}
-            .product-banner .price{font-size:26px}
-            .btn-stripe,.btn-submit-bank,.btn-proceed{padding:16px 32px;font-size:15px}
-            .confirm-row{flex-direction:column;gap:4px}
-            .confirm-row dd{text-align:left}
-            .bank-detail-box{padding:18px}
-        }
+        @media(max-width:640px){.main{padding:32px 16px 80px}.form-section{padding:24px 20px}.btn-stripe,.btn-proceed{padding:16px 32px;font-size:15px}}
     </style>
 </head>
 <body>
     <header class="site-header">
         <div class="header-inner">
-            <div class="header-logo"><img src="/bakuapo-logo-useer.svg" alt="BakuApo"></div>
+            <div class="header-logo"><img src="/bakuure-logo.svg" alt="バク売れLPテンプレ"></div>
             <a class="header-label" id="resetFormLink">決済フォーム</a>
         </div>
     </header>
-
     <main class="main">
         <div id="mainView">
             <div class="page-top">
-                <h1>BakuApo（バクアポ）決済フォーム</h1>
+                <h1>バク売れLPテンプレ 決済フォーム</h1>
             </div>
-
-            <!-- Product Banner -->
-            <div class="product-banner">
-                <h2>BakuApo（バクアポ）</h2>
-                <div style="display:inline-block;background:#EF4444;color:#fff;font-size:13px;font-weight:800;padding:4px 14px;border-radius:20px;margin-bottom:8px;letter-spacing:.04em">数量限定 30%OFF</div>
-                <div class="price">¥385,000<span>（税込）</span></div>
-                <p style="font-size:14px;color:var(--text-muted);text-decoration:line-through;margin-bottom:2px">通常価格 ¥550,000（税込）</p>
-                <p class="price-sub">買い切り</p>
-                <p style="font-size:12px;color:var(--text-muted);margin-top:6px">※ キャンペーンは予告なく終了する場合があります</p>
-            </div>
-
-            <!-- Step 1: Payment Method -->
             <div class="form-section">
                 <span class="form-section-label">ステップ 1</span>
-                <h2>支払い方法を選択</h2>
-
-                <div class="check-group">
-                    <label class="check-item checked" id="optCreditWrap">
-                        <input type="radio" name="payMethod" value="credit" id="optCredit" checked>
-                        <span class="check-item-text">
-                            クレジットカード決済
-                            <span class="badge-instant">即日利用可能</span>
-                            <small>即日でご利用が可能です</small>
-                        </span>
+                <h2>プランを選択</h2>
+                <div class="plan-group">
+                    <label class="plan-card checked" id="planAWrap">
+                        <input type="radio" name="checkoutPlan" value="starter" id="planA" checked>
+                        <div class="plan-info">
+                            <h3>A - LP｜スタータープラン</h3>
+                            <p>売れる構造をもとに設計されたLPテンプレート。まずは「売れる型」を導入したい方に。</p>
+                            <div class="plan-price">¥55,000<span>（税込）</span></div>
+                        </div>
                     </label>
-                    <label class="check-item" id="optBankWrap">
-                        <input type="radio" name="payMethod" value="bank" id="optBank">
-                        <span class="check-item-text">
-                            銀行振込
-                            <small>弊社内で振込を確認するため、1日程度ツール提供が遅れる場合がございます。</small>
-                        </span>
+                    <label class="plan-card" id="planBWrap">
+                        <input type="radio" name="checkoutPlan" value="boost" id="planB">
+                        <div class="plan-info">
+                            <h3>B - LP＋バナー｜集客強化プラン</h3>
+                            <p>LPテンプレート＋バナー素材のセット。販売導線の立ち上げを加速します。</p>
+                            <div class="plan-price">¥110,000<span>（税込）</span></div>
+                        </div>
+                        <span class="plan-badge">おすすめ</span>
                     </label>
-                </div>
-
-                <!-- ===== A: Credit Card Panel ===== -->
-                <div class="payment-panel visible" id="panelCredit">
-                    <!-- Step A-1: Customer Info -->
-                    <div id="creditStep1">
-                        <div class="form-group">
-                            <label class="form-label">お客様氏名<span class="required">*</span></label>
-                            <input type="text" class="form-input" id="creditName" placeholder="例：山田 太郎" required>
-                            <p class="form-error" id="creditNameError">※ お客様氏名が未入力です。</p>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">ご契約時にご登録のメールアドレス<span class="required">*</span></label>
-                            <input type="email" class="form-input" id="creditEmail" placeholder="例：taro@example.com" required>
-                            <p class="form-error" id="creditEmailError">※ 正しいメールアドレスをご入力ください。</p>
-                        </div>
-                        <div style="text-align:center">
-                            <button type="button" class="btn-proceed" id="creditProceedBtn" disabled>
-                                <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M8 5v14l11-7z"/></svg>
-                                クレジットカードでのお支払いに進む
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Step A-2: Stripe Link (hidden initially) -->
-                    <div id="creditStep2" style="display:none">
-                        <div class="stripe-card">
-                            <div class="secure-badge">
-                                <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/></svg>
-                                セキュアな決済
-                            </div>
-                            <a href="https://buy.stripe.com/3cIeV65uJfZT0FQ7235os0g" class="btn-stripe" target="_blank" rel="noopener">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-                                クレジットカードで支払う（¥385,000・税込）
-                            </a>
-                            <div class="stripe-logo">
-                                <span>Powered by</span>
-                                <img src="/Stripe_Logo,_revised_2016.svg.png" alt="Stripe">
-                            </div>
-
-                            <div class="stripe-note">
-                                <p>※ Stripeの決済ページに遷移いたしますので、決済をお願いいたします。</p>
-                                <p>決済後にStripe登録いただいたメールアドレス宛に「BakuApo」ダウンロードリンクをお送りさせていただきます。</p>
-                                <p>また、まれに迷惑メールなどに入ってしまう場合もございます。<br>決済後1時間経過しても届かない場合は、恐れ入りますが、<a href="mailto:info@chainsoda.world" style="color:var(--accent);font-weight:600">info@chainsoda.world</a> までお問い合わせください。</p>
-                            </div>
-                        </div>
-                        <p style="text-align:center;margin-top:16px">
-                            <a href="#" id="switchToBankFromCredit" style="font-size:14px;color:var(--text-muted);text-decoration:none;transition:all .15s">銀行振込に変更する</a>
-                        </p>
-                    </div>
-                </div>
-
-                <!-- ===== B: Bank Transfer Panel ===== -->
-                <div class="payment-panel" id="panelBank">
-                    <div id="bankFormView">
-                        <p style="font-size:16px;color:var(--text-secondary);margin-bottom:20px">お客様情報と振り込み元の名義を確認するため、下記の情報をご入力ください。</p>
-
-                        <div class="form-group">
-                            <label class="form-label">お客様氏名<span class="required">*</span></label>
-                            <input type="text" class="form-input" id="bankCustomerName" placeholder="例：山田 太郎" required>
-                            <p class="form-error" id="bankCustomerNameError">※ お客様氏名が未入力です。</p>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">ご契約時にご登録のメールアドレス<span class="required">*</span></label>
-                            <input type="email" class="form-input" id="bankEmail" placeholder="例：taro@example.com" required>
-                            <p class="form-error" id="bankEmailError">※ 正しいメールアドレスをご入力ください。</p>
-                        </div>
-
-                        <hr style="border:none;border-top:1px solid var(--border);margin:8px 0 24px">
-
-                        <div class="form-group">
-                            <label class="form-label">銀行名<span class="required">*</span></label>
-                            <div class="autocomplete-wrap">
-                                <input type="text" class="form-input" id="bankName" placeholder="銀行名を入力（例：みずほ銀行）" autocomplete="off">
-                                <div class="autocomplete-list" id="bankAcList"></div>
-                            </div>
-                            <input type="hidden" id="bankCode">
-                            <p class="form-error" id="bankNameError">※ 銀行名が未入力です。</p>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">支店名<span class="required">*</span></label>
-                            <input type="text" class="form-input" id="branchName" placeholder="例：新宿支店">
-                            <p class="form-error" id="branchNameError">※ 支店名が未入力です。</p>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">口座名義（カタカナ）<span class="required">*</span></label>
-                            <input type="text" class="form-input" id="accountHolder" placeholder="例：ヤマダ タロウ">
-                            <p class="form-error" id="accountHolderError">※ 口座名義が未入力です。</p>
-                        </div>
-                        <button type="button" class="btn-save" id="bankSaveBtn">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-                            保存する
-                        </button>
-                    </div>
-
-                    <!-- Confirmation -->
-                    <div class="confirm-box" id="bankConfirmBox">
-                        <div class="confirm-box-header">
-                            <h3>振り込み元情報の確認</h3>
-                            <button type="button" class="confirm-box-edit" id="bankEditBtn">編集</button>
-                        </div>
-                        <div class="confirm-row">
-                            <dt>お客様氏名</dt>
-                            <dd id="confirmCustomerName">—</dd>
-                        </div>
-                        <div class="confirm-row">
-                            <dt>メールアドレス</dt>
-                            <dd id="confirmBankEmail">—</dd>
-                        </div>
-                        <div class="confirm-row">
-                            <dt>銀行名</dt>
-                            <dd id="confirmBankName">—</dd>
-                        </div>
-                        <div class="confirm-row">
-                            <dt>支店名</dt>
-                            <dd id="confirmBranchName">—</dd>
-                        </div>
-                        <div class="confirm-row">
-                            <dt>口座名義</dt>
-                            <dd id="confirmHolder">—</dd>
-                        </div>
-                    </div>
-
-                    <div id="bankConfirmSection" style="display:none">
-                        <div class="confirm-check" style="margin-top:20px">
-                            <label class="check-item" id="bankConfirmCheckWrap">
-                                <input type="checkbox" id="bankConfirmCheck">
-                                <span class="check-item-text">送信内容が正しいことを確認しました。</span>
-                            </label>
-                        </div>
-
-                        <div style="text-align:center">
-                            <button type="button" class="btn-submit-bank" id="bankSubmitBtn" disabled>
-                                <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M8 5v14l11-7z"/></svg>
-                                振り込みでのお支払いに進む
-                            </button>
-                        </div>
-                    </div>
                 </div>
             </div>
-        </div>
-
-        <!-- ===== Bank Info Display (after submit) ===== -->
-        <div class="bank-info-view" id="bankInfoView">
-            <div class="bank-info-card">
-                <h2>下記記載の「弊社振込先」に<br>お振り込みをお願いいたします。</h2>
-                <div class="memo-hint">
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                    スクリーンショットやメモの保存をお願いいたします
+            <div class="form-section">
+                <span class="form-section-label">ステップ 2</span>
+                <h2>お客様情報を入力</h2>
+                <div id="creditStep1">
+                    <div class="form-group">
+                        <label class="form-label">お客様氏名<span class="required">*</span></label>
+                        <input type="text" class="form-input" id="creditName" placeholder="例：山田 太郎" required>
+                        <p class="form-error" id="creditNameError">※ お客様氏名が未入力です。</p>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">ご契約時にご登録のメールアドレス<span class="required">*</span></label>
+                        <input type="email" class="form-input" id="creditEmail" placeholder="例：taro@example.com" required>
+                        <p class="form-error" id="creditEmailError">※ 正しいメールアドレスをご入力ください。</p>
+                    </div>
+                    <div style="text-align:center">
+                        <button type="button" class="btn-proceed" id="creditProceedBtn" disabled>
+                            <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M8 5v14l11-7z"/></svg>
+                            クレジットカードでのお支払いに進む
+                        </button>
+                    </div>
                 </div>
-
-                <div class="bank-detail-box">
-                    <h3 style="font-size:16px;font-weight:700;margin-bottom:16px;text-align:center;color:var(--text-primary)">弊社振込先</h3>
-                    <dl>
-                        <div class="bank-detail-row">
-                            <dt>銀行名</dt>
-                            <dd>GMOあおぞらネット銀行</dd>
-                        </div>
-                        <div class="bank-detail-row">
-                            <dt>支店名</dt>
-                            <dd>法人第二営業部</dd>
-                        </div>
-                        <div class="bank-detail-row">
-                            <dt>口座種別</dt>
-                            <dd>普通</dd>
-                        </div>
-                        <div class="bank-detail-row">
-                            <dt>口座番号</dt>
-                            <dd>1389280</dd>
-                        </div>
-                        <div class="bank-detail-row">
-                            <dt>口座名義</dt>
-                            <dd>カ) チェインソーダ</dd>
-                        </div>
-                        <div class="bank-detail-row">
-                            <dt>お振り込み金額</dt>
-                            <dd class="amount">¥385,000<br><span style="font-size:12px;font-weight:600;color:var(--text-muted)">（税込・30%OFFキャンペーン価格）</span></dd>
-                        </div>
-                    </dl>
-                </div>
-
-                <div class="bank-after-note">
-                    <p>ご入金確認後、ご契約時に記載いただいたメールアドレス宛に「BakuApo」ダウンロードリンクやマニュアル等一式をお送りさせていただきます。</p>
-                    <p>大変恐縮ですが、お振り込み手数料は貴社にてご負担いただきますようお願い申し上げます。</p>
-                    <p>お振り込みが完了しましたら、担当営業まで一言メッセージを頂けますと、スムーズにご案内が可能です。</p>
-                    <p>入金後 <strong>3営業日（土日祝日を除く）</strong>を経過しても連絡が届かない場合は、恐れ入りますが、<a href="mailto:info@chainsoda.world" style="color:var(--accent);font-weight:600">info@chainsoda.world</a> までお問い合わせください。</p>
-                </div>
-
-                <!-- Switch to Credit Card -->
-                <div class="switch-credit-section" id="switchCreditSection">
-                    <p class="switch-lead">クレジットカードでのお支払いだと<strong>即日ご利用開始</strong>できます。</p>
-                    <button type="button" class="btn-switch-credit" id="switchCreditBtn">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-                        クレジットカードでの支払いに切り替える
-                    </button>
-                </div>
-
-                <!-- Stripe section after switching -->
-                <div class="stripe-after-switch" id="stripeAfterSwitch">
+                <div id="creditStep2" style="display:none">
                     <div class="stripe-card">
                         <div class="secure-badge">
                             <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/></svg>
                             セキュアな決済
                         </div>
-                        <a href="https://buy.stripe.com/3cIeV65uJfZT0FQ7235os0g" class="btn-stripe" target="_blank" rel="noopener">
+                        <a href="#" class="btn-stripe" id="stripePayBtn" target="_blank" rel="noopener">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-                            クレジットカードで支払う（¥385,000・税込）
+                            <span id="stripeBtnLabel">クレジットカードで支払う</span>
                         </a>
                         <div class="stripe-logo">
                             <span>Powered by</span>
                             <img src="/Stripe_Logo,_revised_2016.svg.png" alt="Stripe">
                         </div>
-
                         <div class="stripe-note">
                             <p>※ Stripeの決済ページに遷移いたしますので、決済をお願いいたします。</p>
-                            <p>決済後にStripe登録いただいたメールアドレス宛に「BakuApo」ダウンロードリンクをお送りさせていただきます。</p>
-                            <p>また、まれに迷惑メールなどに入ってしまう場合もございます。<br>決済後1時間経過しても届かない場合は、恐れ入りますが、<a href="mailto:info@chainsoda.world" style="color:var(--accent);font-weight:600">info@chainsoda.world</a> までお問い合わせください。</p>
+                            <p>決済後にStripe登録いただいたメールアドレス宛に、テンプレートのダウンロードリンクをお送りさせていただきます。</p>
+                            <p>まれに迷惑メールに入ってしまう場合がございます。<br>決済後1時間経過しても届かない場合は、<a href="mailto:info@chainsoda.world" style="color:var(--accent);font-weight:600">info@chainsoda.world</a> までお問い合わせください。</p>
                         </div>
                     </div>
-                    <p style="text-align:center;margin-top:16px">
-                        <a href="#" id="switchBackToBank" style="font-size:14px;color:var(--text-muted);text-decoration:none;transition:all .15s">銀行振込に戻す</a>
-                    </p>
                 </div>
             </div>
         </div>
     </main>
-
-    <!-- Reset Confirmation Modal -->
     <div class="reset-overlay" id="resetOverlay">
         <div class="reset-modal">
-            <div class="reset-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
-                    <line x1="12" y1="9" x2="12" y2="13"/>
-                    <line x1="12" y1="17" x2="12.01" y2="17"/>
-                </svg>
-            </div>
+            <div class="reset-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
             <h3>決済フォーム入力を<br>はじめからやり直しますか？</h3>
             <p>これまでに入力した情報は削除されます。</p>
             <div class="reset-actions">
@@ -473,506 +172,59 @@
             </div>
         </div>
     </div>
-
-    <footer class="site-footer">
-        <p>&copy; 2026 BakuApo &amp; CHAINSODA Co., Ltd. — All rights reserved.</p>
-    </footer>
-
+    <footer class="site-footer"><p>&copy; 2026 バク売れLPテンプレ &amp; CHAINSODA Co., Ltd. — All rights reserved.</p></footer>
     <script>
-    // ===== Bank Data =====
-    const BANKS = [
-        {name:'みずほ銀行',code:'0001'},{name:'三菱UFJ銀行',code:'0005'},{name:'三井住友銀行',code:'0009'},
-        {name:'りそな銀行',code:'0010'},{name:'埼玉りそな銀行',code:'0017'},
-        {name:'PayPay銀行',code:'0033'},{name:'セブン銀行',code:'0034'},{name:'ソニー銀行',code:'0035'},
-        {name:'楽天銀行',code:'0036'},{name:'住信SBIネット銀行',code:'0038'},{name:'auじぶん銀行',code:'0039'},
-        {name:'イオン銀行',code:'0040'},{name:'みんなの銀行',code:'0043'},{name:'UI銀行',code:'0044'},
-        {name:'北海道銀行',code:'0116'},{name:'青森銀行',code:'0117'},{name:'みちのく銀行',code:'0118'},
-        {name:'秋田銀行',code:'0119'},{name:'北都銀行',code:'0120'},{name:'荘内銀行',code:'0121'},
-        {name:'山形銀行',code:'0122'},{name:'岩手銀行',code:'0123'},{name:'東邦銀行',code:'0126'},
-        {name:'群馬銀行',code:'0128'},{name:'足利銀行',code:'0129'},{name:'常陽銀行',code:'0130'},
-        {name:'筑波銀行',code:'0131'},{name:'武蔵野銀行',code:'0133'},{name:'千葉銀行',code:'0134'},
-        {name:'千葉興業銀行',code:'0135'},{name:'きらぼし銀行',code:'0137'},{name:'横浜銀行',code:'0138'},
-        {name:'第四北越銀行',code:'0140'},{name:'山梨中央銀行',code:'0142'},{name:'八十二銀行',code:'0143'},
-        {name:'北陸銀行',code:'0144'},{name:'富山銀行',code:'0145'},{name:'北國銀行',code:'0146'},
-        {name:'福井銀行',code:'0147'},{name:'静岡銀行',code:'0149'},{name:'スルガ銀行',code:'0150'},
-        {name:'清水銀行',code:'0151'},{name:'大垣共立銀行',code:'0152'},{name:'十六銀行',code:'0153'},
-        {name:'三十三銀行',code:'0154'},{name:'百五銀行',code:'0155'},{name:'滋賀銀行',code:'0157'},
-        {name:'京都銀行',code:'0158'},{name:'関西みらい銀行',code:'0159'},{name:'池田泉州銀行',code:'0161'},
-        {name:'南都銀行',code:'0162'},{name:'紀陽銀行',code:'0163'},{name:'但馬銀行',code:'0164'},
-        {name:'鳥取銀行',code:'0166'},{name:'山陰合同銀行',code:'0167'},{name:'中国銀行',code:'0168'},
-        {name:'広島銀行',code:'0169'},{name:'山口銀行',code:'0170'},{name:'阿波銀行',code:'0172'},
-        {name:'百十四銀行',code:'0173'},{name:'伊予銀行',code:'0174'},{name:'四国銀行',code:'0175'},
-        {name:'福岡銀行',code:'0177'},{name:'筑邦銀行',code:'0178'},{name:'佐賀銀行',code:'0179'},
-        {name:'十八親和銀行',code:'0180'},{name:'肥後銀行',code:'0182'},{name:'大分銀行',code:'0183'},
-        {name:'宮崎銀行',code:'0184'},{name:'鹿児島銀行',code:'0185'},{name:'琉球銀行',code:'0187'},
-        {name:'沖縄銀行',code:'0188'},{name:'西日本シティ銀行',code:'0190'},{name:'北九州銀行',code:'0191'},
-        {name:'三菱UFJ信託銀行',code:'0288'},{name:'みずほ信託銀行',code:'0289'},
-        {name:'三井住友信託銀行',code:'0294'},{name:'GMOあおぞらネット銀行',code:'0310'},
-        {name:'SBI新生銀行',code:'0397'},{name:'あおぞら銀行',code:'0398'},
-        {name:'東京スター銀行',code:'0526'},{name:'ゆうちょ銀行',code:'9900'}
-    ];
-
-    // Google Apps Script Web App URL
-    const CHECKOUT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwb3W-2pfK_Ar4fBjoFcMQG7AIjkFn44kCzL5h6xjuRespoZTc25war2TVnZZ7Cgepk/exec';
-
-    const $ = id => document.getElementById(id);
-    const optCredit = $('optCredit');
-    const optBank = $('optBank');
-    const panelCredit = $('panelCredit');
-    const panelBank = $('panelBank');
-    const creditName = $('creditName');
-    const creditEmail = $('creditEmail');
-    const creditProceedBtn = $('creditProceedBtn');
-    const bankCustomerName = $('bankCustomerName');
-    const bankNameInput = $('bankName');
-    const bankCodeInput = $('bankCode');
-    const branchName = $('branchName');
-    const accountHolder = $('accountHolder');
-    const acList = $('bankAcList');
-    const bankConfirmCheck = $('bankConfirmCheck');
-    const bankSubmitBtn = $('bankSubmitBtn');
-
-    let acHighlight = -1;
-    let savedBankData = null;
-    // Row number returned from GAS for bank transfer record (for switch-to-credit update)
-    let bankPaymentRowId = null;
-
-    // ===== Email validation =====
-    function isValidEmail(v) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    const CHECKOUT_ENDPOINT='https://script.google.com/macros/s/AKfycbwb3W-2pfK_Ar4fBjoFcMQG7AIjkFn44kCzL5h6xjuRespoZTc25war2TVnZZ7Cgepk/exec';
+    const PLANS={
+        starter:{name:'A - LP｜スタータープラン',price:55000,label:'¥55,000（税込）',stripeUrl:'https://buy.stripe.com/fZudR24qF5lfbku7235os0h'},
+        boost:{name:'B - LP＋バナー｜集客強化プラン',price:110000,label:'¥110,000（税込）',stripeUrl:'https://buy.stripe.com/fZu9AM4qFbJD1JU3PR5os0i'}
+    };
+    const $=id=>document.getElementById(id);
+    const creditName=$('creditName'),creditEmail=$('creditEmail'),creditProceedBtn=$('creditProceedBtn');
+    function getSelectedPlan(){return document.querySelector('input[name="checkoutPlan"]:checked').value;}
+    function isValidEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);}
+    function validateField(input,errorId,testFn){const ok=testFn(input.value);const err=$(errorId);if(err)err.classList.toggle('visible',!ok);input.classList.toggle('error',!ok);return ok;}
+    // Plan selection
+    document.querySelectorAll('input[name="checkoutPlan"]').forEach(r=>{r.addEventListener('change',()=>{document.querySelectorAll('.plan-card').forEach(c=>c.classList.remove('checked'));r.closest('.plan-card').classList.add('checked');updateStripeBtn();});});
+    function updateStripeBtn(){
+        const planKey=getSelectedPlan();const plan=PLANS[planKey];
+        $('stripePayBtn').href=plan.stripeUrl;
+        $('stripeBtnLabel').textContent='クレジットカードで支払う（'+plan.label+'）';
     }
-
-    // ===== Payment Method Toggle =====
-    function updatePaymentMethod() {
-        const method = document.querySelector('input[name="payMethod"]:checked').value;
-        panelCredit.classList.toggle('visible', method === 'credit');
-        panelBank.classList.toggle('visible', method === 'bank');
-
-        document.querySelectorAll('input[name="payMethod"]').forEach(r => {
-            r.closest('.check-item').classList.toggle('checked', r.checked);
-        });
-    }
-
-    optCredit.addEventListener('change', updatePaymentMethod);
-    optBank.addEventListener('change', updatePaymentMethod);
-
-    // ===== Credit Card: Validate & Proceed =====
-    function updateCreditState() {
-        const nameOk = creditName.value.trim().length > 0;
-        const emailOk = isValidEmail(creditEmail.value.trim());
-        creditProceedBtn.disabled = !(nameOk && emailOk);
-    }
-    creditName.addEventListener('input', () => { updateCreditState(); if(creditName.dataset.touched) validateField(creditName, 'creditNameError', v => v.trim().length > 0); });
-    creditEmail.addEventListener('input', () => { updateCreditState(); if(creditEmail.dataset.touched) validateField(creditEmail, 'creditEmailError', v => isValidEmail(v.trim())); });
-    creditName.addEventListener('blur', () => { creditName.dataset.touched = '1'; validateField(creditName, 'creditNameError', v => v.trim().length > 0); });
-    creditEmail.addEventListener('blur', () => { creditEmail.dataset.touched = '1'; validateField(creditEmail, 'creditEmailError', v => isValidEmail(v.trim())); });
-
-    // Helper: validate a single field and toggle error
-    function validateField(input, errorId, testFn) {
-        const ok = testFn(input.value);
-        const err = $(errorId);
-        if (err) err.classList.toggle('visible', !ok);
-        input.classList.toggle('error', !ok);
-        return ok;
-    }
-
-    creditProceedBtn.addEventListener('click', async () => {
-        // Validate
-        let hasError = false;
-        if (!creditName.value.trim()) {
-            $('creditNameError').classList.add('visible'); creditName.classList.add('error'); hasError = true;
-        } else { $('creditNameError').classList.remove('visible'); creditName.classList.remove('error'); }
-        if (!isValidEmail(creditEmail.value.trim())) {
-            $('creditEmailError').classList.add('visible'); creditEmail.classList.add('error'); hasError = true;
-        } else { $('creditEmailError').classList.remove('visible'); creditEmail.classList.remove('error'); }
-        if (hasError) return;
-
-        // Send to GAS: register payment info (credit card)
-        const payload = {
-            action: 'registerPayment',
-            product: 'BakuApo',
-            price: 385000,
-            customerName: creditName.value.trim(),
-            email: creditEmail.value.trim(),
-            paymentMethod: 'クレジットカード',
-            submittedAt: new Date().toISOString()
-        };
-
-        creditProceedBtn.disabled = true;
-        creditProceedBtn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> 処理中...';
-
-        if (CHECKOUT_ENDPOINT) {
-            try {
-                await fetch(CHECKOUT_ENDPOINT, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload),
-                    mode: 'no-cors'
-                });
-            } catch (err) {
-                console.error('Credit register error:', err);
-            }
-        }
-
-        // Save to localStorage for thanks-stripe page
-        localStorage.setItem('checkoutEmail', creditEmail.value.trim());
-        localStorage.setItem('checkoutName', creditName.value.trim());
-
-        // Show Stripe link
-        setTimeout(() => {
-            $('creditStep1').style.display = 'none';
-            $('creditStep2').style.display = 'block';
-            // Hide payment method selection (already chose credit)
-            document.querySelector('.check-group').style.display = 'none';
-        }, 600);
+    // Auto-select plan from contract page
+    (()=>{const saved=localStorage.getItem('contractPlan');if(saved&&PLANS[saved]){const radio=$('plan'+(saved==='starter'?'A':'B'));if(radio){radio.checked=true;radio.dispatchEvent(new Event('change'));}}})();
+    function updateCreditState(){creditProceedBtn.disabled=!(creditName.value.trim().length>0&&isValidEmail(creditEmail.value.trim()));}
+    creditName.addEventListener('input',()=>{updateCreditState();if(creditName.dataset.touched)validateField(creditName,'creditNameError',v=>v.trim().length>0);});
+    creditEmail.addEventListener('input',()=>{updateCreditState();if(creditEmail.dataset.touched)validateField(creditEmail,'creditEmailError',v=>isValidEmail(v.trim()));});
+    creditName.addEventListener('blur',()=>{creditName.dataset.touched='1';validateField(creditName,'creditNameError',v=>v.trim().length>0);});
+    creditEmail.addEventListener('blur',()=>{creditEmail.dataset.touched='1';validateField(creditEmail,'creditEmailError',v=>isValidEmail(v.trim()));});
+    creditProceedBtn.addEventListener('click',async()=>{
+        let hasError=false;
+        if(!creditName.value.trim()){$('creditNameError').classList.add('visible');creditName.classList.add('error');hasError=true;}else{$('creditNameError').classList.remove('visible');creditName.classList.remove('error');}
+        if(!isValidEmail(creditEmail.value.trim())){$('creditEmailError').classList.add('visible');creditEmail.classList.add('error');hasError=true;}else{$('creditEmailError').classList.remove('visible');creditEmail.classList.remove('error');}
+        if(hasError)return;
+        const planKey=getSelectedPlan();const plan=PLANS[planKey];
+        const payload={action:'registerPayment',product:plan.name,price:plan.price,customerName:creditName.value.trim(),email:creditEmail.value.trim(),paymentMethod:'クレジットカード',submittedAt:new Date().toISOString()};
+        creditProceedBtn.disabled=true;creditProceedBtn.innerHTML='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> 処理中...';
+        if(CHECKOUT_ENDPOINT){try{await fetch(CHECKOUT_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),mode:'no-cors'});}catch(err){console.error('Credit register error:',err);}}
+        localStorage.setItem('checkoutEmail',creditEmail.value.trim());localStorage.setItem('checkoutName',creditName.value.trim());localStorage.setItem('checkoutPlan',planKey);
+        setTimeout(()=>{$('creditStep1').style.display='none';$('creditStep2').style.display='block';document.querySelectorAll('.plan-card input').forEach(r=>r.disabled=true);document.querySelectorAll('.plan-card').forEach(c=>c.style.cursor='default');updateStripeBtn();},600);
     });
-
-    // ===== Bank Autocomplete =====
-    bankNameInput.addEventListener('input', () => {
-        const val = bankNameInput.value.trim();
-        if (!val) { acList.classList.remove('open'); return; }
-        const filtered = BANKS.filter(b => b.name.includes(val) || b.code.includes(val));
-        if (!filtered.length) { acList.classList.remove('open'); return; }
-        acHighlight = -1;
-        acList.innerHTML = filtered.map((b,i) =>
-            `<div class="autocomplete-item" data-idx="${i}" data-name="${b.name}" data-code="${b.code}">
-                <span>${b.name}</span><span class="ac-code">${b.code}</span>
-            </div>`
-        ).join('');
-        acList.classList.add('open');
+    // Reset
+    $('resetFormLink').addEventListener('click',e=>{e.preventDefault();$('resetOverlay').classList.add('open');});
+    $('resetCancelBtn').addEventListener('click',()=>{$('resetOverlay').classList.remove('open');});
+    $('resetOverlay').addEventListener('click',e=>{if(e.target===e.currentTarget)$('resetOverlay').classList.remove('open');});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('resetOverlay').classList.contains('open'))$('resetOverlay').classList.remove('open');});
+    $('resetConfirmBtn').addEventListener('click',async()=>{
+        const btn=$('resetConfirmBtn');btn.disabled=true;btn.textContent='処理中...';
+        const name=localStorage.getItem('checkoutName')||creditName.value.trim();const em=localStorage.getItem('checkoutEmail')||creditEmail.value.trim();
+        const planKey=getSelectedPlan();const plan=PLANS[planKey];
+        if(CHECKOUT_ENDPOINT&&(name||em)){try{await fetch(CHECKOUT_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'cancelPayment',product:plan.name,price:plan.price,customerName:name,email:em,submittedAt:new Date().toISOString()}),mode:'no-cors'});}catch(err){console.error('Cancel error:',err);}}
+        localStorage.removeItem('checkoutName');localStorage.removeItem('checkoutEmail');localStorage.removeItem('checkoutPlan');location.reload();
     });
-
-    acList.addEventListener('click', e => {
-        const item = e.target.closest('.autocomplete-item');
-        if (!item) return;
-        bankNameInput.value = item.dataset.name;
-        bankCodeInput.value = item.dataset.code;
-        acList.classList.remove('open');
-    });
-
-    bankNameInput.addEventListener('keydown', e => {
-        const items = acList.querySelectorAll('.autocomplete-item');
-        if (!items.length || !acList.classList.contains('open')) return;
-        if (e.key === 'ArrowDown') { e.preventDefault(); acHighlight = Math.min(acHighlight+1, items.length-1); }
-        else if (e.key === 'ArrowUp') { e.preventDefault(); acHighlight = Math.max(acHighlight-1, 0); }
-        else if (e.key === 'Enter' && acHighlight >= 0) {
-            e.preventDefault();
-            items[acHighlight].click();
-            return;
-        } else return;
-        items.forEach((it,i) => it.classList.toggle('highlighted', i === acHighlight));
-        items[acHighlight]?.scrollIntoView({block:'nearest'});
-    });
-
-    document.addEventListener('click', e => {
-        if (!e.target.closest('.autocomplete-wrap')) acList.classList.remove('open');
-    });
-
-    // ===== Bank Fields: Blur Validation =====
-    bankCustomerName.addEventListener('blur', () => { bankCustomerName.dataset.touched = '1'; validateField(bankCustomerName, 'bankCustomerNameError', v => v.trim().length > 0); });
-    bankCustomerName.addEventListener('input', () => { if(bankCustomerName.dataset.touched) validateField(bankCustomerName, 'bankCustomerNameError', v => v.trim().length > 0); });
-    $('bankEmail').addEventListener('blur', () => { $('bankEmail').dataset.touched = '1'; validateField($('bankEmail'), 'bankEmailError', v => isValidEmail(v.trim())); });
-    $('bankEmail').addEventListener('input', () => { if($('bankEmail').dataset.touched) validateField($('bankEmail'), 'bankEmailError', v => isValidEmail(v.trim())); });
-    bankNameInput.addEventListener('blur', () => { bankNameInput.dataset.touched = '1'; validateField(bankNameInput, 'bankNameError', v => v.trim().length > 0); });
-    branchName.addEventListener('blur', () => { branchName.dataset.touched = '1'; validateField(branchName, 'branchNameError', v => v.trim().length > 0); });
-    branchName.addEventListener('input', () => { if(branchName.dataset.touched) validateField(branchName, 'branchNameError', v => v.trim().length > 0); });
-    accountHolder.addEventListener('blur', () => { accountHolder.dataset.touched = '1'; validateField(accountHolder, 'accountHolderError', v => v.trim().length > 0); });
-    accountHolder.addEventListener('input', () => { if(accountHolder.dataset.touched) validateField(accountHolder, 'accountHolderError', v => v.trim().length > 0); });
-
-    // ===== Bank Save =====
-    $('bankSaveBtn').addEventListener('click', () => {
-        const cn = bankCustomerName.value.trim();
-        const em = $('bankEmail').value.trim();
-        const bn = bankNameInput.value.trim();
-        const bc = bankCodeInput.value;
-        const brn = branchName.value.trim();
-        const acHold = accountHolder.value.trim();
-
-        let hasError = false;
-        if (!cn) { $('bankCustomerNameError').classList.add('visible'); bankCustomerName.classList.add('error'); hasError = true; } else { $('bankCustomerNameError').classList.remove('visible'); bankCustomerName.classList.remove('error'); }
-        if (!isValidEmail(em)) { $('bankEmailError').classList.add('visible'); $('bankEmail').classList.add('error'); hasError = true; } else { $('bankEmailError').classList.remove('visible'); $('bankEmail').classList.remove('error'); }
-        if (!bn) { $('bankNameError').classList.add('visible'); bankNameInput.classList.add('error'); hasError = true; } else { $('bankNameError').classList.remove('visible'); bankNameInput.classList.remove('error'); }
-        if (!brn) { $('branchNameError').classList.add('visible'); branchName.classList.add('error'); hasError = true; } else { $('branchNameError').classList.remove('visible'); branchName.classList.remove('error'); }
-        if (!acHold) { $('accountHolderError').classList.add('visible'); accountHolder.classList.add('error'); hasError = true; } else { $('accountHolderError').classList.remove('visible'); accountHolder.classList.remove('error'); }
-        if (hasError) return;
-
-        savedBankData = { customerName: cn, email: em, bankName: bn, bankCode: bc, branchName: brn, accountHolder: acHold };
-
-        // Show confirmation
-        $('confirmCustomerName').textContent = cn;
-        $('confirmBankEmail').textContent = em;
-        $('confirmBankName').textContent = bn;
-        $('confirmBranchName').textContent = brn;
-        $('confirmHolder').textContent = acHold;
-
-        $('bankFormView').style.display = 'none';
-        $('bankConfirmBox').classList.add('visible');
-        $('bankConfirmSection').style.display = 'block';
-    });
-
-    // ===== Bank Edit =====
-    $('bankEditBtn').addEventListener('click', () => {
-        savedBankData = null;
-        $('bankFormView').style.display = 'block';
-        $('bankConfirmBox').classList.remove('visible');
-        $('bankConfirmSection').style.display = 'none';
-        bankConfirmCheck.checked = false;
-        $('bankConfirmCheckWrap').classList.remove('checked');
-        bankSubmitBtn.disabled = true;
-    });
-
-    // ===== Bank Confirm Check =====
-    bankConfirmCheck.addEventListener('change', () => {
-        $('bankConfirmCheckWrap').classList.toggle('checked', bankConfirmCheck.checked);
-        bankSubmitBtn.disabled = !bankConfirmCheck.checked;
-    });
-
-    // ===== Bank Submit =====
-    bankSubmitBtn.addEventListener('click', async () => {
-        if (bankSubmitBtn.disabled || !savedBankData) return;
-
-        const payload = {
-            action: 'registerPayment',
-            product: 'BakuApo',
-            price: 385000,
-            customerName: savedBankData.customerName,
-            email: savedBankData.email,
-            paymentMethod: '銀行振込',
-            bankName: savedBankData.bankName,
-            branchName: savedBankData.branchName,
-            accountHolder: savedBankData.accountHolder,
-            submittedAt: new Date().toISOString()
-        };
-
-        bankSubmitBtn.disabled = true;
-        bankSubmitBtn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> 送信中...';
-
-        if (CHECKOUT_ENDPOINT) {
-            try {
-                await fetch(CHECKOUT_ENDPOINT, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload),
-                    mode: 'no-cors'
-                });
-            } catch (err) {
-                console.error('Bank submit error:', err);
-            }
-        }
-
-        // Save customer name & email for switch-to-credit
-        localStorage.setItem('checkoutName', savedBankData.customerName);
-        localStorage.setItem('checkoutEmail', savedBankData.email);
-
-        // Show bank info view
-        setTimeout(() => {
-            $('mainView').style.display = 'none';
-            $('bankInfoView').classList.add('visible');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }, 800);
-    });
-
-    // ===== Switch to Credit Card (from bank info view) =====
-    $('switchCreditBtn').addEventListener('click', async () => {
-        const btn = $('switchCreditBtn');
-        btn.disabled = true;
-        btn.textContent = '切り替え中...';
-
-        // Send GAS request to update payment method
-        const payload = {
-            action: 'switchToCredit',
-            product: 'BakuApo',
-            price: 385000,
-            customerName: localStorage.getItem('checkoutName') || '',
-            email: localStorage.getItem('checkoutEmail') || '',
-            submittedAt: new Date().toISOString()
-        };
-
-        if (CHECKOUT_ENDPOINT) {
-            try {
-                await fetch(CHECKOUT_ENDPOINT, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload),
-                    mode: 'no-cors'
-                });
-            } catch (err) {
-                console.error('Switch error:', err);
-            }
-        }
-
-        setTimeout(() => {
-            $('switchCreditSection').style.display = 'none';
-            $('stripeAfterSwitch').classList.add('visible');
-            $('stripeAfterSwitch').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 600);
-    });
-
-    // ===== Switch to Bank from Credit Step2 =====
-    $('switchToBankFromCredit').addEventListener('click', async (e) => {
-        e.preventDefault();
-        const link = $('switchToBankFromCredit');
-        link.textContent = '切り替え中...';
-        link.style.pointerEvents = 'none';
-
-        const payload = {
-            action: 'switchToBank',
-            product: 'BakuApo',
-            price: 385000,
-            customerName: localStorage.getItem('checkoutName') || '',
-            email: localStorage.getItem('checkoutEmail') || '',
-            submittedAt: new Date().toISOString()
-        };
-
-        if (CHECKOUT_ENDPOINT) {
-            try {
-                await fetch(CHECKOUT_ENDPOINT, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload),
-                    mode: 'no-cors'
-                });
-            } catch (err) {
-                console.error('Switch to bank error:', err);
-            }
-        }
-
-        setTimeout(() => {
-            // Show bank panel with form, hide credit panel
-            $('creditStep2').style.display = 'none';
-            // Restore creditStep1 so switching back to credit via radio works
-            $('creditStep1').style.display = '';
-            creditProceedBtn.disabled = false;
-            creditProceedBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M8 5v14l11-7z"/></svg> クレジットカードでのお支払いに進む';
-            updateCreditState();
-            panelCredit.classList.remove('visible');
-            panelBank.classList.add('visible');
-            // Show payment method radios again, switch to bank
-            document.querySelector('.check-group').style.display = '';
-            optBank.checked = true;
-            optCredit.checked = false;
-            document.querySelectorAll('input[name="payMethod"]').forEach(r => {
-                r.closest('.check-item').classList.toggle('checked', r.checked);
-            });
-            // Reset bank form view
-            $('bankFormView').style.display = 'block';
-            $('bankConfirmBox').classList.remove('visible');
-            $('bankConfirmSection').style.display = 'none';
-            // Pre-fill customer name from credit flow
-            const savedName = localStorage.getItem('checkoutName') || '';
-            if (savedName && !bankCustomerName.value.trim()) {
-                bankCustomerName.value = savedName;
-            }
-            link.textContent = '銀行振込に変更する';
-            link.style.pointerEvents = '';
-            window.scrollTo({ top: panelBank.offsetTop - 100, behavior: 'smooth' });
-        }, 600);
-    });
-
-    // ===== Switch Back to Bank (from bank info credit view) =====
-    $('switchBackToBank').addEventListener('click', async (e) => {
-        e.preventDefault();
-        const link = $('switchBackToBank');
-        link.textContent = '切り替え中...';
-        link.style.pointerEvents = 'none';
-
-        const payload = {
-            action: 'switchToBank',
-            product: 'BakuApo',
-            price: 385000,
-            customerName: localStorage.getItem('checkoutName') || '',
-            email: localStorage.getItem('checkoutEmail') || '',
-            submittedAt: new Date().toISOString()
-        };
-
-        if (CHECKOUT_ENDPOINT) {
-            try {
-                await fetch(CHECKOUT_ENDPOINT, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload),
-                    mode: 'no-cors'
-                });
-            } catch (err) {
-                console.error('Switch to bank error:', err);
-            }
-        }
-
-        setTimeout(() => {
-            $('stripeAfterSwitch').classList.remove('visible');
-            $('switchCreditSection').style.display = '';
-            $('switchCreditBtn').disabled = false;
-            $('switchCreditBtn').innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg> クレジットカードでの支払いに切り替える';
-            link.textContent = '銀行振込に戻す';
-            link.style.pointerEvents = '';
-            $('switchCreditSection').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 600);
-    });
-
-    // ===== Reset Form =====
-    $('resetFormLink').addEventListener('click', e => {
-        e.preventDefault();
-        $('resetOverlay').classList.add('open');
-    });
-    $('resetCancelBtn').addEventListener('click', () => {
-        $('resetOverlay').classList.remove('open');
-    });
-    $('resetOverlay').addEventListener('click', e => {
-        if (e.target === e.currentTarget) $('resetOverlay').classList.remove('open');
-    });
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape' && $('resetOverlay').classList.contains('open')) $('resetOverlay').classList.remove('open');
-    });
-    $('resetConfirmBtn').addEventListener('click', async () => {
-        const btn = $('resetConfirmBtn');
-        btn.disabled = true;
-        btn.textContent = '処理中...';
-
-        // Send cancel status to GAS
-        const name = localStorage.getItem('checkoutName') || creditName.value.trim() || bankCustomerName.value.trim();
-        const em = localStorage.getItem('checkoutEmail') || creditEmail.value.trim() || $('bankEmail').value.trim();
-        if (CHECKOUT_ENDPOINT && (name || em)) {
-            try {
-                await fetch(CHECKOUT_ENDPOINT, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        action: 'cancelPayment',
-                        product: 'BakuApo',
-                        price: 385000,
-                        customerName: name,
-                        email: em,
-                        submittedAt: new Date().toISOString()
-                    }),
-                    mode: 'no-cors'
-                });
-            } catch (err) {
-                console.error('Cancel error:', err);
-            }
-        }
-
-        // Clear localStorage
-        localStorage.removeItem('checkoutName');
-        localStorage.removeItem('checkoutEmail');
-
-        // Reload page to reset all state
-        location.reload();
-    });
-
-    // ===== Auto-fill from contract page =====
-    (() => {
-        const cName = localStorage.getItem('contractName') || '';
-        const cEmail = localStorage.getItem('contractEmail') || '';
-        if (cName) {
-            creditName.value = cName;
-            bankCustomerName.value = cName;
-        }
-        if (cEmail) {
-            creditEmail.value = cEmail;
-            $('bankEmail').value = cEmail;
-        }
-        if (cName || cEmail) updateCreditState();
-    })();
+    // Auto-fill
+    (()=>{const n=localStorage.getItem('contractName')||'';const e=localStorage.getItem('contractEmail')||'';if(n)creditName.value=n;if(e)creditEmail.value=e;if(n||e)updateCreditState();})();
+    updateStripeBtn();
     </script>
 </body>
 </html>

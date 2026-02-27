@@ -3,371 +3,255 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Q&A｜パートナー様向けマニュアル｜営業革命｜BakuApo</title>
-    <meta name="description" content="パートナー（正規代理店）様向けのQ&Aです。よくある質問と回答をまとめています。">
+    <title>FAQ — バク売れLPテンプレ パートナーマニュアル</title>
+    <meta name="description" content="バク売れLPテンプレの販売パートナー向けFAQです。よくある質問と回答をまとめています。">
     <meta name="robots" content="noindex, nofollow">
-    <meta property="og:title" content="Q&A｜パートナー様向けマニュアル｜営業革命｜BakuApo">
-    <meta property="og:description" content="パートナー（正規代理店）様向けのQ&Aです。よくある質問と回答をまとめています。">
+    <meta property="og:title" content="FAQ — バク売れLPテンプレ パートナーマニュアル">
+    <meta property="og:description" content="パートナー向けFAQ。よくある質問と回答。">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="/ogp-manual.png">
-    <meta property="og:site_name" content="営業革命｜BakuApo">
-    <link rel="icon" href="/bakuapo-logo.svg" type="image/svg+xml">
+    <meta property="og:site_name" content="バク売れLPテンプレ">
+    <meta property="og:image" content="/bakuure-ogp.png">
+    <link rel="icon" href="/bakuure-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-color: #F7F7F5; --card-bg: #FFFFFF; --text-main: #1A1A1A; --text-sub: #787774;
-            --border-color: #E9E9E7; --border-subtle: #F3F4F6; --accent-color: #2383E2;
-            --star-color-on: #F2C94C; --check-color-on: #27AE60; --link-color: #2563EB;
-            --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px;
-            --sidebar-width: 220px; --max-width: 1200px;
-            --chat-primary: #2383E2; --chat-bg: #fff; --chat-bubble-bot: #F7F7F5;
-            --chat-bubble-user: #2383E2; --chat-text-bot: #1A1A1A; --chat-text-user: #FFFFFF;
-        }
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Noto Sans JP', 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; -webkit-font-smoothing: antialiased; }
-        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
-        header { position: sticky; top: 0; z-index: 100; padding: 16px 0 12px; background: rgba(250, 250, 250, 0.88); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-color); }
-        .header-top { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-        .logo-group { display: flex; align-items: center; gap: 10px; }
-        .logo-group img { height: 26px; }
-        .logo-divider { width: 1px; height: 20px; background-color: var(--border-color); }
-        .header-title { font-size: 12px; font-weight: 600; color: var(--text-sub); letter-spacing: 0.02em; }
-        .tabs { display: flex; border-bottom: 1px solid var(--border-color); margin-bottom: 16px; overflow-x: auto; }
-        .tabs::-webkit-scrollbar { display: none; }
-        .tab-btn { flex: 1; padding: 12px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--text-sub); border-bottom: 3px solid transparent; transition: all 0.2s; font-family: inherit; background: none; border-top: none; border-left: none; border-right: none; text-decoration: none; display: inline-block; text-align: center; white-space: nowrap; }
-        .tab-btn:hover { background-color: rgba(0,0,0,0.03); color: var(--text-main); }
-        .tab-btn.active { color: var(--text-main); border-bottom-color: var(--text-main); }
-        .controls-wrapper { display: flex; flex-direction: column; gap: 8px; }
-        .search-container { position: relative; }
-        .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; fill: var(--text-sub); pointer-events: none; }
-        .search-input { width: 100%; padding: 10px 14px 10px 38px; border: 1px solid var(--border-color); border-radius: var(--radius-md); font-size: 14px; outline: none; transition: all 0.2s; font-family: inherit; background-color: var(--card-bg); }
-        .search-input:focus { border-color: var(--accent-color); box-shadow: 0 0 0 3px rgba(0,0,0,0.04); }
-        .status-bar { display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--text-sub); padding-left: 2px; }
-        .loading-indicator { display: none; align-items: center; gap: 6px; font-size: 12px; color: var(--text-sub); }
-        .loading-indicator.active { display: inline-flex; }
-        .spinner { width: 14px; height: 14px; border: 2px solid var(--border-color); border-top-color: var(--accent-color); border-radius: 50%; animation: spin 0.6s linear infinite; }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        .chat-ref-links { display: flex; flex-direction: column; gap: 6px; margin-top: 10px; }
-        .chat-ref-btn { display: flex; align-items: center; gap: 6px; padding: 6px 10px; background: var(--border-subtle); border-radius: var(--radius-sm); text-decoration: none; color: var(--text-main); font-size: 12px; cursor: pointer; transition: background 0.15s; border: 1px solid var(--border-color); }
-        .chat-ref-btn:hover { background: #E5E7EB; }
-        .ref-icon { width: 14px; height: 14px; flex-shrink: 0; }
-        .ref-badge { font-size: 10px; padding: 1px 6px; border-radius: 4px; font-weight: 600; flex-shrink: 0; }
-        .badge-video { background: #DBEAFE; color: #1D4ED8; }
-        .badge-drive { background: #D1FAE5; color: #065F46; }
-        .badge-qa { background: #FEF3C7; color: #92400E; }
-        .badge-rebuttal { background: #FCE7F3; color: #9D174D; }
-        .initial-loading { display: flex; flex-direction: column; align-items: center; padding: 48px 0; gap: 16px; }
-        .loading-spinner { width: 32px; height: 32px; border: 3px solid var(--border-color); border-top-color: var(--accent-color); border-radius: 50%; animation: spin 0.7s linear infinite; }
-        .loading-text { font-size: 13px; color: var(--text-sub); }
-        .skeleton-list { width: 100%; max-width: 600px; display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
-        .skeleton-card { background: var(--card-bg); border-radius: var(--radius-md); padding: 20px; border: 1px solid var(--border-color); }
-        .skeleton-line { height: 12px; border-radius: 6px; background: linear-gradient(90deg, var(--border-subtle) 25%, #e5e7eb 50%, var(--border-subtle) 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
-        .skeleton-line.title { width: 40%; height: 14px; margin-bottom: 12px; }
-        .skeleton-line.long { width: 90%; margin-bottom: 8px; }
-        .skeleton-line.medium { width: 70%; margin-bottom: 8px; }
-        .skeleton-line.short { width: 50%; }
-        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-        .main-layout { display: flex; gap: 24px; padding-top: 20px; padding-bottom: 80px; }
-        .sidebar { position: sticky; width: var(--sidebar-width); flex-shrink: 0; max-height: calc(100vh - 200px); overflow-y: auto; display: flex; flex-direction: column; gap: 4px; }
-        .sidebar::-webkit-scrollbar { width: 4px; }
-        .sidebar::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
-        .filter-section { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--border-color); }
-        .filter-btn { display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--text-main); transition: all 0.2s; user-select: none; width: 100%; }
-        .filter-btn:hover { background: #F0F0EF; }
-        .filter-icon { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
-        i.filter-icon { width: auto; height: auto; font-size: 14px; color: currentColor; fill: none; }
-        .filter-btn.active-star { background: #FFF9E6; border-color: var(--star-color-on); color: #946F00; }
-        .filter-btn.active-star .filter-icon { fill: var(--star-color-on); }
-        .filter-btn.active-unwatched { background: #E8F5E9; border-color: var(--check-color-on); color: #1E8449; }
-        .sidebar-title { font-size: 11px; font-weight: 600; color: var(--text-sub); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; padding-left: 4px; }
-        .category-nav-list { list-style: none; display: flex; flex-direction: column; gap: 1px; }
-        .category-nav-item { font-size: 13px; padding: 7px 10px; border-radius: var(--radius-sm); cursor: pointer; color: var(--text-sub); transition: all 0.15s; font-weight: 500; }
-        .category-nav-item:hover { background-color: var(--border-subtle); color: var(--text-main); }
-        .content-area { flex: 1; min-width: 0; }
-        .drive-category-group { margin-bottom: 24px; }
-        .drive-category-title { font-size: 22px; font-weight: 700; margin-bottom: 24px; padding-bottom: 8px; border-bottom: 2px solid var(--border-color); color: var(--text-main); }
-        .action-buttons { display: flex; gap: 4px; flex-shrink: 0; }
-        .icon-btn { width: 32px; height: 32px; border-radius: 8px; border: none; background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; color: var(--text-sub); }
-        .icon-btn:hover { background-color: var(--border-subtle); }
-        .icon-btn svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; }
-        .star-btn.active { color: var(--star-color-on); }
-        .star-btn.active svg { fill: var(--star-color-on); stroke: var(--star-color-on); }
-        .check-btn.active { color: var(--check-color-on); }
-        .check-btn.active svg { fill: var(--check-color-on); stroke: var(--check-color-on); }
-        .qa-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 0; margin-bottom: 12px; overflow: hidden; transition: box-shadow 0.2s; }
-        .qa-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
-        .qa-question { display: flex; align-items: flex-start; gap: 12px; padding: 18px 20px; font-weight: 600; font-size: 14px; line-height: 1.6; background-color: var(--border-subtle); border-bottom: 1px solid var(--border-color); position: relative; }
-        .qa-question .action-buttons { position: absolute; top: 14px; right: 14px; }
-        .qa-answer { display: flex; align-items: flex-start; gap: 12px; padding: 18px 20px; font-size: 14px; line-height: 1.8; white-space: pre-wrap; color: var(--text-main); }
-        .qa-badge { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; font-size: 13px; font-weight: 700; margin-top: 1px; }
-        .qa-badge-q { background-color: var(--accent-color); color: #fff; }
-        .qa-badge-a { background-color: var(--check-color-on); color: #fff; }
-        .message-state { text-align: center; padding: 48px; color: var(--text-sub); font-size: 14px; }
-        .error-container { display: none; flex-direction: column; gap: 8px; margin-bottom: 20px; }
-        .error-message { color: #DC2626; background: #FEF2F2; padding: 12px 16px; border-radius: var(--radius-md); font-size: 13px; border: 1px solid #FECACA; }
-        .chat-widget { position: fixed; bottom: 24px; right: 24px; z-index: 1000; display: flex; flex-direction: column; align-items: flex-end; font-family: inherit; }
-        .chat-toggle-btn { height: 56px; padding: 0 24px 0 20px; border-radius: 30px; background-color: var(--chat-primary); color: white; border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.15); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 12px; transition: all 0.2s; font-weight: 700; font-size: 15px; font-family: inherit; }
-        .chat-toggle-btn:hover { transform: scale(1.05); }
-        .chat-toggle-btn svg { width: 24px; height: 24px; fill: currentColor; }
-        .chat-btn-text { display: block; }
-        .chat-window { position: absolute; bottom: 72px; right: 0; width: 350px; height: 500px; background-color: var(--chat-bg); border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 8px 24px rgba(0,0,0,0.15); display: none; flex-direction: column; overflow: hidden; transform-origin: bottom right; }
-        .chat-window.active { display: flex; }
-        .chat-header { padding: 14px 16px; background-color: var(--card-bg); border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
-        .chat-title { font-weight: 600; font-size: 14px; color: var(--text-main); }
-        .chat-close { background: none; border: none; cursor: pointer; color: var(--text-sub); width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; transition: background 0.15s; font-size: 16px; }
-        .chat-close:hover { background: var(--border-subtle); }
-        .chat-messages { flex: 1; padding: 16px; overflow-y: auto; background-color: var(--card-bg); display: flex; flex-direction: column; gap: 10px; }
-        .chat-msg { max-width: 85%; padding: 10px 14px; border-radius: var(--radius-md); font-size: 13px; line-height: 1.6; word-wrap: break-word; }
-        .chat-msg.bot { align-self: flex-start; background-color: var(--chat-bubble-bot); color: var(--chat-text-bot); border-bottom-left-radius: 2px; }
-        .chat-msg.user { align-self: flex-end; background-color: var(--chat-bubble-user); color: var(--chat-text-user); border-bottom-right-radius: 2px; }
-        .chat-msg.system { align-self: center; background-color: #FEF2F2; color: #DC2626; border: 1px solid #FECACA; font-size: 12px; text-align: left; max-width: 90%; }
-        .chat-msg b, .chat-msg strong { font-weight: 700; }
-        .chat-msg a { color: var(--link-color); text-decoration: underline; text-underline-offset: 2px; word-break: break-all; }
-        .chat-msg a:hover { text-decoration: none; }
-        .chat-input-area { padding: 12px; border-top: 1px solid var(--border-color); display: flex; gap: 8px; background-color: var(--card-bg); }
-        .chat-input { flex: 1; padding: 9px 14px; border: 1px solid var(--border-color); border-radius: 20px; font-size: 13px; outline: none; transition: all 0.2s; font-family: inherit; }
-        .chat-input:focus { border-color: var(--accent-color); box-shadow: 0 0 0 3px rgba(0,0,0,0.04); }
-        .chat-input:disabled { background-color: var(--border-subtle); cursor: not-allowed; }
-        .chat-send-btn { background: none; border: none; cursor: pointer; color: var(--accent-color); padding: 4px; }
-        .chat-send-btn:disabled { color: var(--text-sub); cursor: not-allowed; }
-        .typing-dots { display: flex; gap: 4px; padding: 4px 8px; }
-        .typing-dot { width: 5px; height: 5px; background-color: #9CA3AF; border-radius: 50%; animation: typing 1.4s infinite ease-in-out both; }
-        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
-        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
-        @keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
-        @media (max-width: 768px) {
-            .container { padding: 0 16px; } header { padding: 12px 0; } .header-top { margin-bottom: 12px; } .logo-group img { height: 22px; } .header-title { font-size: 11px; } .tabs { margin-bottom: 12px; } .tab-btn { font-size: 12px; padding: 10px 6px; } .status-bar { display: none; } .main-layout { flex-direction: column; gap: 12px; padding-top: 4px; }
-            .sidebar { position: sticky; z-index: 90; width: calc(100% + 32px); margin-left: -16px; padding: 8px 16px; border-bottom: 1px solid var(--border-color); max-height: none; overflow-x: auto; display: flex; align-items: center; gap: 6px; background: rgba(250, 250, 250, 0.9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
-            .sidebar::-webkit-scrollbar { display: none; }
-            .filter-section { flex-direction: row; margin: 0; padding: 0; border: none; padding-right: 6px; margin-right: 4px; border-right: 1px solid var(--border-color); }
-            .filter-btn { padding: 5px 8px; width: auto; font-size: 11px; white-space: nowrap; } .sidebar-title { display: none; } .category-nav-list { display: flex; gap: 6px; }
-            .category-nav-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; padding: 5px 12px; font-size: 11px; }
-            .drive-category-group { scroll-margin-top: 240px; }
-            .chat-toggle-btn { width: 56px; height: 56px; border-radius: 50%; padding: 0; } .chat-btn-text { display: none; } .chat-window { width: calc(100vw - 32px); right: -8px; bottom: 80px; height: 60vh; }
-        }
+        :root{--bg:#FAFAFA;--bg-card:#FFF;--border:#E5E7EB;--border-hover:#D1D5DB;--text-primary:#111827;--text-secondary:#6B7280;--text-muted:#7C8290;--accent:#0852FF;--accent-light:rgba(8,82,255,.08);--accent-subtle:rgba(8,82,255,.04);--success:#10B981;--radius-lg:20px}
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text-primary);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased;min-height:100vh}
+        .ambient-glow{position:fixed;top:-20%;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(ellipse,rgba(8,82,255,.04) 0%,transparent 70%);pointer-events:none;z-index:0}
+        .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--border)}
+        .header-inner{max-width:840px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+        .header-logo img{height:58px}
+        .header-label{font-size:13px;font-weight:500;color:var(--text-muted)}
+        .main-content{position:relative;z-index:1;max-width:840px;margin:0 auto;padding:0 24px 100px}
+        .hero{padding:64px 0 48px;text-align:center}
+        .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-light);padding:6px 16px;border-radius:100px;margin-bottom:20px}
+        .hero h1{font-size:clamp(26px,5vw,38px);font-weight:800;letter-spacing:-.03em;line-height:1.2;margin-bottom:12px}
+        .hero-sub{font-size:15px;color:var(--text-secondary);max-width:520px;margin:0 auto}
+        .tab-nav{display:flex;gap:4px;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:4px;margin-bottom:40px;overflow-x:auto}
+        .tab-btn{flex:1;padding:12px 20px;border-radius:10px;font-size:14px;font-weight:600;text-align:center;text-decoration:none;color:var(--text-secondary);background:transparent;border:none;cursor:pointer;font-family:inherit;transition:all .2s;white-space:nowrap;min-width:fit-content}
+        .tab-btn.active{background:var(--accent);color:#fff;box-shadow:0 2px 8px rgba(8,82,255,.2)}
+        .tab-btn:not(.active):hover{background:var(--accent-subtle);color:var(--accent)}
+        .faq-category{margin-bottom:48px}
+        .faq-category-title{font-size:18px;font-weight:700;letter-spacing:-.01em;margin-bottom:16px;display:flex;align-items:center;gap:10px;color:var(--text-primary)}
+        .faq-category-title svg{width:22px;height:22px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+        .faq-item{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;margin-bottom:12px;overflow:hidden;transition:border-color .3s;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+        .faq-item:hover,.faq-item.open{border-color:var(--accent)}
+        .faq-question{display:flex;align-items:center;gap:14px;padding:20px 24px;cursor:pointer;user-select:none;transition:background .2s}
+        .faq-question:hover{background:var(--accent-subtle)}
+        .faq-q-mark{width:32px;height:32px;border-radius:10px;background:var(--accent-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;font-weight:800;color:var(--accent)}
+        .faq-question h3{flex:1;font-size:15px;font-weight:600;line-height:1.5}
+        .faq-toggle{width:28px;height:28px;border-radius:50%;background:var(--accent-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s}
+        .faq-toggle svg{width:14px;height:14px;stroke:var(--accent);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s}
+        .faq-item.open .faq-toggle svg{transform:rotate(180deg)}
+        .faq-answer{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1)}
+        .faq-item.open .faq-answer{max-height:1000px}
+        .faq-answer-inner{padding:0 24px 20px 70px;font-size:14px;color:var(--text-secondary);line-height:1.8}
+        .faq-answer-inner p{margin-bottom:10px}
+        .faq-answer-inner p:last-child{margin-bottom:0}
+        .faq-answer-inner a{color:var(--accent);font-weight:500;text-decoration:none}
+        .faq-answer-inner a:hover{text-decoration:underline}
+        .faq-answer-inner ul{padding-left:20px;margin:8px 0}
+        .faq-answer-inner li{margin-bottom:4px}
+        .faq-answer-inner strong{color:var(--text-primary);font-weight:600}
+        .contact-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);text-align:center;padding:40px 28px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+        .contact-card h2{font-size:20px;font-weight:700;margin-bottom:8px}
+        .contact-card p{font-size:14px;color:var(--text-secondary);margin-bottom:20px}
+        .contact-card a{color:var(--accent);font-weight:600;text-decoration:none}
+        .contact-card a:hover{text-decoration:underline}
+        .site-footer{text-align:center;padding:32px 24px;border-top:1px solid var(--border)}
+        .site-footer p{font-size:12px;color:var(--text-muted)}
+        .fade-up{opacity:0;transform:translateY(16px);animation:fadeUp .5s ease forwards}
+        @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+        @media(max-width:768px){.hero{padding:48px 0 36px}.main-content{padding:0 16px 60px}.header-inner{padding:14px 16px}.faq-answer-inner{padding-left:24px}}
+        @media(max-width:480px){.header-logo img{height:40px}.tab-btn{padding:10px 14px;font-size:13px}.faq-question{padding:16px 18px;gap:10px}.faq-q-mark{width:28px;height:28px;font-size:12px}.faq-question h3{font-size:14px}}
     </style>
 </head>
 <body>
-<div class="container">
-    <header id="mainHeader">
-        <div class="header-top">
-            <div class="logo-group">
-                <img src="/eigyou-kakumei_logo.svg" alt="営業革命" onerror="this.style.display='none'">
-                <div class="logo-divider"></div>
-                <img src="/bakuapo-logo.svg" alt="BakuApo" onerror="this.style.display='none'">
-            </div>
-            <span class="header-title">パートナー様向けマニュアル</span>
-        </div>
-        <div class="tabs">
-            <a class="tab-btn" href="/manual/videos/">動画カリキュラム</a>
-            <a class="tab-btn" href="/manual/resources/">資料ドライブ</a>
-            <a class="tab-btn active" href="/manual/faq/">Q&A</a>
-        </div>
-        <div class="controls-wrapper">
-            <div class="search-container">
-                <svg class="search-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                <input type="text" id="searchInput" class="search-input" placeholder="検索...">
-            </div>
-            <div id="errorContainer" class="error-container"></div>
-            <div class="status-bar"><span id="countDisplay">0件</span><div class="loading-indicator" id="loadingIndicator"><div class="spinner"></div><span>更新中...</span></div></div>
+    <div class="ambient-glow"></div>
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-logo"><a href="/manual/videos/" style="display:flex;align-items:center;text-decoration:none;"><img src="/bakuure-logo.svg" alt="バク売れLPテンプレ"></a></div>
+            <span class="header-label">パートナーマニュアル</span>
         </div>
     </header>
-    <div class="main-layout">
-        <aside class="sidebar" id="stickySidebar">
-            <div class="filter-section">
-                <div class="filter-btn" id="starFilterBtn" onclick="toggleStarFilter()">
-                    <svg class="filter-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    <span>スター付きのみ</span>
+    <main class="main-content">
+        <section class="hero">
+            <p class="hero-eyebrow">Partner Manual</p>
+            <h1>よくある質問（FAQ）</h1>
+            <p class="hero-sub">販売パートナー様からよくいただくご質問と回答をまとめています。</p>
+        </section>
+        <nav class="tab-nav">
+            <a href="/manual/videos/" class="tab-btn">動画マニュアル</a>
+            <a href="/manual/resources/" class="tab-btn">営業資料</a>
+            <a href="/manual/faq/" class="tab-btn active">FAQ</a>
+        </nav>
+        <!-- Category: サービスについて -->
+        <div class="faq-category fade-up" style="animation-delay:.1s">
+            <h2 class="faq-category-title"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>サービスについて</h2>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span class="faq-q-mark">Q</span>
+                    <h3>バク売れLPテンプレとはどのようなサービスですか？</h3>
+                    <div class="faq-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
                 </div>
-                <div class="filter-btn" id="unwatchedFilterBtn" onclick="toggleUnwatchedFilter()">
-                    <i class="fa-regular fa-eye filter-icon"></i>
-                    <span>未確認のみ表示</span>
-                </div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    <p>バク売れLPテンプレは、<strong>売れる構造に基づいたLPデザインテンプレート</strong>を提供するサービスです。HTML / CSS / JavaScript ベースのテンプレートを、テキスト・画像の差し替えだけですぐにプロ品質のLPとしてご利用いただけます。</p>
+                    <p>株式会社CHAINSODAが提供しています。</p>
+                </div></div>
             </div>
-            <div class="sidebar-title">カテゴリー目次</div>
-            <ul class="category-nav-list" id="categoryNav"></ul>
-        </aside>
-        <main class="content-area" id="contentArea">
-            <div class="initial-loading"><div class="loading-spinner"></div><div class="loading-text">データを読み込んでいます...</div><div class="skeleton-list"><div class="skeleton-card"><div class="skeleton-line title"></div><div class="skeleton-line long"></div><div class="skeleton-line medium"></div></div><div class="skeleton-card"><div class="skeleton-line title"></div><div class="skeleton-line long"></div><div class="skeleton-line short"></div></div></div></div>
-        </main>
-    </div>
-    <div class="chat-widget">
-        <button class="chat-toggle-btn" onclick="toggleChat()" title="AIアシスタントに質問">
-            <svg viewBox="0 0 24 24"><path d="M20 9V7c0-1.1-.9-2-2-2h-3c0-1.66-1.34-3-3-3S9 3.34 9 5H6c-1.1 0-2 .9-2 2v2c-1.66 0-3 1.34-3 3s1.34 3 3 3v4c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-4c1.66 0 3-1.34 3-3s-1.34-3-3-3zm-2 10H6v-4h12v4zm0-6H6V7h12v6z"/><circle cx="8.5" cy="10.5" r="1.5"/><circle cx="15.5" cy="10.5" r="1.5"/></svg>
-            <span class="chat-btn-text">AIに質問する</span>
-        </button>
-        <div class="chat-window" id="chatWindow">
-            <div class="chat-header"><span class="chat-title">AIパートナーアシスタント</span><button class="chat-close" onclick="toggleChat()">✕</button></div>
-            <div class="chat-messages" id="chatMessages"><div class="chat-msg bot">こんにちは！<br>動画カリキュラム、資料、Q&A、切り返しトークについて、ご質問があればお答えします。</div></div>
-            <div class="chat-input-area">
-                <input type="text" id="chatInput" class="chat-input" placeholder="質問を入力..." onkeypress="handleChatKey(event)">
-                <button class="chat-send-btn" onclick="sendChatMessage()" id="chatSendBtn"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span class="faq-q-mark">Q</span>
+                    <h3>プランは何がありますか？</h3>
+                    <div class="faq-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+                </div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    <p>2つのプランをご用意しています。</p>
+                    <ul>
+                        <li><strong>LP｜スタータープラン（¥55,000税込）：</strong>LPテンプレート一式（HTML/CSS/JS/画像素材）</li>
+                        <li><strong>LP＋バナー｜集客強化プラン（¥110,000税込）：</strong>上記＋バナーデザインテンプレート素材（PSD/Figma/PNG）</li>
+                    </ul>
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span class="faq-q-mark">Q</span>
+                    <h3>テンプレートはどのような形式で提供されますか？</h3>
+                    <div class="faq-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+                </div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    <p>HTML / CSS / JavaScript ファイル＋画像素材のセットで、ZIPファイルとしてダウンロード提供いたします。特別なフレームワークやCMSは不要で、どのホスティングサービスでもすぐに公開可能です。</p>
+                </div></div>
             </div>
         </div>
-    </div>
-</div>
-<script>
-    const CURRENT_TAB = 'qa';
-    const TAB_URLS = { video: '/manual/videos/', drive: '/manual/resources/', qa: '/manual/faq/' };
-    const CONFIG = {
-        geminiProxyUrl: "/api/gemini-proxy",
-        videoSheetUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQBVuXb-cTydLU-CMFwHyYnsJfg9e2AsTEa4TU1G9nYQlShkZHv3wGM2a1X5ww81o5v8HZNS9IXUI1b/pub?gid=396280088&single=true&output=csv",
-        driveSheetUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQBVuXb-cTydLU-CMFwHyYnsJfg9e2AsTEa4TU1G9nYQlShkZHv3wGM2a1X5ww81o5v8HZNS9IXUI1b/pub?gid=380310918&single=true&output=csv",
-        qaSheetUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQBVuXb-cTydLU-CMFwHyYnsJfg9e2AsTEa4TU1G9nYQlShkZHv3wGM2a1X5ww81o5v8HZNS9IXUI1b/pub?gid=1192474135&single=true&output=csv",
-        rebuttalSheetUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQBVuXb-cTydLU-CMFwHyYnsJfg9e2AsTEa4TU1G9nYQlShkZHv3wGM2a1X5ww81o5v8HZNS9IXUI1b/pub?gid=1328585848&single=true&output=csv",
-        refreshInterval: 60000
-    };
-    const THRESHOLDS = { CONFIDENCE: 0.6, SUGGESTION: 0.25 };
-    const state = { currentTab: CURRENT_TAB, searchText: '', showStarredOnly: false, showUnwatchedOnly: false, starredItems: new Set(), watchedItems: new Set(), data: { video: [], drive: [], qa: [], rebuttal: [] }, isLoaded: { video: false, drive: false, qa: false, rebuttal: false }, hasError: false, chatHistory: [], messageTimestamps: [], lockedUntil: 0 };
-    const els = { input: document.getElementById('searchInput'), count: document.getElementById('countDisplay'), loading: document.getElementById('loadingIndicator'), errorContainer: document.getElementById('errorContainer'), categoryNav: document.getElementById('categoryNav'), header: document.getElementById('mainHeader'), sidebar: document.getElementById('stickySidebar'), starFilterBtn: document.getElementById('starFilterBtn'), unwatchedFilterBtn: document.getElementById('unwatchedFilterBtn'), contentArea: document.getElementById('contentArea'), chatWindow: document.getElementById('chatWindow'), chatMessages: document.getElementById('chatMessages'), chatInput: document.getElementById('chatInput'), chatSendBtn: document.getElementById('chatSendBtn') };
-
-    function updateLayoutMetrics() {
-        const headerHeight = els.header.offsetHeight; const isMobile = window.innerWidth <= 768;
-        const topOffset = isMobile ? headerHeight : headerHeight + 20; els.sidebar.style.top = `${topOffset}px`;
-        const totalStickyHeight = isMobile ? topOffset + els.sidebar.offsetHeight + 20 : topOffset;
-        document.querySelectorAll('.drive-category-group').forEach(el => { el.style.scrollMarginTop = `${totalStickyHeight}px`; });
+        <!-- Category: 販売・契約について -->
+        <div class="faq-category fade-up" style="animation-delay:.15s">
+            <h2 class="faq-category-title"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>販売・契約について</h2>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span class="faq-q-mark">Q</span>
+                    <h3>販売パートナーとしての販売フローを教えてください。</h3>
+                    <div class="faq-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+                </div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    <p>基本的な販売フローは以下の通りです。</p>
+                    <ul>
+                        <li><strong>①リード獲得：</strong>見込み客へのアプローチ。LP制作に課題を感じている企業・個人がターゲットです。</li>
+                        <li><strong>②契約ページへご案内：</strong><a href="/contract/">/contract/</a> のURLをお客様にお伝えください。プラン選択と規約同意をお客様自身で行っていただきます。</li>
+                        <li><strong>③お支払い：</strong><a href="/checkout/">/checkout/</a> でクレジットカード決済（Stripe）を行います。</li>
+                        <li><strong>④テンプレート納品：</strong>決済確認後、ダウンロードリンクをメールでお届けします。</li>
+                    </ul>
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span class="faq-q-mark">Q</span>
+                    <h3>支払い方法は何がありますか？</h3>
+                    <div class="faq-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+                </div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    <p><strong>クレジットカード決済のみ</strong>に対応しております（Visa / Mastercard / JCB / American Express）。Stripeを決済プラットフォームとして利用しています。銀行振込には対応しておりません。</p>
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span class="faq-q-mark">Q</span>
+                    <h3>契約ページでパートナーの紹介者名（コード）は必要ですか？</h3>
+                    <div class="faq-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+                </div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    <p>はい。契約フォームに「紹介者名」の入力欄がありますので、パートナー様のお名前またはコードをお客様に入力していただくようご案内ください。これにより紹介実績が正しく記録されます。</p>
+                </div></div>
+            </div>
+        </div>
+        <!-- Category: テンプレートについて -->
+        <div class="faq-category fade-up" style="animation-delay:.2s">
+            <h2 class="faq-category-title"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>テンプレートについて</h2>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span class="faq-q-mark">Q</span>
+                    <h3>テンプレートのカスタマイズに専門知識は必要ですか？</h3>
+                    <div class="faq-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+                </div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    <p>テキストと画像の差し替えだけであれば、テキストエディタ（メモ帳やVS Code）の基本操作ができれば問題ありません。CSS変数でカラーやフォントの変更も簡単に行えます。</p>
+                    <p>レイアウトの大幅変更など、より高度なカスタマイズにはHTML/CSSの基礎知識が必要です。<a href="/user-guide/contact-chat/">AIチャットサポート</a>も活用いただけます。</p>
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span class="faq-q-mark">Q</span>
+                    <h3>テンプレートは複数の案件で使い回せますか？</h3>
+                    <div class="faq-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+                </div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    <p>購入されたテンプレートは<strong>ご契約者様の案件でのみ</strong>ご利用いただけます。1契約につき1案件（1サイト）でのご利用となります。複数案件でご利用の場合は、案件数分のご契約が必要です。</p>
+                    <p>第三者への共有・再配布・転売は利用規約で禁止されています。</p>
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span class="faq-q-mark">Q</span>
+                    <h3>スマートフォン（レスポンシブ）に対応していますか？</h3>
+                    <div class="faq-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+                </div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    <p>はい、すべてのテンプレートが<strong>PC・タブレット・スマートフォン</strong>に対応したレスポンシブデザインとなっています。</p>
+                </div></div>
+            </div>
+        </div>
+        <!-- Category: サポートについて -->
+        <div class="faq-category fade-up" style="animation-delay:.25s">
+            <h2 class="faq-category-title"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>サポートについて</h2>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span class="faq-q-mark">Q</span>
+                    <h3>テンプレートの使い方でわからないことがあった場合は？</h3>
+                    <div class="faq-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+                </div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    <p>以下の方法でサポートをご利用いただけます。</p>
+                    <ul>
+                        <li><strong><a href="/user-guide/contact-chat/">AIチャットサポート</a>：</strong>24時間対応。テンプレートの使い方やHTML/CSS/JSに関する技術的な質問にAIがお答えします。</li>
+                        <li><strong><a href="/user-guide/contact-form/">お問い合わせフォーム</a>：</strong>スタッフが2営業日以内にメールでご返信します。</li>
+                        <li><strong>メール：</strong><a href="mailto:info@chainsoda.world">info@chainsoda.world</a></li>
+                    </ul>
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span class="faq-q-mark">Q</span>
+                    <h3>返金・キャンセルは可能ですか？</h3>
+                    <div class="faq-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+                </div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    <p>デジタルコンテンツの特性上、ダウンロード後の返金・キャンセルは原則としてお受けしておりません。ご購入前にサービス概要やFAQをよくご確認ください。</p>
+                    <p>万一、ファイルの不備等がございましたら、<a href="/user-guide/contact-form/">お問い合わせフォーム</a>からご連絡ください。</p>
+                </div></div>
+            </div>
+        </div>
+        <div class="contact-card fade-up" style="animation-delay:.3s">
+            <h2>解決しない場合は</h2>
+            <p>上記に該当しないご質問は、お気軽にお問い合わせください。</p>
+            <p><a href="mailto:info@chainsoda.world">info@chainsoda.world</a></p>
+        </div>
+    </main>
+    <footer class="site-footer"><p>&copy; 2026 バク売れLPテンプレ &amp; CHAINSODA Co., Ltd. — All rights reserved.</p></footer>
+    <script>
+    function toggleFaq(el){
+        const item=el.closest('.faq-item');
+        const wasOpen=item.classList.contains('open');
+        item.classList.toggle('open');
     }
-    function loadUserPreferences() { try { const s = localStorage.getItem('partner_manual_stars_v2'); if (s) state.starredItems = new Set(JSON.parse(s)); const w = localStorage.getItem('partner_manual_watched_v2'); if (w) state.watchedItems = new Set(JSON.parse(w)); } catch(e){} }
-    function saveUserPreferences() { localStorage.setItem('partner_manual_stars_v2', JSON.stringify([...state.starredItems])); localStorage.setItem('partner_manual_watched_v2', JSON.stringify([...state.watchedItems])); }
-    function toggleStar(key) { if (state.starredItems.has(key)) state.starredItems.delete(key); else state.starredItems.add(key); saveUserPreferences(); renderView(); }
-    function toggleWatched(key) { if (state.watchedItems.has(key)) state.watchedItems.delete(key); else state.watchedItems.add(key); saveUserPreferences(); renderView(); }
-    function toggleStarFilter() { state.showStarredOnly = !state.showStarredOnly; els.starFilterBtn.classList.toggle('active-star', state.showStarredOnly); renderView(); }
-    function toggleUnwatchedFilter() { state.showUnwatchedOnly = !state.showUnwatchedOnly; els.unwatchedFilterBtn.classList.toggle('active-unwatched', state.showUnwatchedOnly); renderView(); }
-
-    function parseCSV(text) {
-        const arr = []; let quote = false; let row = []; let col = ''; let c = 0;
-        for (; c < text.length; c++) { let cc = text[c], nc = text[c+1]; if (quote) { if (cc === '"') { if (nc === '"') { col += '"'; c++; } else { quote = false; } } else { col += cc; } } else { if (cc === '"') { quote = true; } else if (cc === ',') { row.push(col); col = ''; } else if (cc === '\r' && nc === '\n') { row.push(col); col = ''; arr.push(row); row = []; c++; } else if (cc === '\n' || cc === '\r') { row.push(col); col = ''; arr.push(row); row = []; } else { col += cc; } } }
-        if (col.length > 0 || row.length > 0) { row.push(col); arr.push(row); } return arr;
-    }
-
-    function createActionButtons(id, tab) {
-        const div = document.createElement('div'); div.className = 'action-buttons';
-        const isStarred = state.starredItems.has(id); const isWatched = state.watchedItems.has(id);
-        div.innerHTML = `<button class="icon-btn star-btn ${isStarred?'active':''}" onclick="toggleStar('${id}')" title="${isStarred?'スター付きを外す':'スター付きにする'}"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></button><button class="icon-btn check-btn ${isWatched?'active':''}" onclick="toggleWatched('${id}')" title="${isWatched?'確認済みを外す':'確認済みにする'}"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></button>`;
-        return div;
-    }
-
-    function renderNav(categories, idMap) {
-        const frag = document.createDocumentFragment();
-        categories.forEach(cat => { const li = document.createElement('li'); li.className = 'category-nav-item'; li.textContent = cat; li.onclick = () => { const el = document.getElementById(idMap[cat]); if(el) el.scrollIntoView({behavior:'smooth', block:'start'}); }; frag.appendChild(li); });
-        els.categoryNav.appendChild(frag);
-    }
-
-    function renderQAList(items, container) {
-        const categories = new Set(); const catMap = {}; const grouped = {};
-        items.forEach(item => { const cat = item.category || '未分類'; if (!grouped[cat]) grouped[cat] = []; grouped[cat].push(item); });
-        let idx = 0;
-        Object.keys(grouped).forEach(cat => {
-            categories.add(cat); const catId = `qa-cat-${idx++}`; catMap[cat] = catId;
-            const section = document.createElement('div'); section.className = 'drive-category-group'; section.id = catId;
-            section.innerHTML = `<h2 class="drive-category-title">${cat}</h2>`;
-            grouped[cat].forEach(item => {
-                const card = document.createElement('div'); card.className = 'qa-card';
-                const actions = createActionButtons(item.id, 'qa');
-                card.innerHTML = `<div class="qa-question"><span class="qa-badge qa-badge-q">Q</span><span>${item.question}</span></div><div class="qa-answer"><span class="qa-badge qa-badge-a">A</span><span>${item.answer}</span></div>`;
-                card.querySelector('.qa-question').appendChild(actions);
-                section.appendChild(card);
-            });
-            container.appendChild(section);
+    // Open first FAQ in each category by default
+    document.addEventListener('DOMContentLoaded',function(){
+        document.querySelectorAll('.faq-category').forEach(function(cat){
+            const first=cat.querySelector('.faq-item');
+            if(first)first.classList.add('open');
         });
-        renderNav(categories, catMap);
-    }
-
-    function renderView() {
-        const container = els.contentArea; container.innerHTML = ''; els.categoryNav.innerHTML = '';
-        const sourceData = state.data[CURRENT_TAB]; const query = state.searchText.toLowerCase().trim();
-        if (!state.isLoaded[CURRENT_TAB]) { container.innerHTML = `<div class="initial-loading"><div class="loading-spinner"></div><div class="loading-text">データを読み込んでいます...</div><div class="skeleton-list"><div class="skeleton-card"><div class="skeleton-line title"></div><div class="skeleton-line long"></div><div class="skeleton-line medium"></div></div><div class="skeleton-card"><div class="skeleton-line title"></div><div class="skeleton-line long"></div><div class="skeleton-line short"></div></div></div></div>`; return; }
-        const filtered = sourceData.filter(item => { if (state.showStarredOnly && !state.starredItems.has(item.id)) return false; if (state.showUnwatchedOnly && state.watchedItems.has(item.id)) return false; if (!query) return true; return JSON.stringify(item).toLowerCase().includes(query); });
-        els.count.textContent = `${filtered.length}件`;
-        if (filtered.length === 0) { container.innerHTML = `<div class="message-state">該当なし</div>`; return; }
-        renderQAList(filtered, container);
-        requestAnimationFrame(updateLayoutMetrics);
-    }
-
-    function loadCachedData() {
-        try {
-            const cached = sessionStorage.getItem('manual_cache_v1');
-            if (cached) { const obj = JSON.parse(cached); state.data = obj.data; state.isLoaded = obj.isLoaded; renderView(); return true; }
-        } catch (e) {}
-        return false;
-    }
-    function saveCacheData() {
-        try { sessionStorage.setItem('manual_cache_v1', JSON.stringify({ data: state.data, isLoaded: state.isLoaded })); } catch (e) {}
-    }
-
-    async function fetchAllData() {
-        const isFirstLoad = !state.isLoaded[CURRENT_TAB];
-        if (isFirstLoad) { els.loading.classList.add('active'); }
-        els.errorContainer.style.display = 'none';
-        try {
-            const vRes = await fetch(`${CONFIG.videoSheetUrl}&t=${Date.now()}`); if (vRes.ok) { const t = await vRes.text(); const rows = parseCSV(t).slice(1).filter(r => (r[0]||'').toUpperCase() === 'ON'); state.data.video = rows.map(r => ({ sourceType: 'manual', id: r[2] || r[3], category: r[1] || '未分類', youtubeUrl: r[2], title: r[3], desc: r[4], materialUrl: r[5] })); state.isLoaded.video = true; }
-            const dRes = await fetch(`${CONFIG.driveSheetUrl}&t=${Date.now()}`); if (dRes.ok) { const t = await dRes.text(); const rows = parseCSV(t).slice(1).filter(r => (r[0]||'').toUpperCase() === 'ON'); state.data.drive = rows.map(r => ({ sourceType: 'material', id: r[5] || '#', large: r[1] || 'その他', medium: r[2] || '', small: r[3] || '', detail: r[4] || '', url: r[5] || '#', desc: r[6] || '' })); state.isLoaded.drive = true; }
-            const qRes = await fetch(`${CONFIG.qaSheetUrl}&t=${Date.now()}`); if (qRes.ok) { const t = await qRes.text(); const rows = parseCSV(t).slice(1).filter(r => (r[0]||'').toUpperCase() === 'ON'); state.data.qa = rows.map((r, i) => ({ sourceType: 'qa', id: `qa-${r[2] || i}`, category: r[1] || '未分類', question: r[2] || '', answer: r[3] || '' })); state.isLoaded.qa = true; }
-            const rRes = await fetch(`${CONFIG.rebuttalSheetUrl}&t=${Date.now()}`); if (rRes.ok) { const t = await rRes.text(); const rows = parseCSV(t).slice(1).filter(r => (r[0]||'').toUpperCase() === 'ON'); state.data.rebuttal = rows.map((r, i) => ({ sourceType: 'qa', id: `rebuttal-${r[2] || i}`, category: r[1] || '未分類', question: r[2] || '', answer: r[3] || '' })); state.isLoaded.rebuttal = true; }
-        } catch (e) { console.error(e); state.hasError = true; els.errorContainer.style.display = 'flex'; els.errorContainer.innerHTML = `<div class="error-message">データの更新に失敗しました。</div>`; }
-        saveCacheData();
-        renderView(); els.loading.classList.remove('active');
-    }
-
-    function toggleChat() { els.chatWindow.classList.toggle('active'); if (els.chatWindow.classList.contains('active')) { els.chatInput.focus(); scrollToBottom(); } }
-    function handleChatKey(e) { if (e.key === 'Enter') sendChatMessage(); }
-    function scrollToBottom() { els.chatMessages.scrollTop = els.chatMessages.scrollHeight; }
-    function navigateToItem(tab, index) {
-        els.chatWindow.classList.remove('active');
-        if (tab === CURRENT_TAB) {
-            requestAnimationFrame(() => { requestAnimationFrame(() => {
-                const items = document.querySelectorAll('#contentArea .qa-card');
-                let targetEl = items[index] || null;
-                if (targetEl) { targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' }); targetEl.style.transition = 'box-shadow 0.3s, outline 0.3s'; targetEl.style.outline = '2px solid var(--accent-color)'; targetEl.style.boxShadow = '0 0 0 4px rgba(35,131,226,0.15)'; setTimeout(() => { targetEl.style.outline = 'none'; targetEl.style.boxShadow = ''; }, 2500); }
-            }); });
-        } else { window.location.href = TAB_URLS[tab]; }
-    }
-    function formatChatMessage(text) { if (!text) return ""; let f = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"); f = f.replace(/\[([^\]]+)\]\((https?:\/\/[^\s\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>'); f = f.replace(/(?<!href="|">)(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer">リンク</a>'); f = f.replace(/\*\*(.*?)\*\*/g, '<b class="font-bold">$1</b>'); f = f.replace(/\n/g, '<br>'); return f; }
-    function addMessage(text, type, appendHtml = "") { const div = document.createElement('div'); div.className = `chat-msg ${type}`; div.innerHTML = formatChatMessage(text) + appendHtml; els.chatMessages.appendChild(div); scrollToBottom(); }
-    function addTypingIndicator() { const div = document.createElement('div'); div.className = 'chat-msg bot typing-indicator'; div.innerHTML = `<div class="typing-dots"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>`; els.chatMessages.appendChild(div); scrollToBottom(); return div; }
-    function setInputLock(locked) { els.chatInput.disabled = locked; els.chatSendBtn.disabled = locked; els.chatInput.placeholder = locked ? "送信制限中です (3分間)" : "質問を入力..."; }
-    function calculateSimilarity(str1, str2) { if (!str1 || !str2) return 0.0; const s1 = str1.toLowerCase().replace(/\s+/g, ""); const s2 = str2.toLowerCase().replace(/\s+/g, ""); if (s1 === s2) return 1.0; if (s1.length < 2 || s2.length < 2) return 0.0; const getBigrams = (str) => { const b = []; for (let i = 0; i < str.length - 1; i++) b.push(str.substring(i, i + 2)); return b; }; const bg1 = getBigrams(s1); const bg2 = getBigrams(s2); let intersection = 0; const bg2Copy = [...bg2]; for (const pair of bg1) { const idx = bg2Copy.indexOf(pair); if (idx !== -1) { intersection++; bg2Copy.splice(idx, 1); } } return (2.0 * intersection) / (bg1.length + bg2.length); }
-    function findRelevantContents(query, maxResults = 5) {
-        const taggedItems = [...state.data.video.map((item, i) => ({ ...item, _tab: 'video', _index: i })), ...state.data.drive.map((item, i) => ({ ...item, _tab: 'drive', _index: i })), ...state.data.qa.map((item, i) => ({ ...item, _tab: 'qa', _index: i })), ...state.data.rebuttal.map((item, i) => ({ ...item, _tab: 'rebuttal', _index: i }))];
-        const scored = taggedItems.map(item => { let targetText = '', displayText = '', refLabel = ''; if (item.sourceType === 'manual') { targetText = `${item.category} ${item.title} ${item.desc || ''}`; displayText = `[動画: ${item.title}] 内容: ${item.desc}`; refLabel = item.title; } else if (item.sourceType === 'material') { targetText = `${item.large} ${item.medium} ${item.small} ${item.detail} ${item.desc}`; const name = item.detail || item.small || item.medium || item.large; displayText = `[資料: ${name}] 内容: ${item.desc}`; refLabel = name; } else { targetText = `${item.category} ${item.question} ${item.answer}`; const tabLabel = item._tab === 'rebuttal' ? '切り返し' : 'Q&A'; displayText = `[${tabLabel}] Q: ${item.question}\nA: ${item.answer}`; refLabel = item.question; } const queryWords = query.toLowerCase().replace(/[\s　]+/g, ' ').split(' ').filter(w => w.length > 1); let keywordScore = 0; queryWords.forEach(w => { if (targetText.toLowerCase().includes(w)) keywordScore += 0.15; }); const bigramScore = calculateSimilarity(query, targetText); return { item, score: Math.min(bigramScore + keywordScore, 1.0), displayText, refLabel, tab: item._tab, index: item._index }; });
-        return scored.filter(s => s.score >= THRESHOLDS.SUGGESTION).sort((a, b) => b.score - a.score).slice(0, maxResults);
-    }
-    async function sendChatMessage() {
-        const now = Date.now(); if (state.lockedUntil > now) return; const text = els.chatInput.value.trim(); if (!text) return;
-        const LIMIT_COUNT = 8; const LIMIT_WINDOW = 3 * 60 * 1000; state.messageTimestamps = state.messageTimestamps.filter(t => t > now - LIMIT_WINDOW);
-        if (state.messageTimestamps.length >= LIMIT_COUNT) { state.lockedUntil = now + LIMIT_WINDOW; addMessage('連続で質問をしすぎているようです。しばらく経ってから再度お試しください。<br>または、<a href="https://lin.ee/0rNANZ7" target="_blank" rel="noopener noreferrer">事務局へ連絡</a>', 'system'); els.chatInput.value = ''; setInputLock(true); setTimeout(() => { if (Date.now() >= state.lockedUntil) { setInputLock(false); state.lockedUntil = 0; } }, LIMIT_WINDOW); return; }
-        state.messageTimestamps.push(now); addMessage(text, 'user'); els.chatInput.value = ''; const loadingDiv = addTypingIndicator();
-        try {
-            const relevantResults = findRelevantContents(text, 5); const topScore = relevantResults.length > 0 ? relevantResults[0].score : 0;
-            const tabLabelMap = { video: '動画カリキュラム', drive: '資料ドライブ', qa: 'Q&A', rebuttal: '切り返し集' };
-            const commonInstruction = `\n[AIの振る舞い・回答ルール]\n1. 機能に関する質問: 「パートナーQA、商談切り返し、動画・資料マニュアルの案内が可能です」と回答。\n2. 挨拶: 端的に返す。\n3. 不適切: 拒否する。\n4. フォーマット: **太字**使用。外部URLリンクは[こちら](URL)形式。\n5. 関連する参考情報がある場合は、回答内で「こちらの動画」「こちらのQ&A」「こちらの資料」「こちらの切り返し集」などの言葉で言及してください。具体的なリンクボタンは回答の後にシステムが自動で付与するため、回答文内にREF_LINKタグは書かないでください。`;
-            const contextText = relevantResults.map((r, i) => `${i+1}. [${tabLabelMap[r.tab]}] ${r.displayText}`).join('\n');
-            let prompt = '';
-            if (topScore >= THRESHOLDS.CONFIDENCE) { prompt = `あなたは営業パートナー支援AIです。以下の[参考情報]を元に質問に回答してください。複数の参考情報がある場合は、関連するものすべてに言及してください。\n\n[参考情報]\n${contextText}\n\n[ユーザーの質問]\n${text}\n${commonInstruction}`; }
-            else if (topScore >= THRESHOLDS.SUGGESTION) { prompt = `あなたは営業パートナー支援AIです。完全一致しませんでしたが、近い資料が見つかりました。「もしかしてこちらですか？」と提案してください。\n\n[近い資料]\n${contextText}\n\n[ユーザーの質問]\n${text}\n${commonInstruction}`; }
-            else { prompt = `あなたは営業パートナー支援AIです。関連資料は見当たりませんでしたが、ルールに従って回答してください。業務的な質問で答えられない場合は謝罪してください。\n\n[ユーザーの質問]\n${text}\n${commonInstruction}`; }
-            const response = await fetch(CONFIG.geminiProxyUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] }) });
-            const data = await response.json(); loadingDiv.remove();
-            if (data.error) { addMessage(`システムエラー: ${data.error.message}`, 'system'); }
-            else {
-                let answer = data.candidates?.[0]?.content?.parts?.[0]?.text || 'すみません、回答を生成できませんでした。';
-                let refLinksHtml = '';
-                if (relevantResults.length > 0 && topScore >= THRESHOLDS.SUGGESTION) {
-                    const badgeClassMap = { video: 'badge-video', drive: 'badge-drive', qa: 'badge-qa', rebuttal: 'badge-rebuttal' };
-                    const iconMap = { video: '<svg class="ref-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>', drive: '<svg class="ref-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>', qa: '<svg class="ref-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>', rebuttal: '<svg class="ref-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>' };
-                    refLinksHtml = '<div class="chat-ref-links">';
-                    relevantResults.forEach(r => { const label = r.refLabel.length > 30 ? r.refLabel.substring(0, 30) + '…' : r.refLabel; const badge = `<span class="ref-badge ${badgeClassMap[r.tab]}">${tabLabelMap[r.tab]}</span>`; const icon = iconMap[r.tab]; if (r.tab === 'drive' && r.item.url && r.item.url !== '#') { refLinksHtml += `<a class="chat-ref-btn" href="${r.item.url}" target="_blank" rel="noopener noreferrer">${icon}${badge}<span>${label}</span></a>`; } else { refLinksHtml += `<a class="chat-ref-btn" onclick="navigateToItem('${r.tab}', ${r.index})">${icon}${badge}<span>${label}</span></a>`; } });
-                    refLinksHtml += '</div>';
-                }
-                addMessage(answer, 'bot', refLinksHtml + '<div style="display:block; margin-top:10px; padding-top:8px; border-top:1px solid rgba(0,0,0,0.1); font-size:11px; color:#888; line-height:1.4;">※回答は必ずしも正しいとは限りません。重要な情報は事務局まで確認するようにしてください。</div>');
-            }
-        } catch (err) { loadingDiv.remove(); console.error(err); addMessage("通信エラーが発生しました。", 'system'); }
-    }
-    function init() { loadUserPreferences(); els.input.addEventListener('input', (e) => { state.searchText = e.target.value; renderView(); }); window.addEventListener('resize', updateLayoutMetrics); loadCachedData(); fetchAllData(); setInterval(fetchAllData, CONFIG.refreshInterval); }
-    document.addEventListener('DOMContentLoaded', init);
-</script>
+    });
+    </script>
 </body>
 </html>

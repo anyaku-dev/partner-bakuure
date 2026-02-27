@@ -21,10 +21,10 @@
         body{font-family:'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text-primary);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased;min-height:100vh}
         .ambient-glow{position:fixed;top:-20%;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(ellipse,rgba(8,82,255,.04) 0%,transparent 70%);pointer-events:none;z-index:0}
         .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--border)}
-        .header-inner{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+        .header-inner{max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
         .header-logo img{height:58px}
         .header-label{font-size:13px;font-weight:500;color:var(--text-muted)}
-        .main-content{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 24px 100px}
+        .main-content{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 24px 100px}
         .hero{padding:64px 0 48px;text-align:center}
         .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-light);padding:6px 16px;border-radius:100px;margin-bottom:20px}
         .hero h1{font-size:clamp(26px,5vw,38px);font-weight:800;letter-spacing:-.03em;line-height:1.2;margin-bottom:12px}
@@ -62,19 +62,14 @@
 
         /* 関連リンク */
         .link-section{margin-bottom:56px}
-        .link-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-        .link-card{display:block;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;text-decoration:none;color:inherit;transition:all .3s ease;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+        .link-grid{display:flex;flex-direction:column;gap:12px}
+        .link-card{display:flex;align-items:center;gap:16px;padding:20px 24px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);text-decoration:none;color:inherit;transition:all .3s ease;box-shadow:0 1px 3px rgba(0,0,0,.04)}
         .link-card:hover{border-color:var(--accent);box-shadow:0 8px 24px rgba(8,82,255,.06),0 0 0 1px var(--accent)}
-        .link-thumb{width:100%;aspect-ratio:16/9;overflow:hidden;background:#f1f5f9;position:relative}
-        .link-thumb img{width:100%;height:100%;object-fit:cover;object-position:top;transition:opacity .3s}
-        .link-thumb-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#e0e7ff 0%,#f1f5f9 100%)}
-        .link-thumb-placeholder svg{width:36px;height:36px;stroke:var(--border-hover);fill:none;stroke-width:1.5}
-        .link-body{padding:18px 20px;display:flex;align-items:center;gap:14px}
-        .link-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--accent-light)}
-        .link-icon svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+        .link-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--accent-light)}
+        .link-icon svg{width:20px;height:20px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
         .link-text{flex:1;min-width:0}
-        .link-text h3{font-size:14px;font-weight:700;margin-bottom:2px}
-        .link-text p{font-size:12px;color:var(--text-muted);margin-bottom:0}
+        .link-text h3{font-size:15px;font-weight:700;margin-bottom:2px}
+        .link-text p{font-size:13px;color:var(--text-muted);margin-bottom:0}
         .link-arrow{width:28px;height:28px;border-radius:50%;background:var(--accent-subtle);display:flex;align-items:center;justify-content:center;flex-shrink:0}
         .link-arrow svg{width:13px;height:13px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
@@ -88,7 +83,7 @@
         .site-footer{text-align:center;padding:32px 24px;border-top:1px solid var(--border)}
         .site-footer p{font-size:12px;color:var(--text-muted)}
         @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
-        @media(max-width:768px){.resource-grid{grid-template-columns:1fr}.resource-grid-2col{grid-template-columns:1fr}.link-grid{grid-template-columns:1fr}.hero{padding:48px 0 36px}.main-content{padding:0 16px 60px}.header-inner{padding:14px 16px}}
+        @media(max-width:768px){.resource-grid{grid-template-columns:1fr}.resource-grid-2col{grid-template-columns:1fr}.hero{padding:48px 0 36px}.main-content{padding:0 16px 60px}.header-inner{padding:14px 16px}}
         @media(max-width:480px){.header-logo img{height:40px}.tab-btn{padding:10px 14px;font-size:13px}}
     </style>
 </head>
@@ -107,7 +102,7 @@
             <p class="hero-sub">パートナー様の営業活動にご活用いただける資料をご用意しています。</p>
         </section>
         <nav class="tab-nav">
-            <a href="/manual/videos/" class="tab-btn">動画マニュアル</a>
+            <a href="/manual/videos/" class="tab-btn">動画カリキュラム</a>
             <a href="/manual/resources/" class="tab-btn active">営業資料</a>
             <a href="/manual/faq/" class="tab-btn">FAQ</a>
         </nav>
@@ -120,21 +115,15 @@
         <h2 class="section-title" style="animation-delay:.3s"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>関連リンク</h2>
         <div class="link-section">
             <div class="link-grid">
-                <a href="/contract/" class="link-card" id="linkContract">
-                    <div class="link-thumb"><div class="link-thumb-placeholder" id="linkContractPlaceholder"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div></div>
-                    <div class="link-body">
-                        <div class="link-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-                        <div class="link-text"><h3>ご契約ページ</h3><p>お客様にご案内いただく契約フォームページ</p></div>
-                        <div class="link-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></div>
-                    </div>
+                <a href="/contract/" class="link-card">
+                    <div class="link-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+                    <div class="link-text"><h3>ご契約ページ</h3><p>お客様にご案内いただく契約フォームページ</p></div>
+                    <div class="link-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></div>
                 </a>
-                <a href="/user-guide/" class="link-card" id="linkUserGuide">
-                    <div class="link-thumb"><div class="link-thumb-placeholder" id="linkUserGuidePlaceholder"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div></div>
-                    <div class="link-body">
-                        <div class="link-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div>
-                        <div class="link-text"><h3>ユーザーガイド</h3><p>テンプレート購入者向けのガイドページ</p></div>
-                        <div class="link-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></div>
-                    </div>
+                <a href="/user-guide/" class="link-card">
+                    <div class="link-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div>
+                    <div class="link-text"><h3>ユーザーガイド</h3><p>テンプレート購入者向けのガイドページ</p></div>
+                    <div class="link-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></div>
                 </a>
             </div>
         </div>
@@ -290,27 +279,7 @@
         }
     }
 
-    /* Set thumbnail images for 関連リンク using thum.io */
-    function loadLinkThumbnails() {
-        var links = [
-            { id: 'linkContractPlaceholder', path: '/contract/' },
-            { id: 'linkUserGuidePlaceholder', path: '/user-guide/' }
-        ];
-        links.forEach(function(l) {
-            var el = document.getElementById(l.id);
-            if (!el) return;
-            var parent = el.parentElement;
-            var thumbUrl = getThumbnailUrl(l.path);
-            var img = new Image();
-            img.src = thumbUrl;
-            img.alt = '';
-            img.loading = 'lazy';
-            img.onload = function() { parent.innerHTML = ''; parent.appendChild(img); };
-        });
-    }
-
     loadResources();
-    loadLinkThumbnails();
     </script>
 </body>
 </html>

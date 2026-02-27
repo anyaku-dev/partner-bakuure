@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>成約報告フォーム｜バク売れLPテンプレ</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" href="/bakuure-icon.png">
+    <meta property="og:image" content="/bakuure-ogp.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg:#FAFAFA;--bg-card:#FFF;--bg-alt:#F3F4F6;--border:#E5E7EB;--border-hover:#D1D5DB;--text-primary:#111827;--text-secondary:#6B7280;--text-muted:#7C8290;--accent:#0852FF;--accent-light:rgba(8,82,255,.08);--accent-subtle:rgba(8,82,255,.04);--success:#10B981;--warning:#F59E0B;--danger:#EF4444;--radius-lg:16px}
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text-primary);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}
+        .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--border)}
+        .header-inner{max-width:1000px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+        .header-logo img{height:58px}
+        .header-label{font-size:13px;font-weight:600;color:var(--text-secondary)}
+        .main{max-width:720px;margin:0 auto;padding:48px 24px 100px}
+        .page-top{margin-bottom:40px;text-align:center}
+        .page-top-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-light);padding:6px 16px;border-radius:100px;margin-bottom:20px}
+        .page-top h1{font-size:clamp(24px,5vw,32px);font-weight:800;letter-spacing:-.03em;margin-bottom:12px}
+        .page-top p{font-size:15px;color:var(--text-secondary);line-height:1.8}
+
+        /* Stepper */
+        .stepper{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:40px;padding:0 12px}
+        .step-item{display:flex;align-items:center;gap:0}
+        .step-circle{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;border:2px solid var(--border);color:var(--text-muted);background:var(--bg-card);transition:all .3s;flex-shrink:0}
+        .step-circle.active{border-color:var(--accent);background:var(--accent);color:#fff}
+        .step-circle.done{border-color:var(--success);background:var(--success);color:#fff}
+        .step-label{font-size:11px;font-weight:600;color:var(--text-muted);position:absolute;bottom:-22px;white-space:nowrap;left:50%;transform:translateX(-50%)}
+        .step-item-wrap{position:relative;display:flex;flex-direction:column;align-items:center}
+        .step-line{width:32px;height:2px;background:var(--border);transition:background .3s}
+        .step-line.done{background:var(--success)}
+
+        /* Form sections */
+        .form-step{display:none}
+        .form-step.active{display:block}
+        .form-section{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px;margin-bottom:20px;transition:box-shadow .2s}
+        .form-section:hover{box-shadow:0 2px 16px rgba(0,0,0,.03)}
+        .form-section-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:var(--accent-light);display:inline-block;padding:4px 12px;border-radius:6px;margin-bottom:14px}
+        .form-section h2{font-size:22px;font-weight:700;margin-bottom:20px;letter-spacing:-.01em}
+        .form-group{margin-bottom:24px}
+        .form-group:last-child{margin-bottom:0}
+        .form-label{display:block;font-size:16px;font-weight:600;margin-bottom:8px}
+        .form-label .required{color:var(--danger);font-size:13px;margin-left:4px}
+        .form-label .optional{color:var(--text-muted);font-size:13px;margin-left:4px;font-weight:400}
+        .form-input{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:10px;font-size:16px;font-family:inherit;color:var(--text-primary);background:var(--bg-card);transition:border-color .2s,box-shadow .2s;-webkit-appearance:none}
+        .form-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-light)}
+        .form-input.error{border-color:var(--danger)}
+        .form-input.error:focus{box-shadow:0 0 0 3px rgba(239,68,68,.15)}
+        .form-hint{font-size:14px;color:var(--text-muted);margin-top:6px;line-height:1.6}
+        .form-error{color:var(--danger);font-size:13px;margin-top:6px;display:none}
+        .form-error.visible{display:block}
+        select.form-input{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+
+        /* Plan card */
+        .plan-group{display:flex;flex-direction:column;gap:12px}
+        .plan-card{display:flex;align-items:flex-start;gap:14px;cursor:pointer;padding:20px;border:2px solid var(--border);border-radius:14px;transition:all .15s;user-select:none;position:relative}
+        .plan-card:hover{border-color:var(--border-hover);background:var(--bg-alt)}
+        .plan-card.checked{border-color:var(--accent);background:var(--accent-subtle);box-shadow:0 0 0 3px var(--accent-light)}
+        .plan-card input[type="radio"]{appearance:none;-webkit-appearance:none;width:22px;height:22px;border:2px solid var(--border);border-radius:50%;flex-shrink:0;margin-top:2px;position:relative;cursor:pointer;transition:all .15s}
+        .plan-card input[type="radio"]:checked{background:var(--accent);border-color:var(--accent)}
+        .plan-card input[type="radio"]:checked::after{content:'';position:absolute;left:5px;top:5px;width:8px;height:8px;border-radius:50%;background:#fff}
+        .plan-info{flex:1}
+        .plan-info h3{font-size:17px;font-weight:700;margin-bottom:4px;line-height:1.4}
+        .plan-info p{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:6px}
+        .plan-price{font-size:22px;font-weight:800;color:var(--accent)}
+        .plan-price span{font-size:13px;font-weight:600;color:var(--text-secondary)}
+
+        /* Check items */
+        .check-item{display:flex;align-items:flex-start;gap:12px;cursor:pointer;padding:14px 16px;border:1px solid var(--border);border-radius:10px;transition:all .15s;user-select:none;margin-bottom:12px}
+        .check-item:last-child{margin-bottom:0}
+        .check-item:hover{border-color:var(--border-hover);background:var(--bg-alt)}
+        .check-item.checked{border-color:var(--accent);background:var(--accent-subtle)}
+        .check-item input[type="checkbox"]{appearance:none;-webkit-appearance:none;width:20px;height:20px;border:2px solid var(--border);border-radius:6px;flex-shrink:0;margin-top:1px;position:relative;cursor:pointer;transition:all .15s}
+        .check-item input:checked{background:var(--accent);border-color:var(--accent)}
+        .check-item input[type="checkbox"]:checked::after{content:'';position:absolute;left:5px;top:2px;width:6px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+        .check-item-text{font-size:15px;font-weight:500;line-height:1.6}
+
+        /* Reward display */
+        .reward-card{background:linear-gradient(135deg,#f0f4ff 0%,#fafafa 100%);border:2px solid var(--accent);border-radius:var(--radius-lg);padding:36px;text-align:center;margin-bottom:24px}
+        .reward-label{font-size:13px;font-weight:700;color:var(--accent);margin-bottom:8px;text-transform:uppercase;letter-spacing:.1em}
+        .reward-amount{font-size:clamp(32px,6vw,48px);font-weight:800;color:var(--accent);letter-spacing:-.03em;margin-bottom:4px}
+        .reward-sub{font-size:14px;color:var(--text-muted)}
+        .reward-detail{margin-top:20px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:left}
+        .reward-detail-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px}
+        .reward-detail-row:last-child{border-bottom:none}
+        .reward-detail-row .label{color:var(--text-secondary)}
+        .reward-detail-row .value{font-weight:600}
+
+        /* Bank info */
+        .bank-registered{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2);border-radius:12px;padding:20px;display:flex;align-items:center;gap:14px;margin-bottom:20px}
+        .bank-registered svg{width:24px;height:24px;color:var(--success);flex-shrink:0}
+        .bank-registered-text h4{font-size:15px;font-weight:700;color:var(--success);margin-bottom:2px}
+        .bank-registered-text p{font-size:13px;color:var(--text-muted)}
+        .bank-form{display:flex;flex-direction:column;gap:20px}
+        .bank-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+        /* Confirm table */
+        .confirm-table{border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:24px}
+        .confirm-row{display:flex;border-bottom:1px solid var(--border)}
+        .confirm-row:last-child{border-bottom:none}
+        .confirm-label{width:160px;padding:14px 18px;background:var(--bg-alt);font-size:14px;font-weight:600;color:var(--text-secondary);flex-shrink:0}
+        .confirm-value{flex:1;padding:14px 18px;font-size:14px;font-weight:500}
+
+        /* Navigation buttons */
+        .nav-buttons{display:flex;gap:12px;justify-content:center;margin-top:32px}
+        .btn{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:700;font-family:inherit;padding:14px 32px;border-radius:12px;border:none;cursor:pointer;transition:all .2s;text-decoration:none}
+        .btn-primary{color:#fff;background:var(--accent);box-shadow:0 4px 16px rgba(8,82,255,.2)}
+        .btn-primary:hover{background:#063FCC;transform:translateY(-1px);box-shadow:0 6px 24px rgba(8,82,255,.3)}
+        .btn-primary:disabled{background:var(--text-muted);cursor:not-allowed;transform:none;box-shadow:none}
+        .btn-secondary{color:var(--text-secondary);background:var(--bg-card);border:1px solid var(--border)}
+        .btn-secondary:hover{border-color:var(--border-hover);background:var(--bg-alt)}
+        .btn-submit{font-size:16px;padding:18px 48px;border-radius:14px;box-shadow:0 4px 20px rgba(8,82,255,.2)}
+        .btn-submit:hover{box-shadow:0 8px 28px rgba(8,82,255,.3)}
+        .btn svg{width:16px;height:16px}
+
+        /* Loading overlay */
+        .loading-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;z-index:9999;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+        .loading-overlay.visible{opacity:1;visibility:visible}
+        .loading-box{background:#fff;border-radius:16px;padding:40px 48px;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,.15)}
+        .loading-spinner{width:44px;height:44px;border:4px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 20px}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .loading-box p{font-size:15px;font-weight:600;line-height:1.6}
+
+        /* Thanks */
+        .thanks-view{display:none}
+        .thanks-view.visible{display:block}
+        .thanks-hero{text-align:center;padding:64px 0 40px}
+        .thanks-icon{width:88px;height:88px;margin:0 auto 24px;background:rgba(16,185,129,.08);border-radius:50%;display:flex;align-items:center;justify-content:center}
+        .thanks-icon svg{width:44px;height:44px;color:var(--success)}
+        .thanks-hero h1{font-size:clamp(24px,5vw,32px);font-weight:800;letter-spacing:-.03em;margin-bottom:12px}
+        .thanks-hero p{font-size:15px;color:var(--text-secondary);max-width:480px;margin:0 auto;line-height:1.8}
+        .thanks-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:36px 32px;margin-bottom:24px}
+        .thanks-card h2{font-size:20px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+        .thanks-card p{font-size:15px;color:var(--text-secondary);line-height:1.8;margin-bottom:8px}
+        .thanks-closing{text-align:center;padding:40px 0 0;border-top:1px solid var(--border);margin-top:40px}
+        .thanks-closing p{font-size:15px;color:var(--text-secondary);line-height:2;margin-bottom:8px}
+        .thanks-closing .sign{font-size:13px;font-weight:600;color:var(--text-primary);margin-top:20px}
+
+        .site-footer{text-align:center;padding:32px 24px;border-top:1px solid var(--border)}
+        .site-footer p{font-size:12px;color:var(--text-muted)}
+        @media(max-width:640px){
+            .main{padding:32px 16px 80px}
+            .form-section{padding:24px 20px}
+            .bank-row{grid-template-columns:1fr}
+            .confirm-row{flex-direction:column}
+            .confirm-label{width:100%;padding:10px 16px}
+            .confirm-value{padding:10px 16px}
+            .stepper{gap:0;overflow-x:auto}
+            .step-line{width:20px}
+            .step-circle{width:30px;height:30px;font-size:11px}
+            .nav-buttons{flex-direction:column}
+            .nav-buttons .btn{width:100%;justify-content:center}
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-logo"><a href="/manual/videos/" style="display:flex;align-items:center;text-decoration:none"><img src="/bakuure-logo.svg" alt="バク売れLPテンプレ"></a></div>
+            <span class="header-label">成約報告</span>
+        </div>
+    </header>
+    <main class="main">
+        <div id="formView">
+            <div class="page-top">
+                <span class="page-top-eyebrow">Conversion Report</span>
+                <h1>成約報告フォーム</h1>
+                <p>パートナー様の成約をご報告いただくフォームです。<br>各ステップに沿ってご入力ください。</p>
+            </div>
+
+            <!-- Stepper -->
+            <div class="stepper" id="stepper">
+                <div class="step-item"><div class="step-item-wrap"><div class="step-circle active" data-step="0">1</div></div></div>
+                <div class="step-line" data-line="0"></div>
+                <div class="step-item"><div class="step-item-wrap"><div class="step-circle" data-step="1">2</div></div></div>
+                <div class="step-line" data-line="1"></div>
+                <div class="step-item"><div class="step-item-wrap"><div class="step-circle" data-step="2">3</div></div></div>
+                <div class="step-line" data-line="2"></div>
+                <div class="step-item"><div class="step-item-wrap"><div class="step-circle" data-step="3">4</div></div></div>
+                <div class="step-line" data-line="3"></div>
+                <div class="step-item"><div class="step-item-wrap"><div class="step-circle" data-step="4">5</div></div></div>
+                <div class="step-line" data-line="4"></div>
+                <div class="step-item"><div class="step-item-wrap"><div class="step-circle" data-step="5">6</div></div></div>
+            </div>
+
+            <!-- Step 1: 申請者情報 -->
+            <div class="form-step active" data-step="0">
+                <div class="form-section">
+                    <span class="form-section-label">Step 1</span>
+                    <h2>申請者情報</h2>
+                    <div class="form-group">
+                        <label class="form-label">正規代理店名（パートナー名）<span class="required">*</span></label>
+                        <input type="text" class="form-input" id="partnerName" placeholder="例：山田 太郎">
+                        <p class="form-error" id="partnerNameError">※ パートナー名を入力してください。</p>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">お客様氏名<span class="required">*</span></label>
+                        <input type="text" class="form-input" id="customerName" placeholder="例：佐藤 花子">
+                        <p class="form-error" id="customerNameError">※ お客様のお名前を入力してください。</p>
+                    </div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="btn btn-primary" onclick="nextStep()">次へ進む <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></button>
+                </div>
+            </div>
+
+            <!-- Step 2: 商品選択 -->
+            <div class="form-step" data-step="1">
+                <div class="form-section">
+                    <span class="form-section-label">Step 2</span>
+                    <h2>成約商品の選択</h2>
+                    <p style="font-size:14px;color:var(--text-muted);margin-bottom:20px">お客様がご契約された商品を選択してください。</p>
+                    <div class="plan-group">
+                        <label class="plan-card checked" id="planAWrap">
+                            <input type="radio" name="product" value="starter" id="planA" checked>
+                            <div class="plan-info">
+                                <h3>A - LP｜スタータープラン</h3>
+                                <p>LPデザインテンプレートの基本プラン</p>
+                                <div class="plan-price">¥55,000<span>（税込）</span></div>
+                            </div>
+                        </label>
+                        <label class="plan-card" id="planBWrap">
+                            <input type="radio" name="product" value="boost" id="planB">
+                            <div class="plan-info">
+                                <h3>B - LP＋バナー｜集客強化プラン</h3>
+                                <p>LP＋バナー素材のセットプラン</p>
+                                <div class="plan-price">¥110,000<span>（税込）</span></div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" onclick="prevStep()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg> 戻る</button>
+                    <button class="btn btn-primary" onclick="nextStep()">次へ進む <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></button>
+                </div>
+            </div>
+
+            <!-- Step 3: 申請条件確認 -->
+            <div class="form-step" data-step="2">
+                <div class="form-section">
+                    <span class="form-section-label">Step 3</span>
+                    <h2>申請条件の確認</h2>
+                    <p style="font-size:14px;color:var(--text-muted);margin-bottom:20px">以下の条件をすべて満たしていることをご確認ください。</p>
+                    <label class="check-item" id="checkContractWrap">
+                        <input type="checkbox" id="checkContract">
+                        <span class="check-item-text">お客様の契約フォーム送信が完了している</span>
+                    </label>
+                    <label class="check-item" id="checkPaymentWrap">
+                        <input type="checkbox" id="checkPayment">
+                        <span class="check-item-text">お客様のクレジットカード決済が完了している</span>
+                    </label>
+                    <p class="form-error" id="conditionError">※ すべての条件にチェックを入れてください。</p>
+                </div>
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" onclick="prevStep()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg> 戻る</button>
+                    <button class="btn btn-primary" onclick="nextStep()">次へ進む <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></button>
+                </div>
+            </div>
+
+            <!-- Step 4: 報酬額表示 -->
+            <div class="form-step" data-step="3">
+                <div class="form-section">
+                    <span class="form-section-label">Step 4</span>
+                    <h2>報酬額のご確認</h2>
+                    <div class="reward-card">
+                        <div class="reward-label">今回の報酬額</div>
+                        <div class="reward-amount" id="rewardAmount">¥27,500</div>
+                        <div class="reward-sub">（税込）</div>
+                    </div>
+                    <div class="reward-detail">
+                        <div class="reward-detail-row"><span class="label">成約商品</span><span class="value" id="rewardProduct">A - LP｜スタータープラン</span></div>
+                        <div class="reward-detail-row"><span class="label">販売額（税込）</span><span class="value" id="rewardSales">¥55,000</span></div>
+                        <div class="reward-detail-row"><span class="label">報酬率</span><span class="value">50%</span></div>
+                        <div class="reward-detail-row"><span class="label">報酬額（税込）</span><span class="value" id="rewardTotal">¥27,500</span></div>
+                        <div class="reward-detail-row"><span class="label">振込予定日</span><span class="value" id="rewardDate">—</span></div>
+                    </div>
+                    <p class="form-hint" style="margin-top:16px">※ 報酬は成約確認後、翌月末日にお振込みいたします。</p>
+                </div>
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" onclick="prevStep()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg> 戻る</button>
+                    <button class="btn btn-primary" onclick="nextStep()">次へ進む <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></button>
+                </div>
+            </div>
+
+            <!-- Step 5: 振込先登録 -->
+            <div class="form-step" data-step="4">
+                <div class="form-section">
+                    <span class="form-section-label">Step 5</span>
+                    <h2>報酬お振込先</h2>
+                    <div id="bankRegisteredMsg" class="bank-registered" style="display:none">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        <div class="bank-registered-text">
+                            <h4>振込先は登録済みです</h4>
+                            <p>前回ご登録いただいた口座情報を使用します。変更が必要な場合は下記を編集してください。</p>
+                        </div>
+                    </div>
+                    <div class="bank-form" id="bankForm">
+                        <div class="form-group">
+                            <label class="form-label">銀行名<span class="required">*</span></label>
+                            <input type="text" class="form-input" id="bankName" placeholder="例：三菱UFJ銀行">
+                            <p class="form-error" id="bankNameError">※ 銀行名を入力してください。</p>
+                        </div>
+                        <div class="bank-row">
+                            <div class="form-group">
+                                <label class="form-label">銀行コード<span class="required">*</span></label>
+                                <input type="text" class="form-input" id="bankCode" placeholder="例：0005" maxlength="4" inputmode="numeric">
+                                <p class="form-error" id="bankCodeError">※ 4桁の銀行コードを入力してください。</p>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">支店名<span class="required">*</span></label>
+                                <input type="text" class="form-input" id="branchName" placeholder="例：東京営業部">
+                                <p class="form-error" id="branchNameError">※ 支店名を入力してください。</p>
+                            </div>
+                        </div>
+                        <div class="bank-row">
+                            <div class="form-group">
+                                <label class="form-label">支店コード<span class="required">*</span></label>
+                                <input type="text" class="form-input" id="branchCode" placeholder="例：001" maxlength="3" inputmode="numeric">
+                                <p class="form-error" id="branchCodeError">※ 3桁の支店コードを入力してください。</p>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">口座種別<span class="required">*</span></label>
+                                <select class="form-input" id="accountType">
+                                    <option value="普通">普通</option>
+                                    <option value="当座">当座</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">口座番号<span class="required">*</span></label>
+                            <input type="text" class="form-input" id="accountNumber" placeholder="例：1234567" maxlength="7" inputmode="numeric">
+                            <p class="form-error" id="accountNumberError">※ 7桁の口座番号を入力してください。</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">口座名義（カナ）<span class="required">*</span></label>
+                            <input type="text" class="form-input" id="accountHolder" placeholder="例：ヤマダ タロウ">
+                            <p class="form-hint">全角カタカナでご入力ください。</p>
+                            <p class="form-error" id="accountHolderError">※ 口座名義をカタカナで入力してください。</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">会社名<span class="optional">（任意）</span></label>
+                            <input type="text" class="form-input" id="bankCompany" placeholder="例：株式会社○○○○">
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" onclick="prevStep()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg> 戻る</button>
+                    <button class="btn btn-primary" onclick="nextStep()">確認画面へ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></button>
+                </div>
+            </div>
+
+            <!-- Step 6: 確認＆送信 -->
+            <div class="form-step" data-step="5">
+                <div class="form-section">
+                    <span class="form-section-label">Step 6</span>
+                    <h2>申請内容の確認</h2>
+                    <p style="font-size:14px;color:var(--text-muted);margin-bottom:24px">以下の内容で成約報告を送信します。内容をご確認ください。</p>
+                    <div class="confirm-table" id="confirmTable"></div>
+                    <div class="nav-buttons" style="margin-top:24px">
+                        <button class="btn btn-secondary" onclick="prevStep()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg> 戻る</button>
+                        <button class="btn btn-primary btn-submit" id="submitBtn" onclick="submitReport()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
+                            成約報告を送信する
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Thanks View -->
+        <div id="thanksView" class="thanks-view">
+            <div class="thanks-hero">
+                <div class="thanks-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+                <h1>成約報告を承りました</h1>
+                <p>ご報告いただきありがとうございます。<br>成約内容を確認の上、報酬をお振込みいたします。</p>
+            </div>
+            <div class="thanks-card">
+                <h2><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>申請内容の概要</h2>
+                <div class="confirm-table" id="thanksConfirmTable"></div>
+            </div>
+            <div class="thanks-card">
+                <h2><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>今後の流れ</h2>
+                <p>1. 弊社にてお客様の契約・決済状況を確認いたします</p>
+                <p>2. 確認完了後、翌月末日にご登録口座へお振込みいたします</p>
+                <p>3. 振込完了後、メールにてご連絡いたします</p>
+            </div>
+            <div class="thanks-closing">
+                <p>引き続き、パートナー活動を<br>よろしくお願いいたします。</p>
+                <p class="sign">バク売れLPテンプレ運営事務局 ／ 株式会社CHAINSODA</p>
+            </div>
+        </div>
+    </main>
+    <div class="loading-overlay" id="loadingOverlay"><div class="loading-box"><div class="loading-spinner"></div><p>送信中です。<br>しばらくお待ちください...</p></div></div>
+    <footer class="site-footer"><p>&copy; 2026 バク売れLPテンプレ &amp; CHAINSODA Co., Ltd. — All rights reserved.</p></footer>
+
+    <script>
+    const GAS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbytx8t0xnHSbNjqKskRUAmgetjhyZErreBa3HKNt_PO4K4ao7iuTLgm8GdThaVHYJ264Q/exec';
+
+    const PRODUCTS = {
+        starter: { name: 'A - LP｜スタータープラン', price: 55000, reward: 27500 },
+        boost:   { name: 'B - LP＋バナー｜集客強化プラン', price: 110000, reward: 55000 }
+    };
+
+    const $ = id => document.getElementById(id);
+    let currentStep = 0;
+    const TOTAL_STEPS = 6;
+    let bankAlreadyRegistered = false;
+
+    /* ─── Plan card toggle ─── */
+    document.querySelectorAll('input[name="product"]').forEach(r => {
+        r.addEventListener('change', () => {
+            document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('checked'));
+            r.closest('.plan-card').classList.add('checked');
+        });
+    });
+
+    /* ─── Check item toggle ─── */
+    document.querySelectorAll('.check-item input[type="checkbox"]').forEach(cb => {
+        cb.addEventListener('change', () => {
+            cb.closest('.check-item').classList.toggle('checked', cb.checked);
+        });
+    });
+
+    /* ─── Helpers ─── */
+    function getSelectedProduct() {
+        return document.querySelector('input[name="product"]:checked').value;
+    }
+
+    function formatCurrency(n) {
+        return '¥' + n.toLocaleString();
+    }
+
+    function getNextMonthEnd() {
+        const now = new Date();
+        const next = new Date(now.getFullYear(), now.getMonth() + 2, 0);
+        return next.getFullYear() + '/' + String(next.getMonth() + 1).padStart(2, '0') + '/' + String(next.getDate()).padStart(2, '0');
+    }
+
+    function showError(id) { $(id).classList.add('visible'); }
+    function hideError(id) { $(id).classList.remove('visible'); }
+    function setInputError(inputId, errorId, hasErr) {
+        $(inputId).classList.toggle('error', hasErr);
+        $(errorId).classList.toggle('visible', hasErr);
+    }
+
+    /* ─── Stepper UI ─── */
+    function updateStepper() {
+        document.querySelectorAll('.step-circle').forEach(el => {
+            const s = parseInt(el.dataset.step);
+            el.classList.remove('active', 'done');
+            if (s < currentStep) el.classList.add('done');
+            else if (s === currentStep) el.classList.add('active');
+        });
+        document.querySelectorAll('.step-line').forEach(el => {
+            const l = parseInt(el.dataset.line);
+            el.classList.toggle('done', l < currentStep);
+        });
+    }
+
+    function showStep(step) {
+        document.querySelectorAll('.form-step').forEach(el => {
+            el.classList.toggle('active', parseInt(el.dataset.step) === step);
+        });
+        currentStep = step;
+        updateStepper();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* ─── Validation per step ─── */
+    function validateStep(step) {
+        if (step === 0) {
+            let ok = true;
+            if (!$('partnerName').value.trim()) { setInputError('partnerName', 'partnerNameError', true); ok = false; }
+            else { setInputError('partnerName', 'partnerNameError', false); }
+            if (!$('customerName').value.trim()) { setInputError('customerName', 'customerNameError', true); ok = false; }
+            else { setInputError('customerName', 'customerNameError', false); }
+            return ok;
+        }
+        if (step === 2) {
+            const ok = $('checkContract').checked && $('checkPayment').checked;
+            $('conditionError').classList.toggle('visible', !ok);
+            return ok;
+        }
+        if (step === 4) {
+            let ok = true;
+            const fields = [
+                { id: 'bankName', errId: 'bankNameError', test: v => v.trim().length > 0 },
+                { id: 'bankCode', errId: 'bankCodeError', test: v => /^\d{4}$/.test(v.trim()) },
+                { id: 'branchName', errId: 'branchNameError', test: v => v.trim().length > 0 },
+                { id: 'branchCode', errId: 'branchCodeError', test: v => /^\d{3}$/.test(v.trim()) },
+                { id: 'accountNumber', errId: 'accountNumberError', test: v => /^\d{7}$/.test(v.trim()) },
+                { id: 'accountHolder', errId: 'accountHolderError', test: v => v.trim().length > 0 }
+            ];
+            fields.forEach(f => {
+                const pass = f.test($(f.id).value);
+                setInputError(f.id, f.errId, !pass);
+                if (!pass) ok = false;
+            });
+            return ok;
+        }
+        return true;
+    }
+
+    /* ─── Before showing step 4: update reward ─── */
+    function updateRewardDisplay() {
+        const key = getSelectedProduct();
+        const p = PRODUCTS[key];
+        $('rewardProduct').textContent = p.name;
+        $('rewardSales').textContent = formatCurrency(p.price);
+        $('rewardAmount').textContent = formatCurrency(p.reward);
+        $('rewardTotal').textContent = formatCurrency(p.reward);
+        $('rewardDate').textContent = getNextMonthEnd();
+    }
+
+    /* ─── Before showing step 5: check bank info ─── */
+    async function checkBankInfo() {
+        const name = $('partnerName').value.trim();
+        if (!name) return;
+        try {
+            const res = await fetch(GAS_ENDPOINT + '?action=checkBankInfo&partnerName=' + encodeURIComponent(name));
+            const data = await res.json();
+            if (data.registered) {
+                bankAlreadyRegistered = true;
+                $('bankRegisteredMsg').style.display = 'flex';
+                if (data.bankName) $('bankName').value = data.bankName;
+                if (data.bankCode) $('bankCode').value = data.bankCode;
+                if (data.branchName) $('branchName').value = data.branchName;
+                if (data.branchCode) $('branchCode').value = data.branchCode;
+                if (data.accountType) $('accountType').value = data.accountType;
+                if (data.accountNumber) $('accountNumber').value = data.accountNumber;
+                if (data.accountHolder) $('accountHolder').value = data.accountHolder;
+                if (data.company) $('bankCompany').value = data.company;
+            }
+        } catch (e) {
+            console.log('Bank check skipped:', e);
+        }
+    }
+
+    /* ─── Build confirm table ─── */
+    function buildConfirmTable(containerId) {
+        const key = getSelectedProduct();
+        const p = PRODUCTS[key];
+        const rows = [
+            ['正規代理店名', $('partnerName').value.trim()],
+            ['お客様氏名', $('customerName').value.trim()],
+            ['成約商品', p.name],
+            ['販売額（税込）', formatCurrency(p.price)],
+            ['報酬額（税込）', formatCurrency(p.reward)],
+            ['振込予定日', getNextMonthEnd()],
+            ['銀行名', $('bankName').value.trim()],
+            ['支店名', $('branchName').value.trim()],
+            ['口座種別', $('accountType').value],
+            ['口座番号', $('accountNumber').value.trim()],
+            ['口座名義（カナ）', $('accountHolder').value.trim()]
+        ];
+        $(containerId).innerHTML = rows.map(r =>
+            '<div class="confirm-row"><div class="confirm-label">' + r[0] + '</div><div class="confirm-value">' + r[1] + '</div></div>'
+        ).join('');
+    }
+
+    /* ─── Navigation ─── */
+    async function nextStep() {
+        if (!validateStep(currentStep)) return;
+
+        if (currentStep === 2) {
+            updateRewardDisplay();
+        }
+        if (currentStep === 3) {
+            await checkBankInfo();
+        }
+        if (currentStep === 4) {
+            buildConfirmTable('confirmTable');
+        }
+
+        if (currentStep < TOTAL_STEPS - 1) {
+            showStep(currentStep + 1);
+        }
+    }
+
+    function prevStep() {
+        if (currentStep > 0) {
+            showStep(currentStep - 1);
+        }
+    }
+
+    /* ─── Submit ─── */
+    async function submitReport() {
+        const btn = $('submitBtn');
+        btn.disabled = true;
+        btn.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> 送信中...';
+        $('loadingOverlay').classList.add('visible');
+
+        const key = getSelectedProduct();
+        const p = PRODUCTS[key];
+        const partnerName = $('partnerName').value.trim();
+        const customerName = $('customerName').value.trim();
+        const transferDate = getNextMonthEnd();
+
+        // Register / update bank info
+        const bankPayload = {
+            action: 'registerBankInfo',
+            partnerName: partnerName,
+            company: $('bankCompany').value.trim(),
+            bankName: $('bankName').value.trim(),
+            bankCode: $('bankCode').value.trim(),
+            branchName: $('branchName').value.trim(),
+            branchCode: $('branchCode').value.trim(),
+            accountType: $('accountType').value,
+            accountNumber: $('accountNumber').value.trim(),
+            accountHolder: $('accountHolder').value.trim()
+        };
+
+        // Submit conversion report
+        const reportPayload = {
+            action: 'submitConversionReport',
+            partnerName: partnerName,
+            customerName: customerName,
+            product: p.name,
+            salesAmount: p.price,
+            rewardAmount: p.reward,
+            transferDate: transferDate,
+            bankStatus: '登録済み'
+        };
+
+        try {
+            // Send both requests
+            await Promise.all([
+                fetch(GAS_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(bankPayload), mode: 'no-cors' }),
+                fetch(GAS_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(reportPayload), mode: 'no-cors' })
+            ]);
+        } catch (err) {
+            console.error('Submit error:', err);
+        }
+
+        // Build thanks confirm table
+        buildConfirmTable('thanksConfirmTable');
+
+        setTimeout(() => {
+            $('loadingOverlay').classList.remove('visible');
+            $('formView').style.display = 'none';
+            $('thanksView').classList.add('visible');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 800);
+    }
+
+    /* ─── Init ─── */
+    showStep(0);
+    </script>
+</body>
+</html>

@@ -92,11 +92,11 @@
     const PLANS={starter:{name:'A - LP｜スタータープラン',price:55000},boost:{name:'B - LP＋バナー｜集客強化プラン',price:110000}};
     (async()=>{
         const statusMsg=document.getElementById('statusMsg');
-        const customerName=localStorage.getItem('checkoutName')||'';
-        const customerEmail=localStorage.getItem('checkoutEmail')||'';
-        const planKey=localStorage.getItem('checkoutPlan')||'starter';
+        const customerName=localStorage.getItem('contractName')||localStorage.getItem('checkoutName')||'';
+        const customerEmail=localStorage.getItem('contractEmail')||localStorage.getItem('checkoutEmail')||'';
+        const planKey=localStorage.getItem('contractPlan')||localStorage.getItem('checkoutPlan')||'starter';
         const plan=PLANS[planKey]||PLANS.starter;
-        const payload={action:'updatePaymentStatus',product:plan.name,price:plan.price,customerName:customerName,email:customerEmail,paymentStatus:'支払済み',paidAt:new Date().toISOString()};
+        const payload={action:'updatePaymentStatus',name:customerName,email:customerEmail};
         if(!CHECKOUT_ENDPOINT){statusMsg.textContent='※ GASエンドポイント未設定';return;}
         try{await fetch(CHECKOUT_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),mode:'no-cors'});statusMsg.textContent='✓ 支払い情報が正常に更新されました。';statusMsg.style.color='#10B981';}catch(err){console.error('Status update error:',err);statusMsg.textContent='支払い情報の更新中にエラーが発生しました。決済自体は正常に完了しています。';statusMsg.classList.add('error');}
     })();

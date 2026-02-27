@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^git remote add origin https://github\\.com/anyaku-dev/partner-bakuure\\.git$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}

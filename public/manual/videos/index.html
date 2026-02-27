@@ -34,7 +34,7 @@
         .tab-btn.active{background:var(--accent);color:#fff;box-shadow:0 2px 8px rgba(8,82,255,.2)}
         .tab-btn:not(.active):hover{background:var(--accent-subtle);color:var(--accent)}
         .video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px}
-        .video-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:all .3s cubic-bezier(.4,0,.2,1);box-shadow:0 1px 3px rgba(0,0,0,.04)}
+        .video-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:all .3s cubic-bezier(.4,0,.2,1);box-shadow:0 1px 3px rgba(0,0,0,.04);opacity:0;transform:translateY(16px);animation:fadeUp .5s ease forwards}
         .video-card:hover{border-color:var(--accent);box-shadow:0 16px 40px rgba(8,82,255,.06),0 0 0 1px var(--accent)}
         .video-thumb{position:relative;width:100%;padding-top:56.25%;background:#1E293B;overflow:hidden}
         .video-thumb iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
@@ -49,13 +49,18 @@
         .video-meta{display:flex;align-items:center;gap:10px;margin-top:10px}
         .video-meta span{font-size:12px;color:var(--text-muted);display:flex;align-items:center;gap:4px}
         .video-meta svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+        .loading-state{text-align:center;padding:80px 24px}
+        .loading-spinner{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .loading-state p{font-size:14px;color:var(--text-muted)}
         .empty-state{text-align:center;padding:80px 24px}
         .empty-state svg{width:64px;height:64px;stroke:var(--border);fill:none;stroke-width:1.5;margin-bottom:16px}
         .empty-state h3{font-size:18px;font-weight:700;margin-bottom:8px}
         .empty-state p{font-size:14px;color:var(--text-muted)}
+        .error-state{text-align:center;padding:60px 24px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg)}
+        .error-state p{font-size:14px;color:var(--text-muted)}
         .site-footer{text-align:center;padding:32px 24px;border-top:1px solid var(--border)}
         .site-footer p{font-size:12px;color:var(--text-muted)}
-        .fade-up{opacity:0;transform:translateY(16px);animation:fadeUp .5s ease forwards}
         @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
         @media(max-width:768px){.video-grid{grid-template-columns:1fr;gap:16px}.hero{padding:48px 0 36px}.main-content{padding:0 16px 60px}.header-inner{padding:14px 16px}.tab-nav{gap:2px;padding:3px}}
         @media(max-width:480px){.header-logo img{height:40px}.tab-btn{padding:10px 14px;font-size:13px}}
@@ -80,77 +85,107 @@
             <a href="/manual/resources/" class="tab-btn">営業資料</a>
             <a href="/manual/faq/" class="tab-btn">FAQ</a>
         </nav>
-        <div class="video-grid" id="videoGrid">
-            <!-- Video 1 -->
-            <div class="video-card fade-up" style="animation-delay:.1s">
-                <div class="video-thumb">
-                    <div class="video-placeholder" onclick="this.innerHTML='準備中です'">
-                        <svg viewBox="0 0 24 24"><path d="M10 8.64L15.27 12 10 15.36V8.64M8 5v14l11-7L8 5z"/></svg>
-                        <span>クリックして再生</span>
-                    </div>
-                </div>
-                <div class="video-info">
-                    <h3>【入門】バク売れLPテンプレの商品概要</h3>
-                    <p>サービスの特徴・2つのプラン・ターゲット層について3分で理解できる概要動画です。</p>
-                    <div class="video-meta">
-                        <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>約3分</span>
-                        <span><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>入門編</span>
-                    </div>
-                </div>
-            </div>
-            <!-- Video 2 -->
-            <div class="video-card fade-up" style="animation-delay:.15s">
-                <div class="video-thumb">
-                    <div class="video-placeholder" onclick="this.innerHTML='準備中です'">
-                        <svg viewBox="0 0 24 24"><path d="M10 8.64L15.27 12 10 15.36V8.64M8 5v14l11-7L8 5z"/></svg>
-                        <span>クリックして再生</span>
-                    </div>
-                </div>
-                <div class="video-info">
-                    <h3>【販売フロー】契約から納品までの流れ</h3>
-                    <p>リード獲得 → 契約ページ案内 → 決済 → テンプレート納品までのパートナー販売フローを解説。</p>
-                    <div class="video-meta">
-                        <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>約5分</span>
-                        <span><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>販売フロー</span>
-                    </div>
-                </div>
-            </div>
-            <!-- Video 3 -->
-            <div class="video-card fade-up" style="animation-delay:.2s">
-                <div class="video-thumb">
-                    <div class="video-placeholder" onclick="this.innerHTML='準備中です'">
-                        <svg viewBox="0 0 24 24"><path d="M10 8.64L15.27 12 10 15.36V8.64M8 5v14l11-7L8 5z"/></svg>
-                        <span>クリックして再生</span>
-                    </div>
-                </div>
-                <div class="video-info">
-                    <h3>【提案トーク】顧客への提案テクニック</h3>
-                    <p>LP制作の外注コストとテンプレート活用のメリットを効果的に伝えるトークスクリプト例。</p>
-                    <div class="video-meta">
-                        <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>約7分</span>
-                        <span><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>提案テクニック</span>
-                    </div>
-                </div>
-            </div>
-            <!-- Video 4 -->
-            <div class="video-card fade-up" style="animation-delay:.25s">
-                <div class="video-thumb">
-                    <div class="video-placeholder" onclick="this.innerHTML='準備中です'">
-                        <svg viewBox="0 0 24 24"><path d="M10 8.64L15.27 12 10 15.36V8.64M8 5v14l11-7L8 5z"/></svg>
-                        <span>クリックして再生</span>
-                    </div>
-                </div>
-                <div class="video-info">
-                    <h3>【活用事例】パートナー成功事例紹介</h3>
-                    <p>実際にテンプレートを活用して成果を上げたパートナー様の事例をご紹介します。</p>
-                    <div class="video-meta">
-                        <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>約6分</span>
-                        <span><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>事例紹介</span>
-                    </div>
-                </div>
-            </div>
+        <div id="videoGrid" class="video-grid"></div>
+        <div id="loadingState" class="loading-state"><div class="loading-spinner"></div><p>動画一覧を読み込んでいます...</p></div>
+        <div id="emptyState" class="empty-state" style="display:none">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            <h3>動画はまだ登録されていません</h3>
+            <p>コンテンツが追加されるまでしばらくお待ちください。</p>
         </div>
     </main>
     <footer class="site-footer"><p>&copy; 2026 バク売れLPテンプレ &amp; CHAINSODA Co., Ltd. — All rights reserved.</p></footer>
+    <script>
+    const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTza74lwZCv56xNnhI4fDgEk5zCvq4WAcvNboRGbByVxPLSh-NZLIe8eVdATny0exFPGPW8ew9O7Jm8/pub?gid=396280088&single=true&output=csv';
+
+    function parseCSV(text) {
+        const rows = []; let cur = []; let field = ''; let inQ = false;
+        for (let i = 0; i < text.length; i++) {
+            const c = text[i];
+            if (inQ) {
+                if (c === '"' && text[i+1] === '"') { field += '"'; i++; }
+                else if (c === '"') { inQ = false; }
+                else { field += c; }
+            } else {
+                if (c === '"') { inQ = true; }
+                else if (c === ',') { cur.push(field); field = ''; }
+                else if (c === '\n' || (c === '\r' && text[i+1] === '\n')) {
+                    cur.push(field); field = ''; rows.push(cur); cur = [];
+                    if (c === '\r') i++;
+                } else { field += c; }
+            }
+        }
+        if (field || cur.length) { cur.push(field); rows.push(cur); }
+        return rows;
+    }
+
+    function extractYouTubeId(url) {
+        if (!url) return null;
+        // Already an ID (11 chars, no slashes)
+        if (/^[\w-]{11}$/.test(url)) return url;
+        const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/))([^&?#\s]{11})/);
+        return m ? m[1] : null;
+    }
+
+    async function loadVideos() {
+        const grid = document.getElementById('videoGrid');
+        const loading = document.getElementById('loadingState');
+        const empty = document.getElementById('emptyState');
+        try {
+            const res = await fetch(CSV_URL + '&t=' + Date.now());
+            if (!res.ok) throw new Error('Fetch failed');
+            const text = await res.text();
+            const rows = parseCSV(text).slice(1).filter(r => (r[0]||'').trim().toUpperCase() === 'ON');
+            loading.style.display = 'none';
+            if (rows.length === 0) { empty.style.display = 'block'; return; }
+
+            rows.forEach(function(r, idx) {
+                const category = r[1] || '';
+                const youtubeUrl = r[2] || '';
+                const title = r[3] || '';
+                const desc = r[4] || '';
+                const materialUrl = r[5] || '';
+                const videoId = extractYouTubeId(youtubeUrl);
+
+                const card = document.createElement('div');
+                card.className = 'video-card';
+                card.style.animationDelay = (idx * 0.08) + 's';
+
+                let thumbHtml;
+                if (videoId) {
+                    thumbHtml = '<div class="video-thumb"><div class="video-placeholder" data-vid="' + videoId + '" onclick="playVideo(this)">'
+                        + '<img src="https://img.youtube.com/vi/' + videoId + '/hqdefault.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:.6" alt="">'
+                        + '<svg viewBox="0 0 24 24" style="position:relative;z-index:1"><path d="M10 8.64L15.27 12 10 15.36V8.64M8 5v14l11-7L8 5z"/></svg>'
+                        + '<span style="position:relative;z-index:1">クリックして再生</span></div></div>';
+                } else {
+                    thumbHtml = '<div class="video-thumb"><div class="video-placeholder"><svg viewBox="0 0 24 24"><path d="M10 8.64L15.27 12 10 15.36V8.64M8 5v14l11-7L8 5z"/></svg><span>準備中</span></div></div>';
+                }
+
+                let infoHtml = '<div class="video-info"><h3>' + escapeHtml(title) + '</h3>';
+                if (desc) infoHtml += '<p>' + escapeHtml(desc) + '</p>';
+                infoHtml += '<div class="video-meta">';
+                if (category) infoHtml += '<span><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>' + escapeHtml(category) + '</span>';
+                if (materialUrl) infoHtml += '<span><a href="' + escapeHtml(materialUrl) + '" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:600">📎 資料</a></span>';
+                infoHtml += '</div></div>';
+
+                card.innerHTML = thumbHtml + infoHtml;
+                grid.appendChild(card);
+            });
+        } catch (err) {
+            console.error('Video CSV load error:', err);
+            loading.innerHTML = '<div class="error-state"><p>動画一覧の読み込みに失敗しました。<br>ページを再読み込みしてください。</p></div>';
+        }
+    }
+
+    function playVideo(el) {
+        const vid = el.dataset.vid;
+        if (!vid) return;
+        const thumb = el.closest('.video-thumb');
+        thumb.innerHTML = '<iframe src="https://www.youtube.com/embed/' + vid + '?autoplay=1&rel=0" allow="autoplay;encrypted-media" allowfullscreen></iframe>';
+    }
+
+    function escapeHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+    loadVideos();
+    </script>
 </body>
 </html>

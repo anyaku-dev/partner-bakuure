@@ -33,7 +33,7 @@
         .tab-btn{flex:1;padding:12px 20px;border-radius:10px;font-size:14px;font-weight:600;text-align:center;text-decoration:none;color:var(--text-secondary);background:transparent;border:none;cursor:pointer;font-family:inherit;transition:all .2s;white-space:nowrap;min-width:fit-content}
         .tab-btn.active{background:var(--accent);color:#fff;box-shadow:0 2px 8px rgba(8,82,255,.2)}
         .tab-btn:not(.active):hover{background:var(--accent-subtle);color:var(--accent)}
-        .faq-category{margin-bottom:48px}
+        .faq-category{margin-bottom:48px;opacity:0;transform:translateY(16px);animation:fadeUp .5s ease forwards}
         .faq-category-title{font-size:18px;font-weight:700;letter-spacing:-.01em;margin-bottom:16px;display:flex;align-items:center;gap:10px;color:var(--text-primary)}
         .faq-category-title svg{width:22px;height:22px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
         .faq-item{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;margin-bottom:12px;overflow:hidden;transition:border-color .3s;box-shadow:0 1px 3px rgba(0,0,0,.04)}
@@ -46,7 +46,7 @@
         .faq-toggle svg{width:14px;height:14px;stroke:var(--accent);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s}
         .faq-item.open .faq-toggle svg{transform:rotate(180deg)}
         .faq-answer{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1)}
-        .faq-item.open .faq-answer{max-height:1000px}
+        .faq-item.open .faq-answer{max-height:2000px}
         .faq-answer-inner{padding:0 24px 20px 70px;font-size:14px;color:var(--text-secondary);line-height:1.8}
         .faq-answer-inner p{margin-bottom:10px}
         .faq-answer-inner p:last-child{margin-bottom:0}
@@ -60,9 +60,15 @@
         .contact-card p{font-size:14px;color:var(--text-secondary);margin-bottom:20px}
         .contact-card a{color:var(--accent);font-weight:600;text-decoration:none}
         .contact-card a:hover{text-decoration:underline}
+        .loading-state{text-align:center;padding:80px 24px}
+        .loading-spinner{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .loading-state p{font-size:14px;color:var(--text-muted)}
+        .empty-state{text-align:center;padding:80px 24px}
+        .empty-state h3{font-size:18px;font-weight:700;margin-bottom:8px}
+        .empty-state p{font-size:14px;color:var(--text-muted)}
         .site-footer{text-align:center;padding:32px 24px;border-top:1px solid var(--border)}
         .site-footer p{font-size:12px;color:var(--text-muted)}
-        .fade-up{opacity:0;transform:translateY(16px);animation:fadeUp .5s ease forwards}
         @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
         @media(max-width:768px){.hero{padding:48px 0 36px}.main-content{padding:0 16px 60px}.header-inner{padding:14px 16px}.faq-answer-inner{padding-left:24px}}
         @media(max-width:480px){.header-logo img{height:40px}.tab-btn{padding:10px 14px;font-size:13px}.faq-question{padding:16px 18px;gap:10px}.faq-q-mark{width:28px;height:28px;font-size:12px}.faq-question h3{font-size:14px}}
@@ -87,152 +93,13 @@
             <a href="/manual/resources/" class="tab-btn">営業資料</a>
             <a href="/manual/faq/" class="tab-btn active">FAQ</a>
         </nav>
-        <!-- Category: サービスについて -->
-        <div class="faq-category fade-up" style="animation-delay:.1s">
-            <h2 class="faq-category-title"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>サービスについて</h2>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span class="faq-q-mark">Q</span>
-                    <h3>バク売れLPテンプレとはどのようなサービスですか？</h3>
-                    <div class="faq-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
-                </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <p>バク売れLPテンプレは、<strong>売れる構造に基づいたLPデザインテンプレート</strong>を提供するサービスです。HTML / CSS / JavaScript ベースのテンプレートを、テキスト・画像の差し替えだけですぐにプロ品質のLPとしてご利用いただけます。</p>
-                    <p>株式会社CHAINSODAが提供しています。</p>
-                </div></div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span class="faq-q-mark">Q</span>
-                    <h3>プランは何がありますか？</h3>
-                    <div class="faq-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
-                </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <p>2つのプランをご用意しています。</p>
-                    <ul>
-                        <li><strong>LP｜スタータープラン（¥55,000税込）：</strong>LPテンプレート一式（HTML/CSS/JS/画像素材）</li>
-                        <li><strong>LP＋バナー｜集客強化プラン（¥110,000税込）：</strong>上記＋バナーデザインテンプレート素材（PSD/Figma/PNG）</li>
-                    </ul>
-                </div></div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span class="faq-q-mark">Q</span>
-                    <h3>テンプレートはどのような形式で提供されますか？</h3>
-                    <div class="faq-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
-                </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <p>HTML / CSS / JavaScript ファイル＋画像素材のセットで、ZIPファイルとしてダウンロード提供いたします。特別なフレームワークやCMSは不要で、どのホスティングサービスでもすぐに公開可能です。</p>
-                </div></div>
-            </div>
+        <div id="faqContainer"></div>
+        <div id="loadingState" class="loading-state"><div class="loading-spinner"></div><p>FAQを読み込んでいます...</p></div>
+        <div id="emptyState" class="empty-state" style="display:none">
+            <h3>FAQはまだ登録されていません</h3>
+            <p>コンテンツが追加されるまでしばらくお待ちください。</p>
         </div>
-        <!-- Category: 販売・契約について -->
-        <div class="faq-category fade-up" style="animation-delay:.15s">
-            <h2 class="faq-category-title"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>販売・契約について</h2>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span class="faq-q-mark">Q</span>
-                    <h3>販売パートナーとしての販売フローを教えてください。</h3>
-                    <div class="faq-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
-                </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <p>基本的な販売フローは以下の通りです。</p>
-                    <ul>
-                        <li><strong>①リード獲得：</strong>見込み客へのアプローチ。LP制作に課題を感じている企業・個人がターゲットです。</li>
-                        <li><strong>②契約ページへご案内：</strong><a href="/contract/">/contract/</a> のURLをお客様にお伝えください。プラン選択と規約同意をお客様自身で行っていただきます。</li>
-                        <li><strong>③お支払い：</strong><a href="/checkout/">/checkout/</a> でクレジットカード決済（Stripe）を行います。</li>
-                        <li><strong>④テンプレート納品：</strong>決済確認後、ダウンロードリンクをメールでお届けします。</li>
-                    </ul>
-                </div></div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span class="faq-q-mark">Q</span>
-                    <h3>支払い方法は何がありますか？</h3>
-                    <div class="faq-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
-                </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <p><strong>クレジットカード決済のみ</strong>に対応しております（Visa / Mastercard / JCB / American Express）。Stripeを決済プラットフォームとして利用しています。銀行振込には対応しておりません。</p>
-                </div></div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span class="faq-q-mark">Q</span>
-                    <h3>契約ページでパートナーの紹介者名（コード）は必要ですか？</h3>
-                    <div class="faq-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
-                </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <p>はい。契約フォームに「紹介者名」の入力欄がありますので、パートナー様のお名前またはコードをお客様に入力していただくようご案内ください。これにより紹介実績が正しく記録されます。</p>
-                </div></div>
-            </div>
-        </div>
-        <!-- Category: テンプレートについて -->
-        <div class="faq-category fade-up" style="animation-delay:.2s">
-            <h2 class="faq-category-title"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>テンプレートについて</h2>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span class="faq-q-mark">Q</span>
-                    <h3>テンプレートのカスタマイズに専門知識は必要ですか？</h3>
-                    <div class="faq-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
-                </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <p>テキストと画像の差し替えだけであれば、テキストエディタ（メモ帳やVS Code）の基本操作ができれば問題ありません。CSS変数でカラーやフォントの変更も簡単に行えます。</p>
-                    <p>レイアウトの大幅変更など、より高度なカスタマイズにはHTML/CSSの基礎知識が必要です。<a href="/user-guide/contact-chat/">AIチャットサポート</a>も活用いただけます。</p>
-                </div></div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span class="faq-q-mark">Q</span>
-                    <h3>テンプレートは複数の案件で使い回せますか？</h3>
-                    <div class="faq-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
-                </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <p>購入されたテンプレートは<strong>ご契約者様の案件でのみ</strong>ご利用いただけます。1契約につき1案件（1サイト）でのご利用となります。複数案件でご利用の場合は、案件数分のご契約が必要です。</p>
-                    <p>第三者への共有・再配布・転売は利用規約で禁止されています。</p>
-                </div></div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span class="faq-q-mark">Q</span>
-                    <h3>スマートフォン（レスポンシブ）に対応していますか？</h3>
-                    <div class="faq-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
-                </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <p>はい、すべてのテンプレートが<strong>PC・タブレット・スマートフォン</strong>に対応したレスポンシブデザインとなっています。</p>
-                </div></div>
-            </div>
-        </div>
-        <!-- Category: サポートについて -->
-        <div class="faq-category fade-up" style="animation-delay:.25s">
-            <h2 class="faq-category-title"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>サポートについて</h2>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span class="faq-q-mark">Q</span>
-                    <h3>テンプレートの使い方でわからないことがあった場合は？</h3>
-                    <div class="faq-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
-                </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <p>以下の方法でサポートをご利用いただけます。</p>
-                    <ul>
-                        <li><strong><a href="/user-guide/contact-chat/">AIチャットサポート</a>：</strong>24時間対応。テンプレートの使い方やHTML/CSS/JSに関する技術的な質問にAIがお答えします。</li>
-                        <li><strong><a href="/user-guide/contact-form/">お問い合わせフォーム</a>：</strong>スタッフが2営業日以内にメールでご返信します。</li>
-                        <li><strong>メール：</strong><a href="mailto:info@chainsoda.world">info@chainsoda.world</a></li>
-                    </ul>
-                </div></div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span class="faq-q-mark">Q</span>
-                    <h3>返金・キャンセルは可能ですか？</h3>
-                    <div class="faq-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
-                </div>
-                <div class="faq-answer"><div class="faq-answer-inner">
-                    <p>デジタルコンテンツの特性上、ダウンロード後の返金・キャンセルは原則としてお受けしておりません。ご購入前にサービス概要やFAQをよくご確認ください。</p>
-                    <p>万一、ファイルの不備等がございましたら、<a href="/user-guide/contact-form/">お問い合わせフォーム</a>からご連絡ください。</p>
-                </div></div>
-            </div>
-        </div>
-        <div class="contact-card fade-up" style="animation-delay:.3s">
+        <div class="contact-card" id="contactCard" style="display:none">
             <h2>解決しない場合は</h2>
             <p>上記に該当しないご質問は、お気軽にお問い合わせください。</p>
             <p><a href="mailto:info@chainsoda.world">info@chainsoda.world</a></p>
@@ -240,18 +107,105 @@
     </main>
     <footer class="site-footer"><p>&copy; 2026 バク売れLPテンプレ &amp; CHAINSODA Co., Ltd. — All rights reserved.</p></footer>
     <script>
-    function toggleFaq(el){
-        const item=el.closest('.faq-item');
-        const wasOpen=item.classList.contains('open');
+    const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTza74lwZCv56xNnhI4fDgEk5zCvq4WAcvNboRGbByVxPLSh-NZLIe8eVdATny0exFPGPW8ew9O7Jm8/pub?gid=1192474135&single=true&output=csv';
+
+    function parseCSV(text) {
+        const rows = []; let cur = []; let field = ''; let inQ = false;
+        for (let i = 0; i < text.length; i++) {
+            const c = text[i];
+            if (inQ) {
+                if (c === '"' && text[i+1] === '"') { field += '"'; i++; }
+                else if (c === '"') { inQ = false; }
+                else { field += c; }
+            } else {
+                if (c === '"') { inQ = true; }
+                else if (c === ',') { cur.push(field); field = ''; }
+                else if (c === '\n' || (c === '\r' && text[i+1] === '\n')) {
+                    cur.push(field); field = ''; rows.push(cur); cur = [];
+                    if (c === '\r') i++;
+                } else { field += c; }
+            }
+        }
+        if (field || cur.length) { cur.push(field); rows.push(cur); }
+        return rows;
+    }
+
+    function escapeHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+    /** 改行を<br>に変換, URLをリンク化 */
+    function formatAnswer(text) {
+        let html = escapeHtml(text);
+        html = html.replace(/\n/g, '<br>');
+        html = html.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+        return '<p>' + html + '</p>';
+    }
+
+    const CATEGORY_ICONS = {
+        default: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>'
+    };
+
+    async function loadFAQ() {
+        const container = document.getElementById('faqContainer');
+        const loading = document.getElementById('loadingState');
+        const empty = document.getElementById('emptyState');
+        const contact = document.getElementById('contactCard');
+        try {
+            const res = await fetch(CSV_URL + '&t=' + Date.now());
+            if (!res.ok) throw new Error('Fetch failed');
+            const text = await res.text();
+            const rows = parseCSV(text).slice(1).filter(r => (r[0]||'').trim().toUpperCase() === 'ON');
+            loading.style.display = 'none';
+            if (rows.length === 0) { empty.style.display = 'block'; return; }
+
+            // Group by category
+            const categories = {};
+            rows.forEach(function(r) {
+                const cat = (r[1] || '未分類').trim();
+                if (!categories[cat]) categories[cat] = [];
+                categories[cat].push({ question: r[2] || '', answer: r[3] || '' });
+            });
+
+            let catIdx = 0;
+            Object.keys(categories).forEach(function(catName) {
+                const items = categories[catName];
+                const section = document.createElement('div');
+                section.className = 'faq-category';
+                section.style.animationDelay = (catIdx * 0.1) + 's';
+
+                let html = '<h2 class="faq-category-title">' + CATEGORY_ICONS.default + escapeHtml(catName) + '</h2>';
+
+                items.forEach(function(item, i) {
+                    const openClass = (catIdx === 0 && i === 0) ? ' open' : '';
+                    html += '<div class="faq-item' + openClass + '">'
+                        + '<div class="faq-question" onclick="toggleFaq(this)">'
+                        + '<span class="faq-q-mark">Q</span>'
+                        + '<h3>' + escapeHtml(item.question) + '</h3>'
+                        + '<div class="faq-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>'
+                        + '</div>'
+                        + '<div class="faq-answer"><div class="faq-answer-inner">'
+                        + formatAnswer(item.answer)
+                        + '</div></div>'
+                        + '</div>';
+                });
+
+                section.innerHTML = html;
+                container.appendChild(section);
+                catIdx++;
+            });
+
+            contact.style.display = 'block';
+        } catch (err) {
+            console.error('FAQ CSV load error:', err);
+            loading.innerHTML = '<p style="color:var(--text-muted)">FAQの読み込みに失敗しました。ページを再読み込みしてください。</p>';
+        }
+    }
+
+    function toggleFaq(el) {
+        const item = el.closest('.faq-item');
         item.classList.toggle('open');
     }
-    // Open first FAQ in each category by default
-    document.addEventListener('DOMContentLoaded',function(){
-        document.querySelectorAll('.faq-category').forEach(function(cat){
-            const first=cat.querySelector('.faq-item');
-            if(first)first.classList.add('open');
-        });
-    });
+
+    loadFAQ();
     </script>
 </body>
 </html>

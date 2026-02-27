@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お支払い完了｜BakuApo</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg:#FAFAFA;--bg-card:#FFF;--bg-alt:#F3F4F6;--border:#E5E7EB;--text-primary:#111827;--text-secondary:#6B7280;--text-muted:#7C8290;--accent:#0852FF;--accent-light:rgba(8,82,255,.08);--success:#10B981;--stripe:#635BFF}
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text-primary);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}
+        .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--border)}
+        .header-inner{max-width:1000px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+        .header-logo img{height:58px}
+        .header-label{font-size:13px;font-weight:600;color:var(--text-secondary)}
+        .main{max-width:680px;margin:0 auto;padding:60px 24px 100px;text-align:center}
+
+        .thanks-icon{width:80px;height:80px;border-radius:50%;background:rgba(16,185,129,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 28px}
+        .thanks-icon svg{width:40px;height:40px;color:var(--success)}
+
+        h1{font-size:32px;font-weight:800;letter-spacing:-.03em;margin-bottom:12px}
+        .sub-text{font-size:16px;color:var(--text-secondary);line-height:1.9;margin-bottom:40px}
+
+        .info-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:32px;text-align:left;margin-bottom:32px}
+        .info-card h2{font-size:24px;font-weight:700;margin-bottom:8px}
+        .info-card .info-lead{font-size:16px;color:var(--text-secondary);line-height:1.9;margin-bottom:24px}
+        .info-card p{font-size:16px;color:var(--text-secondary);line-height:1.9;margin-bottom:12px}
+        .info-card p:last-child{margin-bottom:0}
+        .info-card a{color:var(--accent);font-weight:600;text-decoration:none}
+        .info-card a:hover{text-decoration:underline}
+
+        .qs-label{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+        .qs-img-link{display:block;border-radius:12px;overflow:hidden;border:1px solid var(--border);transition:box-shadow .2s,transform .2s}
+        .qs-img-link:hover{box-shadow:0 8px 28px rgba(8,82,255,.12);transform:translateY(-2px)}
+        .qs-img-link img{width:100%;display:block}
+        .btn-qs{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;font-size:16px;font-weight:700;font-family:inherit;color:#fff !important;background:var(--accent);padding:16px 40px;border-radius:14px;border:none;cursor:pointer;transition:all .2s;box-shadow:0 4px 20px rgba(8,82,255,.2);text-decoration:none !important;margin-top:20px}
+        .btn-qs:hover{background:#063FCC;transform:translateY(-2px);box-shadow:0 8px 28px rgba(8,82,255,.3)}
+
+        /* Sunray light animation from header */
+        .sunray-overlay{pointer-events:none;position:fixed;top:0;left:0;width:100%;height:0;z-index:99;overflow:visible}
+        .sunray-beam{position:absolute;top:0;height:100vh;opacity:0;animation:beamSweep 3s ease-out forwards}
+        .sunray-beam:nth-child(1){left:10%;width:18%;background:linear-gradient(180deg,rgba(255,210,80,.35) 0%,rgba(255,220,100,.12) 40%,transparent 80%);animation-delay:0s}
+        .sunray-beam:nth-child(2){left:30%;width:25%;background:linear-gradient(180deg,rgba(255,190,60,.3) 0%,rgba(255,200,80,.1) 35%,transparent 75%);animation-delay:.15s}
+        .sunray-beam:nth-child(3){left:50%;width:20%;background:linear-gradient(180deg,rgba(255,230,120,.32) 0%,rgba(255,240,160,.1) 38%,transparent 78%);animation-delay:.3s}
+        .sunray-beam:nth-child(4){left:68%;width:22%;background:linear-gradient(180deg,rgba(255,200,70,.28) 0%,rgba(255,210,90,.1) 36%,transparent 76%);animation-delay:.1s}
+        .sunray-beam:nth-child(5){left:5%;width:30%;background:linear-gradient(180deg,rgba(255,240,180,.2) 0%,rgba(255,220,120,.08) 40%,transparent 70%);animation-delay:.25s}
+        @keyframes beamSweep{0%{opacity:0;transform:translateY(-30%) scaleY(.5)}15%{opacity:1}50%{opacity:.7;transform:translateY(0) scaleY(1)}100%{opacity:0;transform:translateY(15%) scaleY(1.1)}}
+
+        /* Cursor click animation on OGP image */
+        .qs-img-wrap{position:relative}
+        .cursor-anim{position:absolute;top:50%;left:58%;width:36px;height:36px;opacity:0;pointer-events:none;z-index:10;filter:drop-shadow(0 2px 8px rgba(0,0,0,.35));transition:none}
+        /* Click ripple */
+        .click-ripple{position:absolute;top:50%;left:58%;pointer-events:none;z-index:9}
+        .click-ripple-ring{position:absolute;top:0;left:0;width:0;height:0;border-radius:50%;border:2.5px solid rgba(8,82,255,.5);background:rgba(8,82,255,.15);transform:translate(-50%,-50%);opacity:0}
+
+        .mail-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:32px;text-align:left;margin-bottom:32px}
+        .mail-card h3{font-size:18px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+        .mail-card h3 .mail-icon{width:32px;height:32px;border-radius:8px;background:rgba(8,82,255,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .mail-card h3 .mail-icon svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:2}
+        .mail-card p{font-size:15px;color:var(--text-secondary);line-height:1.9;margin-bottom:10px}
+        .mail-card p:last-child{margin-bottom:0}
+        .mail-card a{color:var(--accent);font-weight:600;text-decoration:none}
+        .mail-card a:hover{text-decoration:underline}
+
+        .status-badge{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--success);background:rgba(16,185,129,.08);padding:8px 20px;border-radius:100px;margin-bottom:32px}
+        .status-badge svg{width:16px;height:16px}
+
+        .note{font-size:14px;color:var(--text-muted);line-height:1.8;margin-top:32px}
+
+        .site-footer{text-align:center;padding:32px 24px;border-top:1px solid var(--border)}
+        .site-footer p{font-size:12px;color:var(--text-muted)}
+
+        /* Loading / Error */
+        .status-msg{font-size:14px;color:var(--text-muted);margin-top:8px}
+        .status-msg.error{color:#EF4444}
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-logo"><img src="/bakuapo-logo-useer.svg" alt="BakuApo"></div>
+            <span class="header-label">決済完了</span>
+        </div>
+    </header>
+
+    <div class="sunray-overlay"><div class="sunray-beam"></div><div class="sunray-beam"></div><div class="sunray-beam"></div><div class="sunray-beam"></div><div class="sunray-beam"></div></div>
+
+    <main class="main">
+        <div>
+            <div class="thanks-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+            </div>
+
+            <h1>お支払いが完了しました</h1>
+        </div>
+
+        <div class="status-badge">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/></svg>
+            支払い完了 - Stripe
+        </div>
+
+        <p class="sub-text">
+            BakuApo（バクアポ）のクレジットカード決済が正常に完了しました。<br>
+            ご購入いただき、誠にありがとうございます。
+        </p>
+
+        <div class="info-card">
+            <h2>BakuApoへようこそ！</h2>
+            <p class="info-lead">早速BakuApo（バクアポ）のインストールを行いましょう。<br>フォーム営業の自動化はすぐそこです！</p>
+            <p class="qs-label">クイックスタートガイド</p>
+            <div class="qs-img-wrap" id="qsImgWrap">
+                <a href="/user-guide/quick-start/" class="qs-img-link"><img src="/quiq-start-ogp.webp" alt="BakuApo クイックスタートガイド" width="616" height="322"></a>
+                <div class="click-ripple" id="clickRipple"><div class="click-ripple-ring"></div></div>
+                <svg class="cursor-anim" id="cursorAnim" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 2L5 19.5L9.5 15.5L13.5 23L16.5 21.5L12.5 14L18 13L5 2Z" fill="#fff" stroke="#222" stroke-width="2" stroke-linejoin="round"/></svg>
+            </div>
+            <a href="/user-guide/quick-start/" class="btn-qs">▶︎ クイックスタートガイドに進む</a>
+        </div>
+
+        <div class="mail-card">
+            <h3><span class="mail-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,7 12,14 2,7"/></svg></span>決済完了メールを送信しております</h3>
+            <p>Stripe決済時にご登録いただいたメールアドレス宛に、「BakuApo」ダウンロードリンクやマニュアル等一式をお送りさせていただきます。</p>
+            <p>通常、決済完了後 <strong>1時間以内</strong> にメールをお届けいたします。</p>
+            <p>万が一、1時間経過してもメールが届かない場合は、迷惑メールフォルダをご確認のうえ、<a href="mailto:info@chainsoda.world">info@chainsoda.world</a> までお問い合わせください。</p>
+        </div>
+
+        <p class="status-msg" id="statusMsg" style="display:none">支払い情報を更新中...</p>
+
+        <p class="note">このページを閉じても問題ございません。</p>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 BakuApo &amp; CHAINSODA Co., Ltd. — All rights reserved.</p>
+    </footer>
+
+    <script>
+    // Cursor click animation on OGP image — JS-driven for reliability
+    (function(){
+        var wrap = document.getElementById('qsImgWrap');
+        var cursor = document.getElementById('cursorAnim');
+        var ringEl = document.querySelector('#clickRipple .click-ripple-ring');
+        if(!wrap||!cursor||!ringEl) return;
+        var triggered = false;
+        var s = cursor.style;
+        var rs = ringEl.style;
+
+        // Smooth transition helper
+        function setTransition(dur, props){
+            s.transition = props.map(function(p){ return p+' '+dur+'ms ease-out'; }).join(',');
+        }
+
+        // Click animation: scale cursor down then up + ripple ring
+        function doClick(cb){
+            // Press down
+            setTransition(120, ['transform']);
+            s.transform = 'translate(-50%,-50%) scale(0.6)';
+            // Ripple ring start
+            rs.transition = 'none';
+            rs.width = '0px'; rs.height = '0px'; rs.opacity = '0.7';
+            setTimeout(function(){
+                // Release up
+                setTransition(200, ['transform']);
+                s.transform = 'translate(-50%,-50%) scale(1)';
+                // Ripple ring expand
+                rs.transition = 'width .45s ease-out, height .45s ease-out, opacity .45s ease-out';
+                rs.width = '56px'; rs.height = '56px'; rs.opacity = '0';
+                setTimeout(function(){ if(cb) cb(); }, 350);
+            }, 150);
+        }
+
+        var io = new IntersectionObserver(function(entries){
+            for(var i=0;i<entries.length;i++){
+                if(entries[i].isIntersecting && !triggered){
+                    triggered = true; io.disconnect();
+
+                    // Phase 0: Start off-screen bottom-right, invisible
+                    s.transition = 'none';
+                    s.opacity = '0';
+                    s.transform = 'translate(-50%,-50%) translate(35px,35px)';
+
+                    // Phase 1: Fade-in + slide to center (0 → 600ms)
+                    requestAnimationFrame(function(){ requestAnimationFrame(function(){
+                        setTransition(600, ['opacity','transform']);
+                        s.opacity = '1';
+                        s.transform = 'translate(-50%,-50%) scale(1)';
+                    });});
+
+                    // Phase 2: 1st click at 900ms
+                    setTimeout(function(){ doClick(null); }, 900);
+                    // Phase 3: 2nd click at 1700ms
+                    setTimeout(function(){ doClick(null); }, 1700);
+                    // Phase 4: 3rd click at 2500ms
+                    setTimeout(function(){ doClick(null); }, 2500);
+
+                    // Phase 5: Fade out at 3300ms
+                    setTimeout(function(){
+                        setTransition(500, ['opacity']);
+                        s.opacity = '0';
+                    }, 3300);
+                    // Phase 6: Cleanup at 3900ms
+                    setTimeout(function(){
+                        cursor.style.display = 'none';
+                    }, 3900);
+                }
+            }
+        }, {threshold: 0.3});
+        io.observe(wrap);
+    })();
+    </script>
+
+    <script>
+    // Google Apps Script Web App URL
+    const CHECKOUT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwb3W-2pfK_Ar4fBjoFcMQG7AIjkFn44kCzL5h6xjuRespoZTc25war2TVnZZ7Cgepk/exec';
+
+    (async () => {
+        const statusMsg = document.getElementById('statusMsg');
+        const customerName = localStorage.getItem('checkoutName') || '';
+        const customerEmail = localStorage.getItem('checkoutEmail') || '';
+
+        const payload = {
+            action: 'updatePaymentStatus',
+            product: 'BakuApo',
+            price: 385000,
+            customerName: customerName,
+            email: customerEmail,
+            paymentStatus: '支払済み',
+            paidAt: new Date().toISOString()
+        };
+
+        if (!CHECKOUT_ENDPOINT) {
+            statusMsg.textContent = '※ GASエンドポイント未設定のため、ステータスの自動更新はスキップされました。';
+            return;
+        }
+
+        try {
+            await fetch(CHECKOUT_ENDPOINT, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+                mode: 'no-cors'
+            });
+            statusMsg.textContent = '✓ 支払い情報が正常に更新されました。';
+            statusMsg.style.color = '#10B981';
+        } catch (err) {
+            console.error('Status update error:', err);
+            statusMsg.textContent = '支払い情報の更新中にエラーが発生しました。決済自体は正常に完了しています。';
+            statusMsg.classList.add('error');
+        }
+    })();
+    </script>
+</body>
+</html>

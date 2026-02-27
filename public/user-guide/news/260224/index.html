@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BakuApoツール Ver. 1.2.0 リリースのお知らせ — BakuApo</title>
+    <meta name="description" content="2026年2月24日、BakuApoツール Ver. 1.2.0 をリリースいたしました。最新版のダウンロード方法やアップデート時のご注意事項をご案内いたします。">
+    <meta name="robots" content="noindex, nofollow">
+    <meta property="og:title" content="BakuApoツール Ver. 1.2.0 リリースのお知らせ — BakuApo">
+    <meta property="og:description" content="BakuApoツール Ver. 1.2.0 をリリースいたしました。最新版のダウンロード方法をご案内いたします。">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="BakuApo">
+    <meta property="og:locale" content="ja_JP">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --bg-alt: #F3F4F6;
+            --border: #E5E7EB;
+            --border-hover: #D1D5DB;
+            --text-primary: #111827;
+            --text-secondary: #6B7280;
+            --text-muted: #7C8290;
+            --accent: #0852FF;
+            --accent-light: rgba(8,82,255,0.08);
+            --accent-subtle: rgba(8,82,255,0.04);
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background-color: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.8;
+            font-size: 15px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+        }
+
+        /* --- Header --- */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+        .header-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header-logo a { display: flex; align-items: center; text-decoration: none; }
+        .header-logo img { height: 58px; }
+        .header-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        /* --- Breadcrumb --- */
+        .breadcrumb {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 20px 24px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+        }
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .breadcrumb .sep {
+            color: var(--border);
+            user-select: none;
+        }
+
+        /* --- Article --- */
+        .article {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 32px 24px 100px;
+        }
+
+        /* --- Article Header --- */
+        .article-header {
+            margin-bottom: 40px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .article-date {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+            font-family: 'Inter', monospace;
+        }
+        .article-tag {
+            display: inline-flex;
+            align-items: center;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            padding: 4px 12px;
+            border-radius: 100px;
+            white-space: nowrap;
+        }
+        .article-tag.bug {
+            background: rgba(239,68,68,0.08);
+            color: #EF4444;
+        }
+        .article-tag.update {
+            background: rgba(8,82,255,0.08);
+            color: #0852FF;
+        }
+        .article-tag.info {
+            background: rgba(16,185,129,0.08);
+            color: #10B981;
+        }
+        .article-tag.maintenance {
+            background: rgba(245,158,11,0.08);
+            color: #D97706;
+        }
+
+        .article-header h1 {
+            font-size: clamp(24px, 4vw, 32px);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.3;
+            color: var(--text-primary);
+        }
+
+        /* --- Article Body --- */
+        .article-body h2 {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.4;
+            color: var(--text-primary);
+            margin: 48px 0 16px;
+            padding-left: 16px;
+            border-left: 3px solid var(--accent);
+        }
+        .article-body h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 32px 0 12px;
+        }
+        .article-body p {
+            margin-bottom: 16px;
+            color: var(--text-primary);
+            line-height: 1.9;
+        }
+        .article-body ul, .article-body ol {
+            margin: 12px 0 20px 24px;
+            color: var(--text-primary);
+        }
+        .article-body li {
+            margin-bottom: 8px;
+            line-height: 1.8;
+        }
+        .article-body a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+        .article-body a:hover {
+            text-decoration-thickness: 2px;
+        }
+
+        /* --- Callout --- */
+        .callout {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px 28px;
+            margin: 24px 0;
+        }
+        .callout.danger {
+            border-left: 4px solid var(--danger);
+            background: rgba(239,68,68,0.03);
+        }
+        .callout.warning {
+            border-left: 4px solid var(--warning);
+            background: rgba(245,158,11,0.03);
+        }
+        .callout.info {
+            border-left: 4px solid var(--accent);
+            background: rgba(8,82,255,0.03);
+        }
+        .callout.success {
+            border-left: 4px solid var(--success);
+            background: rgba(16,185,129,0.03);
+        }
+        .callout-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .callout-title svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+        .callout p {
+            font-size: 14px;
+            margin-bottom: 0;
+            color: var(--text-secondary);
+        }
+        .callout p + p {
+            margin-top: 8px;
+        }
+
+        /* --- Download CTA --- */
+        .dl-cta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 28px 0;
+            padding: 20px 24px;
+            background: var(--accent-light);
+            border: 1px solid rgba(8,82,255,0.15);
+            border-radius: 14px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .dl-cta:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 16px rgba(8,82,255,0.12);
+            transform: translateY(-1px);
+        }
+        .dl-cta-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--accent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .dl-cta-icon svg {
+            width: 22px;
+            height: 22px;
+            stroke: #fff;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .dl-cta-text {
+            flex: 1;
+        }
+        .dl-cta-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1.4;
+        }
+        .dl-cta-sub {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .dl-cta-arrow {
+            width: 20px;
+            height: 20px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            flex-shrink: 0;
+            transition: transform 0.2s ease;
+        }
+        .dl-cta:hover .dl-cta-arrow {
+            transform: translateX(3px);
+        }
+        .article-body .dl-cta {
+            text-decoration: none;
+        }
+        .article-body .dl-cta:hover {
+            text-decoration: none;
+        }
+
+        /* --- Divider --- */
+        .article-divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 40px 0;
+        }
+
+        /* --- Back link --- */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 48px;
+            padding: 12px 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--accent);
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .back-link:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 12px rgba(8,82,255,0.08);
+            transform: translateY(-1px);
+        }
+        .back-link svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: transform 0.2s ease;
+        }
+        .back-link:hover svg {
+            transform: translateX(-3px);
+        }
+
+        /* --- Footer --- */
+        .site-footer {
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid var(--border);
+        }
+        .site-footer p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .article { padding: 24px 16px 60px; }
+            .breadcrumb { padding: 16px 16px 0; }
+            .header-inner { padding: 14px 16px; }
+            .callout { padding: 20px; }
+            .dl-cta { padding: 16px 18px; flex-wrap: wrap; }
+        }
+        @media (max-width: 480px) {
+            .header-logo img { height: 40px; }
+            .article-header h1 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ======== Header ======== -->
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-logo">
+                <a href="/user-guide/">
+                    <img src="/bakuapo-logo-useer.svg" alt="BakuApo">
+                </a>
+            </div>
+            <span class="header-label">ご利用ユーザー様専用ページ</span>
+        </div>
+    </header>
+
+    <!-- ======== Breadcrumb ======== -->
+    <nav class="breadcrumb">
+        <a href="/user-guide/">ユーザーガイド</a>
+        <span class="sep">›</span>
+        <a href="/user-guide/">最新情報</a>
+        <span class="sep">›</span>
+        <span>BakuApoツール Ver. 1.2.0 リリースのお知らせ</span>
+    </nav>
+
+    <!-- ======== Article ======== -->
+    <article class="article">
+
+        <!-- Header -->
+        <header class="article-header">
+            <div class="article-meta">
+                <span class="article-date">2026.02.24</span>
+                <span class="article-tag update">アップデート</span>
+            </div>
+            <h1>BakuApoツール Ver. 1.2.0 リリースのお知らせ</h1>
+        </header>
+
+        <!-- Body -->
+        <div class="article-body">
+
+            <p>平素よりBakuApo（バクアポ）をご利用いただき、誠にありがとうございます。</p>
+
+            <p>2026年2月24日付で、BakuApoツールの最新バージョン <strong>Ver. 1.2.0</strong> をリリースいたしましたことをお知らせいたします。</p>
+
+            <hr class="article-divider">
+
+            <!-- ───── ダウンロード ───── -->
+            <h2>最新バージョンのダウンロード</h2>
+
+            <p>過去バージョンをご利用中のお客様は、下記のダウンロードページより最新版を取得のうえ、アップデートをお願いいたします。</p>
+
+            <a href="/user-guide/download/" class="dl-cta">
+                <div class="dl-cta-icon">
+                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </div>
+                <div class="dl-cta-text">
+                    <div class="dl-cta-title">BakuApo Ver. 1.2.0 をダウンロード</div>
+                    <div class="dl-cta-sub">Windows（.exe）・macOS（.dmg）対応</div>
+                </div>
+                <svg class="dl-cta-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </a>
+
+            <hr class="article-divider">
+
+            <!-- ───── 注意事項 ───── -->
+            <h2>アップデート時のご注意（Windows版）</h2>
+
+            <div class="callout warning">
+                <div class="callout-title" style="color:#D97706;">
+                    <svg stroke="#D97706" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    Windows版をご利用のお客様へ
+                </div>
+                <p>現在、Windows版の一部のバージョンにおいて、過去バージョンのアンインストール時に<strong>「NSIS Error」</strong>が発生し、最新版のインストールが正常に行えない事象を確認しております。</p>
+            </div>
+
+            <p>上記の症状が発生した場合は、以下の記事にてご案内しております手順に従い、旧バージョンをアンインストールしたうえで、最新版のインストールをお試しくださいますようお願いいたします。</p>
+
+            <a href="/user-guide/news/260223/" class="dl-cta" style="background:rgba(245,158,11,0.06);border-color:rgba(245,158,11,0.2);">
+                <div class="dl-cta-icon" style="background:#D97706;">
+                    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                </div>
+                <div class="dl-cta-text">
+                    <div class="dl-cta-title" style="color:#D97706;">Windows版アップデート時の不具合について</div>
+                    <div class="dl-cta-sub">アンインストールエラーの解消方法をご案内しています</div>
+                </div>
+                <svg class="dl-cta-arrow" style="stroke:#D97706;" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </a>
+
+            <hr class="article-divider">
+
+            <!-- ───── お問い合わせ ───── -->
+            <h2>お困りの場合</h2>
+
+            <p>アップデートに関してご不明な点やお困りのことがございましたら、お気軽にお問い合わせくださいませ。</p>
+
+            <div class="callout info">
+                <div class="callout-title" style="color:var(--accent);">
+                    <svg stroke="var(--accent)" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                    サポート窓口
+                </div>
+                <p><a href="/user-guide/contact-chat/">AIチャットサポート</a>にて、24時間いつでもご相談いただけます。</p>
+            </div>
+
+            <p>今後とも、BakuApoをご愛顧くださいますようよろしくお願い申し上げます。</p>
+
+            <!-- Back link -->
+            <a href="/user-guide/" class="back-link">
+                <svg viewBox="0 0 24 24"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+                ユーザーガイドに戻る
+            </a>
+
+        </div>
+    </article>
+
+    <!-- ======== Footer ======== -->
+    <footer class="site-footer">
+        <p>&copy; 2026 BakuApo — All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

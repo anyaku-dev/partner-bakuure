@@ -1,0 +1,8 @@
+{
+  "outputDirectory": "public",
+  "rewrites": [
+    { "source": "/api/gdoc-proxy", "destination": "/api/gdoc-proxy" },
+    { "source": "/api/gdoc-proxy-user", "destination": "/api/gdoc-proxy-user" },
+    { "source": "/api/gemini-proxy", "destination": "/api/gemini-proxy" }
+  ]
+}

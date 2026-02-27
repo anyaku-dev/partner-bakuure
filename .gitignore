@@ -1,0 +1,4 @@
+app-download/
+.wrangler/
+*.psd
+.DS_Store

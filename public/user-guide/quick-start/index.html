@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BakuApo（バクアポ）クイックスタートガイド</title>
+    <meta name="description" content="BakuApoご購入者様専用ページです。アプリケーションのインストールと初期設定方法をご案内しています。">
+    <meta name="robots" content="noindex, nofollow">
+    <!-- OGP -->
+    <meta property="og:title" content="BakuApo（バクアポ）クイックスタートガイド">
+    <meta property="og:description" content="BakuApoご購入者様専用ページです。アプリケーションのインストールと初期設定方法をご案内しています。">
+    <meta property="og:image" content="/quiq-start-ogp.webp">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="BakuApo（バクアポ）クイックスタートガイド">
+    <meta name="twitter:description" content="BakuApoご購入者様専用ページです。アプリケーションのインストールと初期設定方法をご案内しています。">
+    <meta name="twitter:image" content="/quiq-start-ogp.webp">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <style>
+        :root {
+            --bg: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --bg-alt: #F3F4F6;
+            --border: #E5E7EB;
+            --border-hover: #D1D5DB;
+            --text-primary: #111827;
+            --text-secondary: #6B7280;
+            --text-muted: #7C8290;
+            --accent: #0852FF;
+            --accent-light: rgba(8,82,255,0.08);
+            --accent-subtle: rgba(8,82,255,0.04);
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background-color: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 15px;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        /* --- Header --- */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header-logo img { height: 58px; }
+        .header-logo a { display: flex; align-items: center; text-decoration: none; }
+        .header-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: -0.01em;
+        }
+
+        /* --- Breadcrumb --- */
+        .breadcrumb {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px 24px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+        }
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .breadcrumb .sep {
+            color: var(--border);
+            user-select: none;
+        }
+
+        /* --- Article --- */
+        .article {
+            flex: 1;
+            min-width: 0;
+            max-width: 780px;
+            padding: 40px 24px 100px 40px;
+        }
+
+        /* --- Hero --- */
+        .hero {
+            padding: 64px 0 48px;
+            text-align: center;
+        }
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            background: var(--accent-light);
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: clamp(26px, 4.5vw, 38px);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.25;
+            margin-bottom: 16px;
+        }
+        .hero-sub {
+            font-size: 15px;
+            color: var(--text-secondary);
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        /* --- TOC --- */
+        .toc {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin-bottom: 56px;
+        }
+        .toc-title {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+        .toc ol {
+            list-style: none;
+            counter-reset: toc-counter;
+        }
+        .toc ol li {
+            counter-increment: toc-counter;
+            margin-bottom: 8px;
+        }
+        .toc ol li a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 10px;
+            transition: all 0.15s;
+        }
+        .toc ol li a:hover {
+            background: var(--accent-subtle);
+            color: var(--accent);
+        }
+        .toc ol li a::before {
+            content: counter(toc-counter);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: var(--accent-light);
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* --- Section --- */
+        .guide-section {
+            margin-bottom: 64px;
+            scroll-margin-top: 80px;
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--accent);
+        }
+        .section-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: var(--accent);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+        .section-title {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .section-intro {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+            line-height: 1.8;
+        }
+
+        /* --- Step --- */
+        .step {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 20px;
+            transition: box-shadow 0.2s;
+        }
+        .step:hover {
+            box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+        }
+        .step-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            background: var(--accent-light);
+            padding: 4px 12px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+        }
+        .step h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+        .step p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.75;
+            margin-bottom: 16px;
+        }
+        .step p:last-child { margin-bottom: 0; }
+
+        .step-img {
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+
+        .step-img-row {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+        .step-img-row img {
+            width: 100%;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        /* --- Download Button --- */
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            font-family: inherit;
+            color: #fff;
+            background: var(--accent);
+            padding: 14px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            margin: 8px 0;
+            box-shadow: 0 4px 16px rgba(8,82,255,0.2);
+        }
+        .download-btn:hover {
+            background: #063FCC;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(8,82,255,0.3);
+        }
+        .download-btn svg {
+            width: 18px; height: 18px;
+            stroke: currentColor; fill: none;
+            stroke-width: 2;
+        }
+
+        /* --- Alert / Callout --- */
+        .callout {
+            display: flex;
+            gap: 14px;
+            padding: 20px 24px;
+            border-radius: 12px;
+            margin: 16px 0;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+        .callout-icon {
+            flex-shrink: 0;
+            font-size: 20px;
+            width: 22px;
+            text-align: center;
+            margin-top: 2px;
+            line-height: 1;
+        }
+        .callout-info {
+            background: var(--accent-light);
+            border: 1px solid rgba(8,82,255,0.15);
+            color: var(--text-primary);
+        }
+        .callout-info .callout-icon { color: var(--accent); }
+        .callout-warning {
+            background: rgba(245,158,11,0.08);
+            border: 1px solid rgba(245,158,11,0.2);
+            color: var(--text-primary);
+        }
+        .callout-warning .callout-icon { color: var(--warning); }
+        .callout-danger {
+            background: rgba(239,68,68,0.06);
+            border: 1px solid rgba(239,68,68,0.15);
+            color: var(--text-primary);
+        }
+        .callout-danger .callout-icon { color: var(--danger); }
+        .callout-success {
+            background: rgba(16,185,129,0.06);
+            border: 1px solid rgba(16,185,129,0.15);
+            color: var(--text-primary);
+        }
+        .callout-success .callout-icon { color: var(--success); }
+
+        .callout a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+        .callout a:hover { text-decoration: none; }
+
+        /* --- Code Block --- */
+        .code-section {
+            background: var(--bg-card);
+            border: 2px solid var(--accent);
+            border-radius: 14px;
+            padding: 24px;
+            margin: 16px 0;
+        }
+        .code-section-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+        .code-section-label svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+        .code-section-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+        .code-block {
+            background: #1E293B;
+            color: #E2E8F0;
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            font-size: 14px;
+            padding: 18px 20px;
+            border-radius: 10px;
+            margin: 0 0 14px;
+            overflow-x: auto;
+            position: relative;
+            letter-spacing: 0.02em;
+            line-height: 1.6;
+        }
+        .code-copy-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: var(--accent);
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .code-copy-btn:hover {
+            background: #063FCC;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(8,82,255,0.25);
+        }
+        .code-copy-btn.copied {
+            background: var(--success);
+        }
+        .code-copy-btn svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* --- OS Tab --- */
+        .os-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+        .os-tab {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: inherit;
+            color: var(--text-secondary);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 10px 22px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .os-tab:hover {
+            border-color: var(--border-hover);
+            color: var(--text-primary);
+        }
+        .os-tab.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+        .os-tab svg { width: 18px; height: 18px; }
+        .os-content { display: none; }
+        .os-content.active { display: block; }
+
+        /* --- Video Section --- */
+        .video-container {
+            position: relative;
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: #000;
+            margin: 16px 0;
+        }
+        .video-container video {
+            width: 100%;
+            display: block;
+        }
+
+        /* --- Coming Soon --- */
+        .coming-soon {
+            text-align: center;
+            padding: 48px 32px;
+            background: var(--bg-card);
+            border: 1px dashed var(--border);
+            border-radius: 16px;
+            margin-top: 24px;
+        }
+        .coming-soon-icon {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 16px;
+            background: var(--accent-light);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .coming-soon-icon svg { width: 28px; height: 28px; color: var(--accent); stroke: currentColor; fill: none; stroke-width: 1.5; }
+        .coming-soon h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .coming-soon p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* --- Footer --- */
+        .site-footer {
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid var(--border);
+        }
+        .site-footer p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* --- Page Layout --- */
+        .page-layout {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- Sidebar --- */
+        .sidebar {
+            width: 260px;
+            flex-shrink: 0;
+            border-right: 1px solid var(--border);
+        }
+        .sidebar-nav {
+            position: sticky;
+            top: 57px;
+            padding: 32px 16px;
+            max-height: calc(100vh - 57px);
+            overflow-y: auto;
+        }
+        .sidebar-title {
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            padding: 0 12px;
+        }
+        .sidebar-nav ul {
+            list-style: none;
+        }
+        .sidebar-nav li {
+            margin-bottom: 2px;
+        }
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: all 0.15s;
+            border-left: 3px solid transparent;
+            margin-left: -3px;
+        }
+        .sidebar-link:hover {
+            color: var(--text-primary);
+            background: var(--bg-alt);
+        }
+        .sidebar-link.active {
+            color: var(--accent);
+            background: var(--accent-light);
+            border-left-color: var(--accent);
+            font-weight: 600;
+        }
+        .sidebar-link .link-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            flex-shrink: 0;
+            background: var(--bg-alt);
+            color: var(--text-muted);
+            transition: all 0.15s;
+        }
+        .sidebar-link.active .link-num {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* --- Page Title --- */
+        .page-title {
+            margin-bottom: 40px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+        }
+        .page-title-img {
+            width: 100%;
+            border-radius: 16px;
+            display: block;
+        }
+
+        /* --- Download Card --- */
+        .dl-hero {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .dl-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--success);
+            background: rgba(16,185,129,0.08);
+            padding: 5px 14px;
+            border-radius: 100px;
+            margin-bottom: 20px;
+        }
+        .dl-hero-badge svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.5; }
+        .dl-hero h3 {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 6px;
+        }
+        .dl-hero .dl-version {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 28px;
+        }
+        .dl-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .dl-option {
+            background: var(--bg);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 24px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        .dl-option:hover {
+            border-color: var(--accent);
+            background: var(--accent-subtle);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(8,82,255,0.1);
+        }
+        .dl-option-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .dl-option-icon.windows { background: rgba(0,120,215,0.1); }
+        .dl-option-icon.mac { background: rgba(0,0,0,0.06); }
+        .dl-option-icon svg { width: 28px; height: 28px; }
+        .dl-option-title {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+        .dl-option-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .dl-option-file {
+            font-size: 11px;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            color: var(--text-muted);
+            background: var(--bg-alt);
+            padding: 3px 10px;
+            border-radius: 6px;
+        }
+        .dl-option-size {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .dl-option-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            background: var(--accent);
+            padding: 10px 24px;
+            border-radius: 10px;
+            transition: background 0.2s;
+            width: 100%;
+            justify-content: center;
+        }
+        .dl-option:hover .dl-option-btn { background: #063FCC; }
+        .dl-option-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
+        .dl-trust {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+        .dl-trust-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .dl-trust-item svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; flex-shrink: 0; }
+        .dl-auto-detect {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+        .dl-auto-detect strong { color: var(--accent); font-weight: 600; }
+
+        /* --- Responsive --- */
+        @media (max-width: 900px) {
+            .sidebar { display: none; }
+            .page-layout { display: block; }
+            .article { padding: 32px 24px 80px; max-width: 100%; }
+        }
+        @media (max-width: 640px) {
+            .dl-options { grid-template-columns: 1fr; }
+            .dl-hero { padding: 28px 20px; }
+            .article { padding: 24px 16px 80px; }
+            .step { padding: 20px; }
+            .os-tabs { flex-direction: column; }
+            .section-header { flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-logo">
+                <a href="/user-guide/">
+                    <img src="/bakuapo-logo-useer.svg" alt="BakuApo">
+                </a>
+            </div>
+            <span class="header-label">BakuApoご購入者様専用｜クイックスタートガイド</span>
+        </div>
+    </header>
+
+    <nav class="breadcrumb">
+        <a href="/user-guide/">ユーザーガイド</a>
+        <span class="sep">›</span>
+        <span>クイックスタートガイド</span>
+    </nav>
+
+    <div class="page-layout">
+    <aside class="sidebar">
+        <nav class="sidebar-nav">
+            <p class="sidebar-title">クイックスタートガイド</p>
+            <ul>
+                <li><a href="#intro" class="sidebar-link active" data-section="intro"><span class="link-num">1</span>はじめに</a></li>
+                <li><a href="#download" class="sidebar-link" data-section="download"><span class="link-num">2</span>アプリをダウンロード</a></li>
+                <li><a href="#setup-windows" class="sidebar-link" data-section="setup-windows"><span class="link-num">3</span>セットアップ（Win）</a></li>
+                <li><a href="#setup-mac" class="sidebar-link" data-section="setup-mac"><span class="link-num">4</span>セットアップ（Mac）</a></li>
+                <li><a href="#usage" class="sidebar-link" data-section="usage"><span class="link-num">5</span>アプリ操作方法</a></li>
+                <li><a href="#contact" class="sidebar-link" data-section="contact"><span class="link-num">6</span>お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <main class="article">
+        <div class="page-title">
+            <img class="page-title-img" src="/quiq-start-ogp.webp" alt="クイックスタートガイド">
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 1. はじめに -->
+        <!-- ========================================== -->
+        <section class="guide-section" id="intro">
+            <div class="section-header">
+                <span class="section-number">1</span>
+                <h2 class="section-title">はじめに</h2>
+            </div>
+            <p class="section-intro">
+                BakuApoをお選びいただきまして、誠にありがとうございます。<br>
+                本ガイドでは、BakuApoのダウンロードからインストール、起動までの手順を、
+                お使いのOS（Windows / Mac）別にご案内いたします。<br>
+                それぞれ数分程度で完了いたしますので、以下の手順に沿ってお進めくださいませ。
+            </p>
+            <div class="callout callout-info">
+                <i class="fa-solid fa-circle-info callout-icon" style="color:var(--accent);"></i>
+                <div>
+                    ご不明な点がございましたら、<a href="/user-guide/contact-chat/">こちら</a>にて、解決をお手伝いいたします。
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- 2. アプリをダウンロード -->
+        <!-- ========================================== -->
+        <section class="guide-section" id="download">
+            <div class="section-header">
+                <span class="section-number">2</span>
+                <h2 class="section-title">アプリをダウンロード</h2>
+            </div>
+            <p class="section-intro">
+                お使いのOSに合わせて、以下よりインストーラーをダウンロードしてください。<br>
+                ボタンをクリックすると、すぐにダウンロードが開始されます。
+            </p>
+
+            <div class="dl-hero">
+                <span class="dl-hero-badge">
+                    <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    最新バージョンをダウンロード
+                </span>
+                <h3>BakuApo（バクアポ）</h3>
+                <p class="dl-version">Version 1.2.0</p>
+                <p class="dl-auto-detect" id="osDetect"></p>
+
+                <div class="dl-options">
+                    <!-- Windows -->
+                    <a href="https://pub-f05486cd473b432092da184cec71eb70.r2.dev/bakuapo/app-download/BakuApo_1.2.0.exe" download class="dl-option" id="dlWindows">
+                        <div class="dl-option-icon windows">
+                            <svg viewBox="0 0 24 24" fill="#0078D7"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg>
+                        </div>
+                        <span class="dl-option-title">Windows</span>
+                        <div class="dl-option-meta">
+                            <span class="dl-option-file">.exe インストーラー</span>
+                            <span class="dl-option-size">290 MB</span>
+                        </div>
+                        <span class="dl-option-btn">
+                            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            ダウンロード
+                        </span>
+                    </a>
+                    <!-- Mac -->
+                    <a href="https://pub-f05486cd473b432092da184cec71eb70.r2.dev/bakuapo/app-download/BakuApo_1.2.0.dmg" download class="dl-option" id="dlMac">
+                        <div class="dl-option-icon mac">
+                            <svg viewBox="0 0 24 24" fill="#000"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        </div>
+                        <span class="dl-option-title">macOS</span>
+                        <div class="dl-option-meta">
+                            <span class="dl-option-file">.dmg ディスクイメージ</span>
+                            <span class="dl-option-size">199 MB（Apple Silicon）</span>
+                        </div>
+                        <span class="dl-option-btn">
+                            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            ダウンロード
+                        </span>
+                    </a>
+                </div>
+
+                <div class="dl-trust">
+                    <span class="dl-trust-item">
+                        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        安全なサーバーから配信
+                    </span>
+                    <span class="dl-trust-item">
+                        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        ウイルスチェック済み
+                    </span>
+                    <span class="dl-trust-item">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        ワンクリックで即時ダウンロード
+                    </span>
+                </div>
+                <p style="font-size: 11px; color: var(--text-muted); text-align: center; margin-top: 16px; line-height: 1.6; max-width: 480px; margin-left: auto; margin-right: auto;">
+                    本アプリケーションは Cloudflare のグローバルネットワーク上で<br>ホスティングされており、安全に配信されています。
+                </p>
+            </div>
+
+            <div class="callout callout-info">
+                <i class="fa-solid fa-circle-info callout-icon" style="color:var(--accent);"></i>
+                <div>
+                    ダウンロード完了後は、お使いのOSに合わせて<a href="#setup-windows">Windows版</a>または<a href="#setup-mac">Mac版</a>のセットアップ手順にお進みください。
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- 3. セットアップ方法 (Windows) -->
+        <!-- ========================================== -->
+        <section class="guide-section" id="setup-windows">
+            <div class="section-header">
+                <span class="section-number">3</span>
+                <h2 class="section-title">セットアップ方法（Windows）</h2>
+            </div>
+            <p class="section-intro">
+                ダウンロードしたインストーラー（.exe）を実行し、画面の指示に沿ってセットアップを行います。
+            </p>
+
+            <!-- Step 1 -->
+            <div class="step">
+                <span class="step-label">Step 1</span>
+                <h3>インストーラーを実行する</h3>
+                <p>ダウンロードした「<strong>BakuApo_1.2.0.exe</strong>」をダブルクリックして実行してください。<br>
+                ブラウザの下部やダウンロードフォルダからお開きいただけます。</p>
+                <div class="callout callout-warning">
+                    <i class="fa-solid fa-triangle-exclamation callout-icon" style="color:var(--warning);"></i>
+                    <div>
+                        Windows SmartScreenの警告が表示される場合がございます。<br>
+                        「<strong>詳細情報</strong>」をクリックし、「<strong>実行</strong>」を選択してください。安全にインストールいただけます。
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edge Download Warning -->
+            <div class="step" style="border-color: var(--warning); border-width: 1px;">
+                <span class="step-label" style="background: rgba(245,158,11,0.08); color: var(--warning);">エラーが出た場合</span>
+                <h3>「一般的にダウンロードされていません」と表示される場合</h3>
+                <p>Microsoft Edgeをお使いの場合、ダウンロード時に以下のようなメッセージが表示されることがございます。<br>
+                これはEdgeのセキュリティ機能によるもので、ファイル自体に問題はございませんのでご安心ください。</p>
+                <p>下の画像の赤枠で示している「<strong>…</strong>」の部分をクリックして、出てくる「<strong>保存</strong>」をクリックしてください。</p>
+                <img class="step-img" src="/error-01.webp" alt="Edge ダウンロード警告" loading="lazy">
+                <p>クリック後の操作手順は、以下のリンク先にすべて記載されておりますので、同じように作業をお進めください。</p>
+                <div class="callout callout-info">
+                    <i class="fa-solid fa-circle-info callout-icon" style="color:var(--accent);"></i>
+                    <div>
+                        詳しい手順はこちら → <a href="https://www.systemgear.com/spt/info/info_dl_edge.html" target="_blank" rel="noopener">Microsoft Edge でダウンロードできない場合の対処法</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step">
+                <span class="step-label">Step 2</span>
+                <h3>セットアップ完了</h3>
+                <p>インストーラーの指示に沿って操作すると、自動的にセットアップが完了します。<br>
+                以下のような画面が表示されましたら、BakuApoが正常にインストールされています。</p>
+                <img class="step-img" src="https://lh7-rt.googleusercontent.com/slidesz/AGV_vUdXN9wIPPo5CtjlyBILRDh60hS5j2YQRqWpx3WmjT-HywRSJyn1sGLLMTZKNpCwJmA0gl7qohm0Nj-59ye3miAkl-tcYGOMw7pRLQC1XuldlYPXGlI3r6Acgtm5QOka5GXwv9XB_VF2sxJN=s2048?key=ZaCEKR0s8BNmrUGtKyTnUA" alt="BakuApo起動成功画面" loading="lazy">
+                <div class="callout callout-success">
+                    <i class="fa-solid fa-circle-check callout-icon" style="color:var(--success);"></i>
+                    <div>セットアップ完了です！BakuApoをご活用くださいませ。</div>
+                </div>
+            </div>
+
+            <!-- アップデート時の不具合案内 -->
+            <div class="step" style="border-left:3px solid var(--danger);padding-left:24px;">
+                <h3 style="display:flex;align-items:center;gap:8px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    Windows版アップデート時の不具合について
+                </h3>
+                <p>旧BakuApoがインストールされているWindows PCで最新版へアップグレードしようとすると、旧BakuApoをアンインストールできない例がございます。その場合は下記手順でアンインストール後に再度インストールを行なっていただきますようお願いいたします。</p>
+                <a href="https://partner.bakuapo.com/user-guide/news/260223/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:10px 20px;background:var(--bg);border:1px solid var(--border);border-radius:10px;font-size:13px;font-weight:600;color:var(--danger);text-decoration:none;transition:all .2s ease;" onmouseover="this.style.borderColor='var(--danger)';this.style.boxShadow='0 4px 12px rgba(239,68,68,0.1)';" onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow='none';">
+                    詳細はこちら
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- 4. セットアップ方法 (Mac) -->
+        <!-- ========================================== -->
+        <section class="guide-section" id="setup-mac">
+            <div class="section-header">
+                <span class="section-number">4</span>
+                <h2 class="section-title">セットアップ方法（Mac）</h2>
+            </div>
+            <p class="section-intro">
+                ダウンロードしたディスクイメージ（.dmg）を開き、アプリケーションフォルダにインストールします。
+            </p>
+
+            <!-- Step 1 -->
+            <div class="step">
+                <span class="step-label">Step 1</span>
+                <h3>ディスクイメージを開く</h3>
+                <p>ダウンロードした「<strong>BakuApo_1.2.0.dmg</strong>」をダブルクリックして開いてください。<br>
+                以下のような画面が表示されます。</p>
+                <div class="callout callout-info">
+                    <i class="fa-solid fa-circle-info callout-icon" style="color:var(--accent);"></i>
+                    <div>ファイルの展開に少しお時間がかかる場合がございます。焦らずお待ちくださいませ。</div>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step">
+                <span class="step-label">Step 2</span>
+                <h3>アプリケーションフォルダにインストール</h3>
+                <p>表示された画面で、左側の「<strong>BakuApo Simple</strong>」を、右側の「<strong>アプリケーション</strong>」フォルダにドラッグしてください。</p>
+                <img class="step-img" src="https://lh7-rt.googleusercontent.com/slidesz/AGV_vUfsiW30Y1YFgmL51xJJn2Ve-gGItzPSaMagMNoBVUs5y8vk7YKKPa2ldFMpARRKTzADk82C4HAQINgGK0bSGnAesA_6fp6S2u1VhvsLwF-ZKjUWHSD0SR-81kqR8V9-S1v-fJp7avC0nnol=s2048?key=ZaCEKR0s8BNmrUGtKyTnUA" alt="アプリケーションフォルダにドラッグ" loading="lazy">
+                <p>これで「アプリケーション」の中に正しく「BakuApo Simple」がインストールされます。</p>
+                <img class="step-img" src="https://lh7-rt.googleusercontent.com/slidesz/AGV_vUfIQIc9WBYj7Q-0xo1DUn2dYcCci-dxzL_25_FHwSqdGzDuByuCRV7_lufezVLQo8xucXIvQHjn_OrZVEpyz652q54IIUoYmDRlDfpLTt7EOjjLsey35PyFSodPlkvendUGAI_Bsag92anB=s2048?key=ZaCEKR0s8BNmrUGtKyTnUA" alt="インストール完了" loading="lazy">
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step">
+                <span class="step-label">Step 3</span>
+                <h3>インストール完了を確認</h3>
+                <p>ディスクイメージの画面を閉じて、Finderの「<strong>アプリケーション</strong>」フォルダを確認してください。<br>
+                「<strong>BakuApo Simple</strong>」が表示されていればインストール完了です。ダブルクリックでBakuApoが起動します。</p>
+                <img class="step-img" src="https://lh7-rt.googleusercontent.com/slidesz/AGV_vUeqMfVdtwwVTYUjFUi3XThpQXHhzRY9wBstG7OGbZfY0OOxejc9d406_6HpptruYgqcYH-z8Lp0eOTbA3C6ErvNAv8IRRpyNettx-MZCm4kQ8uytXw6UKrcSsotbbl-20Tclo0oOxG-joXo=s2048?key=ZaCEKR0s8BNmrUGtKyTnUA" alt="Finderでアプリケーション確認" loading="lazy">
+                <div class="callout callout-warning">
+                    <i class="fa-solid fa-triangle-exclamation callout-icon" style="color:var(--warning);"></i>
+                    <div>起動時にエラーが表示される場合は、以下の「エラーが出た場合」の手順をご参照ください。</div>
+                </div>
+            </div>
+
+            <!-- Troubleshooting -->
+            <div class="step" style="border-color: var(--danger); border-width: 1px;">
+                <span class="step-label" style="background: rgba(239,68,68,0.08); color: var(--danger);">エラーが出た場合</span>
+                <h3>「壊れているため開けません」エラーが出た場合</h3>
+                <p>Macのセキュリティ機能により、以下のようなエラーが表示される場合がございます。<br>
+                マークの見た目が異なっていても、すべて同じ原因ですのでご安心ください。</p>
+                <img class="step-img" src="https://lh7-rt.googleusercontent.com/slidesz/AGV_vUckvBSa00cZ8bNLxEfPo_H_QoWwtWMfZboyPDoxwIFy51Aaz5fp9TWe_wvyxF2Po9J3f1lGLglZe-URt68Y26lR_sQhpNorvkeL1FfcQNO7gXcIPQRgP0GFRqclClaNGQH-WurFO0sT0tc=s2048?key=ZaCEKR0s8BNmrUGtKyTnUA" alt="壊れているため開けませんエラー" loading="lazy">
+                <div class="callout callout-danger">
+                    <i class="fa-solid fa-circle-xmark callout-icon" style="color:var(--danger);"></i>
+                    <div>
+                        <strong>「ゴミ箱に入れる」は押さないでください。</strong><br>
+                        まずは「<strong>キャンセル</strong>」を押してください。「ゴミ箱に入れる」を押すとアプリが削除されてしまいます。
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 24px;">解決手順</h3>
+                <p><strong>① ターミナルを開く</strong><br>
+                画面右上の 🔍（Spotlight検索）をクリックし、「<strong>ターミナル</strong>」と入力してEnterを押します。</p>
+                <div class="step-img-row">
+                    <img src="/terminal.webp" alt="ターミナルを開く" loading="lazy">
+                </div>
+
+                <p style="margin-top: 16px;"><strong>② コマンドをコピー＆実行する</strong><br>
+                ターミナルが開きましたら、下のボタンでコマンドをコピーし、ターミナルに貼り付けて <strong>Enter</strong> キーを押してください。</p>
+
+                <div class="code-section">
+                    <div class="code-section-label">
+                        <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                        コピーして貼り付けるコマンド
+                    </div>
+                    <p class="code-section-desc">下の黒いエリアに表示されている文字列が、貼り付けるコマンドです。<br>「コマンドをコピー」ボタンを押すとコピーされます。</p>
+                    <div class="code-block">
+                        <code id="terminalCmd">xattr -cr /Applications/BAKUAPO\ Simple.app</code>
+                    </div>
+                    <button class="code-copy-btn" onclick="copyCommand(this)">
+                        <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                        コマンドをコピー
+                    </button>
+                </div>
+                <div class="step-img-row">
+                    <img src="https://lh7-rt.googleusercontent.com/slidesz/AGV_vUfawIAb6IvuZEUByjzlGMBmiEpjs6WBRnQJgj2U7EknLxigvXWtaXZWah1Z6UcT2FcWRGGq-m6B-xug54DtkkRU95MJKYisLWE24YAAaRSNwKewP1nlI9IophrK3zQRdwqgSl_HsmBkl4oy=s2048?key=ZaCEKR0s8BNmrUGtKyTnUA" alt="コマンド入力前" loading="lazy">
+                    <img src="https://lh7-rt.googleusercontent.com/slidesz/AGV_vUe1mHssl-ICKEzfIixJ0G6luf0KxwagStUQ4ZlUM-iqzN3xxG4ucOksnyszmLvFVusui-g-j7cCLo4489Qgn8vJ9_w1GRi0jzXdRDj3XHI3aMgZhyjotNB2UkwiqCyhc6XAWBIy9UtkJPQc=s2048?key=ZaCEKR0s8BNmrUGtKyTnUA" alt="コマンド入力後" loading="lazy">
+                </div>
+
+                <p style="margin-top: 16px;"><strong>③ 再度BakuApoを起動する</strong><br>
+                これで解決です！もう一度「BakuApo Simple」をダブルクリックし、以下の画面が表示されれば成功です。</p>
+                <div class="step-img-row">
+                    <img src="https://lh7-rt.googleusercontent.com/slidesz/AGV_vUfV84Ob1ZX24OUPUbokinFiw1ZTq9B__8eJRWb7iSthWZMK04uLwg5uurO6FPM2JV6H5-fMuWCQzkiqC_1px-qgTqF53ZNKea_XYfaiqy2ANq8FC3VKDnC-f4R_5D5CdIIFvPA5aYe44bEM=s2048?key=ZaCEKR0s8BNmrUGtKyTnUA" alt="BakuApo起動成功（Mac）" loading="lazy">
+                    <img src="https://lh7-rt.googleusercontent.com/slidesz/AGV_vUcg6JBjcHz7MYjjUHCZBY47Q2EDgvieNDivnVS38MvwvKgHOJ1qJwzJCvWlAFrk3S4AC4ET6VaCel-OnoVLURulzCBAWD8UKn_OifluebiuUQ3vGLIw8g_eARL5asNH59pgqRNdMrCf_1Y=s2048?key=ZaCEKR0s8BNmrUGtKyTnUA" alt="BakuApoメイン画面" loading="lazy">
+                </div>
+                <div class="callout callout-success">
+                    <i class="fa-solid fa-circle-check callout-icon" style="color:var(--success);"></i>
+                    <div>セットアップ完了です！BakuApoをご活用くださいませ。</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- 4. アプリ操作方法 -->
+        <!-- ========================================== -->
+        <section class="guide-section" id="usage">
+            <div class="section-header">
+                <span class="section-number">5</span>
+                <h2 class="section-title">アプリ操作方法</h2>
+            </div>
+            <p class="section-intro">
+                BakuApoの基本的な操作方法をご紹介いたします。<br>
+                まずは以下のサービス紹介動画をご覧くださいませ。
+            </p>
+
+            <div class="step">
+                <span class="step-label">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    サービス紹介動画
+                </span>
+                <h3>BakuApo（バクアポ）の使い方</h3>
+                <p>動画は音声オフで自動再生されます。音声をお聞きになりたい場合は、プレーヤーのミュートボタンを解除してください。</p>
+                <div class="video-container">
+                    <video
+                        autoplay
+                        muted
+                        loop
+                        playsinline
+                        controls
+                        preload="metadata"
+                        src="/BakuApo%EF%BC%88%E3%83%90%E3%82%AF%E3%82%A2%E3%83%9D%EF%BC%89%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E7%B4%B9%E4%BB%8B%E5%8B%95%E7%94%BB_250216.mp4"
+                    >
+                        お使いのブラウザは動画の再生に対応しておりません。
+                    </video>
+                </div>
+            </div>
+
+            <div class="coming-soon">
+                <div class="coming-soon-icon">
+                    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                </div>
+                <h3>詳細な操作マニュアルを準備中です</h3>
+                <p>現在、より詳しい操作マニュアルの作成を進めております。<br>完成次第、こちらのページに掲載いたしますので、<br>もうしばらくお待ちくださいませ。</p>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- 6. お問い合わせ -->
+        <!-- ========================================== -->
+        <section class="guide-section" id="contact">
+            <div class="section-header">
+                <span class="section-number">6</span>
+                <h2 class="section-title">お問い合わせ</h2>
+            </div>
+            <p class="section-intro">
+                上記の内容で実行しても、どうしてもインストールが完了しない場合は、<br>
+                お手数ですが下記よりお問い合わせください。
+            </p>
+
+            <div style="text-align:center;margin-top:28px;">
+                <a href="/user-guide/contact-chat/" style="display:inline-flex;align-items:center;gap:10px;font-size:16px;font-weight:700;color:#fff;background:var(--accent);padding:16px 40px;border-radius:14px;text-decoration:none;transition:all .2s;box-shadow:0 4px 20px rgba(8,82,255,.18);">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                    お問い合わせに進む
+                </a>
+            </div>
+        </section>
+    </main>
+    </div><!-- /.page-layout -->
+
+    <footer class="site-footer">
+        <p>&copy; 2026 BakuApo &amp; CHAINSODA Co., Ltd. — All rights reserved.</p>
+    </footer>
+
+    <script>
+        // --- Copy command button ---
+        function copyCommand(btn) {
+            const code = document.getElementById('terminalCmd').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                btn.innerHTML = '<svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> コピーしました！';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.innerHTML = '<svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> コマンドをコピー';
+                    btn.classList.remove('copied');
+                }, 2500);
+            });
+        }
+
+        // --- OS auto-detect ---
+        (function() {
+            const ua = navigator.userAgent || navigator.platform || '';
+            const detect = document.getElementById('osDetect');
+            const dlWin = document.getElementById('dlWindows');
+            const dlMac = document.getElementById('dlMac');
+            if (/Mac|iPhone|iPad/.test(ua)) {
+                if (detect) detect.innerHTML = 'お使いの環境: <strong>macOS</strong> が検出されました';
+                if (dlMac) dlMac.style.borderColor = 'var(--accent)';
+            } else if (/Win/.test(ua)) {
+                if (detect) detect.innerHTML = 'お使いの環境: <strong>Windows</strong> が検出されました';
+                if (dlWin) dlWin.style.borderColor = 'var(--accent)';
+            }
+        })();
+
+        // --- Smooth scroll with header offset ---
+        var _scrollingTo = null;
+        var _scrollTimer = null;
+        var HEADER_OFFSET = 90;
+
+        document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                var href = link.getAttribute('href');
+                var target = document.querySelector(href);
+                if (!target) return;
+                e.preventDefault();
+
+                var sectionId = href.substring(1);
+                _scrollingTo = sectionId;
+
+                // Calculate exact scroll position accounting for sticky header
+                var top = target.getBoundingClientRect().top + window.pageYOffset - HEADER_OFFSET;
+                window.scrollTo({ top: top, behavior: 'smooth' });
+
+                // Immediately update sidebar active state
+                document.querySelectorAll('.sidebar-link[data-section]').forEach(function(sLink) {
+                    sLink.classList.toggle('active', sLink.dataset.section === sectionId);
+                });
+
+                // Re-enable scroll spy after animation completes
+                clearTimeout(_scrollTimer);
+                _scrollTimer = setTimeout(function() { _scrollingTo = null; }, 1000);
+            });
+        });
+
+        // --- Scroll spy for sidebar ---
+        (function() {
+            var sections = document.querySelectorAll('.guide-section[id]');
+            var links = document.querySelectorAll('.sidebar-link[data-section]');
+            if (!links.length) return;
+
+            function updateActive() {
+                // Skip during programmatic scroll to prevent flickering
+                if (_scrollingTo) return;
+
+                var current = '';
+                var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                var windowHeight = window.innerHeight;
+                var docHeight = document.documentElement.scrollHeight;
+
+                // If near bottom of page, activate the last section
+                if (scrollTop + windowHeight >= docHeight - 60) {
+                    current = sections[sections.length - 1].id;
+                } else {
+                    // Find the last section whose top has scrolled past the threshold
+                    for (var i = 0; i < sections.length; i++) {
+                        if (sections[i].getBoundingClientRect().top <= HEADER_OFFSET + 30) {
+                            current = sections[i].id;
+                        }
+                    }
+                }
+                if (!current && sections.length) current = sections[0].id;
+
+                links.forEach(function(link) {
+                    link.classList.toggle('active', link.dataset.section === current);
+                });
+            }
+            window.addEventListener('scroll', updateActive, { passive: true });
+            updateActive();
+        })();
+    </script>
+</body>
+</html>

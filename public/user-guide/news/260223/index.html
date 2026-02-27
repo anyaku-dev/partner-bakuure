@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows版アップデート時の不具合について — BakuApo</title>
+    <meta name="description" content="旧BakuApoがインストールされているWindows PCで最新版へアップグレードする際に発生する「NSIS Error」についての情報と解消方法をご案内します。">
+    <meta name="robots" content="noindex, nofollow">
+    <meta property="og:title" content="Windows版アップデート時の不具合について — BakuApo">
+    <meta property="og:description" content="旧BakuApoアップデート時に発生する「NSIS Error」の解消方法をご案内します。">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="BakuApo">
+    <meta property="og:locale" content="ja_JP">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --bg-alt: #F3F4F6;
+            --border: #E5E7EB;
+            --border-hover: #D1D5DB;
+            --text-primary: #111827;
+            --text-secondary: #6B7280;
+            --text-muted: #7C8290;
+            --accent: #0852FF;
+            --accent-light: rgba(8,82,255,0.08);
+            --accent-subtle: rgba(8,82,255,0.04);
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background-color: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.8;
+            font-size: 15px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+        }
+
+        /* --- Header --- */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+        .header-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header-logo a { display: flex; align-items: center; text-decoration: none; }
+        .header-logo img { height: 58px; }
+        .header-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        /* --- Breadcrumb --- */
+        .breadcrumb {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 20px 24px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+        }
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .breadcrumb .sep {
+            color: var(--border);
+            user-select: none;
+        }
+
+        /* --- Article --- */
+        .article {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 32px 24px 100px;
+        }
+
+        /* --- Article Header --- */
+        .article-header {
+            margin-bottom: 40px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .article-date {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+            font-family: 'Inter', monospace;
+        }
+        .article-tag {
+            display: inline-flex;
+            align-items: center;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            padding: 4px 12px;
+            border-radius: 100px;
+            white-space: nowrap;
+        }
+        .article-tag.bug {
+            background: rgba(239,68,68,0.08);
+            color: #EF4444;
+        }
+        .article-tag.update {
+            background: rgba(8,82,255,0.08);
+            color: #0852FF;
+        }
+        .article-tag.info {
+            background: rgba(16,185,129,0.08);
+            color: #10B981;
+        }
+        .article-tag.maintenance {
+            background: rgba(245,158,11,0.08);
+            color: #D97706;
+        }
+
+        .article-header h1 {
+            font-size: clamp(24px, 4vw, 32px);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.3;
+            color: var(--text-primary);
+        }
+
+        /* --- Article Body --- */
+        .article-body h2 {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.4;
+            color: var(--text-primary);
+            margin: 48px 0 16px;
+            padding-left: 16px;
+            border-left: 3px solid var(--accent);
+        }
+        .article-body h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 32px 0 12px;
+        }
+        .article-body p {
+            margin-bottom: 16px;
+            color: var(--text-primary);
+            line-height: 1.9;
+        }
+        .article-body ul, .article-body ol {
+            margin: 12px 0 20px 24px;
+            color: var(--text-primary);
+        }
+        .article-body li {
+            margin-bottom: 8px;
+            line-height: 1.8;
+        }
+        .article-body a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+        .article-body a:hover {
+            text-decoration-thickness: 2px;
+        }
+
+        /* --- Callout --- */
+        .callout {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px 28px;
+            margin: 24px 0;
+        }
+        .callout.danger {
+            border-left: 4px solid var(--danger);
+            background: rgba(239,68,68,0.03);
+        }
+        .callout.warning {
+            border-left: 4px solid var(--warning);
+            background: rgba(245,158,11,0.03);
+        }
+        .callout.info {
+            border-left: 4px solid var(--accent);
+            background: rgba(8,82,255,0.03);
+        }
+        .callout.success {
+            border-left: 4px solid var(--success);
+            background: rgba(16,185,129,0.03);
+        }
+        .callout-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .callout-title svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+        .callout p {
+            font-size: 14px;
+            margin-bottom: 0;
+            color: var(--text-secondary);
+        }
+        .callout p + p {
+            margin-top: 8px;
+        }
+
+        /* --- Steps --- */
+        .article-body .steps {
+            margin: 20px 0 28px 0;
+            padding: 0;
+            list-style: none;
+            counter-reset: step-counter;
+        }
+        .steps li {
+            counter-increment: step-counter;
+            position: relative;
+            padding: 16px 20px 16px 56px;
+            margin-bottom: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.7;
+            width: 100%;
+        }
+        .steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 16px;
+            top: 16px;
+            width: 28px;
+            height: 28px;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* --- Divider --- */
+        .article-divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 40px 0;
+        }
+
+        /* --- Back link --- */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 48px;
+            padding: 12px 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--accent);
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .back-link:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 12px rgba(8,82,255,0.08);
+            transform: translateY(-1px);
+        }
+        .back-link svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: transform 0.2s ease;
+        }
+        .back-link:hover svg {
+            transform: translateX(-3px);
+        }
+
+        /* --- Footer --- */
+        .site-footer {
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid var(--border);
+        }
+        .site-footer p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .article { padding: 24px 16px 60px; }
+            .breadcrumb { padding: 16px 16px 0; }
+            .header-inner { padding: 14px 16px; }
+            .callout { padding: 20px; }
+            .steps li { padding: 14px 16px 14px 50px; }
+            .steps li::before { left: 12px; top: 14px; }
+        }
+        @media (max-width: 480px) {
+            .header-logo img { height: 40px; }
+            .article-header h1 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ======== Header ======== -->
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-logo">
+                <a href="/user-guide/">
+                    <img src="/bakuapo-logo-useer.svg" alt="BakuApo">
+                </a>
+            </div>
+            <span class="header-label">ご利用ユーザー様専用ページ</span>
+        </div>
+    </header>
+
+    <!-- ======== Breadcrumb ======== -->
+    <nav class="breadcrumb">
+        <a href="/user-guide/">ユーザーガイド</a>
+        <span class="sep">›</span>
+        <a href="/user-guide/">最新情報</a>
+        <span class="sep">›</span>
+        <span>Windows版アップデート時の不具合について</span>
+    </nav>
+
+    <!-- ======== Article ======== -->
+    <article class="article">
+
+        <!-- Header -->
+        <header class="article-header">
+            <div class="article-meta">
+                <span class="article-date">2026.02.23</span>
+                <span class="article-tag bug">不具合情報</span>
+            </div>
+            <h1>Windows版アップデート時の不具合について</h1>
+        </header>
+
+        <!-- Body -->
+        <div class="article-body">
+
+            <p>旧BakuApoがインストールされているWindows PCで最新版へアップグレードしようとすると、</p>
+
+            <div class="callout danger">
+                <div class="callout-title" style="color:var(--danger);">
+                    <svg stroke="var(--danger)" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    発生する症状
+                </div>
+                <p>・旧版のアンインストール時に<strong>「NSIS Error」</strong>が発生</p>
+                <p>・その結果、新版のインストールも開始できない</p>
+            </div>
+
+            <p>というループが発生する場合があります。</p>
+
+            <hr class="article-divider">
+
+            <!-- ───── 解消方法 ───── -->
+            <h2>解消方法（暫定対応）</h2>
+
+            <p>Windowsの「設定」→「アプリ」からの通常アンインストールではエラーが出るため、<strong>IObit社の無料アンインストーラー</strong>などのツールを使用します。</p>
+
+            <div class="callout info">
+                <div class="callout-title" style="color:var(--accent);">
+                    <svg stroke="var(--accent)" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                    使用ツール
+                </div>
+                <p><strong>IObit Uninstaller（無料版）</strong></p>
+                <img src="/IObit-Uninstaller.webp" alt="IObit Uninstaller" style="display:block;width:200px;margin:12px 0 16px;border-radius:12px;">
+                <p><a href="https://jp.iobit.com/pc-optimization-software/iobit-uninstaller-free.html" target="_blank" rel="noopener noreferrer">https://jp.iobit.com/pc-optimization-software/iobit-uninstaller-free.html</a></p>
+                <p style="margin-top:12px;"><a href="https://jp.iobit.com/pc-optimization-software/iobit-uninstaller-free.html" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;padding:8px 18px;background:var(--bg-alt);border:1px solid var(--border);border-radius:8px;font-size:13px;font-weight:600;color:var(--text-primary);text-decoration:none;transition:all .2s ease;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)';" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-primary)';">IObit Uninstaller（無料版）のダウンロードはこちら <svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M7 17L17 7'/><path d='M7 7h10v10'/></svg></a></p>
+            </div>
+
+            <h3>手順</h3>
+
+            <ol class="steps">
+                <li>上記サイトより<strong>「IObit Uninstaller（無料版）」</strong>をダウンロード</li>
+                <li><strong>IObit Uninstaller</strong>を起動</li>
+                <li>一覧より<strong>旧BakuApo</strong>を選択し、残存ファイル含むすべてをアンインストール
+                    <img src="/news_260223-1.png" alt="IObit Uninstallerで旧BakuApoをアンインストール" style="display:block;width:100%;margin-top:14px;border-radius:14px;">
+                </li>
+                <li>削除完了後、<strong>最新版BakuApo</strong>を起動</li>
+            </ol>
+
+            <p>これにより、通常どおりインストールが開始されます。</p>
+
+            <hr class="article-divider">
+
+            <!-- ───── 原因 ───── -->
+            <h2>原因</h2>
+
+            <p>旧BakuApoのアンインストーラーが正常に動作せず、システム上に削除しきれていない情報が残ることで、新版のインストールがブロックされる状態です。</p>
+
+            <hr class="article-divider">
+
+            <!-- ───── 今後について ───── -->
+            <h2>今後について</h2>
+
+            <div class="callout success">
+                <div class="callout-title" style="color:var(--success);">
+                    <svg stroke="var(--success)" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    対応予定
+                </div>
+                <p>現在、根本原因を調査中です。</p>
+                <p><strong>2026年2月23日以降にリリース予定の、BakuApo ver 2にて解消予定</strong>です。</p>
+            </div>
+
+            <!-- Back link -->
+            <a href="/user-guide/" class="back-link">
+                <svg viewBox="0 0 24 24"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+                ユーザーガイドに戻る
+            </a>
+
+        </div>
+    </article>
+
+    <!-- ======== Footer ======== -->
+    <footer class="site-footer">
+        <p>&copy; 2026 BakuApo — All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

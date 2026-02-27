@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>カスタマーサポートへのお問い合わせ — BakuApo ユーザーガイド</title>
+    <meta name="description" content="BakuApoカスタマーサポートへのお問い合わせページです。">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --bg-alt: #F3F4F6;
+            --border: #E5E7EB;
+            --border-hover: #D1D5DB;
+            --text-primary: #111827;
+            --text-secondary: #6B7280;
+            --text-muted: #7C8290;
+            --accent: #0852FF;
+            --accent-light: rgba(8,82,255,0.08);
+            --accent-subtle: rgba(8,82,255,0.04);
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background-color: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 15px;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- Header --- */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header-logo img { height: 58px; }
+        .header-logo a { display: flex; align-items: center; text-decoration: none; }
+        .header-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        /* --- Breadcrumb --- */
+        .breadcrumb {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 16px 24px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .breadcrumb .sep { color: var(--border); user-select: none; }
+
+        /* --- Main Content --- */
+        .main-content {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 48px 24px 60px;
+            width: 100%;
+            flex: 1;
+        }
+
+        .page-hero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .page-hero-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--accent-light);
+            border-radius: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .page-hero-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .page-hero h1 {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+        .page-hero p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* --- Contact Card --- */
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 36px 32px;
+            text-align: center;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+            margin-bottom: 24px;
+        }
+        .contact-card h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .contact-card p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 8px;
+        }
+        .email-display {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 16px 0 24px;
+            word-break: break-all;
+        }
+        .email-display svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+        .btn-email {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            background: var(--accent);
+            padding: 16px 40px;
+            border-radius: 14px;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 0 4px 20px rgba(8,82,255,0.18);
+            font-family: inherit;
+        }
+        .btn-email:hover {
+            background: #063FCC;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 24px rgba(8,82,255,0.25);
+        }
+        .btn-email svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: #fff;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* --- Footer Links --- */
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .footer-link-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.2s;
+        }
+        .footer-link-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 2px 12px rgba(8,82,255,0.08);
+        }
+        .footer-link-card svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+        .footer-link-card .link-text {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .footer-link-card .link-url {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .footer-link-card .link-arrow {
+            margin-left: auto;
+            color: var(--text-muted);
+        }
+
+        /* --- Site Footer --- */
+        .site-footer {
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 13px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 640px) {
+            .header-logo img { height: 40px; }
+            .main-content { padding: 32px 16px 48px; }
+            .page-hero h1 { font-size: 22px; }
+            .contact-card { padding: 28px 20px; }
+            .btn-email { padding: 14px 32px; font-size: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ======== Header ======== -->
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-logo">
+                <a href="/user-guide/">
+                    <img src="/bakuapo-logo-useer.svg" alt="BakuApo">
+                </a>
+            </div>
+            <span class="header-label">ご利用ユーザー様専用ページ</span>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <a href="/user-guide/">ユーザーガイド</a>
+        <span class="sep">›</span>
+        <span>カスタマーサポート</span>
+    </nav>
+
+    <div class="main-content">
+        <!-- Hero -->
+        <div class="page-hero">
+            <div class="page-hero-icon">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <h1>カスタマーサポートへの<br>お問い合わせ</h1>
+            <p>カスタマーサポートへの直接のご連絡は、<br>お手数ですが、メールにてお問い合わせください。</p>
+        </div>
+
+        <!-- Contact Card -->
+        <div class="contact-card">
+            <h2>メールでのお問い合わせ</h2>
+            <p>下記メールアドレス宛にお問い合わせ内容をお送りください。<br>担当者より折り返しご連絡いたします。</p>
+            <div class="email-display">
+                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                info@chainsoda.world
+            </div>
+            <br>
+            <a href="mailto:info@chainsoda.world" class="btn-email">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                メールでのお問い合わせ
+            </a>
+        </div>
+
+        <!-- Footer Links -->
+        <div class="footer-links">
+            <a href="/user-guide/contact-chat/" class="footer-link-card">
+                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                <div>
+                    <div class="link-text">AIチャットでのお問い合わせはこちら</div>
+                    <div class="link-url">partner.bakuapo.com/user-guide/contact-chat/</div>
+                </div>
+                <span class="link-arrow">
+                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </span>
+            </a>
+            <a href="/user-guide/" class="footer-link-card">
+                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <div>
+                    <div class="link-text">ユーザーガイドTOPはこちら</div>
+                    <div class="link-url">partner.bakuapo.com/user-guide/</div>
+                </div>
+                <span class="link-arrow">
+                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </span>
+            </a>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 BakuApo &amp; CHAINSODA Co., Ltd. — All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -21,19 +21,35 @@
         body{font-family:'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text-primary);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased;min-height:100vh}
         .ambient-glow{position:fixed;top:-20%;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(ellipse,rgba(8,82,255,.04) 0%,transparent 70%);pointer-events:none;z-index:0}
         .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--border)}
-        .header-inner{max-width:840px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+        .header-inner{max-width:1100px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
         .header-logo img{height:58px}
         .header-label{font-size:13px;font-weight:500;color:var(--text-muted)}
-        .main-content{position:relative;z-index:1;max-width:840px;margin:0 auto;padding:0 24px 100px}
+        .main-content{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 24px 100px}
         .hero{padding:64px 0 48px;text-align:center}
         .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-light);padding:6px 16px;border-radius:100px;margin-bottom:20px}
         .hero h1{font-size:clamp(26px,5vw,38px);font-weight:800;letter-spacing:-.03em;line-height:1.2;margin-bottom:12px}
         .hero-sub{font-size:15px;color:var(--text-secondary);max-width:520px;margin:0 auto}
-        .tab-nav{display:flex;gap:4px;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:4px;margin-bottom:40px;overflow-x:auto}
+        .tab-nav{display:flex;gap:4px;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:4px;margin-bottom:32px;overflow-x:auto}
         .tab-btn{flex:1;padding:12px 20px;border-radius:10px;font-size:14px;font-weight:600;text-align:center;text-decoration:none;color:var(--text-secondary);background:transparent;border:none;cursor:pointer;font-family:inherit;transition:all .2s;white-space:nowrap;min-width:fit-content}
         .tab-btn.active{background:var(--accent);color:#fff;box-shadow:0 2px 8px rgba(8,82,255,.2)}
         .tab-btn:not(.active):hover{background:var(--accent-subtle);color:var(--accent)}
-        .faq-category{margin-bottom:48px;opacity:0;transform:translateY(16px);animation:fadeUp .5s ease forwards}
+
+        /* Layout: sidebar + content */
+        .content-layout{display:flex;gap:32px;align-items:flex-start}
+        .sidebar{width:220px;flex-shrink:0;position:sticky;top:88px}
+        .sidebar-nav{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+        .sidebar-title{font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px;padding:0 12px}
+        .sidebar-link{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;font-size:13px;font-weight:500;color:var(--text-secondary);text-decoration:none;transition:all .2s;line-height:1.4}
+        .sidebar-link:hover{background:var(--accent-subtle);color:var(--accent)}
+        .sidebar-link.active{background:var(--accent-light);color:var(--accent);font-weight:600}
+        .sidebar-dot{width:6px;height:6px;border-radius:50%;background:var(--border);flex-shrink:0;transition:background .2s}
+        .sidebar-link.active .sidebar-dot{background:var(--accent)}
+        .sidebar-count{margin-left:auto;font-size:11px;font-weight:600;color:var(--text-muted);background:var(--bg);border-radius:100px;padding:1px 7px;min-width:22px;text-align:center}
+        .sidebar-link.active .sidebar-count{background:rgba(8,82,255,.12);color:var(--accent)}
+        .content-area{flex:1;min-width:0}
+
+        /* FAQ styles */
+        .faq-category{margin-bottom:48px;scroll-margin-top:100px;opacity:0;transform:translateY(16px);animation:fadeUp .5s ease forwards}
         .faq-category-title{font-size:18px;font-weight:700;letter-spacing:-.01em;margin-bottom:16px;display:flex;align-items:center;gap:10px;color:var(--text-primary)}
         .faq-category-title svg{width:22px;height:22px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
         .faq-item{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;margin-bottom:12px;overflow:hidden;transition:border-color .3s;box-shadow:0 1px 3px rgba(0,0,0,.04)}
@@ -70,6 +86,16 @@
         .site-footer{text-align:center;padding:32px 24px;border-top:1px solid var(--border)}
         .site-footer p{font-size:12px;color:var(--text-muted)}
         @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+        @media(max-width:960px){
+            .content-layout{flex-direction:column;gap:0}
+            .sidebar{width:100%;position:static;margin-bottom:24px}
+            .sidebar-nav{display:flex;overflow-x:auto;gap:4px;padding:8px;-webkit-overflow-scrolling:touch}
+            .sidebar-title{display:none}
+            .sidebar-link{white-space:nowrap;padding:7px 14px;font-size:12px;border-radius:8px;background:var(--bg);border:1px solid var(--border)}
+            .sidebar-link.active{border-color:var(--accent)}
+            .sidebar-dot{display:none}
+            .sidebar-count{font-size:10px;padding:1px 5px}
+        }
         @media(max-width:768px){.hero{padding:48px 0 36px}.main-content{padding:0 16px 60px}.header-inner{padding:14px 16px}.faq-answer-inner{padding-left:24px}}
         @media(max-width:480px){.header-logo img{height:40px}.tab-btn{padding:10px 14px;font-size:13px}.faq-question{padding:16px 18px;gap:10px}.faq-q-mark{width:28px;height:28px;font-size:12px}.faq-question h3{font-size:14px}}
     </style>
@@ -93,16 +119,25 @@
             <a href="/manual/resources/" class="tab-btn">営業資料</a>
             <a href="/manual/faq/" class="tab-btn active">FAQ</a>
         </nav>
-        <div id="faqContainer"></div>
-        <div id="loadingState" class="loading-state"><div class="loading-spinner"></div><p>FAQを読み込んでいます...</p></div>
-        <div id="emptyState" class="empty-state" style="display:none">
-            <h3>FAQはまだ登録されていません</h3>
-            <p>コンテンツが追加されるまでしばらくお待ちください。</p>
-        </div>
-        <div class="contact-card" id="contactCard" style="display:none">
-            <h2>解決しない場合は</h2>
-            <p>上記に該当しないご質問は、お気軽にお問い合わせください。</p>
-            <p><a href="mailto:info@chainsoda.world">info@chainsoda.world</a></p>
+        <div class="content-layout">
+            <aside class="sidebar" id="sidebar">
+                <nav class="sidebar-nav" id="sidebarNav">
+                    <p class="sidebar-title">カテゴリー</p>
+                </nav>
+            </aside>
+            <div class="content-area">
+                <div id="faqContainer"></div>
+                <div id="loadingState" class="loading-state"><div class="loading-spinner"></div><p>FAQを読み込んでいます...</p></div>
+                <div id="emptyState" class="empty-state" style="display:none">
+                    <h3>FAQはまだ登録されていません</h3>
+                    <p>コンテンツが追加されるまでしばらくお待ちください。</p>
+                </div>
+                <div class="contact-card" id="contactCard" style="display:none">
+                    <h2>解決しない場合は</h2>
+                    <p>上記に該当しないご質問は、お気軽にお問い合わせください。</p>
+                    <p><a href="mailto:info@chainsoda.world">info@chainsoda.world</a></p>
+                </div>
+            </div>
         </div>
     </main>
     <footer class="site-footer"><p>&copy; 2026 バク売れLPテンプレ &amp; CHAINSODA Co., Ltd. — All rights reserved.</p></footer>
@@ -132,7 +167,6 @@
 
     function escapeHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-    /** 改行を<br>に変換, URLをリンク化 */
     function formatAnswer(text) {
         let html = escapeHtml(text);
         html = html.replace(/\n/g, '<br>');
@@ -149,27 +183,55 @@
         const loading = document.getElementById('loadingState');
         const empty = document.getElementById('emptyState');
         const contact = document.getElementById('contactCard');
+        const sidebarNav = document.getElementById('sidebarNav');
         try {
             const res = await fetch(CSV_URL + '&t=' + Date.now());
             if (!res.ok) throw new Error('Fetch failed');
             const text = await res.text();
             const rows = parseCSV(text).slice(1).filter(r => (r[0]||'').trim().toUpperCase() === 'ON');
             loading.style.display = 'none';
-            if (rows.length === 0) { empty.style.display = 'block'; return; }
+            if (rows.length === 0) {
+                empty.style.display = 'block';
+                document.getElementById('sidebar').style.display = 'none';
+                return;
+            }
 
             // Group by category
             const categories = {};
+            const catOrder = [];
             rows.forEach(function(r) {
                 const cat = (r[1] || '未分類').trim();
-                if (!categories[cat]) categories[cat] = [];
+                if (!categories[cat]) { categories[cat] = []; catOrder.push(cat); }
                 categories[cat].push({ question: r[2] || '', answer: r[3] || '' });
             });
 
+            // Build sidebar links
+            const sectionIds = [];
+            catOrder.forEach(function(catName, ci) {
+                const secId = 'fq-' + ci;
+                sectionIds.push(secId);
+                const link = document.createElement('a');
+                link.href = '#' + secId;
+                link.className = 'sidebar-link' + (ci === 0 ? ' active' : '');
+                link.innerHTML = '<span class="sidebar-dot"></span>'
+                    + escapeHtml(catName)
+                    + '<span class="sidebar-count">' + categories[catName].length + '</span>';
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.getElementById(secId).scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+                sidebarNav.appendChild(link);
+            });
+
+            // Build FAQ sections
             let catIdx = 0;
-            Object.keys(categories).forEach(function(catName) {
+            catOrder.forEach(function(catName) {
                 const items = categories[catName];
+                const secId = 'fq-' + catIdx;
+
                 const section = document.createElement('div');
                 section.className = 'faq-category';
+                section.id = secId;
                 section.style.animationDelay = (catIdx * 0.1) + 's';
 
                 let html = '<h2 class="faq-category-title">' + CATEGORY_ICONS.default + escapeHtml(catName) + '</h2>';
@@ -194,10 +256,33 @@
             });
 
             contact.style.display = 'block';
+
+            // IntersectionObserver for active sidebar link
+            setupScrollSpy(sectionIds);
         } catch (err) {
             console.error('FAQ CSV load error:', err);
             loading.innerHTML = '<p style="color:var(--text-muted)">FAQの読み込みに失敗しました。ページを再読み込みしてください。</p>';
+            document.getElementById('sidebar').style.display = 'none';
         }
+    }
+
+    function setupScrollSpy(sectionIds) {
+        const links = document.querySelectorAll('.sidebar-link');
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    const idx = sectionIds.indexOf(entry.target.id);
+                    if (idx >= 0) {
+                        links.forEach(function(l) { l.classList.remove('active'); });
+                        links[idx].classList.add('active');
+                    }
+                }
+            });
+        }, { rootMargin: '-80px 0px -60% 0px', threshold: 0 });
+        sectionIds.forEach(function(id) {
+            const el = document.getElementById(id);
+            if (el) observer.observe(el);
+        });
     }
 
     function toggleFaq(el) {

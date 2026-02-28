@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — バク売れLPテンプレ</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" href="/bakuure-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+JP:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{
+            font-family:'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+            background:#FAFAFA;
+            color:#111827;
+            min-height:100vh;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content:center;
+            -webkit-font-smoothing:antialiased;
+            text-align:center;
+            padding:24px;
+        }
+        .logo{margin-bottom:48px}
+        .logo img{height:58px}
+        .code{
+            font-size:clamp(100px, 20vw, 180px);
+            font-weight:800;
+            letter-spacing:-.04em;
+            line-height:1;
+            color:#D1D5DB;
+            margin-bottom:24px;
+        }
+        .message{
+            font-size:16px;
+            font-weight:500;
+            color:#6B7280;
+            margin-bottom:40px;
+            line-height:1.7;
+        }
+        .back-link{
+            display:inline-flex;
+            align-items:center;
+            gap:8px;
+            font-size:14px;
+            font-weight:600;
+            color:#0852FF;
+            text-decoration:none;
+            padding:12px 28px;
+            border-radius:12px;
+            background:rgba(8,82,255,.08);
+            transition:all .2s;
+        }
+        .back-link:hover{
+            background:rgba(8,82,255,.14);
+        }
+        .back-link svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <img src="/bakuure-logo.svg" alt="バク売れLPテンプレ">
+    </div>
+    <div class="code">404</div>
+    <p class="message">お探しのページは見つかりませんでした</p>
+    <a href="https://lp.bakuure.com/" class="back-link">
+        <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        トップに戻る
+    </a>
+</body>
+</html>

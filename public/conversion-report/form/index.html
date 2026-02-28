@@ -98,6 +98,21 @@
         .bank-registered-text p{font-size:13px;color:var(--text-muted)}
         .bank-form{display:flex;flex-direction:column;gap:20px}
         .bank-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+        .step5-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+        .step5-header h2{margin-bottom:0}
+        .btn-skip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--accent);background:var(--accent-light);padding:8px 16px;border-radius:8px;border:none;cursor:pointer;font-family:inherit;transition:all .2s;white-space:nowrap}
+        .btn-skip:hover{background:var(--accent);color:#fff}
+        .btn-skip svg{width:14px;height:14px}
+        /* Bank autocomplete */
+        .autocomplete-wrap{position:relative}
+        .autocomplete-list{position:absolute;top:100%;left:0;right:0;z-index:50;background:var(--bg-card);border:1px solid var(--border);border-top:none;border-radius:0 0 10px 10px;max-height:240px;overflow-y:auto;box-shadow:0 8px 24px rgba(0,0,0,.1);display:none}
+        .autocomplete-list.open{display:block}
+        .autocomplete-item{padding:10px 16px;font-size:14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background .1s}
+        .autocomplete-item:hover,.autocomplete-item.selected{background:var(--accent-light)}
+        .autocomplete-item .bank-code-hint{font-size:12px;color:var(--text-muted);font-weight:500}
+        .autocomplete-list::-webkit-scrollbar{width:6px}
+        .autocomplete-list::-webkit-scrollbar-track{background:transparent}
+        .autocomplete-list::-webkit-scrollbar-thumb{background:var(--border-hover);border-radius:3px}
 
         /* Confirm table */
         .confirm-table{border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:24px}
@@ -291,7 +306,13 @@
             <div class="form-step" data-step="4">
                 <div class="form-section">
                     <span class="form-section-label">Step 5</span>
-                    <h2>報酬お振込先</h2>
+                    <div class="step5-header">
+                        <h2>報酬お振込先</h2>
+                        <button type="button" class="btn-skip" id="btnSkipBank" onclick="skipBankStep()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 17l5-5-5-5"/><path d="M6 17l5-5-5-5"/></svg>
+                            登録済みのためスキップ
+                        </button>
+                    </div>
                     <div id="bankRegisteredMsg" class="bank-registered" style="display:none">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                         <div class="bank-registered-text">
@@ -302,7 +323,10 @@
                     <div class="bank-form" id="bankForm">
                         <div class="form-group">
                             <label class="form-label">銀行名<span class="required">*</span></label>
-                            <input type="text" class="form-input" id="bankName" placeholder="例：三菱UFJ銀行">
+                            <div class="autocomplete-wrap">
+                                <input type="text" class="form-input" id="bankName" placeholder="例：三菱UFJ銀行" autocomplete="off">
+                                <div class="autocomplete-list" id="bankSuggestList"></div>
+                            </div>
                             <p class="form-error" id="bankNameError">※ 銀行名を入力してください。</p>
                         </div>
                         <div class="bank-row">
@@ -410,6 +434,40 @@
     let currentStep = 0;
     const TOTAL_STEPS = 6;
     let bankAlreadyRegistered = false;
+    let bankSkipped = false;
+
+    /* ─── 日本の主要銀行一覧（銀行名→銀行コード） ─── */
+    const BANK_LIST = [
+        ['みずほ銀行','0001'],['三菱UFJ銀行','0005'],['三井住友銀行','0009'],['りそな銀行','0010'],['埼玉りそな銀行','0017'],
+        ['北海道銀行','0116'],['青森銀行','0117'],['みちのく銀行','0118'],['秋田銀行','0119'],['北都銀行','0120'],
+        ['荘内銀行','0121'],['山形銀行','0122'],['岩手銀行','0123'],['東北銀行','0124'],['七十七銀行','0125'],
+        ['東邦銀行','0126'],['群馬銀行','0128'],['足利銀行','0129'],['常陽銀行','0130'],['筑波銀行','0131'],
+        ['武蔵野銀行','0133'],['千葉銀行','0134'],['千葉興業銀行','0135'],['きらぼし銀行','0137'],['横浜銀行','0138'],
+        ['第四北越銀行','0140'],['山梨中央銀行','0142'],['八十二銀行','0143'],['北陸銀行','0144'],['富山銀行','0145'],
+        ['北國銀行','0146'],['福井銀行','0147'],['静岡銀行','0149'],['スルガ銀行','0150'],['清水銀行','0151'],
+        ['大垣共立銀行','0152'],['十六銀行','0153'],['三重銀行','0154'],['百五銀行','0155'],['滋賀銀行','0157'],
+        ['京都銀行','0158'],['関西みらい銀行','0159'],['池田泉州銀行','0161'],['南都銀行','0162'],['紀陽銀行','0163'],
+        ['但馬銀行','0164'],['鳥取銀行','0166'],['山陰合同銀行','0167'],['中国銀行','0168'],['広島銀行','0169'],
+        ['山口銀行','0170'],['阿波銀行','0172'],['百十四銀行','0173'],['伊予銀行','0174'],['四国銀行','0175'],
+        ['福岡銀行','0177'],['筑邦銀行','0178'],['佐賀銀行','0179'],['十八親和銀行','0180'],['肥後銀行','0182'],
+        ['大分銀行','0183'],['宮崎銀行','0184'],['鹿児島銀行','0185'],['琉球銀行','0187'],['沖縄銀行','0188'],
+        ['西日本シティ銀行','0190'],['北九州銀行','0191'],
+        ['ゆうちょ銀行','9900'],['PayPay銀行','0033'],['セブン銀行','0034'],['ソニー銀行','0035'],
+        ['楽天銀行','0036'],['住信SBIネット銀行','0038'],['auじぶん銀行','0039'],['イオン銀行','0040'],
+        ['GMOあおぞらネット銀行','0310'],['UI銀行','0044'],['みんなの銀行','0043'],
+        ['三菱UFJ信託銀行','0288'],['みずほ信託銀行','0289'],['三井住友信託銀行','0294'],
+        ['新生銀行','0397'],['あおぞら銀行','0398'],['SBI新生銀行','0397'],
+        ['北洋銀行','0501'],['きらやか銀行','0508'],['北日本銀行','0509'],['仙台銀行','0512'],
+        ['福島銀行','0513'],['大東銀行','0514'],['東和銀行','0516'],['栃木銀行','0517'],
+        ['京葉銀行','0522'],['東日本銀行','0525'],['東京スター銀行','0526'],
+        ['神奈川銀行','0530'],['大光銀行','0532'],['長野銀行','0533'],['富山第一銀行','0534'],
+        ['福邦銀行','0537'],['静岡中央銀行','0538'],['愛知銀行','0542'],['名古屋銀行','0543'],
+        ['中京銀行','0544'],['第三銀行','0546'],['みなと銀行','0562'],['島根銀行','0565'],
+        ['トマト銀行','0566'],['もみじ銀行','0569'],['西京銀行','0570'],['徳島大正銀行','0572'],
+        ['香川銀行','0573'],['愛媛銀行','0576'],['高知銀行','0578'],['福岡中央銀行','0582'],
+        ['佐賀共栄銀行','0583'],['長崎銀行','0585'],['熊本銀行','0587'],['豊和銀行','0590'],
+        ['宮崎太陽銀行','0591'],['南日本銀行','0594'],['沖縄海邦銀行','0596']
+    ];
 
     /* ─── Plan card toggle ─── */
     document.querySelectorAll('input[name="product"]').forEach(r => {
@@ -425,6 +483,65 @@
             cb.closest('.check-item').classList.toggle('checked', cb.checked);
         });
     });
+
+    /* ─── Bank autocomplete ─── */
+    (function initBankAutocomplete() {
+        const input = $('bankName');
+        const list = $('bankSuggestList');
+        const codeInput = $('bankCode');
+        let selectedIdx = -1;
+
+        function renderList(items) {
+            if (items.length === 0) { list.classList.remove('open'); return; }
+            list.innerHTML = items.map((b, i) =>
+                '<div class="autocomplete-item" data-idx="' + i + '">' +
+                '<span>' + b[0] + '</span>' +
+                '<span class="bank-code-hint">' + b[1] + '</span></div>'
+            ).join('');
+            list.classList.add('open');
+            selectedIdx = -1;
+            list.querySelectorAll('.autocomplete-item').forEach(el => {
+                el.addEventListener('mousedown', function(e) {
+                    e.preventDefault();
+                    pickBank(items[parseInt(this.dataset.idx)]);
+                });
+            });
+        }
+
+        function pickBank(bank) {
+            input.value = bank[0];
+            codeInput.value = bank[1];
+            list.classList.remove('open');
+        }
+
+        input.addEventListener('input', function() {
+            const q = this.value.trim();
+            if (q.length === 0) { list.classList.remove('open'); return; }
+            const matches = BANK_LIST.filter(b => b[0].indexOf(q) !== -1 || b[1].indexOf(q) !== -1).slice(0, 12);
+            renderList(matches);
+        });
+
+        input.addEventListener('keydown', function(e) {
+            const items = list.querySelectorAll('.autocomplete-item');
+            if (!items.length || !list.classList.contains('open')) return;
+            if (e.key === 'ArrowDown') { e.preventDefault(); selectedIdx = Math.min(selectedIdx + 1, items.length - 1); }
+            else if (e.key === 'ArrowUp') { e.preventDefault(); selectedIdx = Math.max(selectedIdx - 1, 0); }
+            else if (e.key === 'Enter' && selectedIdx >= 0) { e.preventDefault(); items[selectedIdx].dispatchEvent(new MouseEvent('mousedown')); return; }
+            else if (e.key === 'Escape') { list.classList.remove('open'); return; }
+            else return;
+            items.forEach((el, i) => el.classList.toggle('selected', i === selectedIdx));
+            items[selectedIdx].scrollIntoView({ block: 'nearest' });
+        });
+
+        input.addEventListener('blur', function() { setTimeout(() => list.classList.remove('open'), 150); });
+    })();
+
+    /* ─── Skip bank step ─── */
+    function skipBankStep() {
+        bankSkipped = true;
+        buildConfirmTable('confirmTable');
+        showStep(5);
+    }
 
     /* ─── Helpers ─── */
     function getSelectedProduct() {
@@ -487,6 +604,7 @@
             return ok;
         }
         if (step === 4) {
+            if (bankSkipped) return true;
             let ok = true;
             const fields = [
                 { id: 'bankName', errId: 'bankNameError', test: v => v.trim().length > 0 },
@@ -551,13 +669,19 @@
             ['成約商品', p.name],
             ['販売額（税込）', formatCurrency(p.price)],
             ['報酬額（税込）', formatCurrency(p.reward)],
-            ['振込予定日', getNextMonthEnd()],
-            ['銀行名', $('bankName').value.trim()],
-            ['支店名', $('branchName').value.trim()],
-            ['口座種別', $('accountType').value],
-            ['口座番号', $('accountNumber').value.trim()],
-            ['口座名義（カナ）', $('accountHolder').value.trim()]
+            ['振込予定日', getNextMonthEnd()]
         ];
+        if (!bankSkipped) {
+            rows.push(
+                ['銀行名', $('bankName').value.trim()],
+                ['支店名', $('branchName').value.trim()],
+                ['口座種別', $('accountType').value],
+                ['口座番号', $('accountNumber').value.trim()],
+                ['口座名義（カナ）', $('accountHolder').value.trim()]
+            );
+        } else {
+            rows.push(['振込先', '登録済み（前回の情報を使用）']);
+        }
         $(containerId).innerHTML = rows.map(r =>
             '<div class="confirm-row"><div class="confirm-label">' + r[0] + '</div><div class="confirm-value">' + r[1] + '</div></div>'
         ).join('');
@@ -601,20 +725,6 @@
         const customerName = $('customerName').value.trim();
         const transferDate = getNextMonthEnd();
 
-        // Register / update bank info
-        const bankPayload = {
-            action: 'registerBankInfo',
-            partnerName: partnerName,
-            company: $('bankCompany').value.trim(),
-            bankName: $('bankName').value.trim(),
-            bankCode: $('bankCode').value.trim(),
-            branchName: $('branchName').value.trim(),
-            branchCode: $('branchCode').value.trim(),
-            accountType: $('accountType').value,
-            accountNumber: $('accountNumber').value.trim(),
-            accountHolder: $('accountHolder').value.trim()
-        };
-
         // Submit conversion report
         const reportPayload = {
             action: 'submitConversionReport',
@@ -624,15 +734,34 @@
             salesAmount: p.price,
             rewardAmount: p.reward,
             transferDate: transferDate,
-            bankStatus: '登録済み'
+            bankStatus: bankSkipped ? '登録済み' : '登録済み'
         };
 
+        const requests = [
+            fetch(GAS_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(reportPayload), mode: 'no-cors' })
+        ];
+
+        // Register / update bank info only if not skipped
+        if (!bankSkipped) {
+            const bankPayload = {
+                action: 'registerBankInfo',
+                partnerName: partnerName,
+                company: $('bankCompany').value.trim(),
+                bankName: $('bankName').value.trim(),
+                bankCode: $('bankCode').value.trim(),
+                branchName: $('branchName').value.trim(),
+                branchCode: $('branchCode').value.trim(),
+                accountType: $('accountType').value,
+                accountNumber: $('accountNumber').value.trim(),
+                accountHolder: $('accountHolder').value.trim()
+            };
+            requests.push(
+                fetch(GAS_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(bankPayload), mode: 'no-cors' })
+            );
+        }
+
         try {
-            // Send both requests
-            await Promise.all([
-                fetch(GAS_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(bankPayload), mode: 'no-cors' }),
-                fetch(GAS_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(reportPayload), mode: 'no-cors' })
-            ]);
+            await Promise.all(requests);
         } catch (err) {
             console.error('Submit error:', err);
         }

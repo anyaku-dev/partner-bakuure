@@ -4,36 +4,33 @@
  * Spreadsheet ID: 1jDA44f0mSrQDDeZhvFi1qLyCum_FkABq4s_6MIYjFVc
  *
  * Sheets (gid):
- *   契約データ      : gid=358495717
- *   パートナー振込先 : gid=1361799622
- *   成約報告        : gid=107328201
+ *   契約データ           : gid=358495717
+ *   パートナー口座情報    : gid=1361799622
+ *   パートナー販売成果管理 : gid=107328201
  *
  * ★ このファイルの内容を Google Apps Script エディタに貼り付けてデプロイしてください。
  */
 
-const SS_ID = '1jDA44f0mSrQDDeZhvFi1qLyCum_FkABq4s_6MIYjFVc';
-const GID_CONTRACT = 358495717;
-const GID_BANK     = 1361799622;
-const GID_SALES    = 107328201;
+const SHEET_ID   = '1jDA44f0mSrQDDeZhvFi1qLyCum_FkABq4s_6MIYjFVc';
+const GID_TENPRE = 358495717;
+const GID_BANK   = 1361799622;
+const GID_SALES  = 107328201;
 
-/* ─── Utility ─── */
 function getSheetByGid(gid) {
-  const ss = SpreadsheetApp.openById(SS_ID);
+  const ss = SpreadsheetApp.openById(SHEET_ID);
   const sheets = ss.getSheets();
-  for (let i = 0; i < sheets.length; i++) {
-    if (sheets[i].getSheetId() === gid) return sheets[i];
+  for (const s of sheets) {
+    if (s.getSheetId() === gid) return s;
   }
   return null;
 }
 
-function timestamp() {
+/** 日本標準時の現在時刻文字列 */
+function jstNow() {
   return Utilities.formatDate(new Date(), 'Asia/Tokyo', 'yyyy/MM/dd HH:mm:ss');
 }
 
-function dateOnly() {
-  return Utilities.formatDate(new Date(), 'Asia/Tokyo', 'yyyy/MM/dd');
-}
-
+/** 翌月末日 */
 function nextMonthEnd() {
   var now = new Date();
   var d = new Date(now.getFullYear(), now.getMonth() + 2, 0);
@@ -46,7 +43,9 @@ function jsonResponse(obj) {
     .setMimeType(ContentService.MimeType.JSON);
 }
 
-/* ─── CORS headers for GET ─── */
+/* ═══════════════════════════════════════════
+   GET handler
+   ═══════════════════════════════════════════ */
 function doGet(e) {
   var action = (e.parameter.action || '').trim();
 
@@ -57,163 +56,212 @@ function doGet(e) {
   return jsonResponse({ status: 'ok', message: 'GET received' });
 }
 
-/* ─── POST router ─── */
+/* ═══════════════════════════════════════════
+   POST handler
+   ═══════════════════════════════════════════ */
 function doPost(e) {
-  var data;
+  const lock = LockService.getScriptLock();
+  lock.waitLock(10000);
   try {
-    data = JSON.parse(e.postData.contents);
+    const data = JSON.parse(e.postData.contents);
+    const action = data.action || '';
+
+    if (action === 'contract')               return handleContract(data);
+    if (action === 'updatePaymentStatus')    return handlePaymentStatus(data);
+    if (action === 'contact')                return handleContact(data);
+    if (action === 'registerBankInfo')       return handleRegisterBankInfo(data);
+    if (action === 'submitConversionReport') return handleSubmitConversionReport(data);
+
+    return jsonResponse({ status: 'error', message: 'Unknown action: ' + action });
   } catch (err) {
-    return jsonResponse({ status: 'error', message: 'Invalid JSON' });
-  }
-
-  var action = (data.action || '').trim();
-
-  switch (action) {
-    case 'contract':
-      return handleContract(data);
-    case 'updatePaymentStatus':
-      return handleUpdatePaymentStatus(data);
-    case 'contact':
-      return handleContact(data);
-    case 'registerBankInfo':
-      return handleRegisterBankInfo(data);
-    case 'submitConversionReport':
-      return handleSubmitConversionReport(data);
-    default:
-      return jsonResponse({ status: 'error', message: 'Unknown action: ' + action });
+    return jsonResponse({ status: 'error', message: err.toString() });
+  } finally {
+    lock.releaseLock();
   }
 }
 
 /* ═══════════════════════════════════════════
-   1. 契約フォーム送信
+   1. 契約データの記録（upsert）
+   gid=358495717
+   カラム構成:
+     A(1)  タイムスタンプ
+     B(2)  会社名
+     C(3)  顧客氏名
+     D(4)  メールアドレス
+     E(5)  ご紹介者氏名
+     F(6)  契約ステータス
+     G(7)  商品名
+     H(8)  金額
+     I(9)  支払方法
+     J(10) 支払ステータス
+     K(11) 支払い完了日
    ═══════════════════════════════════════════ */
 function handleContract(data) {
-  var sheet = getSheetByGid(GID_CONTRACT);
-  if (!sheet) return jsonResponse({ status: 'error', message: 'Contract sheet not found' });
+  const sheet = getSheetByGid(GID_TENPRE);
+  if (!sheet) return jsonResponse({ status: 'error', message: 'Sheet not found' });
 
-  // Columns: タイムスタンプ, 氏名, メールアドレス, 会社名, ご紹介者名, 契約プラン, 金額, お支払方法, 支払いステータス, Stripe支払い完了日時, 支払い完了日
-  sheet.appendRow([
-    timestamp(),
-    data.name || '',
-    data.email || '',
-    data.company || '',
-    data.referrer || '',
-    data.product || '',
-    data.price || '',
-    data.paymentMethod || '',
-    '未払い',
-    '',
-    ''
-  ]);
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow([
+      'タイムスタンプ', '会社名', '顧客氏名', 'メールアドレス',
+      'ご紹介者氏名', '契約ステータス', '商品名', '金額',
+      '支払方法', '支払ステータス', '支払い完了日'
+    ]);
+  }
 
-  return jsonResponse({ status: 'ok', message: 'Contract saved' });
-}
+  const name          = data.name || '';
+  const email         = data.email || '';
+  const company       = data.company || '';
+  const referrer      = data.referrer || '';
+  const product       = data.product || '';
+  const price         = data.price || '';
+  const paymentMethod = data.paymentMethod || 'クレジットカード';
+  const timestamp     = jstNow();
 
-/* ═══════════════════════════════════════════
-   2. Stripe 支払い完了ステータス更新
-   ═══════════════════════════════════════════ */
-function handleUpdatePaymentStatus(data) {
-  var sheet = getSheetByGid(GID_CONTRACT);
-  if (!sheet) return jsonResponse({ status: 'error', message: 'Contract sheet not found' });
-
-  var name  = (data.name || '').trim();
-  var email = (data.email || '').trim();
-  if (!name && !email) return jsonResponse({ status: 'error', message: 'No identifier' });
-
-  var rows = sheet.getDataRange().getValues();
-  for (var i = rows.length - 1; i >= 1; i--) {
-    var rowName  = (rows[i][1] || '').toString().trim();
-    var rowEmail = (rows[i][2] || '').toString().trim();
-    if ((name && rowName === name) || (email && rowEmail === email)) {
-      sheet.getRange(i + 1, 9).setValue('支払い済み');        // 支払いステータス
-      sheet.getRange(i + 1, 10).setValue(timestamp());        // Stripe支払い完了日時
-      sheet.getRange(i + 1, 11).setValue(dateOnly());         // 支払い完了日
-      return jsonResponse({ status: 'ok', message: 'Payment status updated' });
+  const lastRow = sheet.getLastRow();
+  let existingRow = -1;
+  if (lastRow > 1) {
+    const names  = sheet.getRange(2, 3, lastRow - 1, 1).getValues();
+    const emails = sheet.getRange(2, 4, lastRow - 1, 1).getValues();
+    for (let i = 0; i < names.length; i++) {
+      if (names[i][0] === name && emails[i][0] === email) {
+        existingRow = i + 2;
+        break;
+      }
     }
   }
 
-  return jsonResponse({ status: 'ok', message: 'Row not found, but no error' });
+  if (existingRow > 0) {
+    sheet.getRange(existingRow, 1).setValue(timestamp);
+    sheet.getRange(existingRow, 2).setValue(company);
+    sheet.getRange(existingRow, 5).setValue(referrer);
+    sheet.getRange(existingRow, 6).setValue('契約済み');
+    sheet.getRange(existingRow, 7).setValue(product);
+    sheet.getRange(existingRow, 8).setValue(price);
+    sheet.getRange(existingRow, 9).setValue(paymentMethod);
+    const currentPayStatus = sheet.getRange(existingRow, 10).getValue();
+    if (!currentPayStatus || currentPayStatus === '') {
+      sheet.getRange(existingRow, 10).setValue('未決済');
+    }
+  } else {
+    sheet.appendRow([
+      timestamp, company, name, email,
+      referrer, '契約済み', product, price,
+      paymentMethod, '未決済', ''
+    ]);
+  }
+
+  return jsonResponse({ status: 'ok' });
 }
 
 /* ═══════════════════════════════════════════
-   3. お問い合わせ (contact)
+   2. 決済ステータス更新（Stripeサンクスページ）
+   ═══════════════════════════════════════════ */
+function handlePaymentStatus(data) {
+  const sheet = getSheetByGid(GID_TENPRE);
+  if (!sheet) return jsonResponse({ status: 'error', message: 'Sheet not found' });
+
+  const name  = data.name || '';
+  const email = data.email || '';
+  const lastRow = sheet.getLastRow();
+
+  if (lastRow <= 1) return jsonResponse({ status: 'error', message: 'No data' });
+
+  const names  = sheet.getRange(2, 3, lastRow - 1, 1).getValues();
+  const emails = sheet.getRange(2, 4, lastRow - 1, 1).getValues();
+
+  for (let i = 0; i < names.length; i++) {
+    if (names[i][0] === name && emails[i][0] === email) {
+      const row = i + 2;
+      sheet.getRange(row, 10).setValue('決済完了');
+      sheet.getRange(row, 11).setValue(jstNow());
+      return jsonResponse({ status: 'ok' });
+    }
+  }
+
+  return jsonResponse({ status: 'error', message: 'Record not found' });
+}
+
+/* ═══════════════════════════════════════════
+   3. お問い合わせ（メール通知）
    ═══════════════════════════════════════════ */
 function handleContact(data) {
-  // お問い合わせはメール送信など必要に応じてカスタマイズ
-  var subject = 'お問い合わせ: ' + (data.subject || '(件名なし)');
-  var body = 'お名前: ' + (data.name || '') + '\n'
-           + 'メール: ' + (data.email || '') + '\n'
-           + '内容:\n' + (data.message || '');
-  try {
-    MailApp.sendEmail('info@chainsoda.world', subject, body);
-  } catch (err) {
-    Logger.log('Mail send error: ' + err);
-  }
-  return jsonResponse({ status: 'ok', message: 'Contact received' });
+  const subject = '【バク売れLPテンプレ】お問い合わせ: ' + (data.category || '');
+  const body = '氏名: ' + (data.name || '') + '\n'
+    + 'メール: ' + (data.email || '') + '\n'
+    + '種別: ' + (data.category || '') + '\n'
+    + '内容:\n' + (data.message || '');
+
+  MailApp.sendEmail('info@chainsoda.world', subject, body);
+  return jsonResponse({ status: 'ok' });
 }
 
 /* ═══════════════════════════════════════════
-   4. パートナー振込先情報の登録・更新
+   4. パートナー口座情報の登録・更新（upsert）
+   gid=1361799622
+   カラム構成:
+     A(1)  正規代理店氏名
+     B(2)  会社名（任意）
+     C(3)  銀行名
+     D(4)  銀行コード
+     E(5)  支店名
+     F(6)  支店コード
+     G(7)  口座種別
+     H(8)  口座番号
+     I(9)  口座名義（カナ）
+     J(10) 登録日
    ═══════════════════════════════════════════ */
 function handleRegisterBankInfo(data) {
-  var sheet = getSheetByGid(GID_BANK);
+  const sheet = getSheetByGid(GID_BANK);
   if (!sheet) return jsonResponse({ status: 'error', message: 'Bank sheet not found' });
 
-  var partnerName = (data.partnerName || '').trim();
+  const partnerName = (data.partnerName || '').trim();
   if (!partnerName) return jsonResponse({ status: 'error', message: 'partnerName required' });
 
-  // Check if already exists → update
-  var rows = sheet.getDataRange().getValues();
-  for (var i = rows.length - 1; i >= 1; i--) {
-    if ((rows[i][0] || '').toString().trim() === partnerName) {
-      // Update existing row
-      // Columns: 正規代理店氏名, 会社名, 銀行名, 銀行コード, 支店名, 支店コード, 口座種別, 口座番号, 口座名義カナ, 登録日
-      var range = sheet.getRange(i + 1, 1, 1, 10);
-      range.setValues([[
-        partnerName,
-        data.company || '',
-        data.bankName || '',
-        data.bankCode || '',
-        data.branchName || '',
-        data.branchCode || '',
-        data.accountType || '普通',
-        data.accountNumber || '',
-        data.accountHolder || '',
-        timestamp()
-      ]]);
-      return jsonResponse({ status: 'ok', message: 'Bank info updated' });
+  const rowData = [
+    partnerName,              // A: 正規代理店氏名
+    data.company || '',       // B: 会社名（任意）
+    data.bankName || '',      // C: 銀行名
+    data.bankCode || '',      // D: 銀行コード
+    data.branchName || '',    // E: 支店名
+    data.branchCode || '',    // F: 支店コード
+    data.accountType || '普通', // G: 口座種別
+    data.accountNumber || '', // H: 口座番号
+    data.accountHolder || '', // I: 口座名義（カナ）
+    jstNow()                  // J: 登録日
+  ];
+
+  // upsert: 正規代理店氏名(A列)一致で既存行を探す
+  const lastRow = sheet.getLastRow();
+  if (lastRow > 1) {
+    const names = sheet.getRange(2, 1, lastRow - 1, 1).getValues();
+    for (let i = 0; i < names.length; i++) {
+      if ((names[i][0] || '').toString().trim() === partnerName) {
+        sheet.getRange(i + 2, 1, 1, 10).setValues([rowData]);
+        return jsonResponse({ status: 'ok', message: 'Bank info updated' });
+      }
     }
   }
 
-  // New registration
-  sheet.appendRow([
-    partnerName,
-    data.company || '',
-    data.bankName || '',
-    data.bankCode || '',
-    data.branchName || '',
-    data.branchCode || '',
-    data.accountType || '普通',
-    data.accountNumber || '',
-    data.accountHolder || '',
-    timestamp()
-  ]);
-
+  sheet.appendRow(rowData);
   return jsonResponse({ status: 'ok', message: 'Bank info registered' });
 }
 
 /* ═══════════════════════════════════════════
-   5. 口座登録済みチェック (GET)
+   5. 口座登録済みチェック（GET）
+   gid=1361799622
    ═══════════════════════════════════════════ */
 function handleCheckBankInfo(params) {
-  var partnerName = (params.partnerName || '').trim();
+  const partnerName = (params.partnerName || '').trim();
   if (!partnerName) return jsonResponse({ registered: false });
 
-  var sheet = getSheetByGid(GID_BANK);
+  const sheet = getSheetByGid(GID_BANK);
   if (!sheet) return jsonResponse({ registered: false });
 
-  var rows = sheet.getDataRange().getValues();
-  for (var i = rows.length - 1; i >= 1; i--) {
+  const lastRow = sheet.getLastRow();
+  if (lastRow <= 1) return jsonResponse({ registered: false });
+
+  const rows = sheet.getRange(2, 1, lastRow - 1, 9).getValues();
+  for (let i = rows.length - 1; i >= 0; i--) {
     if ((rows[i][0] || '').toString().trim() === partnerName) {
       return jsonResponse({
         registered: true,
@@ -234,23 +282,34 @@ function handleCheckBankInfo(params) {
 
 /* ═══════════════════════════════════════════
    6. 成約報告の送信
+   gid=107328201
+   カラム構成:
+     A(1)  申請日時
+     B(2)  正規代理店名
+     C(3)  お客様氏名
+     D(4)  成約商品
+     E(5)  販売額（税込）
+     F(6)  報酬額（税込）
+     G(7)  報酬振込先ステータス
+     H(8)  振込予定日
+     I(9)  振込ステータス
+     J(10) 顧客支払確認
    ═══════════════════════════════════════════ */
 function handleSubmitConversionReport(data) {
-  var sheet = getSheetByGid(GID_SALES);
+  const sheet = getSheetByGid(GID_SALES);
   if (!sheet) return jsonResponse({ status: 'error', message: 'Sales sheet not found' });
 
-  // Columns: 申請日時, 正規代理店名, お客様氏名, 成約商品, 販売額（税込）, 報酬額（税込）, 報酬振込先ステータス, 振込予定日, 振込ステータス, 顧客支払確認
   sheet.appendRow([
-    timestamp(),
-    data.partnerName || '',
-    data.customerName || '',
-    data.product || '',
-    data.salesAmount || '',
-    data.rewardAmount || '',
-    data.bankStatus || '',
-    data.transferDate || nextMonthEnd(),
-    '未振込',
-    '未確認'
+    jstNow(),                              // A: 申請日時
+    data.partnerName || '',                // B: 正規代理店名
+    data.customerName || '',               // C: お客様氏名
+    data.product || '',                    // D: 成約商品
+    data.salesAmount || '',                // E: 販売額（税込）
+    data.rewardAmount || '',               // F: 報酬額（税込）
+    data.bankStatus || '',                 // G: 報酬振込先ステータス
+    data.transferDate || nextMonthEnd(),   // H: 振込予定日
+    '未振込',                               // I: 振込ステータス
+    '未確認'                                // J: 顧客支払確認
   ]);
 
   return jsonResponse({ status: 'ok', message: 'Conversion report submitted' });
